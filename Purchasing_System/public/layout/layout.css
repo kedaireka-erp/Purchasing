@@ -8346,3 +8346,12 @@
         
       }
   
+      .bi-chevron-down:active
+      {
+        transform: rotate(180deg);
+      }
+
+      .tittle_page{
+        color: var(--purple);
+        font-weight: 500;
+      }
