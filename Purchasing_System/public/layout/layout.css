@@ -8351,7 +8351,8 @@
         transform: rotate(180deg);
       }
 
-      .tittle_page{
+      .title-page{
+      font-size: 20px;
         color: var(--purple);
         font-weight: 500;
       }

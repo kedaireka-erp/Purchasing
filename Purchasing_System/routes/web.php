@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SatuanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layout.sidebar');
+Route::group(['as'=>'satuan.','prefix'=>'satuan'], function() {
+    Route::get('/', [SatuanController::class, 'index'])->name('satuandash');
+    Route::get('/search', [SatuanController::class, 'search'])->name('satuansearch');
+    Route::get('/add', [SatuanController::class, 'add'])->name('satuanadd');
+    Route::post('/store', [SatuanController::class, 'store'])->name('satuanstore');
+    Route::get('/edit/{id}', [SatuanController::class, 'edit'])->name('satuanedit');
+    Route::post('/update/{id}', [SatuanController::class, 'update'])->name('satuanupdate');
+    Route::delete('/delete/{id}', [SatuanController::class, 'destroy'])->name('satuandelete');
+
 });
+
