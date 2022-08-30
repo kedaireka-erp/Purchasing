@@ -24,7 +24,7 @@
                 <div class="mb-3">
                     <label for="name" class="form-label"> Nama Satuan </label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                        value="{{ old('name') }}">
+                        value="{{ old('name') }}" autofocus>
                     @error('name')
                         <div class="invalid-feedback">
                             {{ $message }}
