@@ -1,0 +1,42 @@
+#add{
+    background-color: #B06BDB;
+    border: none;
+    border-radius: 10px;
+    width:200px;
+    height: 40px !important;
+}
+#search{
+    border: none;
+    background-color:#B06BDB !important;
+}
+#tombol{
+    margin-top: 60px;
+}
+#table-body{
+    margin-top: 30px;
+}
+.table-head{
+    background-color: #f0ecf4 !important;
+    
+}
+.table{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+#edit{
+    background-color:#f0ecf4 ;
+    border: none;
+}
+#delete{
+    background-color: #FBE7E8;
+    border: none;
+}
+.fa-edit{
+   color: #B06BDB;
+}
+.bi-trash{
+    color: red;
+}
+
+.pagination{
+    color: pink !important;
+}
