@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ asset('layout/mastersatuan.css') }}">
     {{-- <<========= Ini Title ========>> --}}
     <title> @yield('judul-laman') </title>
     {{-- <<========= Finish Title ========>> --}}
@@ -26,6 +27,8 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="{{ asset('layout/layout.css') }}">
+    <link rel="stylesheet" href="{{ asset('layout/mastersatuan.css') }}">
+
 </head>
 
 <body>
