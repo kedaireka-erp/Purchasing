@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SatuanController;
+use App\Http\Controllers\ships_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,6 @@ Route::group(['as'=>'satuan.','prefix'=>'satuan'], function() {
     Route::delete('/delete/{id}', [SatuanController::class, 'destroy'])->name('satuandelete');
 
 });
+
+route::resource('ships', ships_controller::class);
 
