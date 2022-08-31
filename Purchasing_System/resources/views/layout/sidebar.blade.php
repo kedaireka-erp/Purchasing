@@ -26,6 +26,8 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="{{ asset('layout/layout.css') }}">
+    <link rel="stylesheet" href="{{ asset('layout/update.css') }}">
+    <link rel="stylesheet" href="{{ asset('layout/tampil.css') }}">
 </head>
 
 <body>
