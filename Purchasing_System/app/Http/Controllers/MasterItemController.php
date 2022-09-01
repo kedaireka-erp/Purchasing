@@ -97,7 +97,7 @@ class MasterItemController extends Controller
 		->paginate(5);
  
     		
-		return view('index',['items' => $items]);
+		return view('master_item.index',['items' => $items]);
  
 	}
 

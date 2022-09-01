@@ -22,20 +22,26 @@
 			
 			
 		</tr>
-		@foreach($items as $d)
+		@if (count($items) == 0)
+                        <tr>
+                            <td colspan="6" align="center" style="color: gray; background-color: white"> <i>Data
+                                    kosong</i> </td>
+                        </tr>
+                    @endif
+		@foreach($items as $d=>$item)
 		<tr>
-			<td>{{ $d->id }}</td>
-			<td>{{ $d->item_name }}</td>
-			<td>{{ $d->stock }}</td>
+			<td>{{ $d+$items->firstitem() }}</td>
+			<td>{{ $item->item_name }}</td>
+			<td>{{ $item->stock }}</td>
 			
 			<td>
-				{{-- <a href="/edit/{{ $d->id_master_item }}">Update</a>
-				<a  href="/delete/{{ $d->id_master_item }}" onclick="return confirm('Move data to trash?')">Delete</a>
+				{{-- <a href="/edit/{{ $item->id_master_item }}">Update</a>
+				<a  href="/delete/{{ $item->id_master_item }}" onclick="return confirm('Move data to trash?')">Delete</a>
 				 --}}
                 
-				<a class="btn btn-primary" href="masteritem/edit/{{ $d->id }}" 
+				<a class="btn btn-primary" href="masteritem/edit/{{ $item->id }}" 
 					role="button"><i class="fa fa-edit"> </i></a>
-				<a class="btn btn-primary" href="masteritem/delete/{{ $d->id}}" 
+				<a class="btn btn-primary" href="masteritem/delete/{{ $item->id}}" 
 					onclick="return confirm('Move data to trash?')" role="button"><i class="fa fa-remove"> </i></a>
                 
 			</td>
