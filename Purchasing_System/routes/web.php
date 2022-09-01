@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\ships_controller;
+use App\Http\Controllers\LocationController;
 
 /*
 |--------------------------------------------------------------------------
