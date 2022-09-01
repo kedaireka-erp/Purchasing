@@ -26,5 +26,3 @@ Route::group(['as'=>'satuan.','prefix'=>'satuan'], function() {
 
 });
 
-route::resource('ships', ships_controller::class);
-
