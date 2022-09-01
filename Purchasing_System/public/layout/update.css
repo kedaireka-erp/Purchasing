@@ -1,0 +1,15 @@
+
+#boxshadow{
+	height: 380px;
+    width: 541px;
+    left: 449px;
+    top: 424px;
+    border-radius: 0px;
+    box-shadow: 2px 2px 20px 2px #00000040;
+    background-color: rgb(255, 255, 255);
+
+}
+.contoh{
+    color: #B06BDB;
+    font-size: 100;
+}

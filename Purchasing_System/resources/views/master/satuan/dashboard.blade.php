@@ -9,15 +9,31 @@
 @endsection
 
 @section('content')
-    <div class="container col-lg-8" style="margin-top: 50px">
 
-        <form action="{{ route('satuan.satuansearch') }}" class="d-flex justify-content-end" method="get">
-            <input class="form-control me-2" name="search" type="search" placeholder="Search" style="width: 300px"
+<div id="tombol">
+    <div class="container">
+
+        <div class="d-flex justify-content-between">
+
+            <form action="{{ route('satuan.satuansearch') }}" class="d-flex justify-content-start" method="get">
+            <input class="form-control mr-2 " name="search" type="search" placeholder="Search" style="width: 300px"
                 value="{{ request('search') }}">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
+            <button class="btn btn-success" type="submit" id="search">Search</button>
+            </form>
 
+        {{-- <div class="d-flex justify-content-center"> --}}
+            <div id="button_add">
+
+            
+                <a href="{{ route('satuan.satuanadd') }}" class="btn btn-success" id="add"> +Tambah Satuan
+                </a>
+            </div>
+        {{-- </div> --}}
+
+        </div>
+
+    </div>
+</div>
     @if (session()->has('success'))
         <div id="alert" style="margin-top:20px;margin-bottom:10px">
             <div class="container col-lg-8">
@@ -45,12 +61,12 @@
     @endif
 
     </div>
-    <div id="table-body" style="margin-top: 20px">
-        <div class="container col-lg-8">
-            <table class="table table-bordered align-middle" style="background-color:white">
-                <thead class="table table-primary">
+    <div id="table-body">
+        <div class="container">
+            <table class="table table-borderless" style="background-color:white">
+                <thead class="table-head">
                     <tr style="text-align: center">
-                        <th width="10%">#</th>
+                        <th width="10%">No</th>
                         <th width="40%">Nama Satuan</th>
                         <th width="30%">Unit</th>
                         <th width="20%">Action</th>
@@ -79,7 +95,7 @@
                                     style="margin-right:10px">
                                     @csrf
                                     <input type="hidden" value="EDIT" name="_method">
-                                    <button type="submit" class="btn btn-warning"> <i class="fa fa-edit"></i> </button>
+                                    <button type="submit" class="btn btn-warning" id="edit"> <i class="fa fa-edit"></i> </button>
                                 </form>
 
 
@@ -88,7 +104,7 @@
                                     action="{{ route('satuan.satuandelete', $item->id) }}">
                                     @csrf
                                     <input type="hidden" value="DELETE" name="_method">
-                                    <button type="submit" class="btn btn-danger"> <i class="fa fa-remove"></i>
+                                    <button type="submit" class="btn btn-danger" id="delete"> <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
                             </td>
@@ -101,18 +117,13 @@
             </table>
         </div>
         </tbody>
-        <div class="d-flex justify-content-center">
-            <div id="button-add">
-                <a href="{{ route('satuan.satuanadd') }}" class="btn btn-success"style="width:400px"> +Tambah Satuan
-                </a>
-            </div>
-        </div>
+        
     </div>
 
     <div id="pagination" style="margin-top:30px">
-        <div class="container col-lg-8">
+        <div class="container">
+            {{ $satuan->onEachSide(5)->links() }}
 
-            {{ $satuan->links() }}
 
         </div>
     </div>

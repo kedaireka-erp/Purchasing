@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Satuan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SatuanController extends Controller
 {
     public function index()
     {
-        $satuan = Satuan::select('*')->paginate(5);
+        $satuan = Satuan::select('*')->latest()->paginate(5);
 
         return view('master.satuan.dashboard', compact('satuan'));
     }
@@ -47,20 +48,31 @@ class SatuanController extends Controller
         return view('master.satuan.edit', compact('satuan'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Satuan $satuan,$id)
     {
         $satuan = Satuan::find($id);
-        $satuan->name = $request->name;
-        $satuan->unit = $request->unit;
 
-        if($satuan->save())
+        $rules = [
+            'name' => ['required', 'max:100'],
+            'unit' => ['required', 'max:10'],
+        ];
+
+        if($request->name != $satuan->name)
         {
-            return redirect('/satuan')->with('teredit','Berhasil Mengedit Data');
+            $rules['name'] = 'required|unique:satuans|max:100';
+            
         }
-        else
+        else if($request->unit != $satuan->unit)
         {
-            return redirect()->back()->with('message','Gagal Mengedit Data');
+            $rules['unit'] = 'required|unique:satuans|max:10';
         }
+
+       $validatedData = $request->validate($rules);
+
+       Satuan::where('id', $satuan->id)->update($validatedData);
+
+        return redirect('/satuan')->with('teredit', 'Data berhasil diedit');
+    
     }
 
     public function destroy($id)
