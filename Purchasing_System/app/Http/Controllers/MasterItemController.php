@@ -12,11 +12,11 @@ class MasterItemController extends Controller
     	$items = DB::table('master_items')->paginate(5);
         
  
-    	return view('index', ['items' => $items]);
+    	return view('master_item.index', ['items' => $items]);
         
     }
     public function create(){
-        return view ("create");
+        return view ("master_item.create");
     }
 
     public function store(request $request){
@@ -35,7 +35,7 @@ class MasterItemController extends Controller
 			
 		]);
 		
-		return redirect('/');
+		return redirect('/masteritem');
     }
 
     public function update(request $request, master_item $items){
@@ -69,14 +69,14 @@ class MasterItemController extends Controller
    
 
 	
-	return redirect('/');
+	return redirect('/masteritem');
     }
     
     Public function edit($id){
         
         //$items= Master_Item::FindorFail($id);
         $items = DB::table('master_items')->where('id',$id)->get();;
-        return view ('edit',['items' => $items]);
+        return view ('master_item.edit',['items' => $items]);
         
     }
 
@@ -84,7 +84,7 @@ class MasterItemController extends Controller
 {
 	DB::table('master_items')->where('id',$id)->delete();
 		
-	return redirect('/');
+	return redirect('/masteritem');
 }
     public function cari(Request $request)
 	{

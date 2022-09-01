@@ -16,7 +16,7 @@
         </ul>
     </div>
 @endif
-    <form action= "/update" method="post">
+    <form action= "{{ url('masteritem/update') }}" method="post">
         
         @csrf
         <h1>Edit Item Name</h1>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\ships_controller;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MasterItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,4 +38,17 @@ Route::group(['as'=>'location.','prefix'=>'location'],function(){
 });
 
 route::resource('ships', ships_controller::class);
+
+Route::group(['as'=>'master_item.','prefix'=>'masteritem'], function() {
+    Route::get('/create', function () {
+        return view('master_item.create');
+    });
+    
+    Route::get("/", [MasterItemController::class, "index"]);
+    Route::get('/edit/{id}', [MasterItemController::class, 'edit']);
+    Route::get('/delete/{id}',[MasterItemController::class, 'delete']);
+    Route::post('/store', [MasterItemController::class, "store"]);
+    Route::post('/update',[MasterItemController::class,'update']);
+    Route::get("/search", [MasterItemController::class, "cari"]);
+});
 
