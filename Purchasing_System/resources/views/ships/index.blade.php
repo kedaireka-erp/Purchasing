@@ -18,14 +18,14 @@
         </tr>
         </thead>
         @if(count($datas)==0)
-<tr>
-    <td colspan="6" align="center" style="color: gray; background-color: white"><i>
-        Data kosong
-    </i></td>
-</tr>
-@endif
+        <tr>
+            <td colspan="6" align="center" style="color: gray; background-color: white"><i>
+            Data kosong
+            </i></td>
+        </tr>
+        @endif
          <tr>
-@foreach ($datas as $key=>$value)
+        @foreach ($datas as $key=>$value)
             <td>{{ $key+$datas->firstitem() }}</td>
             <td>{{ $value->name }}</td>
             <td><a class="btn btn-info" href="{{ url('ships/'.$value->id.'/edit') }}">Edit</a></td>
@@ -37,7 +37,7 @@
             </form> 
         </td>
         </tr>
-@endforeach
+        @endforeach
     </table>
-    {{ $datas->links() }}
+{{ $datas->links() }}
 @endsection
