@@ -72,6 +72,9 @@
                                 <a href="/masteritem">Master Item</a>
                             </li>
                             <li>
+                                <a href="/masteritem">Master Satuan</a>
+                            </li>
+                            <li>
                                 <a href="/prefix">Master Prefix</a>
                             </li>
                             <li>

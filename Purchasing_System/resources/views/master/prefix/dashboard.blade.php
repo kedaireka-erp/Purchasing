@@ -84,8 +84,9 @@
                     @foreach ($prefix as $index => $item)
                         <tr>
                             <td align="center"> {{ $index + $prefix->firstItem() }} </td>
-                            <td> {{ $item->prefix }} </td>
                             <td> {{ $item->divisi }} </td>
+                            <td> {{ $item->prefix }} </td>
+
 
 
                             <td class="d-flex justify-content-center">

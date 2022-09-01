@@ -38,7 +38,7 @@ class LocationController extends Controller
             'address'=>$request->address,
         ]);
 
-        return redirect("/");
+        return redirect("/location");
      }
 
      public function edit($id){
@@ -56,7 +56,7 @@ class LocationController extends Controller
             'address'=>$request->address ?? $locations->address,
         ]);
 
-        return redirect("/");
+        return redirect("/location");
      }
 
      public function destroy($id){
@@ -64,6 +64,6 @@ class LocationController extends Controller
         $locations = Location::findOrFail($id);
         $locations->delete();
 
-        return redirect("/");
+        return redirect("/location");
      }
 }
