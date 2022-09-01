@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\ships_controller;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MasterItemController;
+use App\Http\Controllers\PurchaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,8 @@ use App\Http\Controllers\MasterItemController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+Route::get('/purchase', [PurchaseController::class, 'index'])->name('dashboard-purchase');
 
 Route::group(['as'=>'satuan.','prefix'=>'satuan'], function() {
     Route::get('/', [SatuanController::class, 'index'])->name('satuandash');

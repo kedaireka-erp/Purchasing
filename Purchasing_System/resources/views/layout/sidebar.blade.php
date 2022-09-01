@@ -49,10 +49,10 @@
 
                 <ul class="list-unstyled components mb-5">
                     <li>
-                        <a href="#">Dashboard</a>
+                        <a href="/">Dashboard</a>
                     </li>
                     <li>
-                        <a href="#">Purchase Request</a>
+                        <a href="/purchase">Purchase Request</a>
                     </li>
 
                     <li>
@@ -69,16 +69,16 @@
                         <div class="list-request" style="margin-left: 20px">
 
                             <li>
-                                <a href="#">Master Item</a>
+                                <a href="/masteritem">Master Item</a>
                             </li>
                             <li>
-                                <a href="#">Master Lokasi</a>
+                                <a href="/location">Master Lokasi</a>
                             </li>
                             <li>
-                                <a href="#">Master Satuan</a>
+                                <a href="/satuan">Master Satuan</a>
                             </li>
                             <li>
-                                <a href="#">Master Kebutuhan </a>
+                                <a href="/ships">Master Kebutuhan </a>
                             </li>
                         </div>
                     </div>
