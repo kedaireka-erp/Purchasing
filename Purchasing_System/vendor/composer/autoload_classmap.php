@@ -28,6 +28,7 @@ return array(
     'App\\Http\\Requests\\ships_request' => $baseDir . '/app/Http/Requests/ships_request.php',
     'App\\Models\\Home' => $baseDir . '/app/Models/Home.php',
     'App\\Models\\Master_Item' => $baseDir . '/app/Models/Master_Item.php',
+    'App\\Models\\Prefix' => $baseDir . '/app/Models/Prefix.php',
     'App\\Models\\Purchase' => $baseDir . '/app/Models/Purchase.php',
     'App\\Models\\Satuan' => $baseDir . '/app/Models/Satuan.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',

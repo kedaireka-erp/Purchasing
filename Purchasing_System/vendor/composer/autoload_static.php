@@ -521,6 +521,7 @@ class ComposerStaticInit1957439821b8f7b50ffa57b235b741be
         'App\\Http\\Requests\\ships_request' => __DIR__ . '/../..' . '/app/Http/Requests/ships_request.php',
         'App\\Models\\Home' => __DIR__ . '/../..' . '/app/Models/Home.php',
         'App\\Models\\Master_Item' => __DIR__ . '/../..' . '/app/Models/Master_Item.php',
+        'App\\Models\\Prefix' => __DIR__ . '/../..' . '/app/Models/Prefix.php',
         'App\\Models\\Purchase' => __DIR__ . '/../..' . '/app/Models/Purchase.php',
         'App\\Models\\Satuan' => __DIR__ . '/../..' . '/app/Models/Satuan.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',

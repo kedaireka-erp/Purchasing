@@ -7,6 +7,7 @@ use App\Http\Controllers\ships_controller;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MasterItemController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PrefixController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,17 @@ Route::group(['as'=>'satuan.','prefix'=>'satuan'], function() {
     Route::get('/edit/{id}', [SatuanController::class, 'edit'])->name('satuanedit');
     Route::post('/update/{id}', [SatuanController::class, 'update'])->name('satuanupdate');
     Route::delete('/delete/{id}', [SatuanController::class, 'destroy'])->name('satuandelete');
+
+});
+
+Route::group(['as'=>'prefix.','prefix'=>'prefix'], function() {
+    Route::get('/', [PrefixController::class, 'index'])->name('prefixdash');
+    Route::get('/search', [PrefixController::class, 'search'])->name('prefixsearch');
+    Route::get('/add', [PrefixController::class, 'add'])->name('prefixadd');
+    Route::post('/store', [PrefixController::class, 'store'])->name('prefixstore');
+    Route::get('/edit/{id}', [PrefixController::class, 'edit'])->name('prefixedit');
+    Route::post('/update/{id}', [PrefixController::class, 'update'])->name('prefixupdate');
+    Route::delete('/delete/{id}', [PrefixController::class, 'destroy'])->name('prefixdelete');
 
 });
 

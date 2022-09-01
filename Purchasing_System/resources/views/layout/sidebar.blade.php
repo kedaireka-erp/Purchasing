@@ -72,10 +72,10 @@
                                 <a href="/masteritem">Master Item</a>
                             </li>
                             <li>
-                                <a href="/location">Master Lokasi</a>
+                                <a href="/prefix">Master Prefix</a>
                             </li>
                             <li>
-                                <a href="/satuan">Master Satuan</a>
+                                <a href="/location">Master Lokasi</a>
                             </li>
                             <li>
                                 <a href="/ships">Master Kebutuhan </a>
