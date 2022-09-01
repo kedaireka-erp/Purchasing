@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SatuanController;
+use App\Http\Controllers\ships_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,4 @@ Route::group(['as'=>'location.','prefix'=>'location'],function(){
 });
 
 route::resource('ships', ships_controller::class);
-
-
 
