@@ -9,17 +9,24 @@
     <button type="submit">search</button>
 </form>
 <br>
-    <table class="table">
+    <table class="table">       
         <thead class="thead-dark">
         <tr>
-            <th>ID</th>
+            <th>No</th>
             <th>Ship Type</th>
             <th colspan="2">Action</th>
         </tr>
         </thead>
-@foreach ($datas as $key=>$value)
+        @if(count($datas)==0)
+<tr>
+    <td colspan="6" align="center" style="color: gray; background-color: white"><i>
+        Data kosong
+    </i></td>
+</tr>
+@endif
          <tr>
-            <td>{{ $value->id }}</td>
+@foreach ($datas as $key=>$value)
+            <td>{{ $key+$datas->firstitem() }}</td>
             <td>{{ $value->name }}</td>
             <td><a class="btn btn-info" href="{{ url('ships/'.$value->id.'/edit') }}">Edit</a></td>
             <td> 
