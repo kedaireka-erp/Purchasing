@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SatuanController;
+use App\Http\Controllers\ships_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,17 +24,5 @@ Route::group(['as'=>'satuan.','prefix'=>'satuan'], function() {
     Route::post('/update/{id}', [SatuanController::class, 'update'])->name('satuanupdate');
     Route::delete('/delete/{id}', [SatuanController::class, 'destroy'])->name('satuandelete');
 
-});
-
-
-route::resource('ships', ships_controller::class);
-
-Route::group(['as'=>'location.','prefix'=>'location'],function(){
-    Route::get('/', [LocationController::class, "index"]);
-    Route::get('/create', [LocationController::class, "create"])->name('create');
-    Route::post('/store', [LocationController::class, "store"])->name("store");
-    Route::get('/edit/{id}', [LocationController::class, "edit"])->name("edit");
-    Route::post('/update{id}', [LocationController::class, "update"])->name("update");
-    Route::delete('/destroy{id}', [LocationController::class, "destroy"])->name("destroy");
 });
 
