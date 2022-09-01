@@ -25,9 +25,6 @@ Route::group(['as'=>'satuan.','prefix'=>'satuan'], function() {
 
 });
 
-
-route::resource('ships', ships_controller::class);
-
 Route::group(['as'=>'location.','prefix'=>'location'],function(){
     Route::get('/', [LocationController::class, "index"]);
     Route::get('/create', [LocationController::class, "create"])->name('create');
@@ -36,4 +33,8 @@ Route::group(['as'=>'location.','prefix'=>'location'],function(){
     Route::post('/update{id}', [LocationController::class, "update"])->name("update");
     Route::delete('/destroy{id}', [LocationController::class, "destroy"])->name("destroy");
 });
+
+route::resource('ships', ships_controller::class);
+
+
 
