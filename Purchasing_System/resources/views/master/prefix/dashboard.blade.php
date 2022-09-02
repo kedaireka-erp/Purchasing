@@ -10,52 +10,27 @@
 
 @section('content')
 
-<div id="tombol">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5 col-md-6 mb-2">
-                <form action="{{ route('satuan.satuansearch') }}" method="get">
-                    <input class="form-control fa" name="search" type="search" placeholder="&#xf002      Search "
-                        value="{{ request('search') }}">
-                </form>
-            </div>
-            <div class="col-lg-5 col-md-2"></div>
-            <div class="col-lg-2 col-md-4">
-                <div id="button_add">
-                    <a href="{{ route('prefix.prefixadd') }}" class="btn btn-success" id="add"> +Add Data
-                    </a>
+    <div id="tombol">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-6 mb-2">
+                    <form action="{{ route('satuan.satuansearch') }}" method="get">
+                        <input class="form-control fa" name="search" type="search" placeholder="&#xf002      Search "
+                            value="{{ request('search') }}">
+                    </form>
                 </div>
+                <div class="col-lg-5 col-md-2"></div>
+                <div class="col-lg-2 col-md-4">
+                    <div id="button_add">
+                        <a href="{{ route('prefix.prefixadd') }}" class="btn btn-success" id="add"> +Add Data
+                        </a>
+                    </div>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
-    @if (session()->has('success'))
-        <div id="alert" style="margin-top:20px;margin-bottom:10px">
-            <div class="container col-lg-8">
-                <div class="alert alert-success" role="alert">
-                    {{ session('success') }}
-                </div>
-            </div>
-        </div>
-    @elseif (session()->has('teredit'))
-        <div id="alert" style="margin-top:20px;margin-bottom:10px">
-            <div class="container col-lg-8">
-                <div class="alert alert-warning" role="alert">
-                    {{ session('teredit') }}
-                </div>
-            </div>
-        </div>
-    @elseif (session()->has('terhapus'))
-        <div id="alert" style="margin-top:20px;margin-bottom:10px">
-            <div class="container col-lg-8">
-                <div class="alert alert-danger" role="alert">
-                    {{ session('terhapus') }}
-                </div>
-            </div>
-        </div>
-    @endif
-
+    <x-alert></x-alert>
     </div>
     <div id="table-body">
         <div class="container">
@@ -63,8 +38,8 @@
                 <thead class="table-head">
                     <tr style="text-align: center">
                         <th width="10%">No</th>
-                        <th width="40%">Nama Prefix</th>
-                        <th width="30%">Divisi</th>
+                        <th width="40%">Divisi</th>
+                        <th width="30%">Nama Prefix</th>
                         <th width="20%">Action</th>
                     </tr>
                 </thead>
@@ -122,13 +97,13 @@
     <div id="pagination" style="margin-top:30px">
         <div class="container">
             <div class="d-flex justify-content-center">
-                @if ( $prefix->currentPage() !=  $prefix->lastItem())
-                    <a class="btn btn-warning" type="button" href="{{  $prefix->previousPageUrl() }}">
+                @if ($prefix->currentPage() != $prefix->lastItem())
+                    <a class="btn btn-warning" type="button" href="{{ $prefix->previousPageUrl() }}">
                         < </a>
-                            <span class="btn btn-info mr-2 ml-2" type="button" >
-                                {{  $prefix->currentPage() }}
+                            <span class="btn btn-info mr-2 ml-2" type="button">
+                                {{ $prefix->currentPage() }}
                             </span>
-                            <a class="btn btn-danger" type="button" href="{{  $prefix->nextPageUrl() }}"> >
+                            <a class="btn btn-danger" type="button" href="{{ $prefix->nextPageUrl() }}"> >
                             </a>
                 @endif
             </div>

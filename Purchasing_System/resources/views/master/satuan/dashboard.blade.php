@@ -10,52 +10,28 @@
 
 @section('content')
 
-<div id="tombol">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5 col-md-6 mb-2">
-                <form action="{{ route('satuan.satuansearch') }}" method="get">
-                    <input class="form-control fa" name="search" type="search" placeholder="&#xf002      Search "
-                        value="{{ request('search') }}">
-                </form>
-            </div>
-            <div class="col-lg-5 col-md-2"></div>
-            <div class="col-lg-2 col-md-4">
-                <div id="button_add">
-                    <a href="{{ route('satuan.satuanadd') }}" class="btn btn-success" id="add"> +Add Data
-                    </a>
+    <div id="tombol">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-6 mb-2">
+                    <form action="{{ route('satuan.satuansearch') }}" method="get">
+                        <input class="form-control fa" name="search" type="search" placeholder="&#xf002      Search "
+                            value="{{ request('search') }}">
+                    </form>
                 </div>
+                <div class="col-lg-5 col-md-2"></div>
+                <div class="col-lg-2 col-md-4">
+                    <div id="button_add">
+                        <a href="{{ route('satuan.satuanadd') }}" class="btn btn-success" id="add"> +Add Data
+                        </a>
+                    </div>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-    @if (session()->has('success'))
-        <div id="alert" style="margin-top:20px;margin-bottom:10px">
-            <div class="container col-lg-8">
-                <div class="alert alert-success" role="alert">
-                    {{ session('success') }}
-                </div>
-            </div>
-        </div>
-    @elseif (session()->has('teredit'))
-        <div id="alert" style="margin-top:20px;margin-bottom:10px">
-            <div class="container col-lg-8">
-                <div class="alert alert-warning" role="alert">
-                    {{ session('teredit') }}
-                </div>
-            </div>
-        </div>
-    @elseif (session()->has('terhapus'))
-        <div id="alert" style="margin-top:20px;margin-bottom:10px">
-            <div class="container col-lg-8">
-                <div class="alert alert-danger" role="alert">
-                    {{ session('terhapus') }}
-                </div>
-            </div>
-        </div>
-    @endif
+    <x-alert></x-alert>
 
     </div>
     <div id="table-body">
@@ -92,7 +68,8 @@
                                     style="margin-right:10px">
                                     @csrf
                                     <input type="hidden" value="EDIT" name="_method">
-                                    <button type="submit" class="btn btn-warning" id="edit"> <i class="fa fa-edit"></i> </button>
+                                    <button type="submit" class="btn btn-warning" id="edit"> <i
+                                            class="fa fa-edit"></i> </button>
                                 </form>
 
 
@@ -101,7 +78,8 @@
                                     action="{{ route('satuan.satuandelete', $item->id) }}">
                                     @csrf
                                     <input type="hidden" value="DELETE" name="_method">
-                                    <button type="submit" class="btn btn-danger" id="delete"> <i class="bi bi-trash"></i>
+                                    <button type="submit" class="btn btn-danger" id="delete"> <i
+                                            class="bi bi-trash"></i>
                                     </button>
                                 </form>
                             </td>
@@ -114,7 +92,7 @@
             </table>
         </div>
         </tbody>
-        
+
     </div>
 
     <div id="pagination" style="margin-top:30px">
@@ -123,7 +101,7 @@
                 @if ($satuan->currentPage() != $satuan->lastItem())
                     <a class="btn btn-warning" type="button" href="{{ $satuan->previousPageUrl() }}">
                         < </a>
-                            <span class="btn btn-info mr-2 ml-2" type="button" >
+                            <span class="btn btn-info mr-2 ml-2" type="button">
                                 {{ $satuan->currentPage() }}
                             </span>
                             <a class="btn btn-danger" type="button" href="{{ $satuan->nextPageUrl() }}"> >

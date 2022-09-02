@@ -1,9 +1,9 @@
 #add{
     background-color: #B06BDB;
     border: none;
-    border-radius: 10px;
-    width:200px;
-    height: 40px !important;
+    border-radius: 6px;
+    width:100%;
+    height: calc(1.5em + 0.75rem + 2px);
 }
 #search{
     border: none;
