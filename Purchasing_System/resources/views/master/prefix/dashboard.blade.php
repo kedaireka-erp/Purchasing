@@ -10,30 +10,26 @@
 
 @section('content')
 
-    <div id="tombol">
-        <div class="container">
-
-            <div class="d-flex justify-content-between">
-
-                <form action="{{ route('prefix.prefixsearch') }}" class="d-flex justify-content-start" method="get">
-                    <input class="form-control mr-2 " name="search" type="search" placeholder="Search" style="width: 300px"
+<div id="tombol">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-6 mb-2">
+                <form action="{{ route('satuan.satuansearch') }}" method="get">
+                    <input class="form-control fa" name="search" type="search" placeholder="&#xf002      Search "
                         value="{{ request('search') }}">
-                    <button class="btn btn-success" type="submit" id="search">Search</button>
                 </form>
-
-                {{-- <div class="d-flex justify-content-center"> --}}
+            </div>
+            <div class="col-lg-5 col-md-2"></div>
+            <div class="col-lg-2 col-md-4">
                 <div id="button_add">
-
-
-                    <a href="{{ route('prefix.prefixadd') }}" class="btn btn-success" id="add"> +Tambah Prefix
+                    <a href="{{ route('prefix.prefixadd') }}" class="btn btn-success" id="add"> +Add Data
                     </a>
                 </div>
-                {{-- </div> --}}
 
             </div>
-
         </div>
     </div>
+</div>
     @if (session()->has('success'))
         <div id="alert" style="margin-top:20px;margin-bottom:10px">
             <div class="container col-lg-8">
@@ -125,9 +121,17 @@
 
     <div id="pagination" style="margin-top:30px">
         <div class="container">
-            {{ $prefix->onEachSide(5)->links() }}
-
-
+            <div class="d-flex justify-content-center">
+                @if ( $prefix->currentPage() !=  $prefix->lastItem())
+                    <a class="btn btn-warning" type="button" href="{{  $prefix->previousPageUrl() }}">
+                        < </a>
+                            <span class="btn btn-info mr-2 ml-2" type="button" >
+                                {{  $prefix->currentPage() }}
+                            </span>
+                            <a class="btn btn-danger" type="button" href="{{  $prefix->nextPageUrl() }}"> >
+                            </a>
+                @endif
+            </div>
         </div>
     </div>
 
