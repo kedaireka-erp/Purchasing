@@ -505,6 +505,7 @@ class ComposerStaticInit1957439821b8f7b50ffa57b235b741be
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\LocationController' => __DIR__ . '/../..' . '/app/Http/Controllers/LocationController.php',
         'App\\Http\\Controllers\\MasterItemController' => __DIR__ . '/../..' . '/app/Http/Controllers/MasterItemController.php',
+        'App\\Http\\Controllers\\PrefixController' => __DIR__ . '/../..' . '/app/Http/Controllers/PrefixController.php',
         'App\\Http\\Controllers\\PurchaseController' => __DIR__ . '/../..' . '/app/Http/Controllers/PurchaseController.php',
         'App\\Http\\Controllers\\SatuanController' => __DIR__ . '/../..' . '/app/Http/Controllers/SatuanController.php',
         'App\\Http\\Controllers\\ships_controller' => __DIR__ . '/../..' . '/app/Http/Controllers/ships_controller.php',
