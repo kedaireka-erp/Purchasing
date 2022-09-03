@@ -8283,11 +8283,14 @@
         border-radius: 50%; }
         #sidebar .custom-menu .btn.btn-primary {
           background: #6749b9;
-          border-color: #6749b9; }
-          #sidebar .custom-menu .btn.btn-primary:hover, #sidebar .custom-menu .btn.btn-primary:focus {
-            background: #6749b9 !important;
-            border-color: #6749b9 !important; }
-  
+          border-color: #6749b9;
+         transition: all 0.5s ease-in 0.2s;
+        }
+          #sidebar .custom-menu .btn.btn-primary:focus {
+            transform: rotate(90deg);
+            transition-property: transform;
+             }
+            
   a[data-toggle="collapse"] {
     position: relative; }
   
@@ -8366,3 +8369,5 @@
         color: var(--purple);
         font-weight: 500;
       }
+
+      

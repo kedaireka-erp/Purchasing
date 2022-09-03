@@ -14,13 +14,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-5 col-md-6 mb-2">
-                    <form action="{{ route('satuan.satuansearch') }}" method="get">
+                    <form action="{{ route('prefix.prefixsearch') }}" method="get">
                         <input class="form-control fa" name="search" type="search" placeholder="&#xf002      Search "
                             value="{{ request('search') }}">
                     </form>
                 </div>
-                <div class="col-lg-5 col-md-2"></div>
-                <div class="col-lg-2 col-md-4">
+                <div class="col-lg-4 col-md-2"></div>
+                <div class="col-lg-3 col-md-4">
                     <div id="button_add">
                         <a href="{{ route('prefix.prefixadd') }}" class="btn btn-success" id="add"> +Add Data
                         </a>
@@ -38,8 +38,9 @@
                 <thead class="table-head">
                     <tr style="text-align: center">
                         <th width="10%">No</th>
-                        <th width="40%">Divisi</th>
-                        <th width="30%">Nama Prefix</th>
+                        <th width="25%">Divisi</th>
+                        <th width="20%">Nama Prefix</th>
+                        <th width="25%">Tanggal Pembuatan</th>
                         <th width="20%">Action</th>
                     </tr>
                 </thead>
@@ -57,6 +58,7 @@
                             <td align="center"> {{ $index + $prefix->firstItem() }} </td>
                             <td> {{ $item->divisi }} </td>
                             <td> {{ $item->prefix }} </td>
+                            <td> {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }} </td>
 
 
 

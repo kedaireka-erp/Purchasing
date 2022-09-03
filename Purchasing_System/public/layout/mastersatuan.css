@@ -4,6 +4,7 @@
     border-radius: 6px;
     width:100%;
     height: calc(1.5em + 0.75rem + 2px);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 #search{
     border: none;
@@ -11,17 +12,33 @@
 }
 #tombol{
     margin-top: 60px;
+    animation: fadeIn 1s;
 }
 #table-body{
     margin-top: 30px;
+    animation: fadeIn 2s;
+}
+
+#pagination{
+    animation: fadeIn 3s;
+    
 }
 .table-head{
+    border-radius: 20px !important;
     background-color: #f0ecf4 !important;
     
 }
 .table{
+    
+    border-radius: 20px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
+
+@media only screen and (max-width: 768px) {
+    #table-body{
+    overflow-x: scroll;
+    }
+  }
 #edit{
     background-color:#f0ecf4 ;
     border: none;
@@ -40,3 +57,23 @@
 #info{
     background-color:  white !important;
 }
+
+
+      @keyframes fadeIn{
+        0% {
+          margin-top:200px;
+          opacity:0;
+        }
+        50%{
+            opacity:0;
+          }
+        100%{
+          opacity:1;
+        }
+      }
+
+      .form-control{
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+      
