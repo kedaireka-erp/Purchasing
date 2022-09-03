@@ -6,10 +6,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Dashboard</title>
   </head>
-  <body class="container">
-    <br>
-    <h1 class="col-sm-12 text-center">Master Payments</h1>
-    <br>
+  <body>
+  @extends('layout.sidebar')
+
+  @section('content')
     <form method="GET" action="{{ route('payment.') }}">
       <input class="col-sm-11" type="text" name="search" placeholder="Search here...">
       <button class="btn btn-secondary">Search</button>
@@ -47,6 +47,8 @@
         </tr>    
         @endforeach
     </table>
+    @endsection
+
     {{ $payments->links() }}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
