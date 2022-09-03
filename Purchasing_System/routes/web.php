@@ -8,6 +8,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MasterItemController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PrefixController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,3 +69,11 @@ Route::group(['as'=>'master_item.','prefix'=>'masteritem'], function() {
     Route::get("/search", [MasterItemController::class, "cari"]);
 });
 
+route::group(['as'=>'payment.','prefix'=>'payment'],function(){
+    route::get('/', [PaymentController::class, 'index']);
+    route::get('/create', [PaymentController::class, 'create'])->name('create');
+    route::post('/store', [PaymentController::class, 'store'])->name('store');
+    route::get('/edit/{id}', [PaymentController::class, 'edit'])->name('edit');
+    route::post('/update/{id}', [PaymentController::class, 'update'])->name('update');
+    route::delete('destroy/{id}', [PaymentController::class, 'destroy'])->name('destroy');
+});
