@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ships;
-use App\Http\Requests\ships_request;
+use App\Models\Payment;
+use App\Http\Requests\PaymentRequest;
 
-
-class ships_controller extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +16,9 @@ class ships_controller extends Controller
     public function index(Request $request)
     {
         $keyword = $request->search;
-        //$datas = ships::all();
-        $datas = ships::where('name', 'LIKE', '%' .$keyword. '%')
+        $payments = Payment::where('name', 'like', '%' .$keyword. '%')
         ->paginate(5);
-        return \view('ships.index', \compact('datas'));
+        return \view('Payment.index', \compact('payments'));
     }
 
     /**
@@ -30,8 +28,8 @@ class ships_controller extends Controller
      */
     public function create()
     {
-        $model = new ships;
-        return \view('ships.create', \compact('model'));
+        $model = new payment;
+        return \view('Payment.create', \compact('model'));
     }
 
     /**
@@ -40,13 +38,13 @@ class ships_controller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ships_request $request)
+    public function store(PaymentRequest $request)
     {
-        $model = new ships;
+        $model = new payment;
         $model->name = $request->name;
         $model->save();
 
-        return \redirect('ships');
+        return \redirect('payment');
     }
 
     /**
@@ -68,8 +66,8 @@ class ships_controller extends Controller
      */
     public function edit($id)
     {
-        $model = ships::find($id);
-        return \view('ships.edit', \compact('model'));
+        $model = payment::find($id);
+        return \view('Payment.edit', \compact('model'));
     }
 
     /**
@@ -79,13 +77,13 @@ class ships_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ships_request $request, $id)
+    public function update(PaymentRequest $request, $id)
     {
-        $model = ships::find($id);
+        $model = payment::find($id);
         $model->name = $request->name;
         $model->save();
 
-        return \redirect('ships');
+        return \redirect('payment');
     }
 
     /**
@@ -96,9 +94,9 @@ class ships_controller extends Controller
      */
     public function destroy($id)
     {
-        $model = ships::find($id);
+        $model = payment::find($id);
         $model->delete();
-        return
-        \redirect('ships');
+
+        return \redirect('payment');
     }
 }
