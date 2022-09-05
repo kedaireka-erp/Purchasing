@@ -8370,4 +8370,10 @@
         font-weight: 500;
       }
 
-      
+      .dropdown{
+        margin-top: -5px !important;
+        width: 200px;
+      }
+      .profile{
+        width: 80px;
+      }
