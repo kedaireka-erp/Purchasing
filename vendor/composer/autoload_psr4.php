@@ -39,7 +39,7 @@ return array(
     'Laravel\\SerializableClosure\\' => array($vendorDir . '/laravel/serializable-closure/src'),
     'Laravel\\Scout\\' => array($vendorDir . '/laravel/scout/src'),
     'Illuminate\\View\\' => array($vendorDir . '/illuminate/view'),
-    'Illuminate\\Support\\' => array($vendorDir . '/illuminate/conditionable', $vendorDir . '/illuminate/macroable', $vendorDir . '/illuminate/collections', $vendorDir . '/illuminate/support'),
+    'Illuminate\\Support\\' => array($vendorDir . '/illuminate/collections', $vendorDir . '/illuminate/conditionable', $vendorDir . '/illuminate/macroable', $vendorDir . '/illuminate/support'),
     'Illuminate\\Session\\' => array($vendorDir . '/illuminate/session'),
     'Illuminate\\Queue\\' => array($vendorDir . '/illuminate/queue'),
     'Illuminate\\Pipeline\\' => array($vendorDir . '/illuminate/pipeline'),
