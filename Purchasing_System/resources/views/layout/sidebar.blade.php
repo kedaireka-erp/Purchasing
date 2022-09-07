@@ -52,7 +52,19 @@
                         <a href="#">Dashboard</a>
                     </li>
                     <li>
+
                         <a href="#">Purchase Request</a>
+
+                        <div class="row">
+                            <div class="col-1 pt-2">
+                                <i class="bi bi-bag"></i>
+                            </div>
+                            <div class="col-9">
+                                <a href="/purchase_request"> Purchase Request</a>
+                            </div>
+                            <div class="col-2"></div>
+                        </div>
+
                     </li>
 
                     <li>

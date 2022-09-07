@@ -4,6 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\ships_controller;
 
+
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MasterItemController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PrefixController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PurchaseRequestController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,4 +45,38 @@ Route::group(['as'=>'location.','prefix'=>'location'],function(){
 });
 
 route::resource('ships', ships_controller::class);
+
+
+Route::group(['as' => 'master_item.', 'prefix' => 'masteritem'], function () {
+    Route::get('/create', function () {
+        return view('master_item.create');
+    });
+
+    Route::get("/", [MasterItemController::class, "index"]);
+    Route::get('/edit/{id}', [MasterItemController::class, 'edit'])->name("miupdate");
+    Route::delete('/delete/{id}', [MasterItemController::class, 'delete'])->name("midelete");
+    Route::post('/store', [MasterItemController::class, "store"]);
+    Route::post('/update', [MasterItemController::class, 'update']);
+    Route::get("/search", [MasterItemController::class, "cari"]);
+});
+
+route::group(['as' => 'payment.', 'prefix' => 'payment'], function () {
+    route::get('/', [PaymentController::class, 'index']);
+    route::get('/create', [PaymentController::class, 'create'])->name('create');
+    route::post('/store', [PaymentController::class, 'store'])->name('store');
+    route::get('/edit/{id}', [PaymentController::class, 'edit'])->name('edit');
+    route::post('/update/{id}', [PaymentController::class, 'update'])->name('update');
+    route::delete('destroy/{id}', [PaymentController::class, 'destroy'])->name('destroy');
+});
+route::get('/add', [PurchaseController::class, 'add'])->name('add');
+Route::get('/view', [HomeController::class, 'view'])->name('view');
+
+Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], function () {
+Route::get('/', [PurchaseRequestController::class, 'index']);
+Route::get('/create', [PurchaseRequestController::class, "create"])->name('create');
+Route::post('/store', [PurchaseRequestController::class, "store"])->name("store");
+Route::get('/edit/{id}', [PurchaseRequestController::class, "edit"])->name("edit");
+Route::post('/update{id}', [PurchaseRequestController::class, "update"])->name("update");
+Route::delete('/destroy{id}', [PurchaseRequestController::class, "destroy"])->name("destroy");
+});
 
