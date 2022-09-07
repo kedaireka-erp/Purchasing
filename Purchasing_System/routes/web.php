@@ -9,6 +9,7 @@ use App\Http\Controllers\MasterItemController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PrefixController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,3 +79,7 @@ route::group(['as' => 'payment.', 'prefix' => 'payment'], function () {
 });
 route::get('/add', [PurchaseController::class, 'add'])->name('add');
 Route::get('/view', [HomeController::class, 'view'])->name('view');
+
+
+Route::get('/student-form', [StudentController::class, 'index']);
+Route::post('/store-input-fields', [StudentController::class, 'store']);
