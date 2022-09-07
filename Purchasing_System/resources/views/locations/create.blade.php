@@ -1,73 +1,57 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout.sidebar')
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+@section('judul-laman', 'Tambah Master Location')
 
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    <div class="container">
-    <h1>Add New Locations</h1>
-    @if (Session::get('success'))
-        <div class="alert alert-success">{{Session::get('success')}}
-        @php
-            Session::forget('success');
-        @endphp
+@section('Judul-content')
+    <div class="title-page">
+        Tambah Master Location
+    </div>
+@endsection
+
+@section('content')
+<section class="event-area section-gap-extra-bottom">
+    <div class="container" id="boxshadow">
+
+    <div class="container col-lg-6 col text-left"  >
+        <div id="title" style="margin-top: 50px">
+            <div class="title">
+                <br>
+                <h4> Add Location </h4>
+            </div>
         </div>
-        
-    @endif
 
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{$error}}</li>
-                
-            @endforeach
-        </ul>
+
+        <div id="form" style="margin-top: 10px">
+            <form action="{{route('location.store')}}" method="post">
+                {{ csrf_field() }}
+                <div class="mb-3">
+                    <label for="location_name" class="form-label"> Nama Satuan </label>
+                    <input type="text" class="form-control Background @error('location_name') is-invalid @enderror" name="location_name"
+                        value="{{ old('location_name') }}" autofocus>
+                    @error('location_name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label"> Address </label>
+                    <input type="text" class="form-control Background @error('address') is-invalid @enderror" name="address"
+                        value="{{ old('address') }}">
+                    @error('address')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        </div>
+
     </div>
-        
-    @endif
-    <form action="{{route('location.store')}}" method="post">
-      @csrf
-  <div class="form-floating mb-3">
-      <input type="text" class="form-control @error('location_name') is-invalid @enderror" id="location_name" placeholder="Location Name" name="location_name">
-      <label for="location_name" class="form-label">Name</label>
-      @error('location_name')
-      <span class="text-danger">{{$message}}</span>
-          
-      @enderror
-  </div>
-  <div class="form-floating mb-3">
-      <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" placeholder="0" name="address">
-      <label for="address" class="form-label">Address</label>
-      @error('address')
-      <span class="text-danger">{{$message}}</span>
-          
-      @enderror
-  </div>
-  <div class="col-12">
-      <button class="btn btn-primary" type="submit">Add</button>
-  </div>
-
-</form>
-    </div>
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
+</section>
+@endsection
