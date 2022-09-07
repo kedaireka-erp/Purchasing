@@ -36,7 +36,7 @@
 <body>
 
 
-    
+
     {{-- <<========= Sidebar ========>> --}}
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar">
@@ -44,22 +44,21 @@
             <div id="logo">
                 <img class="logo" src="{{ asset('images/home_logo.png') }}">
             </div>
-                <!-- Topbar Navbar -->
-    <ul class="navbar-nav ml-auto">
 
-
-        <div class="topbar-divider d-none d-sm-block"></div>
-
-        <!-- Nav Item - User Information -->
-        <li class="nav-item dropdown no-arrow">
-        
-                <img class="img-profile rounded-circle img-thumbnail ml-3"
-                    src="{{asset('images/undraw_Profile.svg')}}" style="width:20%">
-                    <span class="d-none d-lg-inline text-gray-600 small">Tim Purchasing</span>
-         
-        </li>
-
-    </ul>
+            <div id="profile">
+                <div class="row">
+                    <div class="col-4">
+                        <img class="photo m-3" style="width:60px; height:60px;border-radius:100%"
+                            src="{{ asset('images/profile/profil.png') }}">
+                    </div>
+                    <div class="col-8">
+                        <div class="mt-4">
+                            <span class="name"> Muhammad Afifudin </span>
+                            <span class="role"> Development </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
             <div class="custom-menu">
@@ -68,28 +67,54 @@
                     <span class="sr-only">Toggle Menu</span>
                 </button>
             </div>
-            <div class="p-4 pt-5">
+            <div class="menu ml-3 mt-2">
 
                 <ul class="list-unstyled components mb-5">
+
                     <li>
-                        <a href="/"><i class="fa fa-dashboard"></i>    Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="/purchase"></i><i class="bi bi-bag"></i>    Purchase Request</a>
+                        <div class="row">
+                            <div class="col-1 pt-2">
+                                <i class="fa fa-dashboard"></i>
+                            </div>
+                            <div class="col-9">
+                                <a href="/">Dashboard</a>
+                            </div>
+                            <div class="col-2"></div>
+                        </div>
                     </li>
 
                     <li>
-                        <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
-                            aria-controls="collapseExample"><i class="bi bi-bag-check"></i>
-                              Master Request <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-                            </svg>
-                        </a>
+                        <div class="row">
+                            <div class="col-1 pt-2">
+                                <i class="bi bi-bag"></i>
+                            </div>
+                            <div class="col-9">
+                                <a href="/purchase"> Purchase Request</a>
+                            </div>
+                            <div class="col-2"></div>
+                        </div>
                     </li>
+
+                    <li>
+                        <div class="row">
+                            <div class="col-1 pt-2">
+                                <i class="bi bi-bag-check"></i>
+                            </div>
+                            <div class="col-8">
+                                <a data-bs-toggle="collapse" href="#collapseExample" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample">Master Request</a>
+                            </div>
+                            <div class="col-2 pt-2"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                    height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                </svg></div>
+                            <div class="col-1"></div>
+                        </div>
+                    </li>
+
                     <div class="collapse" id="collapseExample">
-                        <div class="list-request" style="margin-left: 20px">
+                        <div class="list-request" style="margin-left: 40px">
 
                             <li>
                                 <a href="/masteritem">Master Item</a>
@@ -108,23 +133,41 @@
                             </li>
                         </div>
                     </div>
+
                     <li>
-                        <a href="#"><i class="fa fa-check-square-o"></i>    Approval</a>
+                        <div class="row">
+                            <div class="col-1 pt-2">
+                                <i class="fa fa-check-square-o"></i>
+                            </div>
+                            <div class="col-9">
+                                <a href="#"> Approval</a>
+                            </div>
+                            <div class="col-2"></div>
+                        </div>
                     </li>
 
 
                     <li>
-                        <a data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false"
-                            aria-controls="collapseExample"><i class="bi bi-cart-check-fill"></i>  
-                              Master Order <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-                            </svg>
-                        </a>
+                        <div class="row">
+                            <div class="col-1 pt-2">
+                                <i class="bi bi-cart-check-fill"></i>
+                            </div>
+                            <div class="col-8">
+                                <a data-bs-toggle="collapse" href="#collapseExample2" role="button"
+                                    aria-expanded="false" aria-controls="collapseExample">Master Order</a>
+                            </div>
+                            <div class="col-2 pt-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                </svg>
+                            </div>
+                            <div class="col-1"></div>
+                        </div>
                     </li>
                     <div class="collapse" id="collapseExample2">
-                        <div class="list-order" style="margin-left: 20px">
+                        <div class="list-order" style="margin-left: 40px">
 
                             <li>
                                 <a href="#">Master Waktu Peengiriman</a>
@@ -137,10 +180,26 @@
                     </div>
                     </li>
                     <li>
-                        <a href="#"><i class="bi bi-hourglass"></i>    Request Tracking</a>
+                        <div class="row">
+                            <div class="col-1 pt-2">
+                                <i class="bi bi-hourglass"></i>
+                            </div>
+                            <div class="col-9">
+                                <a href="#">Request Tracking</a>
+                            </div>
+                            <div class="col-2"></div>
+                        </div>
                     </li>
                     <li>
-                        <a href="#"><i class="bi bi-cart3"></i>    Purchase Order</a>
+                        <div class="row">
+                            <div class="col-1 pt-2">
+                                <i class="bi bi-cart3"></i>
+                            </div>
+                            <div class="col-9">
+                                <a href="#">Purchase Order</a>
+                            </div>
+                            <div class="col-2"></div>
+                        </div>
                     </li>
                 </ul>
         </nav>
@@ -159,91 +218,6 @@
                 <div class="container">
 
                     <a class="navbar-brand"></a>
-
-
-                    <div class="dropdown">
-                        
-
-                            <div class="d-flex justify-content-between">
-                                <div class="profiles">
-                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Dropdown link
-                                      </a>
-                                </div>
-                                <div class="down">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-                                </svg>
-                                </div>
-                            </div>
-                          
-                          
-                      
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <li><a class="dropdown-item" href="#">Setting</a></li>
-                          <li><a class="dropdown-item" href="#">Logout</a></li>
-    
-                        </ul>
-                      </div>
-    
-                    {{-- <form>
-            <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow ">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="d-none d-lg-inline text-gray-600 small">Tim Purchasing</span>
-                                <img class="img-profile rounded-circle img-thumbnail"
-                                src="{{asset('images/undraw_Profile.svg')}}" style="width:10%">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                            
-                                <div class="dropdown-divider"></div>
-                                <form>
-                                    @csrf
-                                    <button type="submit" class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
-                                    </button>
-                                </form>
-                            </div>
-                        </li>
-                    </form> --}}
-{{-- 
-                    <div class="d-flex flex-row-reverse bd-highlight">
-                        <div class="p-2 bd-highlight">                    <div class="dropdown">
-                            <a class="profile" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
-                                </svg>
-                            </a>
-                          
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                              <li><a class="dropdown-item" href="#">Setting</a></li>
-                              <li><a class="dropdown-item" href="#">Logout</a></li>
-        
-                            </ul>
-                          </div></div>
-                        <div class="row">
-                            <div class="col-lg-7"></div>
-                            <div class="col-lg-1">
-                                <div class="p-2 bd-highlight">
-                                    <img class="img-profile rounded-circle img-thumbnail"
-                                    src="{{asset('images/undraw_Profile.svg')}}" style="width:15%">
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="p-2 bd-highlight">Time Purchasing</div>
-                            </div>
-                        </div>
-                      </div>
-                </div> --}}
-               
 
             </nav>
             <div class="container">
