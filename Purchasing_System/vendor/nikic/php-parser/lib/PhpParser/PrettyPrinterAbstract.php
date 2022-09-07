@@ -923,9 +923,6 @@ abstract class PrettyPrinterAbstract
             foreach ($delayedAdd as $delayedAddNode) {
                 if (!$first) {
                     $result .= $insertStr;
-                    if ($insertNewline) {
-                        $result .= $this->nl;
-                    }
                 }
                 $result .= $this->p($delayedAddNode, true);
                 $first = false;
