@@ -77,3 +77,4 @@ route::group(['as'=>'payment.','prefix'=>'payment'],function(){
     route::post('/update/{id}', [PaymentController::class, 'update'])->name('update');
     route::delete('destroy/{id}', [PaymentController::class, 'destroy'])->name('destroy');
 });
+route::get('/add', [PurchaseController::class, 'add'])->name('add');
