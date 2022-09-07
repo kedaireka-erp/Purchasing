@@ -11,4 +11,9 @@ class PurchaseController extends Controller
     {
         return view('purchase.dashboard');
     }
+
+    public function add()
+    {
+        return view('purchase.add');
+    }
 }

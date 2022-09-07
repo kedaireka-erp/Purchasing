@@ -20,10 +20,11 @@ use App\Http\Controllers\PaymentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 Route::get('/purchase', [PurchaseController::class, 'index'])->name('dashboard-purchase');
 
-Route::group(['as'=>'satuan.','prefix'=>'satuan'], function() {
+Route::group(['as' => 'satuan.', 'prefix' => 'satuan'], function () {
     Route::get('/', [SatuanController::class, 'index'])->name('satuandash');
     Route::get('/search', [SatuanController::class, 'search'])->name('satuansearch');
     Route::get('/add', [SatuanController::class, 'add'])->name('satuanadd');
@@ -31,10 +32,9 @@ Route::group(['as'=>'satuan.','prefix'=>'satuan'], function() {
     Route::get('/edit/{id}', [SatuanController::class, 'edit'])->name('satuanedit');
     Route::post('/update/{id}', [SatuanController::class, 'update'])->name('satuanupdate');
     Route::delete('/delete/{id}', [SatuanController::class, 'destroy'])->name('satuandelete');
-
 });
 
-Route::group(['as'=>'prefix.','prefix'=>'prefix'], function() {
+Route::group(['as' => 'prefix.', 'prefix' => 'prefix'], function () {
     Route::get('/', [PrefixController::class, 'index'])->name('prefixdash');
     Route::get('/search', [PrefixController::class, 'search'])->name('prefixsearch');
     Route::get('/add', [PrefixController::class, 'add'])->name('prefixadd');
@@ -42,10 +42,9 @@ Route::group(['as'=>'prefix.','prefix'=>'prefix'], function() {
     Route::get('/edit/{id}', [PrefixController::class, 'edit'])->name('prefixedit');
     Route::post('/update/{id}', [PrefixController::class, 'update'])->name('prefixupdate');
     Route::delete('/delete/{id}', [PrefixController::class, 'destroy'])->name('prefixdelete');
-
 });
 
-Route::group(['as'=>'location.','prefix'=>'location'],function(){
+Route::group(['as' => 'location.', 'prefix' => 'location'], function () {
     Route::get('/', [LocationController::class, "index"]);
     Route::get('/create', [LocationController::class, "create"])->name('create');
     Route::post('/store', [LocationController::class, "store"])->name("store");
@@ -56,20 +55,20 @@ Route::group(['as'=>'location.','prefix'=>'location'],function(){
 
 route::resource('ships', ships_controller::class);
 
-Route::group(['as'=>'master_item.','prefix'=>'masteritem'], function() {
+Route::group(['as' => 'master_item.', 'prefix' => 'masteritem'], function () {
     Route::get('/create', function () {
         return view('master_item.create');
     });
-    
+
     Route::get("/", [MasterItemController::class, "index"]);
     Route::get('/edit/{id}', [MasterItemController::class, 'edit'])->name("miupdate");
-    Route::delete('/delete/{id}',[MasterItemController::class, 'delete'])->name("midelete");
+    Route::delete('/delete/{id}', [MasterItemController::class, 'delete'])->name("midelete");
     Route::post('/store', [MasterItemController::class, "store"]);
-    Route::post('/update',[MasterItemController::class,'update']);
+    Route::post('/update', [MasterItemController::class, 'update']);
     Route::get("/search", [MasterItemController::class, "cari"]);
 });
 
-route::group(['as'=>'payment.','prefix'=>'payment'],function(){
+route::group(['as' => 'payment.', 'prefix' => 'payment'], function () {
     route::get('/', [PaymentController::class, 'index']);
     route::get('/create', [PaymentController::class, 'create'])->name('create');
     route::post('/store', [PaymentController::class, 'store'])->name('store');
@@ -77,3 +76,5 @@ route::group(['as'=>'payment.','prefix'=>'payment'],function(){
     route::post('/update/{id}', [PaymentController::class, 'update'])->name('update');
     route::delete('destroy/{id}', [PaymentController::class, 'destroy'])->name('destroy');
 });
+route::get('/add', [PurchaseController::class, 'add'])->name('add');
+Route::get('/view', [HomeController::class, 'view'])->name('view');

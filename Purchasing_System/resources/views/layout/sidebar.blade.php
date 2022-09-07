@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="{{ asset('layout/layout.css') }}">
     <link rel="stylesheet" href="{{ asset('layout/update.css') }}">
     <link rel="stylesheet" href="{{ asset('layout/tampil.css') }}">
+    <link rel="stylesheet" href="{{ asset('layout/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('layout/viewpr.css') }}">
 </head>
 
 <body>
