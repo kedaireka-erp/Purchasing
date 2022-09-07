@@ -63,7 +63,7 @@ Route::group(['as'=>'master_item.','prefix'=>'masteritem'], function() {
     
     Route::get("/", [MasterItemController::class, "index"]);
     Route::get('/edit/{id}', [MasterItemController::class, 'edit'])->name("miupdate");
-    Route::get('/delete/{id}',[MasterItemController::class, 'delete'])->name("midelete");
+    Route::delete('/delete/{id}',[MasterItemController::class, 'delete'])->name("midelete");
     Route::post('/store', [MasterItemController::class, "store"]);
     Route::post('/update',[MasterItemController::class,'update']);
     Route::get("/search", [MasterItemController::class, "cari"]);

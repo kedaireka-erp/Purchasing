@@ -1,44 +1,55 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout.sidebar')
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+@section('judul-laman', 'Edit Master Location')
 
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    <div class="container">
-    <h1>Edit Locations</h1>
-    <form action="{{route('location.update', $locations->id)}}" method="post">
-      @csrf
-  <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="location_name" placeholder="Location Name" name="location_name" value="{{$locations->location_name}}">
-      <label for="location_name" class="form-label">Name</label>
-  </div>
-  <div class="form-floating mb-3">
-      <input type="text" class="form-control" id="address" placeholder="0" name="address" value="{{$locations->address}}">
-      <label for="address" class="form-label">Address</label>
-  </div>
-  <div class="col-12">
-      <button class="btn btn-primary" type="submit">Save</button>
-  </div>
-
-</form>
+@section('Judul-content')
+    <div class="title-page">
+        Edit Master Location
     </div>
+@endsection
 
-    <!-- Optional JavaScript; choose one of the two! -->
+@section('content')
+<section class="event-area section-gap-extra-bottom">
+    <div class="container" id="boxshadow">
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <div class="container col-lg-6">
+        <div id="title" style="margin-top: 50px">
+            <div class="title">
+                <br>
+                <h4> Edit Data Location </h4>
+            </div>
+        </div>
+        <div id="form" style="margin-top: 20px margin-down:20px">
+            <form action="{{route('location.update', $locations->id)}}" method="post">
+                {{ csrf_field() }}
+                <div class="mb-3">
+                    <label for="location_name" class="form-label">Location Name </label>
+                    <input type="text" class="form-control Background @error('location_name') is-invalid @enderror" name="location_name" autofocus
+                        value="{{$locations->location_name}}">
+                        @error('location_name')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label"> Address </label>
+                    <input type="text" class="form-control Background @error('address') is-invalid @enderror" name="address" value="{{$locations->address}}">
+                    @error('address')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
+        </div>
+
+    </div>
+    </div>
+</section>
+
+@endsection
