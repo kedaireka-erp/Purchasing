@@ -241,6 +241,10 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     padding: 0; }
+    input[type="file"]{
+      
+    height:100%;
+    }
   
   input[type="date"],
   input[type="time"],
@@ -8228,7 +8232,7 @@
     #sidebar .h6 {
       color: #fff; }
     #sidebar.active {
-      margin-left: -250px; }
+      margin-left: -270px; }
       #sidebar.active .custom-menu {
         margin-right: -50px; }
     #sidebar h1 {
@@ -8256,7 +8260,7 @@
         color: var(--purple); }
     @media (max-width: 991.98px) {
       #sidebar {
-        margin-left: -250px; }
+        margin-left: -270px; }
         #sidebar.active {
           margin-left: 0; }
         #sidebar .custom-menu {
@@ -8327,9 +8331,9 @@
     color: rgba(255, 255, 255, 0.5); }
   
   .form-control {
-    height: 40px !important;
+    height: 40px;
     background: #fff;
-    border: 1px solid black !important;
+    /* border: 1px solid black !important; */
     color: #000;
     font-size: 13px;
     border-radius: 4px;

@@ -10,6 +10,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PrefixController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\PurchaseRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,3 +84,13 @@ Route::get('/view', [HomeController::class, 'view'])->name('view');
 
 Route::get('/student-form', [StudentController::class, 'index']);
 Route::post('/store-input-fields', [StudentController::class, 'store']);
+
+Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], function () {
+    Route::get('/', [PurchaseRequestController::class, 'index']);
+    Route::get('/create', [PurchaseRequestController::class, "create"])->name('create');
+    Route::post('/store', [PurchaseRequestController::class, "store"])->name("store");
+    Route::get('/view/{id}', [PurchaseRequestController::class, "view"])->name("view");
+    Route::get('/edit/{id}', [PurchaseRequestController::class, "edit"])->name("edit");
+    Route::post('/update{id}', [PurchaseRequestController::class, "update"])->name("update");
+    Route::delete('/destroy{id}', [PurchaseRequestController::class, "destroy"])->name("destroy");
+    });

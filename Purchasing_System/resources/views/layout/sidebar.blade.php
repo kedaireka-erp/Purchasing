@@ -89,7 +89,7 @@
                                 <i class="bi bi-bag"></i>
                             </div>
                             <div class="col-9">
-                                <a href="/purchase"> Purchase Request</a>
+                                <a href="/purchase_request"> Purchase Request</a>
                             </div>
                             <div class="col-2"></div>
                         </div>

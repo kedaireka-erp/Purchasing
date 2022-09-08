@@ -3,120 +3,103 @@
 @section('judul-laman', 'Dashboard Master Prefix')
 
 @section('Judul-content')
-    <div class="title-page">
-        View Purchasing Request
+    <div class="d-flex justify-content-between">
+
+        <div class="title-page">
+            View Purchasing Request
+        </div>
+        <a href="/purchase_request" type="button" class="btn-close" aria-label="Close"></a>
     </div>
+
 @endsection
 
 @section('content')
 
+    <div class="container">
+        <div class="viewpr">
+            <div id="header">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-3">
+                                <img class="logo_pr" src="{{ asset('images/logo_compagnie.png') }}">
+                            </div>
+                            <div class="col-9">
+                                <span class="text_pr">PT. ALLURE ALLUMINIO</span>
+                                <p class="subtext_pr">Jakarta</p>
+                                <p class="subtext_pr">Telp: (021) 45850530</p>
+                                {{-- <span class="subtext_pr">Telp: (021) 45850530 </span> --}}
+                            </div>
+                        </div>
+                    </div>
 
-    <div class="viewpr">
-        <div id="header">
-            <div class="row">
-                <div class="col-4">
-            <p>PT ALLURE ALUMINIO</p>
+                    <div class="col-2"></div>
+                    <div class="col-4">
+                        <span class="bold"> Purchase Request </span>
+                        <p class="text_pr">No: {{ $purchase_requests->no_pr }}</p>
+                        <div style="margin-top: 50px " class="subhead_pr">
+                            <tr>
+                                <td width="80px">Pengajuan</td>
+                                <td>: {{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</td>
+                            </tr>
+                            <br>
+                            <tr>
+                                <td width="80px">Deadline</td>
+                                <td>: {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}</td>
+                            </tr>
+                            <br>
+                            <tr>
+                                <td width="80px">Alamat</td>
+                                <td>: {{ $purchase_requests->location->location_name }}</td>
+                            </tr>
+                            <br>
+
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="col-4"></div>
-                
-                <div class="col-4">
-                    <span class="bold"> <strong> Purchase Request </strong> </span>
-                    <p>No. PR/07092022/2022</p>
-                    <br> <br>
+            </div>
 
-                    <p>Date : 7 September 2022</p>
-                    <p>Site : Site A</p>
-                    <P>Page : Page 1/1</P>
+            <table class="table table-striped" id="body">
+                <thead>
+                    <tr>
+                        <th scope="col">No.</th>
+                        <th scope="col">Description of Goods</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Unit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+            <div id="footer" style="margin-top: 80px">
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="subhead_pr">Project/Customer : {{ $purchase_requests->project }}</p>
+                        <p class="subhead_pr" style="margin-top: 130px">Kebutuhan/Pengiriman : <span
+                                style="font-weight: bold">{{ $purchase_requests->Ship->type }}</span></p>
+                        <p class="subhead_pr">Note : {{ $purchase_requests->note }} </p>
+                    </div>
+                    <div class="col-1"></div>
+
+                    <div class="col-5" align="center">
+                        <p class="subhead_pr">Requester/Divisi : {{ $purchase_requests->requester }}/
+                            {{ $purchase_requests->Prefixe->divisi }} </p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="orange"
+                            class="bi bi-pause-circle-fill" viewBox="0 0 16 16"style="margin-top:45px">
+                            <path
+                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z" />
+                        </svg>
+                        <p class="subhead_pr" style="margin-top:15px">Status Approval : <span
+                                style="font-weight: bold">{{ $purchase_requests->approval_status }}</span></p>
+                    </div>
+
                 </div>
-            </div>
-            </div>
-
-        <table class="table table-striped" id="body">
-            <thead>
-              <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Item Code</th>
-                <th scope="col">Description of Goods</th>
-                <th scope="col">Unit</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Requuired Date</th>
-                <th scope="col">Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>PR1</td>
-                <td>Meja Makan</td>
-                <td>Pcs</td>
-                <td>2</td>
-                <td>12/12/2022</td>
-                <td>1000000</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>PR2</td>
-                <td>Kulkas</td>
-                <td>Pcs</td>
-                <td>2</td>
-                <td>31/12/2022</td>
-                <td>3000000</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>PR3</td>
-                <td>Laptop</td>
-                <td>Pcs</td>
-                <td>2</td>
-                <td>12/10/2022</td>
-                <td>17000000</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="row">
-            <div class="col-6">
-                <p>Prefered Vendor : Yogiana Marta</p>
 
             </div>
-            <div class="col-6">
 
-                <table class="table">
-                    <thead>
-                      <tr>
-                       
-                        <th scope="col">Registered By</th>
-                        <th scope="col">Prepared By</th>
-                        <th scope="col">Approved By</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                       
-                        <td>  </td>
-                        <td>  </td>
-                        <td>  </td>
-                      </tr>
-                      <tr>
-                       
-                        <td>  </td>
-                        <td>  </td>
-                        <td>  </td>
-                      </tr>
-                      <tr>
-                       
-                        <td>  </td>
-                        <td>  </td>
-                        <td>  </td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-            </div>
-       
-          </div>
-
+        </div>
+        <div style="margin-top:100px"></div>
     </div>
-
 @endsection

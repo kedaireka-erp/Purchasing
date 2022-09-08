@@ -17,4 +17,8 @@ class Prefix extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function purchase_requests(){
+        return $this->hasMany(PurchaseRequest::class, "prefixes_id", "id");
+    }
 }
