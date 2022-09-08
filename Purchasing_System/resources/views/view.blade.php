@@ -86,10 +86,7 @@
                             </tr>
                         @endif
                     @endforeach
-                    <tr>
-                        <td colspan="4" align="center" style="color: gray; background-color: white"> <i>Data
-                                kosong</i> </td>
-                    </tr>
+
 
 
 
