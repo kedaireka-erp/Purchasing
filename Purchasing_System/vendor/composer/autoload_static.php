@@ -524,6 +524,7 @@ class ComposerStaticInit996cc89f14cf66a939f983c6c9ddf2f0
         'App\\Http\\Requests\\PaymentRequest' => __DIR__ . '/../..' . '/app/Http/Requests/PaymentRequest.php',
         'App\\Http\\Requests\\ships_request' => __DIR__ . '/../..' . '/app/Http/Requests/ships_request.php',
         'App\\Models\\Home' => __DIR__ . '/../..' . '/app/Models/Home.php',
+        'App\\Models\\Item' => __DIR__ . '/../..' . '/app/Models/Item.php',
         'App\\Models\\Master_Item' => __DIR__ . '/../..' . '/app/Models/Master_Item.php',
         'App\\Models\\Payment' => __DIR__ . '/../..' . '/app/Models/Payment.php',
         'App\\Models\\Prefix' => __DIR__ . '/../..' . '/app/Models/Prefix.php',

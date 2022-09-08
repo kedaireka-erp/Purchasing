@@ -37,9 +37,9 @@
                     <div class="col-4">
                         <span class="bold"> Purchase Request </span>
                         <p class="text_pr">No: {{ $purchase_requests->no_pr }}</p>
-                        <div style="margin-top: 50px " class="subhead_pr">
+                        <table style="margin-top: 50px " class="subhead_pr">
                             <tr>
-                                <td width="80px">Pengajuan</td>
+                                <td>Pengajuan</td>
                                 <td>: {{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</td>
                             </tr>
                             <br>
@@ -52,24 +52,49 @@
                                 <td width="80px">Alamat</td>
                                 <td>: {{ $purchase_requests->location->location_name }}</td>
                             </tr>
-                            <br>
+                        </table>
+                        <br>
 
-                        </div>
                     </div>
                 </div>
             </div>
 
+
             <table class="table table-striped" id="body">
                 <thead>
-                    <tr>
+                    <tr style="text-align: center">
                         <th scope="col">No.</th>
                         <th scope="col">Description of Goods</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Unit</th>
                     </tr>
                 </thead>
+                @php
+                    $nomor = 1;
+                @endphp
+
+                {{-- @if ($item->id_request == $purchase_requests->id) --}}
                 <tbody>
+
+                    @foreach ($item as $no => $yes)
+                        @if ($yes->id_request == $purchase_requests->id)
+                            <tr style="text-align: center">
+                                <td>{{ $nomor++ }}</td>
+                                <td>{{ $yes->item_name }}</td>
+                                <td>{{ $yes->stok }}</td>
+                                <td>{{ $yes->unit }}</td>
+                            </tr>
+                        @endif
+                    @endforeach
+                    <tr>
+                        <td colspan="4" align="center" style="color: gray; background-color: white"> <i>Data
+                                kosong</i> </td>
+                    </tr>
+
+
+
                 </tbody>
+                {{-- @endif --}}
             </table>
 
             <div id="footer" style="margin-top: 80px">
@@ -96,10 +121,10 @@
                     </div>
 
                 </div>
-
             </div>
-
         </div>
-        <div style="margin-top:100px"></div>
+
+    </div>
+    <div style="margin-top:100px"></div>
     </div>
 @endsection

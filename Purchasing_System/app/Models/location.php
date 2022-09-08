@@ -11,6 +11,7 @@ class location extends Model
   
     
     protected $table = 'locations';
+    protected $primaryKey = 'id';
     protected $fillable = ['location_name','address']; 
     public function toSearchableArray()
     {
@@ -20,6 +21,7 @@ class location extends Model
         ];
     }
 
+    //Satu lokasi dapat dipakai untuk beberapa PR
     public function purchase_requests(){
         return $this->hasMany(PurchaseRequest::class, "locations_id", "id");
     }

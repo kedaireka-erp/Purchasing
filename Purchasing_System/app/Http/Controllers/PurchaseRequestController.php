@@ -6,6 +6,11 @@ use App\Models\location;
 use App\Models\Prefix;
 use App\Models\PurchaseRequest;
 use App\Models\ships;
+use App\Models\Master_Item;
+use App\Models\Satuan;
+use App\Models\Item;
+use App\Models\Reqitem;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class PurchaseRequestController extends Controller
@@ -72,12 +77,44 @@ class PurchaseRequestController extends Controller
 
     public function view($id){
         $purchase_requests = PurchaseRequest::findOrFail($id);
+
+        $item = DB::table('items')
+                ->join('purchase_requests', 'id_request', '=', 'purchase_requests.id')
+                ->join('master_items', 'id_master_item', '=', 'master_items.id')
+                ->join('satuans', 'id_satuan', '=', 'satuans.id')
+                ->select('items.*', 'master_items.item_name','satuans.unit')
+                ->get();
+
         $Location=location::get();
         $Ship=ships::get();
         $Prefixe=Prefix::get();
 
-        return view('view', compact('purchase_requests', 'Location', 'Ship', 'Prefixe'));
+        return view('view', compact('purchase_requests', 'Location', 'Ship', 'Prefixe','item'));
     }
+
+    public function plus($id){
+        $purchase_requests = PurchaseRequest::findOrFail($id);
+        
+        $item = DB::table('items')
+                ->join('purchase_requests', 'id_request', '=', 'purchase_requests.id')
+                ->join('master_items', 'id_master_item', '=', 'master_items.id')
+                ->join('satuans', 'id_satuan', '=', 'satuans.id')
+                ->select('items.*','master_items.item_name','satuans.unit')
+                ->get();
+        $satuan = Satuan::get();
+        $master_item = Master_Item::get();
+
+        return view('item.add', compact('purchase_requests','item','master_item','satuan'));
+    }
+
+    public function storeplus(Request $request, $id)
+    {
+        foreach ($request->addMoreInputFields as $key => $value) {
+            Item::create($value);
+        }
+        return redirect('/purchase_request');
+    }
+
 
     public function update(Request $request, $id){
         $purchase_requests = PurchaseRequest::findOrFail($id);

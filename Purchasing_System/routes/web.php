@@ -90,6 +90,8 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
     Route::get('/create', [PurchaseRequestController::class, "create"])->name('create');
     Route::post('/store', [PurchaseRequestController::class, "store"])->name("store");
     Route::get('/view/{id}', [PurchaseRequestController::class, "view"])->name("view");
+    Route::get('/additem/{id}', [PurchaseRequestController::class, "plus"])->name("plus");
+    Route::post('/storeitem/{id}', [PurchaseRequestController::class, 'storeplus'])->name("storeplus");
     Route::get('/edit/{id}', [PurchaseRequestController::class, "edit"])->name("edit");
     Route::post('/update{id}', [PurchaseRequestController::class, "update"])->name("update");
     Route::delete('/destroy{id}', [PurchaseRequestController::class, "destroy"])->name("destroy");

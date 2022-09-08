@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('purchase_requests', function (Blueprint $table) {
             $table->id();
-            $table->integer('number');
-            $table->string("no_pr",255);
-            $table->date("deadline_date");
-            $table->string("requester");
-            $table->string("project");
-            $table->text("note");
-            $table->string("attachment");
+            $table->integer('number')->nullable();
+            $table->string("no_pr",255)->nullable();
+            $table->date("deadline_date")->nullable();
+            $table->string("requester")->nullable();
+            $table->string("project")->nullable();
+            $table->text("note")->nullable();
+            $table->string("attachment")->nullable();
             $table->enum('approval_status', ['pending', 'approve','ignore'])->default('pending');  
             $table->softDeletes();
             $table->timestamps();

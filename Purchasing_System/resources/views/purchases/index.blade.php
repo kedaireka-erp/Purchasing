@@ -52,7 +52,7 @@
                         <td>Deadline Date</td>
                         <td>Requester</td>
                         <td>Division Name</td>
-                        <td>Project</td>
+                        {{-- <td>Project</td> --}}
                         {{-- <td>Lokasi</td> --}}
                         <td>Pengiriman</td>
                         <td>Status</td>
@@ -73,7 +73,7 @@
                             <td>{{ $purchase_request->deadline_date }}</td>
                             <td>{{ $purchase_request->requester }}</td>
                             <td>{{ $purchase_request->Prefixe->divisi }}</td>
-                            <td>{{ $purchase_request->project }}</td>
+                            {{-- <td>{{ $purchase_request->project }}</td> --}}
                             {{-- <td>{{ $purchase_request->location->location_name }}</td> --}}
                             <td>{{ $purchase_request->Ship->type }}</td>
                             @if ($purchase_request->approval_status == 'pending')
@@ -81,7 +81,9 @@
                                     </button></td>
                             @endif
 
+
                             <td class="d-flex justify-content-center">
+
                                 <form method="GET" action="{{ route('purchase_request.view', $purchase_request->id) }}"
                                     style="margin-right:10px">
                                     @csrf
@@ -89,10 +91,10 @@
                                     <button type="submit" class="btn btn-warning" id="view"> <i class="fa fa-eye"></i>
                                     </button>
                                 </form>
-                                <form method="GET" action="{{ route('purchase_request.view', $purchase_request->id) }}"
+                                <form method="GET" action="{{ route('purchase_request.plus', $purchase_request->id) }}"
                                     style="margin-right:10px">
                                     @csrf
-                                    <input type="hidden" value="VIEW" name="_method">
+                                    <input type="hidden" value="PLUS" name="_method">
                                     <button type="submit" class="btn btn-warning" id="plus"> <i
                                             class="fa fa-plus"></i>
                                     </button>
@@ -144,12 +146,12 @@
 
         <!-- Option 2: Separate Popper and Bootstrap JS -->
         <!--
-                                                                                                                                                    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-                                                                                                                                                        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-                                                                                                                                                    </script>
-                                                                                                                                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-                                                                                                                                                        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-                                                                                                                                                    </script>
-                                                                                                                                                    -->
+                                                                                                                                                                                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+                                                                                                                                                                                    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+                                                                                                                                                                                </script>
+                                                                                                                                                                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+                                                                                                                                                                                    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+                                                                                                                                                                                </script>
+                                                                                                                                                                                -->
 
     @endsection

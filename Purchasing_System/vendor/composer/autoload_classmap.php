@@ -31,6 +31,7 @@ return array(
     'App\\Http\\Requests\\PaymentRequest' => $baseDir . '/app/Http/Requests/PaymentRequest.php',
     'App\\Http\\Requests\\ships_request' => $baseDir . '/app/Http/Requests/ships_request.php',
     'App\\Models\\Home' => $baseDir . '/app/Models/Home.php',
+    'App\\Models\\Item' => $baseDir . '/app/Models/Item.php',
     'App\\Models\\Master_Item' => $baseDir . '/app/Models/Master_Item.php',
     'App\\Models\\Payment' => $baseDir . '/app/Models/Payment.php',
     'App\\Models\\Prefix' => $baseDir . '/app/Models/Prefix.php',

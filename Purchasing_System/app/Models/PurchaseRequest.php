@@ -12,7 +12,8 @@ class PurchaseRequest extends Model
 {
     use HasFactory, SoftDeletes, Searchable;
 
-    protected $guarded=['id'];
+    protected $table = 'purchase_requests';
+    protected $primaryKey = 'id';
     protected $fillable=['no_pr', 'deadline_date','locations_id','ships_id', 'requester', 'prefixes_id', 'project', 'note', 'attachment'];
     protected $dates=['delete_at'];
 
@@ -30,18 +31,27 @@ class PurchaseRequest extends Model
         ];
     }
 
-
+    //Tiap satu PR itu memuat satu metode pengiriman
     public function Ship(){
         return $this->belongsTo(ships::class, "ships_id");
     }
 
+    //Tiap datu PR itu memuat satu tempat tujuan
     public function Location(){
         return $this->belongsTo(location::class, "locations_id");
     }
 
+    //tiap satu PR memiliki 1 divisi
     public function Prefixe(){
         return $this->belongsTo(Prefix::class, "prefixes_id");
     }
+
+    //satu PR dapat dimiliki beberapa itam
+    public function item(){
+        return $this->belongsToMany(Item::class);
+    }
+
+
     public static function boot()
     {
         parent::boot();
