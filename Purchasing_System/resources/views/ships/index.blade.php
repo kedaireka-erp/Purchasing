@@ -57,7 +57,7 @@
                 <tr>
                     @foreach ($datas as $key => $value)
                         <td align="center">{{ $key + $datas->firstitem() }}</td>
-                        <td>{{ $value->name }}</td>
+                        <td>{{ $value->type }}</td>
                         <td class="d-flex justify-content-center">
                             <form method="GET" action="{{ url('ships/' . $value->id . '/edit') }}"
                                 style="margin-right:10px">

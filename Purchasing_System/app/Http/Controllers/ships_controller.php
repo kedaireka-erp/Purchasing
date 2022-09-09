@@ -18,7 +18,7 @@ class ships_controller extends Controller
     {
         $keyword = $request->search;
         //$datas = ships::all();
-        $datas = ships::where('name', 'LIKE', '%' .$keyword. '%')
+        $datas = ships::where('type', 'LIKE', '%' .$keyword. '%')
         ->paginate(5);
         return \view('ships.index', \compact('datas'));
     }
