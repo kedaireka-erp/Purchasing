@@ -29,7 +29,7 @@
             </div>
 
         @endif
-        <form action="{{ route('purchase_request.store') }}" method="post">
+        <form action="{{ route('purchase_request.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-6">
@@ -118,8 +118,12 @@
                 <div class="col-6">
                     <div class="mb-3">
                         <label for="attachment" class="form-label">Attachment</label>
-                        <input type="text" class="form-control @error('attachment') is-invalid @enderror" id="attachment"
+                        <input type="file" class="form-control @error('attachment') is-invalid @enderror" id="attachment"
                             placeholder="Attachment" name="attachment">
+                            {{-- <div class="mb-3">
+                                <label for="formFile" class="form-label">Images</label>
+                                <input class="form-control" type="file" id="formFile" name="image">
+                              </div> --}}
 
                         @error('attachment')
                             <span class="text-danger">{{ $message }}</span>

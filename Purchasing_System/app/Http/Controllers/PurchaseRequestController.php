@@ -40,7 +40,8 @@ class PurchaseRequestController extends Controller
             'deadline_date'=>'required',
             'requester'=>'required|max:100',
             'project'=>'required|max:100',
-            'attachment'=>'required|max:100',
+            // 'attachment'=>'required|max:100',
+            'attachment' => 'required|mimes:jpeg,img,jpg,png|max:20000'
 
         ], [
             // 'no_pr.required'=>"Nomor PR field is required.",
@@ -49,19 +50,29 @@ class PurchaseRequestController extends Controller
             'project.required'=>"Project field is required ",
             'attachment.required'=>"Attachment field is required ",
         ]);
+        if($request->hasFile('attachment'))
+        {
+            $destination_path = 'public/assets/images/products';
+            $image = $request->file('attachment');
+            $image_name = $image->getClientOriginalName();
+            $path = $request -> file('attachment')->storeAs($destination_path,$image_name);
 
-        $purchase_requests = PurchaseRequest::create([
-            // 'no_pr'=>$request->no_pr,
-            'deadline_date'=>$request->deadline_date,
-            'requester'=>$request->requester,
-            'prefixes_id'=>$request->prefixes_id,
-            'project'=>$request->project,
-            'locations_id'=>$request->locations_id,
-            'ships_id'=>$request->ships_id,
-            'note'=>$request->note,
-            'attachment'=>$request->attachment,
+            $purchase_requests = PurchaseRequest::create([
+                // 'no_pr'=>$request->no_pr,
+                'deadline_date'=>$request->deadline_date,
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+                'attachment'=>$image_name,
+    
+            ]);
 
-        ]);
+        }
+
+        
 
         return redirect('/purchase_request');
     }
