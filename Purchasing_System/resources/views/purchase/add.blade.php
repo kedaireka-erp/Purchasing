@@ -14,7 +14,7 @@
   <div class="box">
     <ul class="ul-powder">
       <li class="li-powder"><a class="active a-powder" href="/add">POWDER</a></li>
-      <li class="li-powder"><a class="a-powder" href="#news">OTHER GOOD</a></li>
+      <li class="li-powder"><a class="a-powder" href="/Othergood">OTHER GOOD</a></li>
     </ul>
   <div class="content">
   <form>
@@ -200,8 +200,20 @@
         <textarea type="text" class="form-control input-powder" placeholder="Tidak ada catatan" style="font-style:italic"></textarea>
       </div>
     </div>
+    <div class="row">
+    <div class="col-lg-6">
+      <div class="mb-3">
+          <label for="Type" class="form-label font">Type</label>
+    <select class="form-select" aria-label="Default select example">
+      <option selected disabled>Pilih Type</option>
+      <option value="1">Powder</option>
+      <option value="2">Othergood</option>
+    </select>
+      </div>
     </div>
-        <button type="button" class="btn btn-primary submit-powder">Submite</button>
+    </div>
+    </div>
+        <button type="button" class="btn btn-primary submit-powder">Submit</button>
   </form>
   </div>
   </div> 
