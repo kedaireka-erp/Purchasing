@@ -17,7 +17,10 @@ class Item extends Model
         'id_master_item',
         'stok',
         'id_satuan',
-        'id_request'
+        'id_request',
+        'tanggal_kedatangan_barang',
+        'outstanding',
+        'sudah_datang'
     ];
 
     //Satu item PR itu bisa dipakai untuk beberapa PR
@@ -36,6 +39,18 @@ class Item extends Model
     public function satuan()
     {
         return $this->belongsTo(Satuan::class, 'id_satuan');
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($item){
+            $item->outstanding = 12 + $item->stok;
+        });
+        static::updating(function ($invoice) {
+
+        });
     }
     
 }

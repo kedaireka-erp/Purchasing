@@ -36,7 +36,7 @@ class PrefixController extends Controller
 
         Prefix::create($validatedData);
         
-        return redirect('/prefix')->with('success', 'Data berhasil ditambahkan');
+        return redirect('/prefix')->with('success', 'Data prefix berhasil ditambahkan');
         
     }
 

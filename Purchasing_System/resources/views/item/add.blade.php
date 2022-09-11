@@ -19,7 +19,8 @@
         <div class="viewpr">
             <div id="header">
                 <div class="row">
-                    <div class="col-6">
+
+                    <div class="col-6" style="margin-top: 10px">
                         <div class="row">
                             <div class="col-3">
                                 <img class="logo_pr" src="{{ asset('images/logo_compagnie.png') }}">
@@ -34,10 +35,11 @@
                     </div>
 
                     <div class="col-2"></div>
+
                     <div class="col-4">
                         <span class="bold"> Purchase Request </span>
                         <p class="text_pr">No: {{ $purchase_requests->no_pr }}</p>
-                        <table style="margin-top: 50px " class="subhead_pr">
+                        <table style="margin-top: 20px " class="subhead_pr">
                             <tr>
                                 <td>Pengajuan</td>
                                 <td>: {{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</td>
@@ -53,7 +55,6 @@
                                 <td>: {{ $purchase_requests->location->location_name }}</td>
                             </tr>
                         </table>
-                        <br>
 
                     </div>
                 </div>
@@ -77,7 +78,7 @@
                     @foreach ($item as $no => $yes)
                     <tr style="text-align: center">
                         @if ($yes->id_request == $purchase_requests->id)
-                        <td>{{ $nomor++ }}</td>
+                        <td>{{ $yes->id_request }}</td>
                         <td>{{ $yes->item_name }}</td>
                         <td>{{ $yes->stok }}</td>
                         <td>{{ $yes->unit }}</td>
@@ -116,10 +117,13 @@
                     @csrf
 
                     <div id="dynamicAddRemove">
+
                         <div class="row">
+
                             <div class="col-2">
-                                <input class="formulir-control" name="addMoreInputFields[0][id_request]" type="text" value="{{ $purchase_requests->id }}" selected>
+                                <input readonly class="form-control" name="addMoreInputFields[0][id_request]" type="text" value="{{ $purchase_requests->id }}" selected>
                             </div>
+
                             <div class="col-4">
                                 <select class="form-select" aria-label="Default select example"
                                     name="addMoreInputFields[0][id_master_item]">
@@ -130,10 +134,12 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="col-2">
                                 <input type="text" name="addMoreInputFields[0][stok]" placeholder="qty"
                                     class="formulir-control" />
                             </div>
+
                             <div class="col-2">
                                 <select class="form-select" aria-label="Default select example"
                                     name="addMoreInputFields[0][id_satuan]">
@@ -144,14 +150,15 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="d-flex justify-content-center col-2">
                                 <button type="button" name="add" id="dynamic-ar"
                                     class="btn btn-outline-primary">+</button>
                             </div>
+
                         </div>
+
                     </div>
-
-
                     <button type="submit" class="btn btn-outline-success btn-block mt-3">Save</button>
                 </form>
             </div>
@@ -194,7 +201,7 @@
         $("#dynamic-ar").click(function() {
             ++i;
             $("#dynamicAddRemove").append(
-                '<dr><div id="dynamicAddRemove" style="margin-top:6px"> <div class="row"> <div class="col-2"><input class="formulir-control" name="addMoreInputFields[' + i + '][id_request]" type="text" value="{{ $purchase_requests->id }}" selected></div> <div class="col-4"> <select class="form-select" aria-label="Default select example" name="addMoreInputFields[' + i + '][id_master_item]"> <option selected disabled>-- Pilih Barang --</option> @foreach ($master_item as $item)<option value="{{ $item->id }}">{{ ucfirst($item->item_name) }}</option> @endforeach </select> </div><div class="col-2"> <input type="text" name="addMoreInputFields[' + i + '][quantity]" placeholder="qty" class ="formulir-control" / > </div><div class="col-2"><select class="form-select" aria-label="Default select example" name="addMoreInputFields[' + i + '][id_satuan]"> <option selected disabled>-- Pilih Satuan --</option> @foreach ($satuan as $sat) <option value="{{ $sat->id }}">{{ ucfirst($sat->unit) }} </option> @endforeach </select></div><div class="d-flex justify-content-center col-2"> <button type="button" class="btn btn-outline-danger remove-input-field">-</button></div><div></div></dr>'
+                '<dr><div id="dynamicAddRemove" style="margin-top:6px"> <div class="row"> <div class="col-2"><input class="form-control" name="addMoreInputFields[' + i + '][id_request]" type="text" value="{{ $purchase_requests->id }}" selected></div> <div class="col-4"> <select class="form-select" aria-label="Default select example" name="addMoreInputFields[' + i + '][id_master_item]"> <option selected disabled>-- Pilih Barang --</option> @foreach ($master_item as $item)<option value="{{ $item->id }}">{{ ucfirst($item->item_name) }}</option> @endforeach </select> </div><div class="col-2"> <input type="text" name="addMoreInputFields[' + i + '][quantity]" placeholder="qty" class ="formulir-control" / > </div><div class="col-2"><select class="form-select" aria-label="Default select example" name="addMoreInputFields[' + i + '][id_satuan]"> <option selected disabled>-- Pilih Satuan --</option> @foreach ($satuan as $sat) <option value="{{ $sat->id }}">{{ ucfirst($sat->unit) }} </option> @endforeach </select></div><div class="d-flex justify-content-center col-2"> <button type="button" class="btn btn-outline-danger remove-input-field">-</button></div><div></div></dr>'
             );
         });
 

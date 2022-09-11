@@ -3,8 +3,8 @@
 @section('judul-laman', 'Dashboard Master Prefix')
 
 @section('Judul-content')
-    <div class="d-flex justify-content-between">
 
+    <div class="d-flex justify-content-between">
         <div class="title-page">
             View Purchasing Request
         </div>
@@ -16,10 +16,11 @@
 @section('content')
 
     <div class="container">
+
         <div class="viewpr">
             <div id="header">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-6" style="margin-top: 10px">
                         <div class="row">
                             <div class="col-3">
                                 <img class="logo_pr" src="{{ asset('images/logo_compagnie.png') }}">
@@ -34,10 +35,11 @@
                     </div>
 
                     <div class="col-2"></div>
+
                     <div class="col-4">
                         <span class="bold"> Purchase Request </span>
                         <p class="text_pr">No: {{ $purchase_requests->no_pr }}</p>
-                        <table style="margin-top: 50px " class="subhead_pr">
+                        <table style="margin-top: 20px " class="subhead_pr">
                             <tr>
                                 <td>Pengajuan</td>
                                 <td>: {{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</td>
@@ -53,7 +55,6 @@
                                 <td>: {{ $purchase_requests->location->location_name }}</td>
                             </tr>
                         </table>
-                        <br>
 
                     </div>
                 </div>
@@ -109,12 +110,13 @@
                         <p class="subhead_pr">Requester/Divisi : {{ $purchase_requests->requester }}/
                             {{ $purchase_requests->Prefixe->divisi }} </p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="orange"
-                            class="bi bi-pause-circle-fill" viewBox="0 0 16 16"style="margin-top:45px">
+                            class="bi bi-pause-circle-fill" viewBox="0 0 16 16" style="margin-top:30px">
                             <path
                                 d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z" />
                         </svg>
-                        <p class="subhead_pr" style="margin-top:15px">Status Approval : <span
-                                style="font-weight: bold">{{ $purchase_requests->approval_status }}</span></p>
+                        <p class="subhead_pr" style="margin-top:20px"><span
+                                style="font-weight: bold; text-transform:uppercase;font-size:15px">{{ $purchase_requests->approval_status }}</span>
+                        </p>
                     </div>
 
                 </div>

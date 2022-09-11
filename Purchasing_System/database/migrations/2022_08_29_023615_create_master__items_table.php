@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('master_items', function (Blueprint $table) {
             $table->id();
             $table->string('item_name',100)->nullable();
-            $table->integer('stock')->nullable();
+            $table->integer('stock')->default(0);
             $table->timestamps();
         });
     }

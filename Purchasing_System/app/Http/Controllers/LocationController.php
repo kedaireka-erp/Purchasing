@@ -10,9 +10,9 @@ class LocationController extends Controller
     public function index(Request $request)
     {
         if ($request->filled('search')) {
-            $locations = Location::search($request->search)->paginate(2);
+            $locations = Location::search($request->search)->paginate(5);
         }else{
-            $locations = Location::paginate(2);
+            $locations = Location::paginate(5);
         }
         
         return view('locations.index', compact('locations'));
@@ -38,7 +38,7 @@ class LocationController extends Controller
             'address'=>$request->address,
         ]);
 
-        return redirect("/location");
+        return redirect("/location")->with('success', 'Data lokasi barang berhasil ditambahkan');
      }
 
      public function edit($id){
@@ -56,7 +56,7 @@ class LocationController extends Controller
             'address'=>$request->address ?? $locations->address,
         ]);
 
-        return redirect("/location");
+        return redirect("/location")->with('teredit', 'Data master lokasi berhasil diedit');
      }
 
      public function destroy($id){
@@ -64,6 +64,6 @@ class LocationController extends Controller
         $locations = Location::findOrFail($id);
         $locations->delete();
 
-        return redirect("/location");
+        return redirect("/location")->with('terhapus','Berhasil menghapus data master lokasi');
      }
 }

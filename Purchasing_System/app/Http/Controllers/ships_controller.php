@@ -43,10 +43,10 @@ class ships_controller extends Controller
     public function store(ships_request $request)
     {
         $model = new ships;
-        $model->name = $request->name;
+        $model->type = $request->type;
         $model->save();
 
-        return \redirect('ships');
+        return \redirect('ships')->with('success', 'Data kebutuhan berhasil ditambahkan');
     }
 
     /**
@@ -82,10 +82,10 @@ class ships_controller extends Controller
     public function update(ships_request $request, $id)
     {
         $model = ships::find($id);
-        $model->name = $request->name;
+        $model->type = $request->type;
         $model->save();
 
-        return \redirect('ships');
+        return \redirect('ships')->with('teredit', 'Data kebutuhan berhasil diedit');
     }
 
     /**
@@ -99,6 +99,6 @@ class ships_controller extends Controller
         $model = ships::find($id);
         $model->delete();
         return
-        \redirect('ships');
+        \redirect('ships')->with('terhapus','Berhasil menghapus data kebutuhan');
     }
 }

@@ -37,13 +37,15 @@
     <button type="submit">search</button>
 </form>
 <br> --}}
+    <x-alert></x-alert>
     <div id="table-body">
         <div class="container">
             <table class="table table-borderless" style="background-color:white">
                 <thead class="table-head">
                     <tr style="text-align: center">
                         <th width="10%">No</th>
-                        <th width="70%">Ship Type</th>
+                        <th width="50%">Kebutuhan/ Pengiriman</th>
+                        <th width="20%">Tanggal Pembuatan</th>
                         <th width="20%" colspan="2">Action</th>
                     </tr>
                 </thead>
@@ -54,10 +56,11 @@
                             </i></td>
                     </tr>
                 @endif
-                <tr>
-                    @foreach ($datas as $key => $value)
-                        <td align="center">{{ $key + $datas->firstitem() }}</td>
+                @foreach ($datas as $key => $value)
+                    <tr align="center">
+                        <td>{{ $key + $datas->firstitem() }}</td>
                         <td>{{ $value->type }}</td>
+                        <td> {{ \Carbon\Carbon::parse($value->created_at)->format('d F Y') }} </td>
                         <td class="d-flex justify-content-center">
                             <form method="GET" action="{{ url('ships/' . $value->id . '/edit') }}"
                                 style="margin-right:10px">
@@ -74,7 +77,7 @@
                                 </button>
                             </form>
                         </td>
-                </tr>
+                    </tr>
                 @endforeach
             </table>
         </div>
