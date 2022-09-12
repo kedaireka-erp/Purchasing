@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('number')->nullable();
             $table->string("no_pr",255)->nullable();
+            $table->enum('type', ['powder', 'othergood'])->nullable(); 
             $table->date("deadline_date")->nullable();
             $table->string("requester")->nullable();
             $table->string("project")->nullable();

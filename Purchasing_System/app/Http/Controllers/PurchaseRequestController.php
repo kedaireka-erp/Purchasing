@@ -36,15 +36,12 @@ class PurchaseRequestController extends Controller
     public function store(Request $request){
 
         $validateData = $request->validate([
-            // 'no_pr'=>'required|unique:purchase_requests|max:100',
             'deadline_date'=>'required',
             'requester'=>'required|max:100',
             'project'=>'required|max:100',
-            // 'attachment'=>'required|max:100',
             'attachment' => 'required|mimes:jpeg,img,jpg,png|max:20000'
 
         ], [
-            // 'no_pr.required'=>"Nomor PR field is required.",
             'deadline_date.required'=>"Deadline Date field is required ",
             'requester.required'=>"Requester field is required ",
             'project.required'=>"Project field is required ",
@@ -60,6 +57,7 @@ class PurchaseRequestController extends Controller
             $purchase_requests = PurchaseRequest::create([
                 // 'no_pr'=>$request->no_pr,
                 'deadline_date'=>$request->deadline_date,
+                'type'=>$request->type,
                 'requester'=>$request->requester,
                 'prefixes_id'=>$request->prefixes_id,
                 'project'=>$request->project,

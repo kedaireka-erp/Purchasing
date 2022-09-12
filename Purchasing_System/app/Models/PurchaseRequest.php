@@ -14,13 +14,14 @@ class PurchaseRequest extends Model
 
     protected $table = 'purchase_requests';
     protected $primaryKey = 'id';
-    protected $fillable=['no_pr', 'deadline_date','locations_id','ships_id', 'requester', 'prefixes_id', 'project', 'note', 'attachment','tanggal_diterima'];
+    protected $fillable=['no_pr', 'type','deadline_date','locations_id','ships_id', 'requester', 'prefixes_id', 'project', 'note', 'attachment','tanggal_diterima'];
     protected $dates=['delete_at'];
 
     public function toSearchableArray()
     {
         return[
             'no_pr'=>$this->no_pr,
+            'type'=>$this->type,
             'deadline_date'=>$this->deadline_date,
             'locations_id'=>$this->locations_id,
             'ships_id'=>$this->ships_id,
