@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('prefixes', function (Blueprint $table) {
             $table->id();
-            $table->string('prefix', 10);
-            $table->string('divisi', 100);
+            $table->string('prefix', 10)->nullable();
+            $table->string('divisi', 100)->nullable();
             $table->timestamps();
         });
     }

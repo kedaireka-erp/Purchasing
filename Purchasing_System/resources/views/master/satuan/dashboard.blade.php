@@ -40,8 +40,9 @@
                 <thead class="table-head">
                     <tr style="text-align: center">
                         <th width="10%">No</th>
-                        <th width="40%">Nama Satuan</th>
-                        <th width="30%">Unit</th>
+                        <th width="30%">Nama Satuan</th>
+                        <th width="20%">Unit</th>
+                        <th width="20%">Tanggal Pembuatan</th>
                         <th width="20%">Action</th>
                     </tr>
                 </thead>
@@ -55,10 +56,11 @@
 
 
                     @foreach ($satuan as $index => $item)
-                        <tr>
-                            <td align="center"> {{ $index + $satuan->firstItem() }} </td>
+                        <tr align="center">
+                            <td> {{ $index + $satuan->firstItem() }} </td>
                             <td> {{ $item->name }} </td>
                             <td> {{ $item->unit }} </td>
+                            <td> {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }} </td>
 
 
                             <td class="d-flex justify-content-center">

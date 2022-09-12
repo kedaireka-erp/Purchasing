@@ -16,4 +16,10 @@ class Satuan extends Model
         'created_at',
         'updated_at'
     ];
+
+    //satu satuan dapat dipakai oleh beberapa item PR
+    public function item()
+    {
+        return $this->hasMany(Item::class,'id_satuan','id');
+    }
 }

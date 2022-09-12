@@ -17,8 +17,8 @@
                     <form method="GET">
                         <div class="input-group mb-3">
                             <input class="form-control fa" name="search" type="search" placeholder="&#xf002      Search "
-                            value="{{ request()->get('search') }}">
-                            
+                                value="{{ request()->get('search') }}">
+
                         </div>
                     </form>
                     {{-- <form action="{{ route('satuan.satuansearch') }}" method="get">
@@ -46,10 +46,11 @@
             <table class="table table-borderless" style="background-color:white">
                 <thead class="table-head">
                     <tr style="text-align: center">
-                        <th width="10%">No</th>
-                        <th width="40%">Location Name</th>
-                        <th width="30%">Address</th>
-                        <th width="20%">Action</th>
+                        <th width="5%">No</th>
+                        <th width="15%">Location Name</th>
+                        <th width="45%">Address</th>
+                        <th width="20%">Tanggal Pembuatan</th>
+                        <th width="15%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,10 +63,11 @@
 
 
                     @foreach ($locations as $no => $location)
-                        <tr>
-                            <td align="center"> {{ $no + $locations->firstItem() }} </td>
+                        <tr align="center">
+                            <td> {{ $no + $locations->firstItem() }} </td>
                             <td> {{ $location->location_name }} </td>
-                            <td> {{ $location->address }} </td>
+                            <td align="justify"> {{ $location->address }} </td>
+                            <td> {{ \Carbon\Carbon::parse($location->created_at)->format('d F Y') }} </td>
 
 
                             <td class="d-flex justify-content-center">

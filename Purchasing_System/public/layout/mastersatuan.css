@@ -19,6 +19,10 @@
     animation: fadeIn 2s;
 }
 
+#alert{
+    animation: fadeIn 1.5s;
+}
+
 #pagination{
     animation: fadeIn 3s;
     
@@ -39,6 +43,10 @@
     overflow-x: scroll;
     }
   }
+  #view{
+    background-color: rgba(107, 178, 219, 0.1);;
+    border: none;
+}
 #edit{
     background-color:#f0ecf4 ;
     border: none;
@@ -47,11 +55,22 @@
     background-color: #FBE7E8;
     border: none;
 }
+#plus{
+    background-color: #FFF7E1;
+    border: none;
+}
+.fa-eye{
+    color: #17a2b8;
+ }
 .fa-edit{
    color: #B06BDB;
 }
 .bi-trash{
     color: red;
+}
+.fa-plus
+{
+    color: #FBBC05;
 }
 
 #info{
@@ -77,3 +96,24 @@
     }
 
       
+.pending
+{
+    background-color: lightyellow !important;
+    color: orange !important;
+    border-radius: 20px !important;
+    font-size: 13px !important;
+}
+
+.formulir-control
+{
+    width: 100%;
+    height: 40px;
+    background: #fff;
+    border: 1px solid lightgrey !important;
+    color: #000;
+    font-size: 13px;
+    border-radius: 4px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: transparent; 
+}

@@ -54,8 +54,8 @@
 
 
                     @foreach ($prefix as $index => $item)
-                        <tr>
-                            <td align="center"> {{ $index + $prefix->firstItem() }} </td>
+                        <tr style="text-align: center">
+                            <td> {{ $index + $prefix->firstItem() }} </td>
                             <td> {{ $item->divisi }} </td>
                             <td> {{ $item->prefix }} </td>
                             <td> {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }} </td>

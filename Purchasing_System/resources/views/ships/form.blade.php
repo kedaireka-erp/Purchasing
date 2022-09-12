@@ -1,11 +1,9 @@
-<div class="row clearfix">
-    <div class="col md-6">ship type</div>
-    <div class="col md-6">
-        <input type="text" name="name" value="{{ $model->name }}">
-        @foreach ($errors->get('name') as $msg )
-            <p class="text-danger">{{ $msg }}</p>
-        @endforeach 
-        <br> <br>
-    </div>
+<div class="mb-3">
+    <label for="type" class="form-label"> Tipe Pengiriman </label>
+    <input class="form-control Background " type="text" name="type" value="{{ $model->type }}" autofocus>
+    @foreach ($errors->get('type') as $msg)
+        <p class="text-danger">{{ $msg }}</p>
+    @endforeach
 </div>
-<button class= "btn btn-info" type="submit">SAVE</button>
+
+<button class="btn btn-info" type="submit">Submit</button>
