@@ -2,14 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FormPOController;
+use App\Http\Controllers\PrefixController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\ships_controller;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\MasterItemController;
-use App\Http\Controllers\PurchaseController;
-use App\Http\Controllers\PrefixController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\MasterItemController;
 use App\Http\Controllers\PurchaseRequestController;
 
 /*
@@ -97,3 +98,5 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
     Route::delete('/destroy{id}', [PurchaseRequestController::class, "destroy"])->name("destroy");
     });
     Route::get('/Othergood', [HomeController::class, 'coba'])->name('coba');
+
+    Route::get('/formPO', [FormPOController::class, 'indexPO'])->name('formPO');
