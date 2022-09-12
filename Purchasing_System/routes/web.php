@@ -98,5 +98,9 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
     Route::delete('/destroy{id}', [PurchaseRequestController::class, "destroy"])->name("destroy");
     });
     Route::get('/Othergood', [HomeController::class, 'coba'])->name('coba');
+<<<<<<< HEAD
 
     Route::get('/formPO', [FormPOController::class, 'indexPO'])->name('formPO');
+=======
+    Route::get('/approval', [HomeController::class, 'Approval'])->name('Approval');
+>>>>>>> 09657c489456b91ec1ffc8b795634e45479a6c24

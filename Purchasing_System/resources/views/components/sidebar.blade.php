@@ -99,7 +99,7 @@
                         <i class="fa fa-check-square-o"></i>
                     </div>
                     <div class="col-9">
-                        <a href="#"> Approval</a>
+                        <a href="/approval"> Approval</a>
                     </div>
                     <div class="col-2"></div>
                 </div>
