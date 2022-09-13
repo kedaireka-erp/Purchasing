@@ -68,7 +68,7 @@ class HomeController extends Controller
     public function update(request $request, $id){
         //perlu diubah
 
-    DB::table('purchase_requests')->update([
+    DB::table('purchase_requests')->where('id',$id)->update([
 		'approval_status' => $request->approval_status,
 		
 	]);
