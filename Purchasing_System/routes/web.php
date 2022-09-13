@@ -13,6 +13,10 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\MasterItemController;
 use App\Http\Controllers\PurchaseRequestController;
 use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\GradeController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\PowderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -111,6 +115,32 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
         route::delete('destroy/{id}', [TrackingController::class, 'destroy'])->name('destroy');
     });
 
+    route::group(['as'=>'grade.','prefix'=>'grade'], function(){
+    route::get('/', [GradeController::class, 'index']);
+    route::get('/create', [GradeController::class, 'create'])->name('create');
+    route::post('/store', [GradeController::class, 'store'])->name('store');
+    route::get('/edit/{id}', [GradeController::class, 'edit'])->name('edit');
+    route::post('/update/{id}', [GradeController::class, 'update'])->name('update');
+    route::delete('destroy/{id}', [GradeController::class, 'destroy'])->name('destroy');
+});
+
+route::group(['as'=>'supplier.','prefix'=>'supplier'], function(){
+    route::get('/', [SupplierController::class, 'index']);
+    route::get('/create', [SupplierController::class, 'create'])->name('create');
+    route::post('/store', [SupplierController::class, 'store'])->name('store');
+    route::get('/edit/{id}', [SupplierController::class, 'edit'])->name('edit');
+    route::post('/update/{id}', [SupplierController::class, 'update'])->name('update');
+    route::delete('destroy/{id}', [SupplierController::class, 'destroy'])->name('destroy');
+});
+
+route::group(['as'=>'powder.','prefix'=>'powder'], function(){
+    route::get('/', [PowderController::class, 'index']);
+    route::get('/create', [PowderController::class, 'create'])->name('create');
+    route::post('/store', [PowderController::class, 'store'])->name('store');
+    route::get('/edit/{id}', [PowderController::class, 'edit'])->name('edit');
+    route::post('/update/{id}', [PowderController::class, 'update'])->name('update');
+    route::delete('destroy/{id}', [PowderController::class, 'destroy'])->name('destroy');
+});
 
     Route::group(['as' => 'approval.', 'prefix' => 'approval'], function () {
         Route::get('/', [HomeController::class, 'Approval']);
