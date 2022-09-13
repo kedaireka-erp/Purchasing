@@ -49,7 +49,7 @@ class PurchaseRequest extends Model
 
     //satu PR dapat dimiliki beberapa itam
     public function item(){
-        return $this->belongsToMany(Item::class);
+        return $this->belongsToMany(Item::class, 'item_requests','id_request','id_item');
     }
 
 

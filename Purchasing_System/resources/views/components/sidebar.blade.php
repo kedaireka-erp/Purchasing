@@ -129,7 +129,7 @@
                 <div class="list-order" style="margin-left: 40px">
 
                     <li>
-                        <a href="#">Master Waktu Peengiriman</a>
+                        <a href="#">Master Waktu Pengiriman</a>
                     </li>
                     <li>
                         <a href="#">Master Pembayaran</a>
@@ -144,7 +144,7 @@
                         <i class="bi bi-hourglass"></i>
                     </div>
                     <div class="col-9">
-                        <a href="#">Request Tracking</a>
+                        <a href="/tracking">Request Tracking</a>
                     </div>
                     <div class="col-2"></div>
                 </div>

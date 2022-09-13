@@ -23,10 +23,11 @@ class Item extends Model
         'sudah_datang'
     ];
 
+
     //Satu item PR itu bisa dipakai untuk beberapa PR
     public function purchase()
     {
-        return $this->belongsToMany(PurchaseRequest::class, 'id_request');
+        return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id_request','id_item');
     }
     
     //Tiap Satu item PR dapat memuat maksimal 1 id dalam master item
@@ -46,7 +47,7 @@ class Item extends Model
         parent::boot();
 
         static::creating(function($item){
-            $item->outstanding = 12 + $item->stok;
+            $item->outstanding = $item->stok - $item->sudah_datang;
         });
         static::updating(function ($invoice) {
 

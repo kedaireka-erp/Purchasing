@@ -12,6 +12,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\MasterItemController;
 use App\Http\Controllers\PurchaseRequestController;
+use App\Http\Controllers\TrackingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,4 +101,20 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
     Route::get('/Othergood', [HomeController::class, 'coba'])->name('coba');
 
     Route::get('/formPO', [FormPOController::class, 'indexPO'])->name('formPO');
-    Route::get('/approval', [HomeController::class, 'Approval'])->name('Approval');
+
+    route::group(['as' => 'tracking.', 'prefix' => 'tracking'], function () {
+        route::get('/', [TrackingController::class, 'index']);
+        route::get('/create', [TrackingController::class, 'create'])->name('create');
+        route::post('/store', [TrackingController::class, 'store'])->name('store');
+        route::get('/edit/{id}', [TrackingController::class, 'edit'])->name('edit');
+        route::post('/update/{id}', [TrackingController::class, 'update'])->name('update');
+        route::delete('destroy/{id}', [TrackingController::class, 'destroy'])->name('destroy');
+    });
+
+
+    Route::group(['as' => 'approval.', 'prefix' => 'approval'], function () {
+        Route::get('/', [HomeController::class, 'Approval']);
+        Route::get('/view/{id}', [HomeController::class, "view"])->name("view");
+        Route::get('/edit/{id}', [HomeController::class, "edit"])->name("edit");
+        });
+    

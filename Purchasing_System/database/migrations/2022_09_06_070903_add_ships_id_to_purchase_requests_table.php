@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('purchase_requests', function (Blueprint $table) {
-            $table->unsignedBigInteger("ships_id")->default(1)->after("id");
+            $table->unsignedBigInteger("ships_id")->after("id");
             $table->foreign("ships_id")->references("id")->on("ships")->onDelete("restrict")->onUpdate("cascade");
 
         });
