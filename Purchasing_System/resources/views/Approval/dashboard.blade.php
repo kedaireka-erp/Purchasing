@@ -77,6 +77,9 @@
                             @if ($purchase_request->approval_status == 'pending')
                                 <td> <button class="pending btn btn-warning"> {{ $purchase_request->approval_status }}
                                     </button></td>
+                            @elseif ($purchase_request->approval_status == 'approve')
+                            <td> <button class="btn btn-success"> {{ $purchase_request->approval_status }}
+                            </button></td>
                             @endif
 
 
@@ -98,6 +101,7 @@
                                     </button>
                                 </form> --}}
 
+                                @if ( $purchase_request->approval_status == 'pending' )
                                 <form method="GET" action="{{ route('approval.edit', $purchase_request->id) }}"
                                     style="margin-right:10px">
                                     @csrf
@@ -106,10 +110,12 @@
                                             class="fa fa-edit"></i>
                                     </button>
                                 </form>
+                                @endif
 
 
 
-                                <form method="POST" onsubmit="return confirm('Move data to trash?')" action="/">
+                                <form method="POST" onsubmit="return confirm('Move data to trash?')" 
+                                action="{{ route('approval.deleteApp',$purchase_request->id) }}">
                                     @csrf
                                     <input type="hidden" value="DELETE" name="_method">
                                     <button type="submit" class="btn btn-danger" id="delete"> <i

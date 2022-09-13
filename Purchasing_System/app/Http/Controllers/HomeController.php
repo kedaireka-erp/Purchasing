@@ -65,4 +65,21 @@ class HomeController extends Controller
         return view('approval.edit', compact('purchase_requests', 'item','Location', 'Ship', 'Prefixe'));
     }
 
+    public function update(request $request, $id){
+        //perlu diubah
+
+    DB::table('purchase_requests')->update([
+		'approval_status' => $request->approval_status,
+		
+	]);
+
+    $purchase_requests=PurchaseRequest::paginate(5);
+        return redirect('approval');
+}
+public function delete($id)
+{
+	DB::table('purchase_requests')->where('id',$id)->delete();
+		
+	return redirect('approval')->with('terhapus','Berhasil purchasing request');
+}
 }

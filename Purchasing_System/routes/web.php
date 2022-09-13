@@ -146,5 +146,7 @@ route::group(['as'=>'powder.','prefix'=>'powder'], function(){
         Route::get('/', [HomeController::class, 'Approval']);
         Route::get('/view/{id}', [HomeController::class, "view"])->name("view");
         Route::get('/edit/{id}', [HomeController::class, "edit"])->name("edit");
+        Route::post('/update{id}', [HomeController::class, "update"])->name("updateApp");
+        Route::delete('/destroy{id}', [HomeController::class, "delete"])->name("deleteApp");
         });
     
