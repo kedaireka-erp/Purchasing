@@ -2,8 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\location;
+use App\Models\Prefix;
 use App\Models\PurchaseRequest;
+use App\Models\ships;
+use App\Models\Master_Item;
+use App\Models\Satuan;
+use App\Models\Item;
+use App\Models\ItemRequest;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,10 +20,7 @@ class HomeController extends Controller
     {
         return view('home.dashboard');
     }
-    public function view()
-    {
-        return view('view');
-    }
+    
     public function coba()
     {
         return view('purchase.Othergood');
@@ -25,4 +30,39 @@ class HomeController extends Controller
         $purchase_requests=PurchaseRequest::paginate(5);
         return view('Approval.dashboard',compact("purchase_requests"));
     }
+
+    public function view($id){
+        $purchase_requests = PurchaseRequest::findOrFail($id);
+
+        $item = DB::table('items')
+                ->join('purchase_requests', 'id_request', '=', 'purchase_requests.id')
+                ->join('master_items', 'id_master_item', '=', 'master_items.id')
+                ->join('satuans', 'id_satuan', '=', 'satuans.id')
+                ->select('items.*', 'master_items.item_name','satuans.unit')
+                ->get();
+
+        $Location=location::get();
+        $Ship=ships::get();
+        $Prefixe=Prefix::get();
+
+        return view('Approval.view', compact('purchase_requests', 'Location', 'Ship', 'Prefixe','item'));
+    }
+
+    public function edit($id){
+        $purchase_requests = PurchaseRequest::findOrFail($id);
+
+        $item = DB::table('items')
+                ->join('purchase_requests', 'id_request', '=', 'purchase_requests.id')
+                ->join('master_items', 'id_master_item', '=', 'master_items.id')
+                ->join('satuans', 'id_satuan', '=', 'satuans.id')
+                ->select('items.*', 'master_items.item_name','satuans.unit')
+                ->get();
+
+        $Location=location::get();
+        $Ship=ships::get();
+        $Prefixe=Prefix::get();
+
+        return view('approval.edit', compact('purchase_requests', 'item','Location', 'Ship', 'Prefixe'));
+    }
+
 }

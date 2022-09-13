@@ -82,7 +82,7 @@
 
                             <td class="d-flex justify-content-center">
 
-                                <form method="GET" action="/"
+                                <form method="GET" action="{{ route('approval.view', $purchase_request->id) }}"
                                     style="margin-right:10px">
                                     @csrf
                                     <input type="hidden" value="VIEW" name="_method">
@@ -98,7 +98,7 @@
                                     </button>
                                 </form> --}}
 
-                                <form method="GET" action="/"
+                                <form method="GET" action="{{ route('approval.edit', $purchase_request->id) }}"
                                     style="margin-right:10px">
                                     @csrf
                                     <input type="hidden" value="EDIT" name="_method">
@@ -109,8 +109,7 @@
 
 
 
-                                <form method="POST" onsubmit="return confirm('Move data to trash?')"
-                                    action="/">
+                                <form method="POST" onsubmit="return confirm('Move data to trash?')" action="/">
                                     @csrf
                                     <input type="hidden" value="DELETE" name="_method">
                                     <button type="submit" class="btn btn-danger" id="delete"> <i
@@ -144,12 +143,12 @@
 
         <!-- Option 2: Separate Popper and Bootstrap JS -->
         <!--
-                                                                                                                                                                                                    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-                                                                                                                                                                                                        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-                                                                                                                                                                                                    </script>
-                                                                                                                                                                                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-                                                                                                                                                                                                        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-                                                                                                                                                                                                    </script>
-                                                                                                                                                                                                    -->
+                                                                                                                                                                                                                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+                                                                                                                                                                                                                    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+                                                                                                                                                                                                                </script>
+                                                                                                                                                                                                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+                                                                                                                                                                                                                    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+                                                                                                                                                                                                                </script>
+                                                                                                                                                                                                                -->
 
     @endsection

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_satuan')->nullable();
             $table->date('tanggal_kedatangan_barang')->nullable();
             $table->integer('outstanding')->nullable();
-            $table->integer('sudah_datang')->default(20);
+            $table->integer('sudah_datang')->default(0);
             $table->timestamps();
             $table->foreign("id_request")->references("id")->on("purchase_requests")->onDelete("restrict")->onUpdate("cascade")->nullable();
             $table->foreign("id_master_item")->references("id")->on("master_items")->onDelete("restrict")->onUpdate("cascade")->nullable();

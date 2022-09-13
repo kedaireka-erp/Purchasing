@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('purchase_requests', function (Blueprint $table) {
 
 
-            $table->unsignedBigInteger("locations_id")->default(1)->after("id");
+            $table->unsignedBigInteger("locations_id")->after("id");
             $table->foreign("locations_id")->references("id")->on("locations")->onDelete("restrict")->onUpdate("cascade");
 
         });

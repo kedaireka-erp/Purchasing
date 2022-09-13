@@ -9,7 +9,7 @@ use App\Models\ships;
 use App\Models\Master_Item;
 use App\Models\Satuan;
 use App\Models\Item;
-use App\Models\Reqitem;
+use App\Models\ItemRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -30,7 +30,10 @@ class PurchaseRequestController extends Controller
         $Location=location::get();
         $Ship=ships::get();
         $Prefixe=Prefix::get();
-        return view('purchases.create', compact('Location','Ship', "Prefixe"));
+        $master_item = Master_Item::get();
+        $satuan = Satuan::get();
+        
+        return view('purchases.create', compact('Location','Ship', "Prefixe",'master_item','satuan'));
     }
 
     public function store(Request $request){
@@ -38,8 +41,11 @@ class PurchaseRequestController extends Controller
         $validateData = $request->validate([
             'deadline_date'=>'required',
             'requester'=>'required|max:100',
-            'project'=>'required|max:100',
-            'attachment' => 'required|mimes:jpeg,img,jpg,png|max:20000'
+            'project'=>'max:100',
+            'attachment' => 'mimes:jpeg,img,jpg,png|max:20000',
+            'locations_id' => 'required',
+            'prefixes_id' => 'required',
+            'ships_id' => 'required'
 
         ], [
             'deadline_date.required'=>"Deadline Date field is required ",
@@ -70,7 +76,35 @@ class PurchaseRequestController extends Controller
 
         }
 
-        
+        // foreach ($request->addMoreInputFields as $key => $value) {
+        //     Item::create($value);
+            
+           
+        // }
+
+        $purchase_requests = PurchaseRequest::create([
+            // 'no_pr'=>$request->no_pr,
+            'deadline_date'=>$request->deadline_date,
+            'type'=>$request->type,
+            'requester'=>$request->requester,
+            'prefixes_id'=>$request->prefixes_id,
+            'project'=>$request->project,
+            'locations_id'=>$request->locations_id,
+            'ships_id'=>$request->ships_id,
+            'note'=>$request->note,
+
+        ]);
+
+
+            // $new_requests = New Item;
+
+            // $request_id = $purchase_requests->id;
+
+            // $request = PurchaseRequest::find($request_id);
+
+            // $new_requests->purchase()->attach($request);
+
+            
 
         return redirect('/purchase_request');
     }
