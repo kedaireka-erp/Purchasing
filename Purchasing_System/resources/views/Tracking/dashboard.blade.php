@@ -45,7 +45,7 @@
     </div>
     <div id="table-body">
         <div class="container">
-            <table class="table table-borderless" style="background-color:white">
+            <table class="table table-border" style="background-color:white">
                 <thead class="table-head">
                     <tr style="text-align: center">
                         <td>Nomor PR</td>
@@ -56,34 +56,48 @@
                         <td>Outstanding</td>
                         <td>Sudah Datang</td>
                         <td>Status</td>
+                        <td>Action</td>
                     </tr>
                 </thead>
                 <tbody>
 
-                    @foreach ($items as $no => $item)
-                        <tr style="text-align: center">
-                            <td>{{ $item->purchase->no_pr }}</td>
-                            <td>{{ $item->purchase->deadline_date }}</td>
-                            @foreach ($items as $no => $it)
-                                <td>{{ $it->master_item->item_name }}</td>
-                                <td>{{ $it->stok }}</td>
-                                <td>{{ $it->satuan->unit }}</td>
-                            @endforeach
-                            <td>{{ $item->outstanding }}</td>
-                            <td>{{ $item->sudah_datang }}</td>
-                            {{-- <td>{{ $purchase_request->Ship->type }}</td> --}}
-
-                            <td class="d-flex justify-content-center">
-
-                                <form method="GET" action="{{ route('purchase_request.view', $purchase_request->id) }}"
-                                    style="margin-right:10px">
-                                    @csrf
-                                    <input type="hidden" value="VIEW" name="_method">
-                                    <button type="submit" class="btn btn-warning" id="view"> <i class="fa fa-eye"></i>
-                                    </button>
-                                </form>
-
-
+                    @foreach ($purchase_requests as $no => $item)
+                        <tr>
+                            <td>{{ $item->no_pr }}</td>
+                            <td>{{ $item->deadline_date }}</td>
+                            <td>
+                                @foreach ($item->item as $no => $it)
+                                    <ul>{{ $it->master_item->item_name }}</ul>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ($item->item as $no => $it)
+                                    <ul>{{ $it->stok }}</ul>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ($item->item as $no => $it)
+                                    <ul>{{ $it->satuan->unit }}</ul>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ($item->item as $no => $it)
+                                    <ul>{{ $it->outstanding }}</ul>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach ($item->item as $no => $it)
+                                    <ul>{{ $it->sudah_datang }}</ul>
+                                @endforeach
+                            </td>
+                            @if ($item->status == 'outstanding')
+                                <td> <button class="pending btn btn-warning"> {{ $item->status }}
+                                    </button></td>
+                            @elseif ($item->status == 'closed')
+                                <td> <button class="approve btn btn-warning"> {{ $item->status }}
+                                    </button></td>
+                            @endif
+                            <td>
                                 <form method="GET" action="/" style="margin-right:10px">
                                     @csrf
                                     <input type="hidden" value="EDIT" name="_method">
@@ -91,27 +105,7 @@
                                             class="fa fa-edit"></i>
                                     </button>
                                 </form>
-
-
-
-                                <form method="POST" onsubmit="return confirm('Move data to trash?')" action="/">
-                                    @csrf
-                                    <input type="hidden" value="DELETE" name="_method">
-                                    <button type="submit" class="btn btn-danger" id="delete"> <i
-                                            class="bi bi-trash"></i>
-                                    </button>
-                                </form>
                             </td>
-                            {{-- <td>
-                            <a href="{{ route('purchase_request.edit', $purchase_request->id) }}"
-                                class="btn btn-warning">Edit</a>
-                            <form action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
-                                method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td> --}}
                         </tr>
                     @endforeach
 

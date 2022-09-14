@@ -32,14 +32,15 @@ class HomeController extends Controller
     }
 
     public function view($id){
-        $purchase_requests = PurchaseRequest::findOrFail($id);
+        $purchase_requests = PurchaseRequest::find($id);
+        $item = Item::with('master_item','satuan')->get();
 
-        $item = DB::table('items')
-                ->join('purchase_requests', 'id_request', '=', 'purchase_requests.id')
-                ->join('master_items', 'id_master_item', '=', 'master_items.id')
-                ->join('satuans', 'id_satuan', '=', 'satuans.id')
-                ->select('items.*', 'master_items.item_name','satuans.unit')
-                ->get();
+        // $item = DB::table('items')
+        //         ->join('purchase_requests', 'id_request', '=', 'purchase_requests.id')
+        //         ->join('master_items', 'id_master_item', '=', 'master_items.id')
+        //         ->join('satuans', 'id_satuan', '=', 'satuans.id')
+        //         ->select('items.*', 'master_items.item_name','satuans.unit')
+        //         ->get();
 
         $Location=location::get();
         $Ship=ships::get();
@@ -68,7 +69,7 @@ class HomeController extends Controller
     public function update(request $request, $id){
         //perlu diubah
 
-    DB::table('purchase_requests')->update([
+    DB::table('purchase_requests')-> where('id',$id)->update([
 		'approval_status' => $request->approval_status,
 		
 	]);

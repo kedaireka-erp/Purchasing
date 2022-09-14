@@ -75,15 +75,38 @@ class PurchaseRequestController extends Controller
             ]);
 
         }
+        else
+        {
+            $purchase_requests = PurchaseRequest::create([
+                // 'no_pr'=>$request->no_pr,
+                'deadline_date'=>$request->deadline_date,
+                'type'=>$request->type,
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+    
+            ]);
+        }
 
         // foreach ($request->addMoreInputFields as $key => $value) {
         //     Item::create($value);
-            
-           
-        // }
+            // Attach the reservation to the car's reservations
+            foreach ($request->addMoreInputFields as $key => $value) {
+                $item = Item::create($value);
+                $request_id = $item->id;
+                $request_now = Item::find($request_id);
+                $purchase_requests->item()->attach($request_now);
+            }
 
+        // $items = New Item;
+        // $items_id = $items->id;
+        // $items_now = Item::find($items_id);
         
-
+        // $purchase_requests->item()->attach($items_now);
+    
 
             // $new_requests = New Item;
 
@@ -108,14 +131,15 @@ class PurchaseRequestController extends Controller
     }
 
     public function view($id){
-        $purchase_requests = PurchaseRequest::findOrFail($id);
+        $purchase_requests = PurchaseRequest::find($id);
+        $item = Item::with('master_item','satuan')->get();
 
-        $item = DB::table('items')
-                ->join('purchase_requests', 'id_request', '=', 'purchase_requests.id')
-                ->join('master_items', 'id_master_item', '=', 'master_items.id')
-                ->join('satuans', 'id_satuan', '=', 'satuans.id')
-                ->select('items.*', 'master_items.item_name','satuans.unit')
-                ->get();
+        // $item = DB::table('items')
+        //         ->join('purchase_requests', 'id_request', '=', 'purchase_requests.id')
+        //         ->join('master_items', 'id_master_item', '=', 'master_items.id')
+        //         ->join('satuans', 'id_satuan', '=', 'satuans.id')
+        //         ->select('items.*', 'master_items.item_name','satuans.unit')
+        //         ->get();
 
         $Location=location::get();
         $Ship=ships::get();
