@@ -9,5 +9,12 @@ class Master_Item extends Model
 {
     use HasFactory;
     protected $table = 'master_items';
-    protected $fillable = ['item_name','stock'];
+    protected $primaryKey = 'id';
+    protected $fillable = ['item_name'];
+
+    //Satu id master item bisa dipakai dalam banyak item PR
+    public function item()
+    {
+        return $this->hasMany(Item::class,'id_master_item','id');
+    }
 }
