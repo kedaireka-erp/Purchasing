@@ -52,6 +52,7 @@
                         <td>Deadline Date</td>
                         <td>Requester</td>
                         <td>Division Name</td>
+                        <td>Type</td>
                         <td>Pengiriman</td>
                         <td>Status</td>
                         <td>Action</td>
@@ -71,6 +72,7 @@
                             <td>{{ $purchase_request->deadline_date }}</td>
                             <td>{{ $purchase_request->requester }}</td>
                             <td>{{ $purchase_request->Prefixe->divisi }}</td>
+                            <td>{{ $purchase_request->type }}</td>
                             {{-- <td>{{ $purchase_request->project }}</td> --}}
                             {{-- <td>{{ $purchase_request->location->location_name }}</td> --}}
                             <td>{{ $purchase_request->Ship->type }}</td>
