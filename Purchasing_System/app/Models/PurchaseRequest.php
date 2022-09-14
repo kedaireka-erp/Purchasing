@@ -58,6 +58,8 @@ class PurchaseRequest extends Model
         parent::boot();
 
         static::creating(function($purchase_requests){
+            
+
             $purchase_requests->number = PurchaseRequest::where('prefixes_id', $purchase_requests->prefixes_id)->max('number')+1;
             $purchase_requests->no_pr = 'PR'. '/'. $purchase_requests->Prefixe->prefix  . '/' .str_pad($purchase_requests->number, 5, '0', STR_PAD_LEFT) . '/'. Carbon::now()->month . '/'. Carbon::now()->year;
         });

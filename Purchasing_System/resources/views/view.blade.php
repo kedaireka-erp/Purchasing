@@ -77,13 +77,15 @@
                 {{-- @if ($item->id_request == $purchase_requests->id) --}}
                 <tbody>
 
-                    @foreach ($purchase_requests->item as $yes)
-                        <tr style="text-align: center">
-                            <td>{{ $nomor++ }}</td>
-                            <td>{{ $yes->master_item->item_name }}</td>
-                            <td>{{ $yes->stok }}</td>
-                            <td>{{ $yes->satuan->unit }}</td>
-                        </tr>
+                    @foreach ($item as $no => $yes)
+                        @if ($yes->id_request == $purchase_requests->id)
+                            <tr style="text-align: center">
+                                <td>{{ $nomor++ }}</td>
+                                <td>{{ $yes->item_name }}</td>
+                                <td>{{ $yes->stok }}</td>
+                                <td>{{ $yes->unit }}</td>
+                            </tr>
+                        @endif
                     @endforeach
 
 

@@ -77,13 +77,15 @@
                 {{-- @if ($item->id_request == $purchase_requests->id) --}}
                 <tbody>
 
-                    @foreach ($purchase_requests->item as $yes)
-                        <tr style="text-align: center">
-                            <td>{{ $nomor++ }}</td>
-                            <td>{{ $yes->master_item->item_name }}</td>
-                            <td>{{ $yes->stok }}</td>
-                            <td>{{ $yes->satuan->unit }}</td>
-                        </tr>
+                    @foreach ($item as $no => $yes)
+                        @if ($yes->id_request == $purchase_requests->id)
+                            <tr style="text-align: center">
+                                <td>{{ $nomor++ }}</td>
+                                <td>{{ $yes->item_name }}</td>
+                                <td>{{ $yes->stok }}</td>
+                                <td>{{ $yes->unit }}</td>
+                            </tr>
+                        @endif
                     @endforeach
 
 
@@ -112,28 +114,27 @@
                             <path
                                 d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z" />
                         </svg>
-                        <form action="{{ route('approval.updateApp', $purchase_requests->id) }}" method="post">
-
+                        <form action= "{{ route('approval.updateApp',$purchase_requests->id) }}" method="post">
+        
                             @csrf
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="status" style="margin-top:20px">
-                                        <select class="form-select"
-                                            style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
-                                            id="approval_status" name="approval_status">
-                                            <option value="{{ $purchase_requests->approval_status }}" selected disabled>
-                                                UBAH STATUS</option>
-                                            <option value="pending">pending</option>
-                                            <option value="approve">approve</option>
-                                            <option value="ignore">ignore</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button style="margin-top:10px" class="btn btn-primary"> Simpan </button>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="status" style="margin-top:20px">
+                                    <select class="form-select"
+                                        style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center" id="approval_status" name= "approval_status">
+                                        <option value="{{ $purchase_requests->approval_status }}" selected disabled>
+                                            UBAH STATUS</option>
+                                        <option  value="pending">pending</option>
+                                        <option  value="approve">approve</option>
+                                        <option  value="ignore">ignore</option>
+                                    </select>
                                 </div>
                             </div>
-                        </form>
+                            <div class="col-12">
+                                <button style="margin-top:10px" class="btn btn-primary"> Simpan </button>
+                            </div>
+                        </div>
+                    </form>
 
                         {{-- <p class="subhead_pr" style="margin-top:20px"><span
                                 style="font-weight: bold; text-transform:uppercase;font-size:15px">{{ $purchase_requests->approval_status }}</span>

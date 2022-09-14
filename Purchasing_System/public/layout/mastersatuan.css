@@ -1,110 +1,111 @@
-#add {
-    background-color: #b06bdb;
+#add{
+    background-color: #B06BDB;
     border: none;
     border-radius: 6px;
-    width: 100%;
+    width:100%;
     height: calc(1.5em + 0.75rem + 2px);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-#search {
+#search{
     border: none;
-    background-color: #b06bdb !important;
+    background-color:#B06BDB !important;
 }
-#tombol {
+#tombol{
     margin-top: 60px;
     animation: fadeIn 1s;
 }
-#table-body {
+#table-body{
     margin-top: 30px;
     animation: fadeIn 2s;
 }
 
-#alert {
+#alert{
     animation: fadeIn 1.5s;
 }
 
-#pagination {
+#pagination{
     animation: fadeIn 3s;
+    
 }
-.table-head {
+.table-head{
     border-radius: 20px !important;
     background-color: #f0ecf4 !important;
+    
 }
-.table {
+.table{
+    
     border-radius: 20px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 @media only screen and (max-width: 768px) {
-    #table-body {
-        overflow-x: scroll;
+    #table-body{
+    overflow-x: scroll;
     }
-}
-#view {
-    background-color: rgba(107, 178, 219, 0.1);
+  }
+  #view{
+    background-color: rgba(107, 178, 219, 0.1);;
     border: none;
 }
-#edit {
-    background-color: #f0ecf4;
+#edit{
+    background-color:#f0ecf4 ;
     border: none;
 }
-#delete {
-    background-color: #fbe7e8;
+#delete{
+    background-color: #FBE7E8;
     border: none;
 }
-#plus {
-    background-color: #fff7e1;
+#plus{
+    background-color: #FFF7E1;
     border: none;
 }
-.fa-eye {
+.fa-eye{
     color: #17a2b8;
+ }
+.fa-edit{
+   color: #B06BDB;
 }
-.fa-edit {
-    color: #b06bdb;
-}
-.bi-trash {
+.bi-trash{
     color: red;
 }
-.fa-plus {
-    color: #fbbc05;
+.fa-plus
+{
+    color: #FBBC05;
 }
 
-#info {
-    background-color: white !important;
+#info{
+    background-color:  white !important;
 }
 
-@keyframes fadeIn {
-    0% {
-        margin-top: 200px;
-        opacity: 0;
+
+      @keyframes fadeIn{
+        0% {
+          margin-top:200px;
+          opacity:0;
+        }
+        50%{
+            opacity:0;
+          }
+        100%{
+          opacity:1;
+        }
+      }
+
+      .form-control{
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     }
-    50% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
 
-.form-control {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-
-.pending {
+      
+.pending
+{
     background-color: lightyellow !important;
     color: orange !important;
     border-radius: 20px !important;
     font-size: 13px !important;
 }
 
-.approve {
-    background-color: lightgreen !important;
-    color: green !important;
-    border-radius: 20px !important;
-    font-size: 13px !important;
-}
-
-.formulir-control {
+.formulir-control
+{
     width: 100%;
     height: 40px;
     background: #fff;
@@ -114,5 +115,5 @@
     border-radius: 4px;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
-    border: transparent;
+    border: transparent; 
 }
