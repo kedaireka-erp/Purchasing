@@ -75,20 +75,6 @@ class PurchaseRequestController extends Controller
             ]);
 
         }
-        else {
-            $purchase_requests = PurchaseRequest::create([
-                // 'no_pr'=>$request->no_pr,
-                'deadline_date'=>$request->deadline_date,
-                'type'=>$request->type,
-                'requester'=>$request->requester,
-                'prefixes_id'=>$request->prefixes_id,
-                'project'=>$request->project,
-                'locations_id'=>$request->locations_id,
-                'ships_id'=>$request->ships_id,
-                'note'=>$request->note,
-    
-            ]);
-        }
 
         // foreach ($request->addMoreInputFields as $key => $value) {
         //     Item::create($value);
@@ -96,7 +82,6 @@ class PurchaseRequestController extends Controller
            
         // }
 
-        
         
 
 
