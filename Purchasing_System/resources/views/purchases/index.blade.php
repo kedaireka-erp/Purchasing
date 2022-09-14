@@ -52,6 +52,7 @@
                         <td>Deadline Date</td>
                         <td>Requester</td>
                         <td>Division Name</td>
+                        <td>Type</td>
                         <td>Pengiriman</td>
                         <td>Status</td>
                         <td>Action</td>
@@ -68,9 +69,10 @@
                     @foreach ($purchase_requests as $no => $purchase_request)
                         <tr style="text-align: center">
                             <td align="left">{{ $purchase_request->no_pr }}</td>
-                            <td>{{ $purchase_request->deadline_date }}</td>
+                            <td>{{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d F Y') }}</td>
                             <td>{{ $purchase_request->requester }}</td>
                             <td>{{ $purchase_request->Prefixe->divisi }}</td>
+                            <td>{{ $purchase_request->type }}</td>
                             {{-- <td>{{ $purchase_request->project }}</td> --}}
                             {{-- <td>{{ $purchase_request->location->location_name }}</td> --}}
                             <td>{{ $purchase_request->Ship->type }}</td>

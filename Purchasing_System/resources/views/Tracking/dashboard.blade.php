@@ -64,7 +64,7 @@
                     @foreach ($purchase_requests as $no => $item)
                         <tr>
                             <td>{{ $item->no_pr }}</td>
-                            <td>{{ $item->deadline_date }}</td>
+                            <td>{{ \Carbon\Carbon::parse($item->deadline_date)->format('d F Y') }}</td>
                             <td>
                                 @foreach ($item->item as $no => $it)
                                     <ul>{{ $it->master_item->item_name }}</ul>

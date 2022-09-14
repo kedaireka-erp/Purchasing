@@ -54,7 +54,10 @@
                         <td>Division Name</td>
                         <td>Pengiriman</td>
                         <td>Status</td>
+                        
+                        <td>Tanggal ACC</td>
                         <td>Action</td>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -68,7 +71,7 @@
                     @foreach ($purchase_requests as $no => $purchase_request)
                         <tr style="text-align: center">
                             <td align="left">{{ $purchase_request->no_pr }}</td>
-                            <td>{{ $purchase_request->deadline_date }}</td>
+                            <td>{{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d F Y') }}</td>
                             <td>{{ $purchase_request->requester }}</td>
                             <td>{{ $purchase_request->Prefixe->divisi }}</td>
                             {{-- <td>{{ $purchase_request->project }}</td> --}}
@@ -77,10 +80,15 @@
                             @if ($purchase_request->approval_status == 'pending')
                                 <td> <button class="pending btn btn-warning"> {{ $purchase_request->approval_status }}
                                     </button></td>
+                                <td> <button class="pending btn btn-warning"> Pending
+                                </button></td>
                             @elseif ($purchase_request->approval_status == 'approve')
                                 <td> <button class="approve btn btn-warning"> {{ $purchase_request->approval_status }}
                                     </button></td>
+                                   <td> {{ \Carbon\Carbon::parse($purchase_request->updated_at)->format('d F Y') }} </td>
                             @endif
+
+                           
 
 
                             <td class="d-flex justify-content-center">
