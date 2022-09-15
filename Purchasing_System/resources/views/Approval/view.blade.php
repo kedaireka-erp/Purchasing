@@ -1,6 +1,6 @@
 @extends('layout.sidebar')
 
-@section('judul-laman', 'Dashboard Master Prefix')
+@section('judul-laman', 'View Purchasing Request')
 
 @section('Judul-content')
 
@@ -106,11 +106,20 @@
                     <div class="col-5" align="center">
                         <p class="subhead_pr">Requester/Divisi : {{ $purchase_requests->requester }}/
                             {{ $purchase_requests->Prefixe->divisi }} </p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="orange"
-                            class="bi bi-pause-circle-fill" viewBox="0 0 16 16" style="margin-top:30px">
-                            <path
-                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z" />
-                        </svg>
+
+                        @if ($purchase_requests->approval_status == 'pending')
+                            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="orange"
+                                class="bi bi-pause-circle-fill" viewBox="0 0 16 16" style="margin-top:30px">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z" />
+                            </svg>
+                        @elseif($purchase_requests->approval_status == 'approve')
+                            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="green"
+                                class="bi bi-check-circle-fill" viewBox="0 0 16 16"style="margin-top:30px">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </svg>
+                        @endif
                         <p class="subhead_pr" style="margin-top:20px"><span
                                 style="font-weight: bold; text-transform:uppercase;font-size:15px">{{ $purchase_requests->approval_status }}</span>
                         </p>
