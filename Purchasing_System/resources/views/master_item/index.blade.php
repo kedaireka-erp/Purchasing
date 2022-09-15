@@ -38,7 +38,7 @@
         <div class="container">
             <table class="table table-borderless" style="background-color:white">
                 <thead class="table-head">
-                    <tr style="text-align: center">
+                    <tr>
                         <th width="10%">No</th>
                         <th width="30%">Nama Barang</th>
                         <th width="20%">Stok</th>

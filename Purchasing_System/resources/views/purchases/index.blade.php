@@ -30,24 +30,11 @@
         </div>
     </div>
 
-    {{-- <div class="container">
-        <h1>Purchase Request</h1>
-        <form method="GET">
-            <div class="input-group mb-3">
-                <input type="text" name="search" value="{{ request()->get('search') }}" class="form-control"
-                    placeholder="Search..." aria-label="Search" aria-describedby="button-addon2">
-                <button class="btn btn-success" type="submit" id="button-addon2">Search</button>
-            </div>
-        </form>
-        <div class="col-12">
-            <a href="{{ route('purchase_request.create') }}" class="btn btn-primary" type="submit">Add</a>
-        </div> --}}
-    </div>
     <div id="table-body">
         <div class="container">
             <table class="table table-borderless" style="background-color:white">
                 <thead class="table-head">
-                    <tr style="text-align: center">
+                    <tr>
                         <td>Nomor PR</td>
                         <td>Deadline Date</td>
                         <td>Requester</td>
