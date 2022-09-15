@@ -63,7 +63,7 @@ class HomeController extends Controller
         $Ship=ships::get();
         $Prefixe=Prefix::get();
 
-        return view('approval.edit', compact('purchase_requests', 'item','Location', 'Ship', 'Prefixe'));
+        return view('Approval.edit', compact('purchase_requests', 'item','Location', 'Ship', 'Prefixe'));
     }
 
     public function update(request $request, $id){
