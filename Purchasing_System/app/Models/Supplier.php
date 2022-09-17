@@ -14,6 +14,6 @@ class Supplier extends Model
         "vendor"
     ];
     public function supplier(){
-        return $this->hasMany(Powder::class, 'id_supplier', 'id');
+        return $this->hasMany(powder::class, 'suppliers_id', 'id');
     }
 }

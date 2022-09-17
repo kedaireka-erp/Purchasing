@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('grades', function (Blueprint $table) {
-            $table->id();
-            $table->string('type', 100)->nullable();
-            $table->timestamps();
+        Schema::table('powders', function (Blueprint $table) {
+            $table->unsignedBigInteger("suppliers_id")->after("id")->nullable();
+            $table->foreign("suppliers_id")->references("id")->on("suppliers")->onDelete("restrict")->onUpdate("cascade")->nullable();
         });
     }
 
@@ -27,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('grade');
+        Schema::table('powders', function (Blueprint $table) {
+            //
+        });
     }
 };

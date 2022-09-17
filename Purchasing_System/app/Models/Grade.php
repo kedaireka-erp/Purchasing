@@ -15,6 +15,6 @@ class Grade extends Model
     ];
 
     public function grade(){
-        return $this->hasMany(Powder::class, 'id_grade', 'id');
+        return $this->hasMany(powder::class, 'grades_id', 'id');
     }
 }

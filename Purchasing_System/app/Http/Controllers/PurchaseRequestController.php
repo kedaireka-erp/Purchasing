@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grade;
 use App\Models\location;
 use App\Models\Prefix;
 use App\Models\PurchaseRequest;
@@ -10,6 +11,8 @@ use App\Models\Master_Item;
 use App\Models\Satuan;
 use App\Models\Item;
 use App\Models\ItemRequest;
+use App\Models\powder;
+use App\Models\Supplier;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -32,11 +35,16 @@ class PurchaseRequestController extends Controller
         $Prefixe=Prefix::get();
         $master_item = Master_Item::get();
         $satuan = Satuan::get();
+        $Grade = Grade::get();
+        $Supplier = Supplier::get();
+        $Powder = powder::get();
         
-        return view('purchases.create', compact('Location','Ship', "Prefixe",'master_item','satuan'));
+        return view('purchases.create', compact('Location','Ship', "Prefixe",'master_item','satuan', 'Grade', 'Supplier'));
     }
 
     public function store(Request $request){
+
+        $item = Item::get();
 
         $validateData = $request->validate([
             'deadline_date'=>'required',
@@ -71,8 +79,24 @@ class PurchaseRequestController extends Controller
                 'ships_id'=>$request->ships_id,
                 'note'=>$request->note,
                 'attachment'=>$image_name,
+                
+                
     
             ]);
+
+            $powder = new powder;
+            $powder->grades_id = $request->grades_id;
+            $powder->suppliers_id = $request->suppliers_id;
+            $powder->warna =$request->warna;
+            $powder->kode_warna =$request->kode_warna;
+            $powder->finish =$request->finish;
+            $powder->quantity =$request->quantity;
+            $powder->m2 =$request->m2;
+            $powder->estimasi =$request->estimasi;
+            $powder->fresh =$request->fresh;
+            $powder->recycle =$request->recycle;
+            $powder->alokasi =$request->alokasi;
+            $powder->save();
 
         }
         else
@@ -87,19 +111,53 @@ class PurchaseRequestController extends Controller
                 'locations_id'=>$request->locations_id,
                 'ships_id'=>$request->ships_id,
                 'note'=>$request->note,
+                
     
             ]);
+
+            $powder = new powder;
+            $powder->grades_id = $request->grades_id;
+            $powder->suppliers_id = $request->suppliers_id;
+            $powder->warna =$request->warna;
+            $powder->kode_warna =$request->kode_warna;
+            $powder->finish =$request->finish;
+            $powder->quantity =$request->quantity;
+            $powder->m2 =$request->m2;
+            $powder->estimasi =$request->estimasi;
+            $powder->fresh =$request->fresh;
+            $powder->recycle =$request->recycle;
+            $powder->alokasi =$request->alokasi;
+            
+            $powder->save();
         }
 
         // foreach ($request->addMoreInputFields as $key => $value) {
         //     Item::create($value);
             // Attach the reservation to the car's reservations
-            foreach ($request->addMoreInputFields as $key => $value) {
+    
+
+        
+        
+            
+           if($powder->warna == ''){
+            foreach ((array)$request->addMoreInputFields as $key => $value) {
+            
                 $item = Item::create($value);
                 $request_id = $item->id;
                 $request_now = Item::find($request_id);
                 $purchase_requests->item()->attach($request_now);
             }
+           }
+           else{
+        
+           
+            $request_id = $powder->id;
+            $request_now = powder::find($request_id);
+            $purchase_requests->powder()->attach($request_now);
+           }
+    
+        
+        
 
         // $items = New Item;
         // $items_id = $items->id;
@@ -126,8 +184,10 @@ class PurchaseRequestController extends Controller
         $Location=location::get();
         $Ship=ships::get();
         $Prefixe=Prefix::get();
+        $Grade = Grade::get();
+        $Supplier = Supplier::get();
 
-        return view('purchases.edit', compact('purchase_requests', 'Location', 'Ship', 'Prefixe'));
+        return view('purchases.edit', compact('purchase_requests', 'Location', 'Ship', 'Prefixe', 'Grade', 'Supplier'));
     }
 
     public function view($id){
@@ -144,8 +204,10 @@ class PurchaseRequestController extends Controller
         $Location=location::get();
         $Ship=ships::get();
         $Prefixe=Prefix::get();
+        $Grade = Grade::get();
+        $Supplier = Supplier::get();
 
-        return view('view', compact('purchase_requests', 'Location', 'Ship', 'Prefixe','item'));
+        return view('view', compact('purchase_requests', 'Location', 'Ship', 'Prefixe','item', 'Grade', 'Supplier'));
     }
 
     public function plus($id){
@@ -184,6 +246,7 @@ class PurchaseRequestController extends Controller
             'ships_id'=>$request->ships_id ?? $purchase_requests->ships_id,
             'note'=>$request->note ?? $purchase_requests->note,
             'attachment'=>$request->attachment ?? $purchase_requests->attachment,
+            
         ]);
         return redirect('/purchase_request');
 

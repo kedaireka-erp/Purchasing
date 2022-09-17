@@ -230,7 +230,7 @@
                         <div class="mb-3">
                             <label for="note" class="form-label">Note</label>
                             <textarea rows="4" cols="50" class="form-control input-powder" id="note" placeholder="-- INPUT --"
-                                name="note" value="{{ old('note') }}""></textarea>
+                                name="note" value="{{ old('note') }}"></textarea>
 
                         </div>
 
@@ -245,7 +245,8 @@
                 <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
                 <label for="tab-2" class="tab-label">Powder</label>
                 <div class="tab-content">
-                    <form>
+                    <form action="{{ route('purchase_request.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col-6">
                                 <div class="mb-3">
@@ -381,30 +382,14 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="tanggal_pengajuan" class="form-label font">Requester</label>
-                                    <input type="text" class="form-control input-powder">
+                                    <label for="warna" class="form-label font">warna</label>
+                                    <input type="text" class="form-control input-powder" name="warna">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="tanggal_pengajuan" class="form-label font">Kebutuhan</label>
-                                    <input type="text" class="form-control input-powder">
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label for="tanggal_pengajuan" class="form-label font">warna</label>
-                                    <input type="text" class="form-control input-powder">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label for="tanggal_pengajuan" class="form-label font">Kode Warna</label>
-                                    <input type="text" class="form-control input-powder">
+                                    <label for="kode_warna" class="form-label font">Kode Warna</label>
+                                    <input type="text" class="form-control input-powder" name="kode_warna">
                                 </div>
                             </div>
                         </div>
@@ -412,86 +397,108 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="kode_warna" class="form-label font">Grade</label>
-                                    <input type="text" class="form-control input-powder">
+                                    <label for="Grade">Grade<span style="color:red">*</span></label>
+                                    <select class="custom-select input-powder d-block w-100 form-control" id="Grade"
+                                        name="grades_id" value="{{ old('grades_id') }}">
+                                        <option selected disabled>-- Pilih Grade --</option>
+                                        @foreach ($Grade as $gra)
+                                            <option value="{{ $gra->id }}">{{ ucfirst($gra->type) }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('grades_id')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="mb-3">
-                                    <label for="finish" class="form-label font">Finish</label>
+                                    
                                     <div class="row">
+                                        
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control input-powder">
+                                            <label for="finish" class="form-label font">Finish</label>
+                                            <select class="form-select" aria-label="Default select example" name="finish">
+                                                <option selected disabled> -- PILIH OPSI -- </option>
+                                                <option value="interior"> Interior </option>
+                                                <option value="eksterior"> Eksterior </option>
+                                                <option value="SG"> SG </option>
+                                                <option value="MATT"> MATT </option>
+                                                <option value="SUPERMATT"> SUPERMATT </option>
+                                                <option value="GLOSS"> GLOSS </option>
+                                                <option value="METALLIC"> METALLIC </option>
+                                                <option value="SAND TEXTURE"> SAND TEXTURE </option>
+                                                <option value="SUBLIMASI"> SUBLIMASI </option>
+                                              </select>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control input-powder">
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
 
 
                             <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="mb-3">
-                                        <label for="tanggal_pengajuan" class="form-label font">Supplier</label>
-                                        <input type="text" class="form-control input-powder" placeholder="AXALTA">
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
+                                <div class="mb-3">
+                                <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-4">
-                                            <label for="tanggal_pengajuan" class="form-label font">Qty</label>
-                                            <input type="text" class="form-control input-powder" placeholder="Kg">
+                                            <label for="quantity" class="form-label font">Qty</label>
+                                            <input type="text" name="quantity" class="form-control input-powder" placeholder="Kg">
                                         </div>
                                         <div class="col-4">
                                             <label for="tanggal_pengajuan" class="form-label font">m2</label>
-                                            <input type="text" class="form-control input-powder" placeholder="m2">
+                                            <input type="text" class="form-control input-powder" name="m2" placeholder="m2">
                                         </div>
                                         <div class="col-4">
                                             <label for="tanggal_pengajuan" class="form-label font">Estimasi</label>
-                                            <input type="text" class="form-control input-powder" placeholder="Kgs/m2">
+                                            <input type="text" class="form-control input-powder" name="estimasi" placeholder="Kgs/m2">
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="mb-3">
-                                        <label for="tanggal_pengajuan" class="form-label font">Outstanding
-                                            Powder</label>
-                                        <input type="text" class="form-control input-powder" placeholder="10">
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
+                                <div class="mb-3">
+                                <div class="col-lg-12">
                                     <div class="row">
+                                        
                                         <div class="col-4">
                                             <label for="tanggal_pengajuan" class="form-label font">Fresh Stock</label>
-                                            <input type="text" class="form-control input-powder" placeholder="2">
+                                            <input type="text" class="form-control input-powder" placeholder="2" name="fresh">
                                         </div>
 
                                         <div class="col-4">
                                             <label for="tanggal_pengajuan" class="form-label font">Recycle
                                                 Stock</label>
-                                            <input type="text" class="form-control input-powder" placeholder="2">
+                                            <input type="text" class="form-control input-powder" placeholder="2" name="recycle">
                                         </div>
 
                                         <div class="col-4">
                                             <label for="tanggal_pengajuan" class="form-label font">Alokasi
                                                 Fresh</label>
-                                            <input type="text" class="form-control input-powder" placeholder="2">
+                                            <input type="text" class="form-control input-powder" placeholder="2" name="alokasi">
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="tanggal_pengajuan" class="form-label font">Status</label>
-                                        <input type="text" class="form-control input-powder"
-                                            placeholder="Outstanding">
+                                        <label for="Supplier">Supplier<span style="color:red">*</span></label>
+                                        <select class="custom-select input-powder d-block w-100 form-control" id="Supplier"
+                                            name="suppliers_id" value="{{ old('suppliers_id') }}">
+                                            <option selected disabled>-- Pilih Supplier --</option>
+                                            @foreach ($Supplier as $sup)
+                                                <option value="{{ $sup->id }}">{{ ucfirst($sup->vendor) }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('suppliers_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
 
@@ -499,40 +506,20 @@
                                     <div class="mb-3">
                                         <label for="tanggal_pengajuan" class="form-label font">Alokasi
                                             Outstanding</label>
-                                        <input type="text" class="form-control input-powder" placeholder="10">
+                                        <input type="text" class="form-control input-powder" placeholder="10" name="alokasi">
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="tanggal_pengajuan" class="form-label font">Attachments</label>
-                                        <input type="file" class="form-control input-powder">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="tanggal_pengajuan" class="form-label font">Note</label>
-                                        <textarea type="text" class="form-control input-powder" placeholder="Tidak ada catatan"
-                                            style="font-style:italic"></textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="Type" class="form-label font">Type</label>
-                                            <select class="form-select" aria-label="Default select example">
-                                                <option selected disabled>Pilih Type</option>
-                                                <option value="1">Powder</option>
-                                                <option value="2">Othergood</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="mb-3">
+                                <label for="note" class="form-label">Note</label>
+                                <textarea rows="4" cols="50" class="form-control input-powder" id="note" placeholder="-- INPUT --"
+                                    name="note" value="{{ old('note') }}"></textarea>
+    
                             </div>
-                            <button type="button" class="btn btn-primary submit-powder">Submit</button>
+
+
+                            
+                            <button type="submit" class="btn btn-primary submit-powder">Submit</button>
                     </form>
                 </div>
             </div>

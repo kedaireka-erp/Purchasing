@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("id_request")->nullable();
             $table->unsignedBigInteger("id_item")->nullable();
+            $table->unsignedBigInteger("powder_id")->nullable();
             $table->timestamps();
+            $table->foreign("powder_id")->references("id")->on("powders")->onDelete("restrict")->onUpdate("cascade")->nullable();
             $table->foreign("id_request")->references("id")->on("purchase_requests")->onDelete("restrict")->onUpdate("cascade")->nullable();
             $table->foreign("id_item")->references("id")->on("items")->onDelete("restrict")->onUpdate("cascade")->nullable();
         });

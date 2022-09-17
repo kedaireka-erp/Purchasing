@@ -49,13 +49,8 @@ class PowderController extends Controller
     public function store(Request $request)
     {
         $powder = new Powder;
-        $powder->deadline_date = $request->deadline_date;
-        $powder->requester = $request->requester;
-        $powder->project = $request->project;
         $powder->id_grade = $request->id_grade;
         $powder->id_supplier = $request->id_supplier;
-        $powder->note = $request->note;
-        $powder->attachment =$request->attachment;
         $powder->warna =$request->warna;
         $powder->kode_warna =$request->kode_warna;
         $powder->finish =$request->finish;
@@ -106,13 +101,8 @@ class PowderController extends Controller
     public function update(Request $request, $id)
     {
         $powder = Powder::find($id);
-        $powder->deadline_date = $request->deadline_date;
-        $powder->requester = $request->requester;
-        $powder->project = $request->project;
         $powder->id_grade = $request->id_grade;
         $powder->id_supplier = $request->id_supplier;
-        $powder->note = $request->note;
-        $powder->attachment =$request->attachment;
         $powder->warna =$request->warna;
         $powder->kode_warna =$request->kode_warna;
         $powder->finish =$request->finish;

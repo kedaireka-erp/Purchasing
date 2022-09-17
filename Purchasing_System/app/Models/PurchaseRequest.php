@@ -14,7 +14,7 @@ class PurchaseRequest extends Model
 
     protected $table = 'purchase_requests';
     protected $primaryKey = 'id';
-    protected $fillable=['no_pr', 'type','deadline_date','locations_id','ships_id', 'requester', 'prefixes_id', 'project', 'note', 'attachment','tanggal_diterima'];
+    protected $fillable=['no_pr','type','deadline_date','locations_id','ships_id', 'requester', 'prefixes_id', 'project', 'note', 'attachment','tanggal_diterima'];
     protected $dates=['delete_at'];
 
     public function toSearchableArray()
@@ -51,6 +51,14 @@ class PurchaseRequest extends Model
     public function item(){
         return $this->belongsToMany(Item::class, 'item_requests','id_request','id_item');
     }
+
+    public function powder(){
+        return $this->belongsToMany(powder::class, 'item_requests','id_request','powder_id');
+    }
+
+   
+
+     
 
 
     public static function boot()
