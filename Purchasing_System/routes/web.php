@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\FormPOController;
+use App\Http\Controllers\PowderController;
 use App\Http\Controllers\PrefixController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\ships_controller;
@@ -10,12 +12,11 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PurchaseController;
-use App\Http\Controllers\MasterItemController;
-use App\Http\Controllers\PurchaseRequestController;
-use App\Http\Controllers\TrackingController;
-use App\Http\Controllers\GradeController;
 use App\Http\Controllers\SupplierController;
-use App\Http\Controllers\PowderController;
+use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\MasterItemController;
+use App\Http\Controllers\TimeshippingController;
+use App\Http\Controllers\PurchaseRequestController;
 
 
 /*
@@ -150,3 +151,11 @@ route::group(['as'=>'powder.','prefix'=>'powder'], function(){
         Route::delete('/destroy{id}', [HomeController::class, "delete"])->name("deleteApp");
         });
     
+    route::group(['as'=>'timeshipping.','prefix'=>'timeshipping'], function(){
+    route::get('/', [TimeshippingController::class, 'index']);
+    route::get('/create', [TimeshippingController::class, 'create'])->name('create');
+    route::post('/store', [TimeshippingController::class, 'store'])->name('store');
+    route::get('/edit/{id}', [TimeshippingController::class, 'edit'])->name('edit');
+    route::post('/update/{id}', [TimeshippingController::class, 'update'])->name('update');
+    route::delete('destroy/{id}', [TimeshippingController::class, 'destroy'])->name('destroy');
+});
