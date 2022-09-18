@@ -23,7 +23,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
-<link rel="stylesheet" href="{{ asset('layout/layout.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('layout/layout.css') }}"> --}}
 <link rel="stylesheet" href="{{ asset('layout/update.css') }}">
 <link rel="stylesheet" href="{{ asset('layout/tampil.css') }}">
 <link rel="stylesheet" href="{{ asset('layout/form.css') }}">
@@ -39,3 +39,13 @@
 
 <!-- Custom styles for this template-->
 <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+
+<!-- FAVICONS ICON -->
+<link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
+<link href="{{ asset('assets/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/vendor/owl-carousel/owl.carousel.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('assets/vendor/nouislider/nouislider.min.css') }}">
+
+<!-- Style css -->
+<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
