@@ -53,26 +53,7 @@
         _page-user-lock
 
 */
-@import url("../../css2.css");
-@import url("../../css.css");
-@import url("../../css-1.css");
-@import url("../../css-2.css");
-@import url("../../css-3.css");
-@import url("../../css-4.css");
-@import url("../icons/simple-line-icons/css/simple-line-icons.css");
-@import url("../icons/font-awesome/css/all.min.css");
-@import url("../icons/material-design-iconic-font/css/materialdesignicons.min.css");
-@import url("../icons/themify-icons/css/themify-icons.css");
-@import url("../icons/line-awesome/css/line-awesome.min.css");
-@import url("../icons/avasta/css/style.css");
-@import url("../icons/flaticon/flaticon.css");
-@import url("../icons/flaticon_1/flaticon_1.css");
-@import url("../icons/icomoon/icomoon.css");
-@import url("../icons/bootstrap-icons/font/bootstrap-icons.css");
-@import url(../vendor/animate/animate.min.css);
-@import url(../vendor/aos/css/aos.min.css);
-@import url(../vendor/perfect-scrollbar/css/perfect-scrollbar.css);
-@import url(../vendor/metismenu/css/metisMenu.min.css);
+
 :root {
   --primary: #886CC0;
   --secondary: #FFA7D7;
@@ -8695,6 +8676,9 @@ h1, .h1, .h1, h2, .h2, .h2, h3, .h3, .h3, h4, .h4, .h4, h5, .h5, .h5, h6, .h6, .
 .w-space-no {
   white-space: nowrap; }
 
+.content-body{
+  height: 1500px !important;
+}
 .content-body .container {
   margin-top: 2.5rem; }
 .content-body .container-fluid, .content-body .container-sm, .content-body .container-md, .content-body .container-lg, .content-body .container-xl, .content-body .container-xxl {

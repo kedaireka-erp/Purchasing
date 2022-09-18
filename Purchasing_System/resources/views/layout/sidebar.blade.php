@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -10,14 +9,14 @@
 
 
 
-      <!--*******************
+    <!--*******************
         Preloader start
     ********************-->
     <div id="preloader">
-		<div class="lds-ripple">
-			<div></div>
-			<div></div>
-		</div>
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
     </div>
     <!--*******************
         Preloader end
@@ -31,12 +30,13 @@
         <!--**********************************
             Nav header start
         ***********************************-->
-		<div class="nav-header">
+        <div class="nav-header">
             <a href="index.html" class="brand-logo">
-				<div id="logo">
-                    <img class="logo" src="{{ asset('images/home_logo.png') }}"style= "width:90%; height:80%; margin:top">
+                <div id="logo">
+                    <img class="logo"
+                        src="{{ asset('images/home_logo.png') }}" style="width:90%; height:80%; margin:top">
                 </div>
-				
+
             </a>
             <div class="nav-control">
                 <div class="hamburger">
@@ -47,9 +47,9 @@
         <!--**********************************
             Nav header end
         ***********************************-->
-		
-		
-		<!--**********************************
+
+
+        <!--**********************************
             Header start
         ***********************************-->
         <div class="header border-bottom">
@@ -57,41 +57,54 @@
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
-							<div class="dashboard_bar">
-                              
+                            <div class="dashboard_bar">
+
                             </div>
                         </div>
                         <ul class="navbar-nav header-right">
-							<li class="nav-item dropdown  header-profile">
-                              
+                            <li class="nav-item dropdown  header-profile">
+
                                 <h4 style="padding: 5px">Tim Purchasing</h4>
-                            
-								<a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                                    
-                                    <img src="images/profile/profil.png" width="56" alt="">
-                                    
-								</a>
-								<div class="dropdown-menu dropdown-menu-end">
-									<a href="app-profile.html" class="dropdown-item ai-icon">
-										<svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-										<span class="ms-2">Profile </span>
-									</a>
-									<a href="page-error-404.html" class="dropdown-item ai-icon">
-										<svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-										<span class="ms-2">Logout </span>
-									</a>
-								</div>
-							</li>
+
+                                <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
+
+                                    {{-- <img src="images/profile/profil.png" width="56" alt=""> --}}
+
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a href="app-profile.html" class="dropdown-item ai-icon">
+                                        <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary"
+                                            width="18" height="18" viewbox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg>
+                                        <span class="ms-2">Profile </span>
+                                    </a>
+                                    <a href="page-error-404.html" class="dropdown-item ai-icon">
+                                        <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger"
+                                            width="18" height="18" viewbox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                            <polyline points="16 17 21 12 16 7"></polyline>
+                                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                                        </svg>
+                                        <span class="ms-2">Logout </span>
+                                    </a>
+                                </div>
+                            </li>
                         </ul>
                     </div>
-				</nav>
-			</div>
-		</div>
+                </nav>
+            </div>
+        </div>
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
 
-        
+
 
 
 
@@ -100,41 +113,41 @@
         ***********************************-->
         <div class="dlabnav">
             <div class="dlabnav-scroll">
-				<ul class="metismenu" id="menu">
+                <ul class="metismenu" id="menu">
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-							<i class="fas fa-home"></i>
-							<span class="nav-text">Dashboard</span>
-						</a>
+                            <i class="fas fa-home"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
                         <ul aria-expanded="false">
-							<li><a href="index.html">Dashboard Admin Divisi</a></li>
-							<li><a href="index-2.html">Dashboard Manager</a></li>
-							<li><a href="project-page.html">Dashboard Purchasing</a></li>
-						</ul>
+                            <li><a href="index.html">Dashboard Admin Divisi</a></li>
+                            <li><a href="index-2.html">Dashboard Manager</a></li>
+                            <li><a href="project-page.html">Dashboard Purchasing</a></li>
+                        </ul>
                     </li>
-					
+
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-						<i class="bi bi-clipboard2-fill"></i>
-							<span class="nav-text">Request</span>
-						</a>
+                            <i class="bi bi-clipboard2-fill"></i>
+                            <span class="nav-text">Request</span>
+                        </a>
                         <ul aria-expanded="false">
                             <li><a href="/purchase_request">Purchase Request</a></li>
-							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master Request</a>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master Request</a>
                                 <ul aria-expanded="false">
                                     <li><a href="/masteritem">Master Item</a></li>
-									<li><a href="/prefix">Master Prefix</a></li>
-									<li><a href="/location">Master Lokasi</a></li>
-									<li><a href="/satuan">Master Satuan</a></li>
-									<li><a href="ecom-checkout.html">Master Grade</a></li>
-									<li><a href="/ships">Master Kebutuhan</a></li>	
+                                    <li><a href="/prefix">Master Prefix</a></li>
+                                    <li><a href="/location">Master Lokasi</a></li>
+                                    <li><a href="/satuan">Master Satuan</a></li>
+                                    <li><a href="ecom-checkout.html">Master Grade</a></li>
+                                    <li><a href="/ships">Master Kebutuhan</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
 
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                        <i class="bi bi-check-circle-fill"></i>
-							<span class="nav-text">Approval</span>
-						</a>
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span class="nav-text">Approval</span>
+                        </a>
                         <ul aria-expanded="false">
                             <li><a href="chart-flot.html">Approval Manager</a></li>
                             <li><a href="chart-morris.html">Approval Tim Purchasing</a></li>
@@ -142,30 +155,30 @@
                     </li>
 
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                        <i class="bi bi-basket2-fill"></i>
+                            <i class="bi bi-basket2-fill"></i>
 
-							<span class="nav-text">Order</span>
-						</a>
+                            <span class="nav-text">Order</span>
+                        </a>
                         <ul aria-expanded="false">
                             <li><a href="ui-accordion.html">Purchase Order</a></li>
 
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master Order</a>
                                 <ul aria-expanded="false">
                                     <li><a href="ecom-product-grid.html">Master Waktu</a></li>
-									<li><a href="ecom-product-list.html">Master Suppley</a></li>
-									<li><a href="ecom-product-detail.html">Master Pembayaran</a></li>						
+                                    <li><a href="ecom-product-list.html">Master Suppley</a></li>
+                                    <li><a href="ecom-product-detail.html">Master Pembayaran</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
                     <li><a class=" " href="javascript:void()" aria-expanded="false">
-                        <i class="fas fa-chart-line"></i>
-							<span class="nav-text">Request Tracking</span>
-						</a>
-			
-			</div>
+                            <i class="fas fa-chart-line"></i>
+                            <span class="nav-text">Request Tracking</span>
+                        </a>
+
+            </div>
         </div>
-		
+
         {{-- <div class="dlabnav">
             <div class="dlabnav-scroll">
 				<ul class="metismenu" id="menu">
@@ -354,87 +367,85 @@
                 <hr>
                 @yield('content')
             </div>
-           
-     
+
+
         </div>
         <!--**********************************
             Content body end
         ***********************************-->
 
 
-    <!--**********************************
+        <!--**********************************
         Scripts
     ***********************************-->
-    <!-- Required vendors -->
-    <script src="vendor/global/global.min.js"></script>
-	<script src="vendor/chart.js/Chart.bundle.min.js"></script>
-	<script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-	
-	<!-- Apex Chart -->
-	<script src="vendor/apexchart/apexchart.js"></script>
-	
-	<script src="vendor/chart.js/Chart.bundle.min.js"></script>
-	
-	<!-- Chart piety plugin files -->
-    <script src="vendor/peity/jquery.peity.min.js"></script>
-	<!-- Dashboard 1 -->
-	<script src="js/dashboard/dashboard-1.js"></script>
-	
-	<script src="vendor/owl-carousel/owl.carousel.js"></script>
-	
-    <script src="js/custom.min.js"></script>
-	<script src="js/dlabnav-init.js"></script>
-	<script src="js/demo.js"></script>
-    <script src="js/styleSwitcher.js"></script>
-	<script>
-		function cardsCenter()
-		{
-			
-			/*  testimonial one function by = owl.carousel.js */
-			
-	
-			
-			jQuery('.card-slider').owlCarousel({
-				loop:true,
-				margin:0,
-				nav:true,
-				//center:true,
-				slideSpeed: 3000,
-				paginationSpeed: 3000,
-				dots: true,
-				navText: ['<i class="fas fa-arrow-left"></i>', '<i class="fas fa-arrow-right"></i>'],
-				responsive:{
-					0:{
-						items:1
-					},
-					576:{
-						items:1
-					},	
-					800:{
-						items:1
-					},			
-					991:{
-						items:1
-					},
-					1200:{
-						items:1
-					},
-					1600:{
-						items:1
-					}
-				}
-			})
-		}
-		
-		jQuery(window).on('load',function(){
-			setTimeout(function(){
-				cardsCenter();
-			}, 1000); 
-		});
-		
-	</script>
-    <x-script></x-script>
-    
+        <!-- Required vendors -->
+        <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+
+        <!-- Apex Chart -->
+        <script src="{{ asset('assets/vendor/apexchart/apexchart.js"></sc') }}"></script>
+
+        <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
+
+        <!-- Chart piety plugin files -->
+        <script src="{{ asset('assets/vendor/peity/jquery.peity.min.js"><') }}""></script>
+        <!-- Dashboard 1 -->
+        <script src="{{ asset('assets/js/dashboard/dashboard-1.js') }}"></script>
+
+        <script src="{{ asset('assets/vendor/owl-carousel/owl.carousel.js') }}"></script>
+
+        <script src="{{ asset('assets/js/plugins-init/custom.min.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins-init/dlabnav-init.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins-init/demo.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins-init/styleSwitcher.js') }}"></script>
+        <script>
+            function cardsCenter() {
+
+                /*  testimonial one function by = owl.carousel.js */
+
+
+
+                jQuery('.card-slider').owlCarousel({
+                    loop: true,
+                    margin: 0,
+                    nav: true,
+                    //center:true,
+                    slideSpeed: 3000,
+                    paginationSpeed: 3000,
+                    dots: true,
+                    navText: ['<i class="fas fa-arrow-left"></i>', '<i class="fas fa-arrow-right"></i>'],
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        576: {
+                            items: 1
+                        },
+                        800: {
+                            items: 1
+                        },
+                        991: {
+                            items: 1
+                        },
+                        1200: {
+                            items: 1
+                        },
+                        1600: {
+                            items: 1
+                        }
+                    }
+                })
+            }
+
+            jQuery(window).on('load', function() {
+                setTimeout(function() {
+                    cardsCenter();
+                }, 1000);
+            });
+        </script>
+        <x-script></x-script>
+
 </body>
 
 </html>
