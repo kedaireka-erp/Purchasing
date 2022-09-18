@@ -28,20 +28,20 @@
 <link rel="stylesheet" href="{{ asset('layout/tampil.css') }}">
 <link rel="stylesheet" href="{{ asset('layout/form.css') }}">
 <link rel="stylesheet" href="{{ asset('layout/viewpr.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/icons/simple-line-icons/css/simple-line-icons.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/icons/font-awesome/css/all.min.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/icons/material-design-iconic-font/css/materialdesignicons.min.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/icons/themify-icons/css/themify-icons.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/icons/line-awesome/css/line-awesome.min.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/icons/avasta/css/style.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/icons/flaticon/flaticon.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/icons/flaticon_1/flaticon_1.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/icons/icomoon/icomoon.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/icons/bootstrap-icons/font/bootstrap-icons.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/vendor/animate/animate.min.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/vendor/aos/css/aos.min.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/vendor/perfect-scrollbar/css/perfect-scrollbar.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/vendor/metismenu/css/metisMenu.min.css')}}">
+{{-- <link rel="stylesheet" href="{{ asset('assets/icons/simple-line-icons/css/simple-line-icons.css') }}"> --}}
+<link rel="stylesheet" href="{{ asset('assets/icons/font-awesome/css/all.min.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('assets/icons/material-design-iconic-font/css/materialdesignicons.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/icons/themify-icons/css/themify-icons.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/icons/line-awesome/css/line-awesome.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/icons/avasta/css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/icons/flaticon/flaticon.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/icons/flaticon_1/flaticon_1.css') }}"> --}}
+{{-- <link rel="stylesheet" href="{{ asset('assets/icons/icomoon/icomoon.css') }}"> --}}
+{{-- <link rel="stylesheet" href="{{ asset('assets/icons/bootstrap-icons/font/bootstrap-icons.css')}}"> --}}
+<link rel="stylesheet" href="{{ asset('assets/vendor/animate/animate.min.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('assets/vendor/aos/css/aos.min.css') }}"> --}}
+<link rel="stylesheet" href="{{ asset('assets/vendor/perfect-scrollbar/css/perfect-scrollbar.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/vendor/metismenu/css/metisMenu.min.css') }}">
 
 
 
