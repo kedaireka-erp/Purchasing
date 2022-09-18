@@ -58,7 +58,7 @@
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
                             <div class="dashboard_bar">
-
+                                @yield('title_content')
                             </div>
                         </div>
                         <ul class="navbar-nav header-right">
@@ -137,7 +137,7 @@
                                     <li><a href="/prefix">Master Prefix</a></li>
                                     <li><a href="/location">Master Lokasi</a></li>
                                     <li><a href="/satuan">Master Satuan</a></li>
-                                    <li><a href="ecom-checkout.html">Master Grade</a></li>
+                                    <li><a href="/grade">Master Grade</a></li>
                                     <li><a href="/ships">Master Kebutuhan</a></li>
                                 </ul>
                             </li>
@@ -187,8 +187,9 @@
         ***********************************-->
         <div class="content-body">
             <div class="container">
-                @yield('Judul-content')
-                <hr>
+                @yield('wrap_title')
+                {{-- @yield('Judul-content')
+                <hr> --}}
                 @yield('content')
             </div>
 

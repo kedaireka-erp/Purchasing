@@ -63,4 +63,5 @@
 <link rel="stylesheet" href="{{ asset('assets/vendor/nouislider/nouislider.min.css') }}">
 
 <!-- Style css -->
+@yield('datatable')
 <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
