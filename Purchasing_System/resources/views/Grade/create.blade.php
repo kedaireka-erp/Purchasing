@@ -25,6 +25,7 @@
 </html> --}}
 
 
+
 @extends('layout.sidebar')
 
 @section('judul-laman', 'Tambah Master Grade')
@@ -50,26 +51,22 @@
 
 
         <div id="form" style="margin-top: 10px">
-            <form action="{{ route('grade.store') }}" method="post">
-                {{ csrf_field() }}
-                <div class="mb-3">
-                    <label for="name" class="form-label input-runded"> Grade Type</label>
-                    <input type="text" class="form-control Background @error('name') is-invalid @enderror" name="name"
-                        value="{{ old('name') }}" autofocus>
-                    @error('name')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-
-                <br>
-                <div class="mb-3">
+            <form method="POST" action="{{ route('grade.store') }}">
+                @csrf
+                    <div>
+                        <label class="form-label">Grade Type</label>
+                        <input type="text" name="type" class="form-control" placeholder="Input Grade Type" value="{{ $grade->type }}">
+                        @foreach ($errors->get('type') as $msg)
+                            <p class="text-danger">{{ $msg }}</p>
+                        @endforeach
+                    </div> <br>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
+                </form>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         </div>
         </div>
 
     </div>
+    
 </section>
 @endsection

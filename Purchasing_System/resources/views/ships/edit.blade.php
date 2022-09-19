@@ -14,11 +14,12 @@
     <section class="event-area section-gap-extra-bottom">
         <div class="container" id="boxshadow">
 
-            <div class="container col-lg-8 text-left">
+            <div class="container col-lg-10 text-left">
                 <div id="title" style="margin-top: 50px">
                     <div class="title">
                         <br>
-                        <h4 align="center"> Edit Data Kebutuhan/Pengiriman </h4>
+                        <h4 style="margin-top: 30px; text-align: center"> Edit Data Kebutuhan/Pengiriman </h4>
+                        <hr>
                     </div>
                 </div>
 

@@ -12,18 +12,18 @@
 <section class="event-area section-gap-extra-bottom">
     <div class="container" id="boxshadow">
 
-    <div class="container col-lg-6">
+    <div class="container col-lg-10">
         <div id="title" style="margin-top: 50px">
             <div class="title">
                 <br>
-                <h4> Edit Data Location </h4>
+                <h4 style="margin-top: 30px; text-align: center"> Edit Data Location </h4>
             </div>
         </div>
         <div id="form" style="margin-top: 20px margin-down:20px">
             <form action="{{route('location.update', $locations->id)}}" method="post">
                 {{ csrf_field() }}
                 <div class="mb-3">
-                    <label for="location_name" class="form-label">Location Name </label>
+                    <label for="location_name" class="form-label input-runded">Location Name </label>
                     <input type="text" class="form-control Background @error('location_name') is-invalid @enderror" name="location_name" autofocus
                         value="{{$locations->location_name}}">
                         @error('location_name')
@@ -33,7 +33,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="address" class="form-label"> Address </label>
+                    <label for="address" class="form-label input-runded"> Address </label>
                     <input type="text" class="form-control Background @error('address') is-invalid @enderror" name="address" value="{{$locations->address}}">
                     @error('address')
                     <div class="invalid-feedback">
