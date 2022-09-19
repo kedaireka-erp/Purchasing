@@ -50,7 +50,7 @@
             <div class="row">
                 <div class="col-9">
                     <div class="card-header">
-                        <h4 class="card-title">Data Master Item</h4>
+                        <h4 class="card-title">Data Master Satuan</h4>
                     </div>
                 </div>
                 <div class="col-3">

@@ -14,16 +14,17 @@
     <section class="event-area section-gap-extra-bottom">
         <div class="container" id="boxshadow">
 
-            <div class="container col-lg-8 text-left">
-                <div id="title" style="margin-top: 50px">
+            <div class="container col-lg-10 text-left">
+                <div id="title" style="margin-top: 70px">
                     <div class="title">
                         <br>
-                        <h4 align="center"> Tambah Data Kebutuhan/Pengiriman </h4>
+                        <h4 style="margin-top: 70px; text-align: center"> Tambah Data Kebutuhan/Pengiriman </h4>
+                        <hr>
                     </div>
                 </div>
 
 
-                <div id="form" style="margin-top: 60px">
+                <div id="form" style="margin-top: 20px">
                     <form action="{{ url('ships') }}" method="post">
                         {{ csrf_field() }}
                         @include('ships.form')

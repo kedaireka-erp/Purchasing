@@ -12,11 +12,12 @@
 <section class="event-area section-gap-extra-bottom">
     <div class="container" id="boxshadow">
 
-    <div class="container col-lg-6 col text-left"  >
+    <div class="container col-lg-10 col text-left"  >
         <div id="title" style="margin-top: 50px">
             <div class="title">
                 <br>
-                <h4> Tambah Data Item </h4>
+                <h4 style="margin-top: 30px; text-align: center"> Tambah Data Item </h4>
+                <hr>
             </div>
         </div>
 
@@ -25,7 +26,7 @@
             <form action="{{ url('masteritem/store') }}" method="post">
                 {{ csrf_field() }}
                 <div class="mb-3">
-                    <label for="item_name" class="form-label"> Nama Item </label>
+                    <label for="item_name" class="form-label input-runded"> Nama Item </label>
                     <input type="text" class="form-control Background @error('item_name') is-invalid @enderror" name="item_name"
                         value="{{ old('item_name') }}" autofocus>
                     @error('item_name')
@@ -36,7 +37,7 @@
 
                 </div>
                 <div class="mb-3">
-                    <label for="stock" class="form-label"> Stock </label>
+                    <label for="stock" class="form-label input-runded"> Stock </label>
                     <input type="text" class="form-control Background @error('stock') is-invalid @enderror" name="stock"
                         value="{{ old('stock') }}">
                     @error('stock')
