@@ -8,6 +8,16 @@
     </div>
 @endsection
 
+@section('datatable')
+<link rel="shortcut icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
+<link href="{{ asset('assets/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+
+@endsection
+
 @section('content')
     {{-- @if (Session::get('success'))
         <div class="alert alert-success">{{ Session::get('success') }}
@@ -43,7 +53,7 @@
                                 <div class="mb-3">
                                     <label for="type" class="form-label font">Type<span
                                             style="color:red">*</span></label>
-                                    <input readonly name="type" id="type" class="form-control" value="othergood"
+                                    <input readonly name="type" id="type"  class="form-control input-rounded" value="othergood"
                                         selected>
                                 </div>
                             </div>
@@ -52,7 +62,7 @@
                                     <label for="deadline_date" class="form-label">Tanggal
                                         Kebutuhan Barang<span style="color:red">*</span></label>
                                     <input type="date"
-                                        class="form-control input-powder @error('deadline_date') is-invalid @enderror"
+                                        class="form-control input-rounded @error('deadline_date') is-invalid @enderror"
                                         id="deadline_date" placeholder="-- INPUT --" name="deadline_date"
                                         value="{{ old('deadline_date') }}">
 
@@ -71,7 +81,7 @@
                                     <label for="requester" class="form-label">Requester<span
                                             style="color:red">*</span></label>
                                     <input type="text"
-                                        class="form-control input-powder @error('requester') is-invalid @enderror"
+                                        class="form-control input-rounded @error('requester') is-invalid @enderror"
                                         id="requester" placeholder="-- INPUT --" name="requester"
                                         value="{{ old('requester') }}" autofocus>
 
@@ -85,7 +95,7 @@
                                 <div class="mb-3">
                                     <label for="prefixes_id" class="form-label">Divisi<span
                                             style="color:red">*</span></label>
-                                    <select class="custom-select input-powder d-block w-100 form-control"
+                                    <select class="default-select input-rounded form-control wide mb-3"
                                         aria-label="Default select example" id="Prefixe" name="prefixes_id"
                                         value="{{ old('prefixes_id') }}">
                                         <option selected disabled>-- Pilih Divisi --</option>
@@ -105,7 +115,7 @@
                                 <div class="mb-3">
                                     <label for="project" class="form-label">Project/Customer</label>
                                     <input type="text"
-                                        class="form-control input-powder @error('project') is-invalid @enderror"
+                                        class="form-control input-rounded @error('project') is-invalid @enderror"
                                         id="project" placeholder="-- INPUT --" name="project"
                                         value="{{ old('project') }}">
 
@@ -117,7 +127,7 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="Location">Lokasi<span style="color:red">*</span></label>
-                                    <select class="custom-select input-powder d-block w-100 form-control" id="Location"
+                                    <select class="default-select input-rounded form-control wide mb-3" id="Location"
                                         name="locations_id" value="{{ old('locations_id') }}">
                                         <option selected disabled>-- Pilih Lokasi
                                             Pengiriman --</option>
@@ -137,9 +147,9 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="Ship">Kebutuhan/ Pengiriman<span style="color:red">*</span></label>
-                                    <select class="custom-select input-powder d-block w-100 form-control" id="Ship"
+                                    <select class="default-select input-rounded form-control wide mb-3" id="Ship"
                                         name="ships_id" value="{{ old('ships_id') }}">
-                                        <option selected disabled ">--
+                                        <option selected disabled>--
                                                                                             Pilih Kebutuhan/
                                                                                             Pengiriman --</option>
                                                                                                      
@@ -154,10 +164,31 @@
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label for="attachment" class="form-label">Attachment</label>
+   
+                                    <div class="basic-form custom_file_input">
+                                        <form action="#">
+                                            <label for="attachment" class="form-label">Attachment</label>
+                                            <div class="input-group input-group-lg">
+                                                <span class="input-group-text">Upload</span>
+                                                <div class="form-file">
+                                                    <input type="file" class="form-file-input form-control input-rounded @error('attachment') is-invalid @enderror"
+                                                    id="attachment" placeholder="Attachment" name="attachment" >
+                                                </div>
+                                            </div>
+    
+                                        </form>
+                                    </div>
+                                        
+
+                                    
+                        
+            
+                                                            
+
+                                    {{-- <label for="attachment" class="form-label">Attachment</label>
                                     <input type="file"
-                                        class="form-control input-powder @error('attachment') is-invalid @enderror"
-                                        id="attachment" placeholder="Attachment" name="attachment">
+                                        class="form-control input-rounded @error('attachment') is-invalid @enderror"
+                                        id="attachment" placeholder="Attachment" name="attachment"> --}}
                                     {{-- <div class="mb-3">
                             <label for="formFile" class="form-label">Images</label>
                             <input class="form-control" type="file" id="formFile" name="image">
@@ -170,10 +201,10 @@
                             </div>
                         </div>
                         <div class="card">
-                            <div class="card-header" style="background-color: lightgrey">
+                            <div class="card-header" style="background-color:#cab9e7">
                               <strong> Tambah barang </strong>
                             </div>
-                            <div class="card-body bg-light">
+                            <div class="card-body" style="background-color: #f7f4f4">
                                 <div class="container">
                             
                                     <div id="dynamicAddRemove">
@@ -182,7 +213,7 @@
                 
                                             <div class="col-5">
                                                 <label for="nama_barang" class="form-label">Nama Barang</label>
-                                                <select class="form-select" aria-label="Default select example"
+                                                <select class="form-select input-rounded" aria-label="Default select example"
                                                     name="addMoreInputFields[0][id_master_item]">
                                                     <option selected disabled>-- Pilih Barang --</option>
                                                     @foreach ($master_item as $item)
@@ -195,12 +226,12 @@
                                             <div class="col-2">
                                                 <label for="quantity" class="form-label">Quantity</label>
                                                 <input type="text" name="addMoreInputFields[0][stok]" placeholder="qty"
-                                                    class="formulir-control" />
+                                                    class="formulir-control input-rounded" />
                                             </div>
                 
                                             <div class="col-3">
                                                 <label for="satuan" class="form-label">Satuan</label>
-                                                <select class="form-select" aria-label="Default select example"
+                                                <select class="form-select input-rounded" aria-label="Default select example"
                                                     name="addMoreInputFields[0][id_satuan]">
                                                     <option selected disabled>-- Pilih Satuan --</option>
                                                     @foreach ($satuan as $sat)
@@ -229,7 +260,7 @@
                         {{-- End --}}
                         <div class="mb-3">
                             <label for="note" class="form-label">Note</label>
-                            <textarea rows="4" cols="50" class="form-control input-powder" id="note" placeholder="-- INPUT --"
+                            <textarea rows="4" cols="50" class="form-control input-rounded wide mb-3" id="note" placeholder="-- INPUT --"
                                 name="note" value="{{ old('note') }}"></textarea>
 
                         </div>
@@ -252,7 +283,7 @@
                                 <div class="mb-3">
                                     <label for="type" class="form-label font">Type<span
                                             style="color:red">*</span></label>
-                                    <input readonly name="type" id="type" class="form-control" value="powder"
+                                    <input readonly name="type" id="type" class="form-control input-rounded " value="powder"
                                         selected>
                                 </div>
                             </div>
@@ -261,7 +292,7 @@
                                     <label for="deadline_date" class="form-label">Tanggal
                                         Kebutuhan Barang<span style="color:red">*</span></label>
                                     <input type="date"
-                                        class="form-control input-powder @error('deadline_date') is-invalid @enderror"
+                                        class="form-control input-rounded @error('deadline_date') is-invalid @enderror"
                                         id="deadline_date" placeholder="-- INPUT --" name="deadline_date"
                                         value="{{ old('deadline_date') }}">
 
@@ -279,7 +310,7 @@
                                     <label for="requester" class="form-label">Requester<span
                                             style="color:red">*</span></label>
                                     <input type="text"
-                                        class="form-control input-powder @error('requester') is-invalid @enderror"
+                                        class="form-control input-rounded @error('requester') is-invalid @enderror"
                                         id="requester" placeholder="-- INPUT --" name="requester"
                                         value="{{ old('requester') }}" autofocus>
 
@@ -293,7 +324,7 @@
                                 <div class="mb-3">
                                     <label for="prefixes_id" class="form-label">Divisi<span
                                             style="color:red">*</span></label>
-                                    <select class="custom-select input-powder d-block w-100 form-control"
+                                    <select class="input-rounded d-block w-100 form-control"
                                         aria-label="Default select example" id="Prefixe" name="prefixes_id"
                                         value="{{ old('prefixes_id') }}">
                                         <option selected disabled>-- Pilih Divisi --</option>
@@ -314,7 +345,7 @@
                                 <div class="mb-3">
                                     <label for="project" class="form-label">Project/Customer</label>
                                     <input type="text"
-                                        class="form-control input-powder @error('project') is-invalid @enderror"
+                                        class="form-control input-rounded @error('project') is-invalid @enderror"
                                         id="project" placeholder="-- INPUT --" name="project"
                                         value="{{ old('project') }}">
 
@@ -326,7 +357,7 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="Location">Lokasi<span style="color:red">*</span></label>
-                                    <select class="custom-select input-powder d-block w-100 form-control" id="Location"
+                                    <select class="input-rounded d-block w-100 form-control" id="Location"
                                         name="locations_id" value="{{ old('locations_id') }}">
                                         <option selected disabled>-- Pilih Lokasi
                                             Pengiriman --</option>
@@ -346,9 +377,9 @@
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="Ship">Kebutuhan/ Pengiriman<span style="color:red">*</span></label>
-                                    <select class="custom-select input-powder d-block w-100 form-control" id="Ship"
+                                    <select class="input-rounded d-block w-100 form-control" id="Ship"
                                         name="ships_id" value="{{ old('ships_id') }}">
-                                        <option selected disabled ">--
+                                        <option selected disabled >--
                                                                                             Pilih Kebutuhan/
                                                                                             Pengiriman --</option>
                                                                                                      
@@ -363,10 +394,27 @@
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label for="attachment" class="form-label">Attachment</label>
+                                     
+                                    <div class="basic-form custom_file_input">
+                                        <form action="#">
+                                            <label for="attachment" class="form-label">Attachment</label>
+                                            <div class="input-group input-group-lg">
+                                                <span class="input-group-text">Upload</span>
+                                                <div class="form-file">
+                                                    <input type="file" class="form-file-input form-control input-rounded @error('attachment') is-invalid @enderror"
+                                                    id="attachment" placeholder="Attachment" name="attachment" >
+                                                </div>
+                                            </div>
+    
+                                        </form>
+                                    </div>
+                                    
+                                    
+                                    
+                                    {{-- <label for="attachment" class="form-label">Attachment</label>
                                     <input type="file"
-                                        class="form-control input-powder @error('attachment') is-invalid @enderror"
-                                        id="attachment" placeholder="Attachment" name="attachment">
+                                        class="form-control input-rounded @error('attachment') is-invalid @enderror"
+                                        id="attachment" placeholder="Attachment" name="attachment"> --}}
                                     {{-- <div class="mb-3">
                             <label for="formFile" class="form-label">Images</label>
                             <input class="form-control" type="file" id="formFile" name="image">
@@ -383,13 +431,13 @@
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="warna" class="form-label font">warna</label>
-                                    <input type="text" class="form-control input-powder" name="warna">
+                                    <input type="text" class="form-control input-rounded" name="warna">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="kode_warna" class="form-label font">Kode Warna</label>
-                                    <input type="text" class="form-control input-powder" name="kode_warna">
+                                    <input type="text" class="form-control input-rounded" name="kode_warna">
                                 </div>
                             </div>
                         </div>
@@ -398,7 +446,7 @@
                             <div class="col-lg-6">
                                 <div class="mb-3">
                                     <label for="Grade">Grade<span style="color:red">*</span></label>
-                                    <select class="custom-select input-powder d-block w-100 form-control" id="Grade"
+                                    <select class="form-control input-rounded d-block w-100" id="Grade"
                                         name="grades_id" value="{{ old('grades_id') }}">
                                         <option selected disabled>-- Pilih Grade --</option>
                                         @foreach ($Grade as $gra)
@@ -418,7 +466,7 @@
                                         
                                         <div class="col-lg-6">
                                             <label for="finish" class="form-label font">Finish</label>
-                                            <select class="form-select" aria-label="Default select example" name="finish">
+                                            <select class="form-control input-rounded" aria-label="Default select example" name="finish">
                                                 <option selected disabled> -- PILIH OPSI -- </option>
                                                 <option value="interior"> Interior </option>
                                                 <option value="eksterior"> Eksterior </option>
@@ -443,15 +491,15 @@
                                     <div class="row">
                                         <div class="col-4">
                                             <label for="quantity" class="form-label font">Qty</label>
-                                            <input type="text" name="quantity" class="form-control input-powder" placeholder="Kg">
+                                            <input type="text" name="quantity" class="form-control input-rounded" placeholder="Kg">
                                         </div>
                                         <div class="col-4">
                                             <label for="tanggal_pengajuan" class="form-label font">m2</label>
-                                            <input type="text" class="form-control input-powder" name="m2" placeholder="m2">
+                                            <input type="text" class="form-control input-rounded" name="m2" placeholder="m2">
                                         </div>
                                         <div class="col-4">
                                             <label for="tanggal_pengajuan" class="form-label font">Estimasi</label>
-                                            <input type="text" class="form-control input-powder" name="estimasi" placeholder="Kgs/m2">
+                                            <input type="text" class="form-control input-rounded" name="estimasi" placeholder="Kgs/m2">
                                         </div>
                                     </div>
                                 </div>
@@ -465,19 +513,19 @@
                                         
                                         <div class="col-4">
                                             <label for="tanggal_pengajuan" class="form-label font">Fresh Stock</label>
-                                            <input type="text" class="form-control input-powder" placeholder="2" name="fresh">
+                                            <input type="text" class="form-control input-rounded" placeholder="2" name="fresh">
                                         </div>
 
                                         <div class="col-4">
                                             <label for="tanggal_pengajuan" class="form-label font">Recycle
                                                 Stock</label>
-                                            <input type="text" class="form-control input-powder" placeholder="2" name="recycle">
+                                            <input type="text" class="form-control input-rounded" placeholder="2" name="recycle">
                                         </div>
 
                                         <div class="col-4">
                                             <label for="tanggal_pengajuan" class="form-label font">Alokasi
                                                 Fresh</label>
-                                            <input type="text" class="form-control input-powder" placeholder="2" name="alokasi">
+                                            <input type="text" class="form-control input-rounded" placeholder="2" name="alokasi">
                                         </div>
                                     </div>
                                 </div>
@@ -488,7 +536,7 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="Supplier">Supplier<span style="color:red">*</span></label>
-                                        <select class="custom-select input-powder d-block w-100 form-control" id="Supplier"
+                                        <select class="input-rounded d-block w-100 form-control" id="Supplier"
                                             name="suppliers_id" value="{{ old('suppliers_id') }}">
                                             <option selected disabled>-- Pilih Supplier --</option>
                                             @foreach ($Supplier as $sup)
@@ -506,13 +554,13 @@
                                     <div class="mb-3">
                                         <label for="tanggal_pengajuan" class="form-label font">Alokasi
                                             Outstanding</label>
-                                        <input type="text" class="form-control input-powder" placeholder="10" name="alokasi">
+                                        <input type="text" class="form-control input-rounded" placeholder="10" name="alokasi">
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="note" class="form-label">Note</label>
-                                <textarea rows="4" cols="50" class="form-control input-powder" id="note" placeholder="-- INPUT --"
+                                <textarea rows="4" cols="50" class="form-control input-rounded wide mb-3"  placeholder="-- INPUT --"
                                     name="note" value="{{ old('note') }}"></textarea>
     
                             </div>
@@ -540,6 +588,13 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+	
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
         var i = 0;
@@ -553,5 +608,18 @@
         $(document).on('click', '.remove-input-field', function() {
             $(this).parents('dr').remove();
         });
+
+        $('#note').summernote({
+        placeholder: '--INPUT--',
+        tabsize: 2,
+        height: 100
+      });
+      $('#note1').summernote({
+        placeholder: '--INPUT--',
+        tabsize: 2,
+        height: 100
+      });
+
     </script>
+      
 @endsection

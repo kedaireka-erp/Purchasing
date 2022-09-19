@@ -19618,7 +19618,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 
 .form-control {
   background: #fff;
-  border: 0.0625rem solid #f5f5f5;
+  border: 2px solid lightgray;
   padding: 0.3125rem 1.25rem;
   color: #6e6e6e;
   height: 3.5rem;
@@ -19640,6 +19640,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
       padding: 6px 10px; }
 
 .input-rounded {
+  box-shadow: none;
   border-radius: 6.25rem; }
 
 [data-theme-version="light"] .input-primary .form-control,
@@ -19756,6 +19757,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     color: #393939; }
 
 .custom_file_input .form-file-label::after {
+
   height: 100%; }
 
 .form-control:disabled,
@@ -19764,7 +19766,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   opacity: 1; }
 
 .form-file {
-  border: 0.0625rem solid #f5f5f5;
+  border: 2px solid lightgray;
   background: #fff; }
   [data-theme-version="dark"] .form-file {
     background: #161717;
