@@ -119,9 +119,9 @@
                             <span class="nav-text">Dashboard</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="index.html">Dashboard Admin Divisi</a></li>
-                            <li><a href="index-2.html">Dashboard Manager</a></li>
-                            <li><a href="project-page.html">Dashboard Purchasing</a></li>
+                            <li><a href="/">Dashboard Admin Divisi</a></li>
+                            <li><a href="/adminmana">Dashboard Manager</a></li>
+                            <li><a href="/adminpur">Dashboard Purchasing</a></li>
                         </ul>
                     </li>
 
@@ -149,8 +149,8 @@
                             <span class="nav-text">Approval</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="chart-flot.html">Approval Manager</a></li>
-                            <li><a href="chart-morris.html">Approval Tim Purchasing</a></li>
+                            <li><a href="/approval">Approval Manager</a></li>
+                            <li><a href="/aa">Approval Tim Purchasing</a></li>
                         </ul>
                     </li>
 
@@ -171,10 +171,12 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a class=" " href="javascript:void()" aria-expanded="false">
+                    <li><a href="/tracking" aria-expanded="false">
                             <i class="fas fa-chart-line"></i>
                             <span class="nav-text">Request Tracking</span>
+
                         </a>
+                    </li>
 
             </div>
         </div>
