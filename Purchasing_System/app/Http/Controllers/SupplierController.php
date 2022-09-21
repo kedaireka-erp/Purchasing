@@ -38,7 +38,7 @@ class SupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SupplierRequest $request)
+    public function store(Request $request)
     {
         $supplier = new Supplier;
         $supplier->vendor = $request->vendor;
@@ -77,7 +77,7 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SupplierRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $supplier = Supplier::find($id);
         $supplier->vendor = $request->vendor;

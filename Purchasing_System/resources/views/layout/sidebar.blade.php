@@ -139,6 +139,9 @@
                                     <li><a href="/satuan">Master Satuan</a></li>
                                     <li><a href="/grade">Master Grade</a></li>
                                     <li><a href="/ships">Master Kebutuhan</a></li>
+                                    <li><a href="/supplier">Master Supllier</a></li>
+                                    <li><a href="/payment">Master Payment</a></li>
+                                    <li><a href="/timeshipping">Master TimeShipping</a></li>
                                 </ul>
                             </li>
                         </ul>
