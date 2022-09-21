@@ -160,7 +160,8 @@
                             <span class="nav-text">Order</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="ui-accordion.html">Purchase Order</a></li>
+                            <li><a href="/order">Purchase Order</a></li>
+                            <li><a href="/order/create">Buat Purchase Order</a></li>
 
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master Order</a>
                                 <ul aria-expanded="false">

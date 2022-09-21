@@ -11,4 +11,9 @@ class Timeshipping extends Model
     protected $table = 'timeshippings';
     protected $primarykey = 'id';
     protected $fillable = ['name'];
+
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

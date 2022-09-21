@@ -56,9 +56,9 @@ class PurchaseRequest extends Model
         return $this->belongsToMany(powder::class, 'item_requests','id_request','powder_id');
     }
 
-   
-
-     
+    public function order(){
+        return $this->belongsToMany(Order::class, 'item_requests','order_id','id_request');
+    }
 
 
     public static function boot()

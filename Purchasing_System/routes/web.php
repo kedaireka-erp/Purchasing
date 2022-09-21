@@ -9,7 +9,6 @@ use App\Http\Controllers\PrefixController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\ships_controller;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\StudentController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SupplierController;
@@ -17,6 +16,7 @@ use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\MasterItemController;
 use App\Http\Controllers\TimeshippingController;
 use App\Http\Controllers\PurchaseRequestController;
+use App\Http\Controllers\OrderController;
 
 
 /*
@@ -89,13 +89,12 @@ route::get('/add', [PurchaseController::class, 'add'])->name('add');
 Route::get('/view', [HomeController::class, 'view'])->name('view');
 
 
-Route::get('/student-form', [StudentController::class, 'index']);
-Route::post('/store-input-fields', [StudentController::class, 'store']);
 
 Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], function () {
     Route::get('/', [PurchaseRequestController::class, 'index']);
     Route::get('/create', [PurchaseRequestController::class, "create"])->name('create');
-    Route::post('/store', [PurchaseRequestController::class, "store"])->name("store");
+    Route::post('/storegood', [PurchaseRequestController::class, "item_store"])->name("storegood");
+    Route::post('/storepowder', [PurchaseRequestController::class, "powder_store"])->name("storepowder");
     Route::get('/view/{id}', [PurchaseRequestController::class, "view"])->name("view");
     Route::get('/additem/{id}', [PurchaseRequestController::class, "plus"])->name("plus");
     Route::post('/storeitem/{id}', [PurchaseRequestController::class, 'storeplus'])->name("storeplus");
@@ -158,4 +157,10 @@ route::group(['as'=>'powder.','prefix'=>'powder'], function(){
     route::get('/edit/{id}', [TimeshippingController::class, 'edit'])->name('edit');
     route::post('/update/{id}', [TimeshippingController::class, 'update'])->name('update');
     route::delete('destroy/{id}', [TimeshippingController::class, 'destroy'])->name('destroy');
+});
+
+route::group(['as'=>'order.','prefix'=>'order'], function(){
+    route::get('/', [OrderController::class, 'index']);
+    route::get('/create', [OrderController::class, 'create']);
+    route::post('/store', [OrderController::class, 'store_item'])->name('orderstore');
 });

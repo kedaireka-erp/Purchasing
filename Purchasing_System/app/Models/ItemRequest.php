@@ -11,8 +11,7 @@ class ItemRequest extends Model
 
     protected $table = 'item_requests';
     protected $primaryKey = 'id';
-    protected $fillable = ['id_request, id_item, no_po, supplier ,nama_supplier, id_waktu, id_pembayaran, alamat_penagihan, 
-    lain-lain, note, signature, nama'];
+    protected $fillable = ['id_request, id_item, order_id, powder_id' ];
     
     public function purchase()
     {
@@ -20,6 +19,9 @@ class ItemRequest extends Model
     }
     public function item(){
         return $this->belongsToMany(Item::class, 'item_requests','id_request','id_item');
+    }
+    public function order(){
+        return $this->belongsToMany(Order::class, 'item_requests','id_request', 'order_id');
     }
     public function Timeshipping()
     {
@@ -29,6 +31,7 @@ class ItemRequest extends Model
     {
         return $this->belongsTo(Timeshipping::class, 'id_pembayaran');
     }
+
 }
 
 

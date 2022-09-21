@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("id_request")->nullable();
             $table->unsignedBigInteger('id_master_item')->nullable();
             $table->integer('stok')->nullable();
             $table->unsignedBigInteger('id_satuan')->nullable();
@@ -23,7 +22,6 @@ return new class extends Migration
             $table->integer('outstanding')->nullable();
             $table->integer('sudah_datang')->default(0);
             $table->timestamps();
-            $table->foreign("id_request")->references("id")->on("purchase_requests")->onDelete("restrict")->onUpdate("cascade")->nullable();
             $table->foreign("id_master_item")->references("id")->on("master_items")->onDelete("restrict")->onUpdate("cascade")->nullable();
             $table->foreign("id_satuan")->references("id")->on("satuans")->onDelete("restrict")->onUpdate("cascade")->nullable();
         });

@@ -18,21 +18,29 @@ use Illuminate\Http\Request;
 
 class PurchaseRequestController extends Controller
 {
+
+    // *******************
+    //     Index Home
+    // ********************
     public function index(Request $request){
         if ($request->filled('search')) {
-            $purchase_requests = PurchaseRequest::search($request->search)->paginate(5);
+            $purchase_requests = PurchaseRequest::search($request->search)->get();
         }else{
-            $purchase_requests = PurchaseRequest::with('Prefixe')->paginate(5);
+            $purchase_requests = PurchaseRequest::with('Prefixe')->get();
         }
 
         return view('purchases.index', compact('purchase_requests'));
     }
 
+
+    // *******************
+    //     Index Create
+    // ********************
     public function create(){
         $purchase_requests = PurchaseRequest::with('Prefixe');
-        $Location=location::get();
-        $Ship=ships::get();
-        $Prefixe=Prefix::get();
+        $Location = location::get();
+        $Ship = ships::get();
+        $Prefixe = Prefix::get();
         $master_item = Master_Item::get();
         $satuan = Satuan::get();
         $Grade = Grade::get();
@@ -42,9 +50,12 @@ class PurchaseRequestController extends Controller
         return view('purchases.create', compact('Location','Ship', "Prefixe",'master_item','satuan', 'Grade', 'Supplier'));
     }
 
-    public function store(Request $request){
 
-        $item = Item::get();
+    // *******************
+    //     Store Other Good
+    // ********************
+    public function item_store(Request $request){
+
 
         $validateData = $request->validate([
             'deadline_date'=>'required',
@@ -69,7 +80,6 @@ class PurchaseRequestController extends Controller
             $path = $request -> file('attachment')->storeAs($destination_path,$image_name);
 
             $purchase_requests = PurchaseRequest::create([
-                // 'no_pr'=>$request->no_pr,
                 'deadline_date'=>$request->deadline_date,
                 'type'=>$request->type,
                 'requester'=>$request->requester,
@@ -79,25 +89,7 @@ class PurchaseRequestController extends Controller
                 'ships_id'=>$request->ships_id,
                 'note'=>$request->note,
                 'attachment'=>$image_name,
-                
-                
-    
             ]);
-
-            $powder = new powder;
-            $powder->grades_id = $request->grades_id;
-            $powder->suppliers_id = $request->suppliers_id;
-            $powder->warna =$request->warna;
-            $powder->kode_warna =$request->kode_warna;
-            $powder->finish =$request->finish;
-            $powder->quantity =$request->quantity;
-            $powder->m2 =$request->m2;
-            $powder->estimasi =$request->estimasi;
-            $powder->fresh =$request->fresh;
-            $powder->recycle =$request->recycle;
-            $powder->alokasi =$request->alokasi;
-            $powder->save();
-
         }
         else
         {
@@ -111,35 +103,9 @@ class PurchaseRequestController extends Controller
                 'locations_id'=>$request->locations_id,
                 'ships_id'=>$request->ships_id,
                 'note'=>$request->note,
-                
-    
             ]);
 
-            $powder = new powder;
-            $powder->grades_id = $request->grades_id;
-            $powder->suppliers_id = $request->suppliers_id;
-            $powder->warna =$request->warna;
-            $powder->kode_warna =$request->kode_warna;
-            $powder->finish =$request->finish;
-            $powder->quantity =$request->quantity;
-            $powder->m2 =$request->m2;
-            $powder->estimasi =$request->estimasi;
-            $powder->fresh =$request->fresh;
-            $powder->recycle =$request->recycle;
-            $powder->alokasi =$request->alokasi;
-            
-            $powder->save();
         }
-
-        // foreach ($request->addMoreInputFields as $key => $value) {
-        //     Item::create($value);
-            // Attach the reservation to the car's reservations
-    
-
-        
-        
-            
-           if($powder->warna == ''){
             foreach ((array)$request->addMoreInputFields as $key => $value) {
             
                 $item = Item::create($value);
@@ -147,36 +113,84 @@ class PurchaseRequestController extends Controller
                 $request_now = Item::find($request_id);
                 $purchase_requests->item()->attach($request_now);
             }
-           }
-           else{
-        
            
-            $request_id = $powder->id;
-            $request_now = powder::find($request_id);
-            $purchase_requests->powder()->attach($request_now);
-           }
-    
-        
-        
+        return redirect('/purchase_request');
+    }
 
-        // $items = New Item;
-        // $items_id = $items->id;
-        // $items_now = Item::find($items_id);
-        
-        // $purchase_requests->item()->attach($items_now);
-    
+    // *******************
+    //     Store Powder
+    // ********************
+    public function powder_store(Request $request){
+        $validateData = $request->validate([
+            'deadline_date'=>'required',
+            'requester'=>'required|max:100',
+            'project'=>'max:100',
+            'attachment' => 'mimes:jpeg,img,jpg,png|max:20000',
+            'locations_id' => 'required',
+            'prefixes_id' => 'required',
+            'ships_id' => 'required'
 
-            // $new_requests = New Item;
+        ], [
+            'deadline_date.required'=>"Deadline Date field is required ",
+            'requester.required'=>"Requester field is required ",
+            'project.required'=>"Project field is required ",
+            'attachment.required'=>"Attachment field is required ",
+        ]);
+        if($request->hasFile('attachment'))
+        {
+            $destination_path = 'public/assets/images/products';
+            $image = $request->file('attachment');
+            $image_name = $image->getClientOriginalName();
+            $path = $request -> file('attachment')->storeAs($destination_path,$image_name);
 
-            // $request_id = $purchase_requests->id;
+            $purchase_requests = PurchaseRequest::create([
+                'deadline_date'=>$request->deadline_date,
+                'type'=>$request->type,
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+                'attachment'=>$image_name,
+            ]);
+        }
+        else
+        {
+            $purchase_requests = PurchaseRequest::create([
+                // 'no_pr'=>$request->no_pr,
+                'deadline_date'=>$request->deadline_date,
+                'type'=>$request->type,
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+            ]);
 
-            // $request = PurchaseRequest::find($request_id);
+        }
 
-            // $new_requests->purchase()->attach($request);
+        $powder = new powder;
+        $powder->grades_id = $request->grades_id;
+        $powder->suppliers_id = $request->suppliers_id;
+        $powder->warna =$request->warna;
+        $powder->kode_warna =$request->kode_warna;
+        $powder->finish =$request->finish;
+        $powder->quantity =$request->quantity;
+        $powder->m2 =$request->m2;
+        $powder->estimasi =$request->estimasi;
+        $powder->fresh =$request->fresh;
+        $powder->recycle =$request->recycle;
+        $powder->alokasi =$request->alokasi;
+        $powder->save();
 
-            
+        $request_id = $powder->id;
+        $request_now = powder::find($request_id);
+        $purchase_requests->powder()->attach($request_now);
 
         return redirect('/purchase_request');
+
     }
 
     public function edit($id){
