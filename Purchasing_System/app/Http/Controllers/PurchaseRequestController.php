@@ -138,10 +138,10 @@ class PurchaseRequestController extends Controller
         ]);
         if($request->hasFile('attachment'))
         {
-            $destination_path = 'public/assets/images/products';
+            $destination_path = 'images/products';
             $image = $request->file('attachment');
             $image_name = $image->getClientOriginalName();
-            $path = $request -> file('attachment')->storeAs($destination_path,$image_name);
+            $path = $request -> file('attachment')->move($destination_path,$image_name);
 
             $purchase_requests = PurchaseRequest::create([
                 'deadline_date'=>$request->deadline_date,

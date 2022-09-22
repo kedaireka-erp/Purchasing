@@ -1,5 +1,5 @@
-#chead{
-    margin-top:20px;
+#chead {
+    margin-top: 20px;
 }
 #add {
     background-color: #b06bdb;
@@ -86,10 +86,6 @@
     100% {
         opacity: 1;
     }
-}
-
-.form-control {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .pending {

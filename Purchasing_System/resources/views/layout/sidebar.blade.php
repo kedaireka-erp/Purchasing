@@ -68,7 +68,7 @@
 
                                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
 
-                                    <img src="images/profile/profil.png" width="56" alt="">
+                                    <img src="{{ asset('images/profile/profil.png') }}" width="56" alt="">
 
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
@@ -139,7 +139,7 @@
                                     <li><a href="/satuan">Master Satuan</a></li>
                                     <li><a href="/grade">Master Grade</a></li>
                                     <li><a href="/ships">Master Kebutuhan</a></li>
-                                    
+
                                 </ul>
                             </li>
                         </ul>
@@ -151,7 +151,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/approval">Approval Manager</a></li>
-                            <li><a href="/aa">Approval Tim Purchasing</a></li>
+                            <li><a href="/approval/accept">Approval Tim Purchasing</a></li>
                         </ul>
                     </li>
 

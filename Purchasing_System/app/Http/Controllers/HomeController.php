@@ -31,6 +31,12 @@ class HomeController extends Controller
         return view('Approval.dashboard',compact("purchase_requests"));
     }
 
+    public function accept_page()
+    {
+        $purchase_requests=PurchaseRequest::where('approval_status','approve')->get();
+        return view('Approval.diterima',compact("purchase_requests"));
+    }
+
     public function view($id){
         $purchase_requests = PurchaseRequest::find($id);
         $item = Item::with('master_item','satuan')->get();
@@ -52,18 +58,35 @@ class HomeController extends Controller
     public function edit($id){
         $purchase_requests = PurchaseRequest::findOrFail($id);
 
-        $item = DB::table('items')
-                ->join('purchase_requests', 'id_request', '=', 'purchase_requests.id')
-                ->join('master_items', 'id_master_item', '=', 'master_items.id')
-                ->join('satuans', 'id_satuan', '=', 'satuans.id')
-                ->select('items.*', 'master_items.item_name','satuans.unit')
-                ->get();
+        // $item = DB::table('items')
+        //         ->join('purchase_requests', 'id_request', '=', 'purchase_requests.id')
+        //         ->join('master_items', 'id_master_item', '=', 'master_items.id')
+        //         ->join('satuans', 'id_satuan', '=', 'satuans.id')
+        //         ->select('items.*', 'master_items.item_name','satuans.unit')
+        //         ->get();
 
         $Location=location::get();
         $Ship=ships::get();
         $Prefixe=Prefix::get();
 
-        return view('Approval.edit', compact('purchase_requests', 'item','Location', 'Ship', 'Prefixe'));
+        return view('Approval.edit', compact('purchase_requests','Location', 'Ship', 'Prefixe'));
+    }
+
+    public function accept($id){
+        $purchase_requests = PurchaseRequest::findOrFail($id);
+
+        // $item = DB::table('items')
+        //         ->join('purchase_requests', 'id_request', '=', 'purchase_requests.id')
+        //         ->join('master_items', 'id_master_item', '=', 'master_items.id')
+        //         ->join('satuans', 'id_satuan', '=', 'satuans.id')
+        //         ->select('items.*', 'master_items.item_name','satuans.unit')
+        //         ->get();
+
+        $Location=location::get();
+        $Ship=ships::get();
+        $Prefixe=Prefix::get();
+
+        return view('Approval.accept', compact('purchase_requests','Location', 'Ship', 'Prefixe'));
     }
 
     public function update(request $request, $id){
@@ -76,6 +99,14 @@ class HomeController extends Controller
 
     $purchase_requests=PurchaseRequest::paginate(5);
         return redirect('approval');
+}
+
+public function update_accept(request $request, $id){
+    DB::table('purchase_requests')-> where('id',$id)->update([
+		'accept_status' => $request->accept_status,
+		
+	]);
+    return redirect('approval/accept');
 }
 public function delete($id)
 {

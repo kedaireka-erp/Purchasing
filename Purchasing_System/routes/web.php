@@ -153,9 +153,12 @@ route::group(['as'=>'powder.','prefix'=>'powder'], function(){
 
     Route::group(['as' => 'approval.', 'prefix' => 'approval'], function () {
         Route::get('/', [HomeController::class, 'Approval']);
+        Route::get('/accept', [HomeController::class, 'accept_page']);
         Route::get('/view/{id}', [HomeController::class, "view"])->name("view");
         Route::get('/edit/{id}', [HomeController::class, "edit"])->name("edit");
-        Route::post('/update{id}', [HomeController::class, "update"])->name("updateApp");
+        Route::get('/accept/{id}', [HomeController::class, "accept"])->name("acceptpr");
+        Route::post('/update/{id}', [HomeController::class, "update"])->name("updateApp");
+        Route::post('/accepted/{id}', [HomeController::class, "update_accept"])->name("update_accept");
         Route::delete('/destroy{id}', [HomeController::class, "delete"])->name("deleteApp");
         });
     

@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-3">
                     <div id="button_add">
-                        <a href="{{ route('purchase_request.create') }}" class="btn btn-success" id="add"> +Add Data
+                        <a href="{{ url('purchase_request/create') }}" class="btn btn-success" id="add"> +Add Data
                         </a>
                     </div>
                 </div>
