@@ -169,6 +169,7 @@ route::group(['as'=>'powder.','prefix'=>'powder'], function(){
     route::get('/edit/{id}', [TimeshippingController::class, 'edit'])->name('edit');
     route::post('/update/{id}', [TimeshippingController::class, 'update'])->name('update');
     route::delete('destroy/{id}', [TimeshippingController::class, 'destroy'])->name('destroy');
+<<<<<<< Updated upstream
     Route::get("/download", [TimeshippingController::class, "excel"])->name("download");
 
 });
@@ -178,3 +179,8 @@ route::group(['as'=>'order.','prefix'=>'order'], function(){
     route::get('/create', [OrderController::class, 'create']);
     route::post('/store', [OrderController::class, 'store_item'])->name('orderstore');
 });
+=======
+});
+
+route::get('/formatPO', [FormPOController::class, 'formatPO'])->name('formatPO');
+>>>>>>> Stashed changes

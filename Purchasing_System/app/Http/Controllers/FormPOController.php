@@ -10,4 +10,8 @@ class FormPOController extends Controller
     {
         return view('PO.formpo');
     }
+    public function formatPO()
+    {
+        return view('PO.formatPO');
+    }
 }
