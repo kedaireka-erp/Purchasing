@@ -119,16 +119,27 @@
 
 
                                 <td class="d-flex justify-content-center">
-
-                                    <form method="GET"
-                                        action="{{ route('purchase_request.view', $purchase_request->id) }}"
-                                        style="margin-right:10px">
-                                        @csrf
-                                        <input type="hidden" value="VIEW" name="_method">
-                                        <button type="submit" class="btn btn-warning" id="view"> <i
-                                                class="fa fa-eye"></i>
-                                        </button>
-                                    </form>
+                                    @if ($purchase_request->type == 'othergood')
+                                        <form method="GET"
+                                            action="{{ route('purchase_request.view', $purchase_request->id) }}"
+                                            style="margin-right:10px">
+                                            @csrf
+                                            <input type="hidden" value="VIEW" name="_method">
+                                            <button type="submit" class="btn btn-warning" id="view"> <i
+                                                    class="fa fa-eye"></i>
+                                            </button>
+                                        </form>
+                                    @elseif ($purchase_request->type == 'powder')
+                                        <form method="GET"
+                                            action="{{ route('purchase_request.detail', $purchase_request->id) }}"
+                                            style="margin-right:10px">
+                                            @csrf
+                                            <input type="hidden" value="VIEW" name="_method">
+                                            <button type="submit" class="btn btn-warning" id="view"> <i
+                                                    class="fa fa-eye"></i>
+                                            </button>
+                                        </form>
+                                    @endif
                                     {{-- <form method="GET" action="{{ route('purchase_request.plus', $purchase_request->id) }}"
                                     style="margin-right:10px">
                                     @csrf

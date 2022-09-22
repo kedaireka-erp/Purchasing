@@ -38,7 +38,7 @@ class GradeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(GradeRequest $request)
+    public function store(Request $request)
     {
         $grade = new grade;
         $grade->type = $request->type;
@@ -77,7 +77,7 @@ class GradeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(GradeRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $grade = Grade::find($id);
         $grade->type = $request->type;

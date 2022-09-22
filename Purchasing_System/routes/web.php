@@ -92,6 +92,7 @@ Route::get('/view', [HomeController::class, 'view'])->name('view');
 
 Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], function () {
     Route::get('/', [PurchaseRequestController::class, 'index']);
+    Route::get('/detail/{id}', [PurchaseRequestController::class, 'detail'])->name('detail');
     Route::get('/create', [PurchaseRequestController::class, "create"])->name('create');
     Route::post('/storegood', [PurchaseRequestController::class, "item_store"])->name("storegood");
     Route::post('/storepowder', [PurchaseRequestController::class, "powder_store"])->name("storepowder");

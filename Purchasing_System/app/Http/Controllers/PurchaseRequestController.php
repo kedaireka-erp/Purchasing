@@ -224,6 +224,21 @@ class PurchaseRequestController extends Controller
         return view('view', compact('purchase_requests', 'Location', 'Ship', 'Prefixe','item', 'Grade', 'Supplier'));
     }
 
+    public function detail($id){
+        $purchase_requests = PurchaseRequest::find($id);
+        $powder = powder::with('grade','supplier')->get();
+
+       
+
+        $Location=location::get();
+        $Ship=ships::get();
+        $Prefixe=Prefix::get();
+        $Grade = Grade::get();
+        $Supplier = Supplier::get();
+
+        return view('detail', compact('purchase_requests', 'Location', 'Ship', 'Prefixe', 'Grade', 'Supplier'));
+    }
+
     public function plus($id){
         $purchase_requests = PurchaseRequest::findOrFail($id);
         
@@ -273,4 +288,9 @@ class PurchaseRequestController extends Controller
 
         return redirect("/purchase_request");
      }
+
+    public function show($id){
+
+        
+    }
 }
