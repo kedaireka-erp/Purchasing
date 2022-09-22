@@ -105,7 +105,7 @@ class PaymentController extends Controller
         
         
         // Nama file excel
-        $fileName = "Master_Supplier_" . date('Y-m-d') . ".xls"; 
+        $fileName = "Master_Payment_" . date('Y-m-d') . ".xls"; 
         
         // Nama kolom
         $fields = array("Pembayaran",  "Tanggal Pembuatan", "Tanggal Perubahan Data"); 
