@@ -130,6 +130,8 @@
                             </tr>
                         @endforeach
                     </tbody>
+                    <a class="btn btn-primary" href="/prefix/download" 
+		role="button">Download Data</a>
                 </table>
             </div>
         </div>

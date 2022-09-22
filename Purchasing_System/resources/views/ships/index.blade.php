@@ -128,6 +128,7 @@
                             </tr>
                         @endforeach
                     </tbody>
+                    <a class="btn btn-primary" href="/exceldownload" role="button">Download Data</a>
                 </table>
             </div>
         </div>

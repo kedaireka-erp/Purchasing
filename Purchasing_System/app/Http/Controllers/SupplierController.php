@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Supplier;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\SupplierRequest;
 
 class SupplierController extends Controller
@@ -100,5 +101,39 @@ class SupplierController extends Controller
 
         return \redirect('supplier');
     }
+
+    public function excel(){
+        
+        
+        // Nama file excel
+        $fileName = "Master_Supplier_" . date('Y-m-d') . ".xls"; 
+        
+        // Nama kolom
+        $fields = array("Vendor",  "Tanggal Pembuatan", "Tanggal Perubahan Data"); 
+        
+        // Menampilkan nama kolom pada baris pertama
+        $excelData = implode("\t", array_values($fields)) . "\n"; 
+        
+        
+        $query = DB::table('suppliers')->get(); 
+        
+            // Output setiap barisan data
+            foreach ($query as $row){ 
+                
+                $lineData = array($row->vendor, $row->created_at, $row->updated_at); 
+                
+                $excelData .= implode("\t", array_values($lineData)) . "\n"; 
+            } 
+        
+        
+        // Headers download 
+        header("Content-Type:application/vnd.ms-excel");
+        header("Content-Disposition: attachment; filename=\"$fileName\""); 
+        
+        // Render data excel
+        echo $excelData; 
+    
+        exit;
+            }
 }
 

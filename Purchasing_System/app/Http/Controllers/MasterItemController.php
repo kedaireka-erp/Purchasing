@@ -31,10 +31,11 @@ class MasterItemController extends Controller
             'item_name' => 'required|unique:master_items|max:100',
             'stock' => 'required|max:8'
         ]);
-        DB::table('master_items')->insert([
-			'item_name' => $request->item_name,
-            'stock' => $request->stock
-		]);
+        // DB::table('master_items')->insert([
+		// 	'item_name' => $request->item_name,
+        //     'stock' => $request->stock
+		// ]);
+        Master_Item::create($validated);
 		
 		return redirect('/masteritem')->with('success', 'Data master barang berhasil ditambahkan');
     }
@@ -61,12 +62,13 @@ class MasterItemController extends Controller
         }
     
 
-    DB::table('master_items')->where('id',$request->id_master_item)->update([
-		'item_name' => $request->item_name,
-        'stock' => $request->stock
+    // DB::table('master_items')->where('id',$request->id_master_item)->update([
+	// 	'item_name' => $request->item_name,
+    //     'stock' => $request->stock
+
 		
-	]);
-   
+	// ]);
+    Master_Item::where('id',$request->id_master_item)->update($validated);
 
 	
 	return redirect('/masteritem')->with('teredit', 'Data master barang berhasil diedit');
@@ -86,5 +88,39 @@ class MasterItemController extends Controller
 		
 	return redirect('/masteritem')->with('terhapus','Berhasil menghapus data master barang');
     }
+
+    public function excel(){
+        
+        
+        // Nama file excel
+        $fileName = "Master_Item_" . date('Y-m-d') . ".xls"; 
+        
+        // Nama kolom
+        $fields = array("Nama Barang", "Stok", "Tanggal Pembuatan", "Tanggal Perubahan Data"); 
+        
+        // Menampilkan nama kolom pada baris pertama
+        $excelData = implode("\t", array_values($fields)) . "\n"; 
+        
+        
+        $query = DB::table('master_items')->get(); 
+        
+            // Output setiap barisan data
+            foreach ($query as $row){ 
+                
+                $lineData = array($row->item_name, $row->stock, $row->created_at, $row->updated_at); 
+                
+                $excelData .= implode("\t", array_values($lineData)) . "\n"; 
+            } 
+        
+        
+        // Headers download 
+        header("Content-Type:application/vnd.ms-excel");
+        header("Content-Disposition: attachment; filename=\"$fileName\""); 
+        
+        // Render data excel
+        echo $excelData; 
+    
+        exit;
+            }
 
 }

@@ -10,7 +10,8 @@ class Master_Item extends Model
     use HasFactory;
     protected $table = 'master_items';
     protected $primaryKey = 'id';
-    protected $fillable = ['item_name'];
+    protected $fillable = ['item_name', 'stock','created_at',
+    'updated_at'];
 
     //Satu id master item bisa dipakai dalam banyak item PR
     public function item()

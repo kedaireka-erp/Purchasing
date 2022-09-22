@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Satuan;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class SatuanController extends Controller
@@ -82,5 +83,38 @@ class SatuanController extends Controller
         
         return redirect('/satuan')->with('terhapus','Berhasil Menghapus Data');
     }
+    public function excel(){
+        
+        
+        // Nama file excel
+        $fileName = "Master_Satuan_" . date('Y-m-d') . ".xls"; 
+        
+        // Nama kolom
+        $fields = array("Nama","Unit", "Tanggal Pembuatan", "Tanggal Perubahan Data"); 
+        
+        // Menampilkan nama kolom pada baris pertama
+        $excelData = implode("\t", array_values($fields)) . "\n"; 
+        
+        
+        $query = DB::table('satuans')->get(); 
+        
+            // Output setiap barisan data
+            foreach ($query as $row){ 
+                
+                $lineData = array($row->name, $row->unit, $row->created_at, $row->updated_at); 
+                
+                $excelData .= implode("\t", array_values($lineData)) . "\n"; 
+            } 
+        
+        
+        // Headers download 
+        header("Content-Type:application/vnd.ms-excel");
+        header("Content-Disposition: attachment; filename=\"$fileName\""); 
+        
+        // Render data excel
+        echo $excelData; 
+    
+        exit;
+            }
 
 }

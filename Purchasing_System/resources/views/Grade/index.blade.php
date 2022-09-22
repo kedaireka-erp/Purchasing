@@ -107,6 +107,8 @@
                             </tr>
                         @endforeach
                     </tbody>
+                    <a class="btn btn-primary" href="/grade/download" 
+		role="button">Download Data</a>
                 </table>
             </div>
         </div>

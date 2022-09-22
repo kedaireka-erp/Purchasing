@@ -139,9 +139,7 @@
                                     <li><a href="/satuan">Master Satuan</a></li>
                                     <li><a href="/grade">Master Grade</a></li>
                                     <li><a href="/ships">Master Kebutuhan</a></li>
-                                    <li><a href="/supplier">Master Supllier</a></li>
-                                    <li><a href="/payment">Master Payment</a></li>
-                                    <li><a href="/timeshipping">Master TimeShipping</a></li>
+                                    
                                 </ul>
                             </li>
                         </ul>
@@ -168,9 +166,9 @@
 
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master Order</a>
                                 <ul aria-expanded="false">
-                                    <li><a href="ecom-product-grid.html">Master Waktu</a></li>
-                                    <li><a href="ecom-product-list.html">Master Suppley</a></li>
-                                    <li><a href="ecom-product-detail.html">Master Pembayaran</a></li>
+                                    <li><a href="/supplier">Master Supllier</a></li>
+                                    <li><a href="/payment">Master Payment</a></li>
+                                    <li><a href="/timeshipping">Master TimeShipping</a></li>
                                 </ul>
                             </li>
                         </ul>

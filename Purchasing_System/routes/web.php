@@ -41,6 +41,7 @@ Route::group(['as' => 'satuan.', 'prefix' => 'satuan'], function () {
     Route::get('/edit/{id}', [SatuanController::class, 'edit'])->name('satuanedit');
     Route::post('/update/{id}', [SatuanController::class, 'update'])->name('satuanupdate');
     Route::delete('/delete/{id}', [SatuanController::class, 'destroy'])->name('satuandelete');
+    Route::get("/download", [SatuanController::class, "excel"])->name("download");
 });
 
 Route::group(['as' => 'prefix.', 'prefix' => 'prefix'], function () {
@@ -51,6 +52,7 @@ Route::group(['as' => 'prefix.', 'prefix' => 'prefix'], function () {
     Route::get('/edit/{id}', [PrefixController::class, 'edit'])->name('prefixedit');
     Route::post('/update/{id}', [PrefixController::class, 'update'])->name('prefixupdate');
     Route::delete('/delete/{id}', [PrefixController::class, 'destroy'])->name('prefixdelete');
+    Route::get("/download", [PrefixController::class, "excel"])->name("download");
 });
 
 Route::group(['as' => 'location.', 'prefix' => 'location'], function () {
@@ -60,9 +62,11 @@ Route::group(['as' => 'location.', 'prefix' => 'location'], function () {
     Route::get('/edit/{id}', [LocationController::class, "edit"])->name("edit");
     Route::post('/update{id}', [LocationController::class, "update"])->name("update");
     Route::delete('/destroy{id}', [LocationController::class, "destroy"])->name("destroy");
+    Route::get("/download", [LocationController::class, "excel"])->name("download");
 });
 
 route::resource('ships', ships_controller::class);
+Route::get("/exceldownload", [ships_Controller::class, "excel"])->name("download");
 
 Route::group(['as' => 'master_item.', 'prefix' => 'masteritem'], function () {
     Route::get('/create', function () {
@@ -75,6 +79,7 @@ Route::group(['as' => 'master_item.', 'prefix' => 'masteritem'], function () {
     Route::post('/store', [MasterItemController::class, "store"]);
     Route::post('/update', [MasterItemController::class, 'update']);
     Route::get("/search", [MasterItemController::class, "cari"]);
+    Route::get("/download", [MasterItemController::class, "excel"])->name("download");
 });
 
 route::group(['as' => 'payment.', 'prefix' => 'payment'], function () {
@@ -84,6 +89,7 @@ route::group(['as' => 'payment.', 'prefix' => 'payment'], function () {
     route::get('/edit/{id}', [PaymentController::class, 'edit'])->name('edit');
     route::post('/update/{id}', [PaymentController::class, 'update'])->name('update');
     route::delete('destroy/{id}', [PaymentController::class, 'destroy'])->name('destroy');
+    Route::get("/download", [PaymentController::class, "excel"])->name("download");
 });
 route::get('/add', [PurchaseController::class, 'add'])->name('add');
 Route::get('/view', [HomeController::class, 'view'])->name('view');
@@ -123,6 +129,7 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
     route::get('/edit/{id}', [GradeController::class, 'edit'])->name('edit');
     route::post('/update/{id}', [GradeController::class, 'update'])->name('update');
     route::delete('destroy/{id}', [GradeController::class, 'destroy'])->name('destroy');
+    Route::get("/download", [GradeController::class, "excel"])->name("download");
 });
 
 route::group(['as'=>'supplier.','prefix'=>'supplier'], function(){
@@ -132,6 +139,7 @@ route::group(['as'=>'supplier.','prefix'=>'supplier'], function(){
     route::get('/edit/{id}', [SupplierController::class, 'edit'])->name('edit');
     route::post('/update/{id}', [SupplierController::class, 'update'])->name('update');
     route::delete('destroy/{id}', [SupplierController::class, 'destroy'])->name('destroy');
+    Route::get("/download", [SupplierController::class, "excel"])->name("download");
 });
 
 route::group(['as'=>'powder.','prefix'=>'powder'], function(){
@@ -158,6 +166,8 @@ route::group(['as'=>'powder.','prefix'=>'powder'], function(){
     route::get('/edit/{id}', [TimeshippingController::class, 'edit'])->name('edit');
     route::post('/update/{id}', [TimeshippingController::class, 'update'])->name('update');
     route::delete('destroy/{id}', [TimeshippingController::class, 'destroy'])->name('destroy');
+    Route::get("/download", [TimeshippingController::class, "excel"])->name("download");
+
 });
 
 route::group(['as'=>'order.','prefix'=>'order'], function(){

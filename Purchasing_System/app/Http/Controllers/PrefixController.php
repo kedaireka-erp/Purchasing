@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prefix;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class PrefixController extends Controller
 {
@@ -81,4 +82,37 @@ class PrefixController extends Controller
         
         return redirect('/prefix')->with('terhapus','Berhasil Menghapus Data');
     }
+    public function excel(){
+        
+        
+        // Nama file excel
+        $fileName = "Master_Prefixes_" . date('Y-m-d') . ".xls"; 
+        
+        // Nama kolom
+        $fields = array("Prefix","Divisi", "Tanggal Pembuatan", "Tanggal Perubahan Data"); 
+        
+        // Menampilkan nama kolom pada baris pertama
+        $excelData = implode("\t", array_values($fields)) . "\n"; 
+        
+        
+        $query = DB::table('prefixes')->get(); 
+        
+            // Output setiap barisan data
+            foreach ($query as $row){ 
+                
+                $lineData = array($row->prefix, $row->divisi, $row->created_at, $row->updated_at); 
+                
+                $excelData .= implode("\t", array_values($lineData)) . "\n"; 
+            } 
+        
+        
+        // Headers download 
+        header("Content-Type:application/vnd.ms-excel");
+        header("Content-Disposition: attachment; filename=\"$fileName\""); 
+        
+        // Render data excel
+        echo $excelData; 
+    
+        exit;
+            }
 }
