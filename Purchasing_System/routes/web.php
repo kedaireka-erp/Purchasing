@@ -126,6 +126,7 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
     route::get('/create', [GradeController::class, 'create'])->name('create');
     route::post('/store', [GradeController::class, 'store'])->name('store');
     route::get('/edit/{id}', [GradeController::class, 'edit'])->name('edit');
+    route::get('/view/{id}', [GradeController::class, 'view'])->name('view');
     route::post('/update/{id}', [GradeController::class, 'update'])->name('update');
     route::delete('destroy/{id}', [GradeController::class, 'destroy'])->name('destroy');
     Route::get("/download", [GradeController::class, "excel"])->name("download");
@@ -168,7 +169,6 @@ route::group(['as'=>'powder.','prefix'=>'powder'], function(){
     route::get('/edit/{id}', [TimeshippingController::class, 'edit'])->name('edit');
     route::post('/update/{id}', [TimeshippingController::class, 'update'])->name('update');
     route::delete('destroy/{id}', [TimeshippingController::class, 'destroy'])->name('destroy');
-<<<<<<< Updated upstream
     Route::get("/download", [TimeshippingController::class, "excel"])->name("download");
 
 });
@@ -178,8 +178,3 @@ route::group(['as'=>'order.','prefix'=>'order'], function(){
     route::get('/create', [OrderController::class, 'create']);
     route::post('/store', [OrderController::class, 'store_item'])->name('orderstore');
 });
-=======
-});
-
-route::get('/formatPO', [FormPOController::class, 'formatPO'])->name('formatPO');
->>>>>>> Stashed changes

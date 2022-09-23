@@ -1,72 +1,52 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-<body class="container"> <br>
+<div id="form" style="margin-top: 10px">
     <form method="POST" action="{{ route('grade.store') }}">
-    @csrf
-        <div>
-            <label class="form-label">Grade Type</label>
-            <input type="text" name="type" class="form-control" placeholder="Input Grade Type" value="{{ $grade->type }}">
-            @foreach ($errors->get('type') as $msg)
-                <p class="text-danger">{{ $msg }}</p>
-            @endforeach
-        </div> <br>
-        <button type="submit" class="btn btn-secondary">Submit</button>
+        @csrf
+        <div class="mb-3">
+            <label class="form-label">Grade Type <span class="text-danger">*</span> </label>
+            <input type="text" name="type" class="form-control" placeholder="-- INPUT --"
+                value="{{ $grade->type }}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Grade Powder</label>
+            <select class="form-select form-control wide mb-3" name="grade_powder">
+
+                <option disabled selected>-- Pilih --</option>
+                <option value="Coarse Powder">Coarse Powder</option>
+                <option value="Moderately Coarse">Moderately Coarse</option>
+                <option value="Moderately Fine">Moderately Fine</option>
+                <option value="Fine Powder">Fine Powder</option>
+                <option value="Very Fine Powder">Very Fine Powder</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label"> Sieve No. (all particle) </label>
+            <select class="form-select form-control wide mb-3" name="sieve_no_all">
+
+                <option selected disabled>-- Pilih --</option>
+                <option value="8 -> 1001"> 8 -> 1001 </option>
+                <option value="20 -> 1001"> 20 -> 1001 </option>
+                <option value="40 -> 1001"> 40 -> 1001 </option>
+                <option value="60 -> 1001"> 60 -> 1001 </option>
+                <option value="80 -> 1001"> 80 -> 1001 </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label"> Sieve No. (40% particle) </label>
+            <select class="form-select form-control wide mb-3" name="sieve_no_half">
+
+                <option disabled selected>-- Pilih --</option>
+                <option value="60 -> 201"> 60 -> 201 </option>
+                <option value="60 -> 401"> 60 -> 401 </option>
+                <option value="80 -> 401"> 80 -> 401 </option>
+                <option value="100 -> 401"> 100 -> 401 </option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="note" class="form-label">Note</label>
+            <textarea rows="4" cols="50" class="form-control" id="note" placeholder="-- INPUT --" name="note"
+                value="{{ old('note') }}"></textarea>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</body>
-</html> --}}
-
-
-
-@extends('layout.sidebar')
-
-@section('judul-laman', 'Tambah Master Grade')
-
-@section('Judul-content')
-    <div class="title-page">
-        Tambah Master Grade
-    </div>
-@endsection
-
-@section('content')
-<section class="event-area section-gap-extra-bottom">
-    <div class="container" id="boxshadow">
-
-    <div class="container col-lg-10 col text-left"  >
-        <div id="title" style="margin-top: 50px">
-            <div class="title">
-                <br>
-                <h4 style="margin-top: 70px; text-align: center"> Tambah Data Grade </h4>
-                <hr>
-            </div>
-        </div>
-
-
-        <div id="form" style="margin-top: 10px">
-            <form method="POST" action="{{ route('grade.store') }}">
-                @csrf
-                    <div>
-                        <label class="form-label">Grade Type</label>
-                        <input type="text" name="type" class="form-control" placeholder="Input Grade Type" value="{{ $grade->type }}">
-                        @foreach ($errors->get('type') as $msg)
-                            <p class="text-danger">{{ $msg }}</p>
-                        @endforeach
-                    </div> <br>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        </div>
-        </div>
-
-    </div>
-    
-</section>
-@endsection
