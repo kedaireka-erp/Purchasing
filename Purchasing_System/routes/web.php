@@ -91,8 +91,7 @@ route::group(['as' => 'payment.', 'prefix' => 'payment'], function () {
     route::delete('destroy/{id}', [PaymentController::class, 'destroy'])->name('destroy');
     Route::get("/download", [PaymentController::class, "excel"])->name("download");
 });
-route::get('/add', [PurchaseController::class, 'add'])->name('add');
-Route::get('/view', [HomeController::class, 'view'])->name('view');
+
 
 
 

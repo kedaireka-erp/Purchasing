@@ -20,14 +20,9 @@ class HomeController extends Controller
     {
         return view('home.dashboard');
     }
-    
-    public function coba()
-    {
-        return view('purchase.Othergood');
-    }
     public function approval()
     {
-        $purchase_requests=PurchaseRequest::paginate(5);
+        $purchase_requests=PurchaseRequest::get();
         return view('Approval.dashboard',compact("purchase_requests"));
     }
 
@@ -40,31 +35,15 @@ class HomeController extends Controller
     public function view($id){
         $purchase_requests = PurchaseRequest::find($id);
         $item = Item::with('master_item','satuan')->get();
-
-        // $item = DB::table('items')
-        //         ->join('purchase_requests', 'id_request', '=', 'purchase_requests.id')
-        //         ->join('master_items', 'id_master_item', '=', 'master_items.id')
-        //         ->join('satuans', 'id_satuan', '=', 'satuans.id')
-        //         ->select('items.*', 'master_items.item_name','satuans.unit')
-        //         ->get();
-
-        $Location=location::get();
-        $Ship=ships::get();
-        $Prefixe=Prefix::get();
+        $Location = location::get();
+        $Ship = ships::get();
+        $Prefixe = Prefix::get();
 
         return view('Approval.view', compact('purchase_requests', 'Location', 'Ship', 'Prefixe','item'));
     }
 
     public function edit($id){
         $purchase_requests = PurchaseRequest::findOrFail($id);
-
-        // $item = DB::table('items')
-        //         ->join('purchase_requests', 'id_request', '=', 'purchase_requests.id')
-        //         ->join('master_items', 'id_master_item', '=', 'master_items.id')
-        //         ->join('satuans', 'id_satuan', '=', 'satuans.id')
-        //         ->select('items.*', 'master_items.item_name','satuans.unit')
-        //         ->get();
-
         $Location=location::get();
         $Ship=ships::get();
         $Prefixe=Prefix::get();
@@ -74,14 +53,6 @@ class HomeController extends Controller
 
     public function accept($id){
         $purchase_requests = PurchaseRequest::findOrFail($id);
-
-        // $item = DB::table('items')
-        //         ->join('purchase_requests', 'id_request', '=', 'purchase_requests.id')
-        //         ->join('master_items', 'id_master_item', '=', 'master_items.id')
-        //         ->join('satuans', 'id_satuan', '=', 'satuans.id')
-        //         ->select('items.*', 'master_items.item_name','satuans.unit')
-        //         ->get();
-
         $Location=location::get();
         $Ship=ships::get();
         $Prefixe=Prefix::get();

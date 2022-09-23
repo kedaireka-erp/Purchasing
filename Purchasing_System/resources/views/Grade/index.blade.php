@@ -28,24 +28,9 @@
 @endsection
 
 @section('content')
-    {{-- <div id="tombol">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-md-6 mb-2">
-                    <form action="{{ request()->get('search') }}" method="get">
-                        <input class="form-control fa" name="search" type="search" placeholder="&#xf002      Search "
-                            value="{{ request('search') }}">
-                    </form>
-                </div>
-                <div class="col-lg-4 col-md-2"></div>
-                <div class="col-lg-3 col-md-4">
-                    
 
-                </div>
-            </div>
-        </div>
-    </div> --}}
     <div class="card">
+
         <div id="chead">
             <div class="row">
                 <div class="col-9">
@@ -59,8 +44,6 @@
                         </a>
                     </div>
                 </div>
-
-
             </div>
             <hr>
         </div>
@@ -71,25 +54,12 @@
                 <table id="example3" class="display" style="width:100%">
                     <thead>
                         <tr align="center">
-                            {{-- <td align="center">
-                                <div class="form-check custom-checkbox ms-2">
-                                    <input type="checkbox" class="form-check-input" id="checkAll" required="">
-                                    <label class="form-check-label" for="checkAll"></label>
-                                </div>
-                            </td> --}}
                             <td>No.</td>
                             <td>Type</td>
                             <td colspan="2">Action</td>
                         </tr>
                     </thead>
                     <tbody>
-                        @if (count($grade) == 0)
-                            <tr>
-                                <td colspan="6" align="center" style="color: gray; background-color: white">
-                                    <b><i> empty record </i></b>
-                                </td>
-                            </tr>
-                        @endif
                         @foreach ($grade as $value)
                             <tr>
                                 <td class="content-control">{{ $loop->iteration }}</td>
@@ -107,8 +77,7 @@
                             </tr>
                         @endforeach
                     </tbody>
-                    <a class="btn btn-primary" href="/grade/download" 
-		role="button">Download Data</a>
+                    <a class="btn btn-primary" href="/grade/download" role="button">Download Data</a>
                 </table>
             </div>
         </div>
