@@ -48,24 +48,24 @@
     <div class="card">
         <div id="chead">
             <div class="row">
-                <div class="col-9">
+                <div class="col-lg-8 col-sm-6">
                     <div class="card-header">
                         <h4 class="card-title">Data Master Satuan</h4>
                     </div>
                 </div>
-                <div class="col-3">
-                    <div id="button_add">
-                        <a href="{{ route('satuan.satuanadd') }}" class="btn btn-success" id="add"> +Add Data
-                        </a>
-                    </div>
+                <div class="col-lg-2 col-sm-3">
+                    <a class="btn btn-primary" href="/satuan/download" role="button" id="excel"> <i
+                            class="fa fa-file-excel-o"></i> Excel </a>
                 </div>
-
-
+                <div class="col-lg-2 col-sm-3">
+                    {{-- <a href="{{ route('satuan.satuanadd') }}" class="btn btn-success" id="add"> +Add Data
+                    </a> --}}
+                    <a onClick="satuan_create()" class="btn btn-success" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalSatuanCenter" id="add"> +Add Data</a>
+                </div>
             </div>
             <hr>
-        </div>
-
-
+    <x-alert></x-alert>
         <div class="card-body">
             <div class="table-responsive">
                 <table id="example3" class="display" style="width:100%">
@@ -81,7 +81,7 @@
                             <td width="30%">Nama Barang</td>
                             <td width="20%">Stok</td>
                             <td width="20%">Tanggal Pembuatan</th>
-                            <td width="20%">Action</td>
+                            <td width="20%"></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -101,10 +101,51 @@
                                 <td class="content-control">
                                     {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }} </td>
 
+                                    <td class="py-2 text-end">
+                                        <div class="dropdown text-sans-serif"><button
+                                                class="btn btn-primary tp-btn-light sharp" type="button"
+                                                id="order-dropdown-1" data-bs-toggle="dropdown" data-boundary="viewport"
+                                                aria-haspopup="true" aria-expanded="false"><span><svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="18px"
+                                                        height="18px" viewbox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1" fill="none"
+                                                            fill-rule="evenodd">
+                                                            <rect x="0" y="0" width="24"
+                                                                height="24">
+                                                            </rect>
+                                                            <circle fill="#000000" cx="5" cy="12"
+                                                                r="2">
+                                                            </circle>
+                                                            <circle fill="#000000" cx="12" cy="12"
+                                                                r="2">
+                                                            </circle>
+                                                            <circle fill="#000000" cx="19" cy="12"
+                                                                r="2">
+                                                            </circle>
+                                                        </g>
+                                                    </svg></span></button>
+                                            <div class="dropdown-menu dropdown-menu-end border py-0"
+                                                aria-labelledby="order-dropdown-1">
+                                                <div class="py-2">
+                                                    <a data-bs-toggle="modal" data-bs-target="#exampleModalSatuanCenter" class="dropdown-item"
+                                                        onClick="satuan_view({{ $item->id }})">Detail</a>
+                                                        <a
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModalSatuanCenter" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModalSatuanCenter"
+                                                        onClick="satuan_edit({{ $item->id }})">Edit</a>
+                                                    <form action="{{ route('satuan.satuandelete', $item->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="dropdown-item text-danger">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
 
-                                <td class="d-flex justify-content-center">
-
-
+                                {{-- <td class="d-flex justify-content-center">
                                     <form method="GET" action="{{ route('satuan.satuanedit', $item->id) }}"
                                         style="margin-right:10px">
                                         @csrf
@@ -123,32 +164,56 @@
                                                 class="bi bi-trash"></i>
                                         </button>
                                     </form>
-                                </td>
+                                </td> --}}
                             </tr>
                         @endforeach
                     </tbody>
-                    <a class="btn btn-primary" href="/satuan/download" 
-		role="button">Download Data</a>
                 </table>
             </div>
         </div>
 
+        <div class="modal fade" id="exampleModalSatuanCenter">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" align="center" id="SatuanModalLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="satuan_page" class="pd-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Required vendors -->
         <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
-        <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
-        <!-- Apex Chart -->
-        <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}"></script>
-
-        <!-- Datatable -->
-        <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
-
-        <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
-
-        <script src="{{ asset('assets/js/custom.min.js') }}"></script>
-        <script src="{{ asset('assets/js/dlabnav-init.js') }}"></script>
-        {{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
-        {{-- <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script> --}}
+        <script>
+            function satuan_create() {
+                $.get("{{ route('satuan.satuanadd') }}", {}, function(data, status) {
+                    $("#SatuanModalLabel").html('Add Satuan');
+                    $("#satuan_page").html(data);
+                    $("#exampleModalSatuanCenter").modal('show');
+                })
+            }
+        
+            function satuan_edit(id) {
+                $.get("{{ url('satuan/edit') }}/" + id, {}, function(data, status) {
+                    $("#SatuanModalLabel").html('Edit Satuan');
+                    $("#satuan_page").html(data);
+                    $("#exampleModalSatuanCenter").modal('show');
+                })
+            }
+        
+            function satuan_view(id) {
+                $.get("{{ url('satuan/view') }}/" + id, {}, function(data, status) {
+                    $("#SatuanModalLabel").html('View Satuan');
+                    $("#satuan_page").html(data);
+                    $("#exampleModalSatuanCenter").modal('show');
+                })
+            }
+        
+        </script>
 
     @endsection

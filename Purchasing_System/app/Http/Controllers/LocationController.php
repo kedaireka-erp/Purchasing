@@ -48,6 +48,13 @@ class LocationController extends Controller
 
         return view('locations.edit', compact('locations'));
      }
+     public function view($id){
+
+        $locations = Location::findOrFail($id);
+
+        return view('locations.view', compact('locations'));
+     }
+
 
      public function update(Request $request, $id){
 

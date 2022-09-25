@@ -1,24 +1,4 @@
-@extends('layout.sidebar')
 
-@section('judul-laman', 'Edit Master Location')
-
-@section('Judul-content')
-    <div class="title-page">
-        Edit Master Location
-    </div>
-@endsection
-
-@section('content')
-<section class="event-area section-gap-extra-bottom">
-    <div class="container" id="boxshadow">
-
-    <div class="container col-lg-10">
-        <div id="title" style="margin-top: 50px">
-            <div class="title">
-                <br>
-                <h4 style="margin-top: 30px; text-align: center"> Edit Data Location </h4>
-            </div>
-        </div>
         <div id="form" style="margin-top: 20px margin-down:20px">
             <form action="{{route('location.update', $locations->id)}}" method="post">
                 {{ csrf_field() }}
@@ -45,11 +25,5 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
-
-        </div>
-
     </div>
-    </div>
-</section>
 
-@endsection

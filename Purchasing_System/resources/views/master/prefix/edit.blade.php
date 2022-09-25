@@ -1,25 +1,4 @@
-@extends('layout.sidebar')
 
-@section('judul-laman', 'Edit Master Prefix')
-
-@section('Judul-content')
-    <div class="title-page">
-        Edit Prefix Satuan
-    </div>
-@endsection
-
-@section('content')
-    <section class="event-area section-gap-extra-bottom">
-        <div class="container" id="boxshadow">
-
-            <div class="container col-lg-10">
-                <div id="title" style="margin-top: 50px">
-                    <div class="title">
-                        <br>
-                        <h4 style="margin-top: 30px; text-align: center"> Edit Data Prefix </h4>
-                        <hr>
-                    </div>
-                </div>
                 <div id="form" style="margin-top: 20px margin-down:20px">
                     <form action="{{ route('prefix.prefixupdate', $prefix->id) }}" method="post">
                         {{ csrf_field() }}
@@ -47,11 +26,4 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
-
-                </div>
-
-            </div>
         </div>
-    </section>
-
-@endsection

@@ -47,6 +47,12 @@ class PrefixController extends Controller
 
         return view('master.prefix.edit', compact('prefix'));
     }
+    public function view($id)
+    {
+        $prefix = Prefix::findOrFail($id);
+
+        return view('master.prefix.view', compact('prefix'));
+    }
 
     public function update(Request $request, Prefix $prefix,$id)
     {

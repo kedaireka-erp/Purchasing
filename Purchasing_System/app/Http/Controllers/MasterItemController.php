@@ -40,26 +40,32 @@ class MasterItemController extends Controller
 		return redirect('/masteritem')->with('success', 'Data master barang berhasil ditambahkan');
     }
 
-    public function update(request $request, master_item $items){
+    // public function update(request $request, master_item $items, $id){
+        public function update(Request $request, $id){
 
-        $items = master_item::find($request->id_master_item);
+        // $items = Master_Item::find($request->id_master_item);
 
-        if($request->item_name == $items->item_name)
-        {
-            $validated = $request->validate([
-                'stock' => 'required',
-            'item_name' => 'required|max:100',
+        $items = DB::table('master_items')->where('id',$id)->get();
+        $items->update([
+            'item_name'=> $request -> item_name,
+            'stock'=> $request -> stock,
+        ]);
+        // if($request->item_name == $items->item_name)
+        // {
+        //     $validated = $request->validate([
+        //         'stock' => 'required',
+        //     'item_name' => 'required|max:100',
             
-            ]);
-        }
-        else {
-            $validated = $request->validate([
-                'stock' => 'required',
-            'item_name' => 'required|unique:master_items|max:100',
+        //     ]);
+        // }
+        // else {
+        //     $validated = $request->validate([
+        //         'stock' => 'required',
+        //     'item_name' => 'required|unique:master_items|max:100',
             
-            ]);
+        //     ]);
 
-        }
+        // }
     
 
     // DB::table('master_items')->where('id',$request->id_master_item)->update([
@@ -68,7 +74,7 @@ class MasterItemController extends Controller
 
 		
 	// ]);
-    Master_Item::where('id',$request->id_master_item)->update($validated);
+    // Master_Item::where('id',$request->id_master_item)->update($validated);
 
 	
 	return redirect('/masteritem')->with('teredit', 'Data master barang berhasil diedit');
@@ -76,11 +82,18 @@ class MasterItemController extends Controller
     
     Public function edit($id){
         
-        //$items= Master_Item::FindorFail($id);
-        $items = DB::table('master_items')->where('id',$id)->get();;
+        // $items= Master_Item::findOrFail($id);
+        $items = DB::table('master_items')->where('id',$id)->get();
         return view ('master_item.edit',['items' => $items]);
+        // dd($items);
         
     }
+    public function view($id){
+
+        // $items = DB::findOrFail($id);
+        $items = DB::table('master_items')->where('id',$id)->get();
+        return view('master_item.view', compact('items'));
+     }
 
     public function delete($id)
     {

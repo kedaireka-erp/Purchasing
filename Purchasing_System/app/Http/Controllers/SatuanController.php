@@ -48,6 +48,13 @@ class SatuanController extends Controller
 
         return view('master.satuan.edit', compact('satuan'));
     }
+    
+    public function view($id)
+    {
+        $satuan = Satuan::findOrFail($id);
+
+        return view('master.satuan.view', compact('satuan'));
+    }
 
     public function update(Request $request, Satuan $satuan,$id)
     {

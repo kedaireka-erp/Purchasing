@@ -42,6 +42,7 @@ Route::group(['as' => 'satuan.', 'prefix' => 'satuan'], function () {
     Route::post('/update/{id}', [SatuanController::class, 'update'])->name('satuanupdate');
     Route::delete('/delete/{id}', [SatuanController::class, 'destroy'])->name('satuandelete');
     Route::get("/download", [SatuanController::class, "excel"])->name("download");
+    Route::get('/view/{id}', [SatuanController::class, "view"])->name("view");
 });
 
 Route::group(['as' => 'prefix.', 'prefix' => 'prefix'], function () {
@@ -53,6 +54,7 @@ Route::group(['as' => 'prefix.', 'prefix' => 'prefix'], function () {
     Route::post('/update/{id}', [PrefixController::class, 'update'])->name('prefixupdate');
     Route::delete('/delete/{id}', [PrefixController::class, 'destroy'])->name('prefixdelete');
     Route::get("/download", [PrefixController::class, "excel"])->name("download");
+    Route::get('/view/{id}', [PrefixController::class, "view"])->name("view");
 });
 
 Route::group(['as' => 'location.', 'prefix' => 'location'], function () {
@@ -63,23 +65,27 @@ Route::group(['as' => 'location.', 'prefix' => 'location'], function () {
     Route::post('/update{id}', [LocationController::class, "update"])->name("update");
     Route::delete('/destroy{id}', [LocationController::class, "destroy"])->name("destroy");
     Route::get("/download", [LocationController::class, "excel"])->name("download");
+    Route::get('/view/{id}', [LocationController::class, "view"])->name("view");
+
 });
 
 route::resource('ships', ships_controller::class);
 Route::get("/exceldownload", [ships_Controller::class, "excel"])->name("download");
 
 Route::group(['as' => 'master_item.', 'prefix' => 'masteritem'], function () {
-    Route::get('/create', function () {
-        return view('master_item.create');
-    });
-
+    // Route::get('/create', function () {
+    //     return view('master_item.create');
+    // });
+    
     Route::get("/", [MasterItemController::class, "index"]);
+    route::get('/create', [MasterItemController::class, 'create'])->name('create');
     Route::get('/edit/{id}', [MasterItemController::class, 'edit'])->name("miupdate");
     Route::delete('/delete/{id}', [MasterItemController::class, 'delete'])->name("midelete");
     Route::post('/store', [MasterItemController::class, "store"]);
-    Route::post('/update', [MasterItemController::class, 'update']);
+    Route::post('/update/{id}', [MasterItemController::class, 'update'])->name("update");;
     Route::get("/search", [MasterItemController::class, "cari"]);
     Route::get("/download", [MasterItemController::class, "excel"])->name("download");
+    Route::get('/view/{id}', [MasterItemController::class, "view"])->name("view");
 });
 
 route::group(['as' => 'payment.', 'prefix' => 'payment'], function () {

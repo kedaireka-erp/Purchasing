@@ -58,24 +58,24 @@
     <div class="card">
         <div id="chead">
             <div class="row">
-                <div class="col-9">
+                <div class="col-lg-8 col-sm-6">
                     <div class="card-header">
                         <h4 class="card-title">Data Master Kebutuhan/Pengiriman</h4>
                     </div>
                 </div>
-                <div class="col-3">
-                    <div id="button_add">
-                        <a href="{{ url('ships/create') }}" class="btn btn-success" id="add"> +Add Data
-                        </a>
-                    </div>
+                <div class="col-lg-2 col-sm-3">
+                    <a class="btn btn-primary" href="/ships/download" role="button" id="excel"> <i
+                            class="fa fa-file-excel-o"></i> Excel </a>
                 </div>
-
-
+                <div class="col-lg-2 col-sm-3">
+                    <a href="{{ url('ships/create') }}" class="btn btn-success" id="add"> +Add Data
+                    </a>
+                    {{-- <a onClick="grade_create()" class="btn btn-success" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalGradeCenter" id="add"> +Add Data</a> --}}
+                </div>
             </div>
             <hr>
-        </div>
-
-
+            <x-alert></x-alert>
         <div class="card-body">
             <div class="table-responsive">
                 <table id="example3" class="display" style="width:100%">
@@ -128,7 +128,6 @@
                             </tr>
                         @endforeach
                     </tbody>
-                    <a class="btn btn-primary" href="/exceldownload" role="button">Download Data</a>
                 </table>
             </div>
         </div>
@@ -136,19 +135,6 @@
 
         <!-- Required vendors -->
         <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
-        <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
-        <!-- Apex Chart -->
-        <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}"></script>
-
-        <!-- Datatable -->
-        <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
-
-        <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
-
-        <script src="{{ asset('assets/js/custom.min.js') }}"></script>
-        <script src="{{ asset('assets/js/dlabnav-init.js') }}"></script>
-        {{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
-        {{-- <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script> --}}
+          
 
     @endsection

@@ -131,5 +131,30 @@
             <!-- Required vendors -->
             <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
 
-
+            <script>
+                function grade_create() {
+                    $.get("{{ route('grade.create') }}", {}, function(data, status) {
+                        $("#GradeModalLabel").html('Add Grade');
+                        $("#grade_page").html(data);
+                        $("#exampleModalGradeCenter").modal('show');
+                    })
+                }
+            
+                function grade_edit(id) {
+                    $.get("{{ url('grade/edit') }}/" + id, {}, function(data, status) {
+                        $("#GradeModalLabel").html('Edit Grade');
+                        $("#grade_page").html(data);
+                        $("#exampleModalGradeCenter").modal('show');
+                    })
+                }
+            
+                function grade_view(id) {
+                    $.get("{{ url('grade/view') }}/" + id, {}, function(data, status) {
+                        $("#GradeModalLabel").html('View Grade');
+                        $("#grade_page").html(data);
+                        $("#exampleModalGradeCenter").modal('show');
+                    })
+                }
+            
+            </script>
         @endsection

@@ -1,25 +1,4 @@
-@extends('layout.sidebar')
 
-@section('judul-laman', 'Tambah Master Satuan')
-
-@section('Judul-content')
-    <div class="title-page">
-        Tambah Master Satuan
-    </div>
-@endsection
-
-@section('content')
-<section class="event-area section-gap-extra-bottom">
-    <div class="container" id="boxshadow">
-
-    <div class="container col-lg-10 col text-left"  >
-        <div id="title" style="margin-top: 50px">
-            <div class="title">
-                <br>
-                <h4 style="margin-top: 30px; text-align: center"> Tambah Data Satuan </h4>
-                <hr>
-            </div>
-        </div>
 
 
         <div id="form" style="margin-top: 10px">
@@ -51,8 +30,4 @@
                 </div>
             </form>
         </div>
-        </div>
 
-    </div>
-</section>
-@endsection
