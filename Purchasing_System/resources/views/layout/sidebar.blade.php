@@ -192,8 +192,6 @@
         <div class="content-body">
             <div class="container">
                 @yield('wrap_title')
-                {{-- @yield('Judul-content')
-                <hr> --}}
                 @yield('content')
             </div>
 
@@ -202,6 +200,8 @@
         <!--**********************************
             Content body end
         ***********************************-->
+
+
 
 
         <!--**********************************

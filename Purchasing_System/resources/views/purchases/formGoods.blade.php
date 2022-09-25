@@ -109,39 +109,18 @@
             </div>
         </div>
         <div class="col-6">
-
-
-            <div class="mb-3">
-
+            <div class="basic-form custom_file_input">
 
                 <label for="attachment" class="form-label">Attachment</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text">Upload</span>
+                    <div class="form-file">
+                        <input type="file"
+                            class="form-file-input form-control @error('attachment') is-invalid @enderror"
+                            id="attachment" placeholder="Attachment" name="attachment">
+                    </div>
+                </div>
 
-                <input type="file"
-                    class="form-control input-rounded form-control-lg @error('attachment') is-invalid @enderror"
-                    id="attachment" placeholder="Attachment" name="attachment">
-
-
-
-
-
-
-
-
-
-
-
-                {{-- <label for="attachment" class="form-label">Attachment</label>
-                    <input type="file"
-                        class="form-control input-rounded @error('attachment') is-invalid @enderror"
-                        id="attachment" placeholder="Attachment" name="attachment"> --}}
-                {{-- <div class="mb-3">
-            <label for="formFile" class="form-label">Images</label>
-            <input class="form-control" type="file" id="formFile" name="image">
-          </div> --}}
-
-                @error('attachment')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
 
             </div>
         </div>
@@ -205,8 +184,8 @@
         {{-- End --}}
         <div class="mb-3">
             <label for="note" class="form-label">Note</label>
-            <textarea rows="4" cols="50" class="form-control input-rounded wide mb-3" id="note"
-                placeholder="-- INPUT --" name="note" value="{{ old('note') }}"></textarea>
+            <textarea class="form-control input-rounded" id="note1" placeholder="-- INPUT --" name="note"
+                value="{{ old('note') }}"></textarea>
 
         </div>
 

@@ -54,6 +54,7 @@ class PowderController extends Controller
         $powder->warna =$request->warna;
         $powder->kode_warna =$request->kode_warna;
         $powder->finish =$request->finish;
+        $powder->finishing =$request->finishing;
         $powder->quantity =$request->quantity;
         $powder->m2 =$request->m2;
         $powder->estimasi =$request->estimasi;

@@ -8675,13 +8675,9 @@ h1, .h1, .h1, h2, .h2, .h2, h3, .h3, .h3, h4, .h4, .h4, h5, .h5, .h5, h6, .h6, .
 .w-space-no {
   white-space: nowrap; }
 
-.content-body{
-<<<<<<< Updated upstream
+/* .content-body{
   height: 2000px !important;
-=======
-  height: 3000px !important;
->>>>>>> Stashed changes
-}
+} */
 .content-body .container {
   margin-top: 2.5rem; }
 .content-body .container-fluid, .content-body .container-sm, .content-body .container-md, .content-body .container-lg, .content-body .container-xl, .content-body .container-xxl {
@@ -12558,7 +12554,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
         padding: 0; } }
 
 .copyright {
-  padding: 0 1.875rem;
+  text-align : center !important;
   color: #9fa4a6;
   margin-top: 1.875rem; }
   .copyright p {

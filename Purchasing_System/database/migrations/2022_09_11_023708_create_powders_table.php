@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('warna', 100)->nullable();
             $table->string('kode_warna', 100)->nullable();
-            $table->string('finish', 100)->nullable();
+            $table->enum('finish', ['interior', 'eksterior'])->nullable();
+            $table->enum('finishing', ['SG', 'MATT', 'SUPERMATT', 'GLOSS', 'METALLIC', 'SAND TEXTURE', 'SUBLIMASI'])->nullable();
             $table->integer('quantity')->nullable();
             $table->integer('m2')->nullable();
             $table->integer('estimasi')->nullable();

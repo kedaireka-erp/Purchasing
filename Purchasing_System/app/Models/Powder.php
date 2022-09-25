@@ -10,7 +10,7 @@ class powder extends Model
     use HasFactory;
     protected $table = 'powders';
     protected $primarykey = 'id';
-    protected $fillable = ['warna','kode_warna','finish','quantity','m2','estimasi','fresh','recycle','grades_id','suppliers_id','alokasi'];
+    protected $fillable = ['warna','kode_warna','finish', 'finishing', 'quantity','m2','estimasi','fresh','recycle','grades_id','suppliers_id','alokasi'];
 
     public function grade(){
         return $this->belongsTo(Grade::class, 'grades_id');

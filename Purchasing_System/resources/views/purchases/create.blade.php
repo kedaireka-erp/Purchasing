@@ -13,52 +13,47 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 
+
+@endsection
+
+@section('wrap_title')
+    <div class="row page-titles">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Request</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Purchase Request</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)"> Add Data</a></li>
+        </ol>
+    </div>
 @endsection
 
 @section('content')
-    {{-- @if (Session::get('success'))
-        <div class="alert alert-success">{{ Session::get('success') }}
-            @php
-                Session::forget('success');
-            @endphp
-        </div>
-    @endif
+   
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+    <div class="card">
+        <div id="chead">
+            <div class="card-body">
+    
+    <div class="tabs">
+      <div class="tab-2">
+        <label for="tab2-1" class="title-form">Powder</label>
+        <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+        <div>
+            @include('purchases.formPowder')
         </div>
-
-    @endif --}}
-
-    <div class="wrapper">
-        <div class="tabs">
-            <div class="tab">
-                <input type="radio" name="css-tabs" id="tab-1" checked class="tab-switch">
-                <label for="tab-1" class="tab-label">Other Good</label>
-                <div class="tab-content">
-                    @include('purchases.formGoods')
-                </div>
-            </div>
-            <div class="tab">
-                <input type="radio" name="css-tabs" id="tab-2" class="tab-switch">
-                <label for="tab-2" class="tab-label">Powder</label>
-                <div class="tab-content">
-                    @include('purchases.formPowder')
-                </div>
-            </div>
-            
+      </div>
+      <div class="tab-2">
+        <label for="tab2-2" class="title-form">Other Good</label>
+        <input id="tab2-2" name="tabs-two" type="radio">
+        <div>
+            @include('purchases.formGoods')
+          
         </div>
+      </div>
     </div>
+    </div>
+        </div>
 
-
-
-
+    </div>
 
 
     
@@ -82,7 +77,7 @@
         $("#dynamic-ar").click(function() {
             ++i;
             $("#dynamicAddRemove").append(
-                '<dr><div id="dynamicAddRemove" style="margin-top:6px"> <div class="row"> <div class="col-5"> <select class="default-select input-rounded form-control wide mb-3" aria-label="Default select example" name="addMoreInputFields[' + i + '][id_master_item]"> <option selected disabled>-- Pilih Barang --</option> @foreach ($master_item as $item)<option value="{{ $item->id }}">{{ ucfirst($item->item_name) }}</option> @endforeach </select> </div><div class="col-2"> <input type="number" name="addMoreInputFields[' + i + '][stok]" placeholder="qty" class ="form-control input-rounded form-control-lg" / > </div><div class="col-3"><select class="default-select input-rounded form-control wide mb-3" aria-label="Default select example" name="addMoreInputFields[' + i + '][id_satuan]"> <option selected disabled>-- Pilih Satuan --</option> @foreach ($satuan as $sat) <option value="{{ $sat->id }}">{{ ucfirst($sat->unit) }} </option> @endforeach </select></div><div class="col-2"> <label for="min" class="form-label"></label><button type="button" class="btn btn-outline-danger remove-input-field" id="dynamic-ar">-</button></div><div></div></dr>'
+                '<dr><div id="dynamicAddRemove" style="margin-top:6px"> <div class="row"> <div class="col-5">  <select class="default-select input-rounded form-control wide mb-3" aria-label="Default select example" name="addMoreInputFields[' + i + '][id_master_item]"> <option selected disabled>-- Pilih Barang --</option> @foreach ($master_item as $item)<option value="{{ $item->id }}">{{ ucfirst($item->item_name) }}</option> @endforeach </select> </div><div class="col-2"> <input type="number" name="addMoreInputFields[' + i + '][stok]" placeholder="qty" class ="form-control input-rounded form-control-lg" / > </div><div class="col-3"><select class="default-select input-rounded form-control wide mb-3" aria-label="Default select example" name="addMoreInputFields[' + i + '][id_satuan]"> <option selected disabled>-- Pilih Satuan --</option> @foreach ($satuan as $sat) <option value="{{ $sat->id }}">{{ ucfirst($sat->unit) }} </option> @endforeach </select></div><div class="col-2"><button type="button" class="btn btn-outline-danger remove-input-field" id="dynamic-ar">-</button></div><div></div></dr>'
             );
         });
 
@@ -104,5 +99,7 @@
     </script>
       
       <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+
+      
 
 @endsection

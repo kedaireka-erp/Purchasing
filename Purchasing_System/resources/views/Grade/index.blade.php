@@ -25,16 +25,16 @@
 
         <div id="chead">
             <div class="row">
-                <div class="col-lg-8 col-sm-6">
+                <div class="col-lg-8 col-md-6 col-xs-2">
                     <div class="card-header">
                         <h4 class="card-title">Data Master Grade</h4>
                     </div>
                 </div>
-                <div class="col-lg-2 col-sm-3">
+                <div class="col-lg-2 col-md-3 col-xs-3">
                     <a class="btn btn-primary" href="/grade/download" role="button" id="excel"> <i
                             class="fa fa-file-excel-o"></i> Excel </a>
                 </div>
-                <div class="col-lg-2 col-sm-3">
+                <div class="col-lg-2 col-md-3 col-xs-3">
                     <a onClick="grade_create()" class="btn btn-success" data-bs-toggle="modal"
                         data-bs-target="#exampleModalGradeCenter" id="add"> +Add Data</a>
                 </div>
@@ -42,13 +42,15 @@
             <hr>
 
             <x-alert></x-alert>
+
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="example3" class="display" style="width:100%">
                         <thead>
                             <tr align="center">
                                 <td width="10%"> No.</td>
-                                <td width="50%"> Grade </td>
+                                <td width="30%"> Tipe Grade </td>
+                                <td width="20%"> Grade Powder </td>
                                 <td width="35%"> Tanggal Pembuatan </td>
                                 <td width="5%"></td>
                             </tr>
@@ -58,6 +60,7 @@
                                 <tr align="center">
                                     <td class="content-control">{{ $loop->iteration }}</td>
                                     <td class="content-control">{{ $value->type }}</td>
+                                    <td class="content-control">{{ $value->grade_powder }}</td>
                                     <td class="content-control">
                                         {{ \Carbon\Carbon::parse($value->created_at)->format('d F Y') }}
                                     </td>
@@ -88,9 +91,11 @@
                                             <div class="dropdown-menu dropdown-menu-end border py-0"
                                                 aria-labelledby="order-dropdown-1">
                                                 <div class="py-2">
-                                                    <a data-bs-toggle="modal" data-bs-target="#exampleModalGradeCenter" class="dropdown-item"
+                                                    <a data-bs-toggle="modal" data-bs-target="#exampleModalGradeCenter"
+                                                        class="dropdown-item"
                                                         onClick="grade_view({{ $value->id }})">Detail</a><a
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModalGradeCenter" class="dropdown-item" data-bs-toggle="modal"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModalGradeCenter"
+                                                        class="dropdown-item" data-bs-toggle="modal"
                                                         data-bs-target="#exampleModalGradeCenter"
                                                         onClick="grade_edit({{ $value->id }})">Edit</a>
                                                     <form action="{{ route('grade.destroy', $value->id) }}" method="POST">
@@ -139,7 +144,7 @@
                         $("#exampleModalGradeCenter").modal('show');
                     })
                 }
-            
+
                 function grade_edit(id) {
                     $.get("{{ url('grade/edit') }}/" + id, {}, function(data, status) {
                         $("#GradeModalLabel").html('Edit Grade');
@@ -147,7 +152,7 @@
                         $("#exampleModalGradeCenter").modal('show');
                     })
                 }
-            
+
                 function grade_view(id) {
                     $.get("{{ url('grade/view') }}/" + id, {}, function(data, status) {
                         $("#GradeModalLabel").html('View Grade');
@@ -155,6 +160,5 @@
                         $("#exampleModalGradeCenter").modal('show');
                     })
                 }
-            
             </script>
         @endsection
