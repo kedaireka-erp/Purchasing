@@ -32,6 +32,16 @@ class PurchaseRequestController extends Controller
         return view('purchases.index', compact('purchase_requests'));
     }
 
+    public function track(Request $request){
+        if ($request->filled('search')) {
+            $purchase_requests = PurchaseRequest::search($request->search)->get();
+        }else{
+            $purchase_requests = PurchaseRequest::with('Prefixe')->get();
+        }
+
+        return view('Tracking.approval', compact('purchase_requests'));
+    }
+
 
     // *******************
     //     Index Create

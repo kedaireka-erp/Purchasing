@@ -28,6 +28,9 @@
 
 @section('content')
 
+
+
+
     <div class="card">
         <div id="chead">
             <div class="row">
@@ -64,13 +67,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (count($purchase_requests) == 0)
-                            <tr>
-                                <td colspan="8" align="center" style="color: gray; background-color: white"> <i>Data
-                                        kosong</i> </td>
-                            </tr>
-                        @endif
-
                         @foreach ($purchase_requests as $no => $purchase_request)
                             <tr align="right">
 

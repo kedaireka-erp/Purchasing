@@ -84,17 +84,15 @@
         $(document).on('click', '.remove-input-field', function() {
             $(this).parents('dr').remove();
         });
-
+        $('#note1').summernote({
+        placeholder: '--INPUT--',
+      });
         $('#note').summernote({
         placeholder: '--INPUT--',
         tabsize: 2,
-        height: 100
+        height: 70
       });
-      $('#note1').summernote({
-        placeholder: '--INPUT--',
-        tabsize: 2,
-        height: 100
-      });
+      
 
     </script>
       

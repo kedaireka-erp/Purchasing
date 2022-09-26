@@ -125,6 +125,7 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
         route::get('/edit/{id}', [TrackingController::class, 'edit'])->name('edit');
         route::post('/update/{id}', [TrackingController::class, 'update'])->name('update');
         route::delete('destroy/{id}', [TrackingController::class, 'destroy'])->name('destroy');
+        Route::get('/approval', [PurchaseRequestController::class, 'track']);
     });
 
     route::group(['as'=>'grade.','prefix'=>'grade'], function(){
