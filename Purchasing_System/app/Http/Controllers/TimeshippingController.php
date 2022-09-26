@@ -44,7 +44,7 @@ class TimeshippingController extends Controller
         $timeshipping->name = $request->name;
         $timeshipping->save();
 
-        return \redirect('timeshipping');
+        return \redirect('timeshipping')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -69,7 +69,14 @@ class TimeshippingController extends Controller
         $timeshipping = Timeshipping::find($id);
         return \view('Timeshipping.edit', \compact('timeshipping'));
     }
+    public function view($id)
+    {
+        $timeshipping = Timeshipping::find($id);
 
+        
+
+        return \view('Timeshipping.view', \compact('timeshipping'));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -83,7 +90,7 @@ class TimeshippingController extends Controller
         $timeshipping->name = $request->name;
         $timeshipping->save();
 
-        return \redirect('timeshipping');
+        return \redirect('timeshipping')->with('teredit', 'Data berhasil diedit');
 
     }
 
@@ -98,7 +105,7 @@ class TimeshippingController extends Controller
         $timeshipping = Timeshipping::find($id);
         $timeshipping->delete();
 
-        return \redirect('timeshipping');
+        return \redirect('timeshipping')->with('terhapus','Berhasil Menghapus Data');
     }
 
     public function excel(){

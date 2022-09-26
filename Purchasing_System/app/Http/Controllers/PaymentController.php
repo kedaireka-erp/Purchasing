@@ -45,7 +45,7 @@ class PaymentController extends Controller
         $model->name = $request->name;
         $model->save();
 
-        return \redirect('payment');
+        return \redirect('payment')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -70,7 +70,12 @@ class PaymentController extends Controller
         $model = payment::find($id);
         return \view('Payment.edit', \compact('model'));
     }
-
+ 
+    public function view($id)
+    {
+        $model = payment::find($id);
+        return \view('Payment.view', \compact('model'));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -84,7 +89,7 @@ class PaymentController extends Controller
         $model->name = $request->name;
         $model->save();
 
-        return \redirect('payment');
+        return \redirect('payment')->with('teredit', 'Data berhasil diedit');
     }
 
     /**
@@ -98,7 +103,7 @@ class PaymentController extends Controller
         $model = payment::find($id);
         $model->delete();
 
-        return \redirect('payment');
+        return \redirect('payment')->with('terhapus','Berhasil Menghapus Data');
     }
 
     public function excel(){

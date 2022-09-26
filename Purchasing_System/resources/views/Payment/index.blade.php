@@ -48,14 +48,18 @@
     <div class="card">
         <div id="chead">
             <div class="row">
-                <div class="col-9">
+                <div class="col-8">
                     <div class="card-header">
                         <h4 class="card-title">Data Master Payment</h4>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-lg-2 col-sm-3">
+                    <a class="btn btn-primary" href="/payment/download" role="button" id="excel"> <i
+                            class="fa fa-file-excel-o"></i> Excel </a>
+                </div>
+                <div class="col-lg-2 col-sm-3">
                     <div id="button_add">
-                        <a href="{{ route('payment.create') }}" class="btn btn-success" id="add"> +Add Data
+                        <a onclick="payment_create()" class="btn btn-success" id="add"> +Add Data
                         </a>
                     </div>
                 </div>
@@ -64,70 +68,118 @@
             </div>
             <hr>
         </div>
-
-
+        <x-alert></x-alert>
         <div class="card-body">
             <div class="table-responsive">
                 <table id="example3" class="display" style="width:100%">
                     <thead>
                         <tr align="center">
-                            {{-- <td align="center">
-                                <div class="form-check custom-checkbox ms-2">
-                                    <input type="checkbox" class="form-check-input" id="checkAll" required="">
-                                    <label class="form-check-label" for="checkAll"></label>
-                                </div>
-                            </td> --}}
-                            <td>No.</td>
-                            <td>Payment</td>
-                            <td colspan="1"class="text-center">Action</td>
+                            <td width="10%"> No.</td>
+                            <td width="25%"> Payment </td>
+                            <td width="25%"> Tanggal Pembuatan </td>
+                            <td width="5%"></td>
                         </tr>
                     </thead>
                     <tbody>
-                        @if (count($payments) == 0)
-                            <tr>
-                                <td colspan="6" align="center" style="color: gray; background-color: white">
-                                    <b><i> empty record </i></b>
-                                </td>
-                            </tr>
-                        @endif
                         @foreach ($payments as $key => $value )
-                            <tr>
+                            <tr align="center">
                                 <td class="content-control">{{ $key+$payments->firstitem() }}</td>
                                 <td class="content-control">{{ $value->name }}</td>
-                                <td>
-                                    <a class="btn btn-info" href="{{ route('payment.edit', $value->id) }}">Edit</a>
+                                <td class="content-control">
+                                    {{ \Carbon\Carbon::parse($value->created_at)->format('d F Y') }}
                                 </td>
-                                <td>
-                                    <form action="{{ route('payment.destroy', $value->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
+                                <td class="py-2 text-end">
+                                    <div class="dropdown text-sans-serif"><button
+                                            class="btn btn-primary tp-btn-light sharp" type="button"
+                                            id="order-dropdown-1" data-bs-toggle="dropdown" data-boundary="viewport"
+                                            aria-haspopup="true" aria-expanded="false"><span><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="18px"
+                                                    height="18px" viewbox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none"
+                                                        fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24"
+                                                            height="24">
+                                                        </rect>
+                                                        <circle fill="#000000" cx="5" cy="12"
+                                                            r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="12" cy="12"
+                                                            r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="19" cy="12"
+                                                            r="2">
+                                                        </circle>
+                                                    </g>
+                                                </svg></span></button>
+                                        <div class="dropdown-menu dropdown-menu-end border py-0"
+                                            aria-labelledby="order-dropdown-1">
+                                            <div class="py-2">
+                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalPaymentCenter" class="dropdown-item"
+                                                    onClick="payment_view({{ $value->id }})">Detail</a><a
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModalPaymentCenter" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModalPaymentCenter"
+                                                    onClick="payment_edit({{ $value->id }})">Edit</a>
+                                                <form action="{{ route('payment.destroy', $value->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="dropdown-item text-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
-                    <a class="btn btn-primary" href="/payment/download" role="button">Download Data</a>
+
                 </table>
             </div>
         </div>
 
+       
 
-        <!-- Required vendors -->
+        <div class="modal fade" id="exampleModalPaymentCenter">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" align="center" id="PaymentModalLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="payment_page" class="pd-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
-        <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
-        <!-- Apex Chart -->
-        <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}"></script>
+                <script>
+                    function payment_create() {
+                        $.get("{{ route('payment.create') }}", {}, function(data, status) {
+                            $("#PaymentModalLabel").html('Add Payment');
+                            $("#payment_page").html(data);
+                            $("#exampleModalPaymentCenter").modal('show');
+                        })
+                    }
+                
+                    function payment_edit(id) {
+                        $.get("{{ url('payment/edit') }}/" + id, {}, function(data, status) {
+                            $("#PaymentModalLabel").html('Edit Payment');
+                            $("#payment_page").html(data);
+                            $("#exampleModalPaymentCenter").modal('show');
+                        })
+                    }
+                
+                    function payment_view(id) {
+                        $.get("{{ url('payment/view') }}/" + id, {}, function(data, status) {
+                            $("#PaymentModalLabel").html('View Payment');
+                            $("#payment_page").html(data);
+                            $("#exampleModalPaymentCenter").modal('show');
+                        })
+                    }
+                </script>
 
-        <!-- Datatable -->
-        <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
-
-        <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
-
-        <script src="{{ asset('assets/js/custom.min.js') }}"></script>
-        <script src="{{ asset('assets/js/dlabnav-init.js') }}"></script>
-        {{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
-        {{-- <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script> --}}
 
     @endsection

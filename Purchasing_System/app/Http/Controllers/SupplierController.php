@@ -45,8 +45,9 @@ class SupplierController extends Controller
         $supplier->vendor = $request->vendor;
         $supplier->save();
 
-        return \redirect('supplier');
+        return \redirect('supplier')->with('success', 'Data berhasil ditambahkan');
     }
+    
 
     /**
      * Display the specified resource.
@@ -71,6 +72,11 @@ class SupplierController extends Controller
         return \view('Supplier.edit', \compact('supplier'));
     }
 
+    public function view($id)
+    {
+        $supplier = Supplier::find($id);
+        return \view('Supplier.view', \compact('supplier'));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -84,7 +90,7 @@ class SupplierController extends Controller
         $supplier->vendor = $request->vendor;
         $supplier->save();
 
-        return \redirect('supplier');
+        return \redirect('supplier')->with('teredit', 'Data berhasil diedit');
 
     }
 
@@ -99,7 +105,7 @@ class SupplierController extends Controller
         $supplier = Supplier::find($id);
         $supplier->delete();
 
-        return \redirect('supplier');
+        return \redirect('supplier') ->with('terhapus','Berhasil Menghapus Data');
     }
 
     public function excel(){

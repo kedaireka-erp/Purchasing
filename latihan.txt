@@ -655,3 +655,141 @@
     -->
   </body>
 </html>
+
+
+<div class="card-body">
+            <div class="table-responsive">
+                <table id="example3" class="display" style="width:100%">
+                    <thead>
+                        <tr align="center">
+
+                            <td>No.</td>
+                            <td>Vendor</td>
+                            <td colspan="2">Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (count($supplier) == 0)
+                            <tr>
+                                <td colspan="6" align="center" style="color: gray; background-color: white">
+                                    <b><i> empty record </i></b>
+                                </td>
+                            </tr>
+                        @endif
+                        @foreach ($supplier as $value)
+                            <tr>
+                                <td class="content-control">{{ $loop->iteration }}</td>
+                                <td class="content-control">{{ $value->vendor }}</td>
+                                <td>
+                                    <a class="btn btn-info" href="{{ route('supplier.edit', $value->id) }}">Edit</a>
+                                </td>
+                                <td>
+                                    <form action="{{ route('supplier.destroy', $value->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+        
+                </table>
+            </div>
+        </div>
+
+
+
+ <div class="card-body">
+            <div class="table-responsive">
+                <table id="example3" class="display" style="width:100%">
+                    <thead>
+                        <tr align="center">
+                            {{-- <td align="center">
+                                <div class="form-check custom-checkbox ms-2">
+                                    <input type="checkbox" class="form-check-input" id="checkAll" required="">
+                                    <label class="form-check-label" for="checkAll"></label>
+                                </div>
+                            </td> --}}
+                            <td>No.</td>
+                            <td>Payment</td>
+                            <td colspan="1"class="text-center">Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (count($payments) == 0)
+                            <tr>
+                                <td colspan="6" align="center" style="color: gray; background-color: white">
+                                    <b><i> empty record </i></b>
+                                </td>
+                            </tr>
+                        @endif
+                        @foreach ($payments as $key => $value )
+                            <tr>
+                                <td class="content-control">{{ $key+$payments->firstitem() }}</td>
+                                <td class="content-control">{{ $value->name }}</td>
+                                <td>
+                                    <a class="btn btn-info" href="{{ route('payment.edit', $value->id) }}">Edit</a>
+                                </td>
+                                <td>
+                                    <form action="{{ route('payment.destroy', $value->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <a class="btn btn-primary" href="/payment/download" role="button">Download Data</a>
+                </table>
+            </div>
+        </div>
+
+
+
+<div class="card-body">
+            <div class="table-responsive">
+                <table id="example3" class="display" style="width:100%">
+                    <thead>
+                        <tr align="center">
+                            {{-- <td align="center">
+                                <div class="form-check custom-checkbox ms-2">
+                                    <input type="checkbox" class="form-check-input" id="checkAll" required="">
+                                    <label class="form-check-label" for="checkAll"></label>
+                                </div>
+                            </td> --}}
+                            <td>No.</td>
+                            <td>Shipping Time</td>
+                            <td colspan="2">Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (count($timeshipping) == 0)
+                            <tr>
+                                <td colspan="6" align="center" style="color: gray; background-color: white">
+                                    <b><i> empty record </i></b>
+                                </td>
+                            </tr>
+                        @endif
+                        @foreach ($timeshipping as $value)
+                            <tr>
+                                <td class="content-control">{{ $loop->iteration }}</td>
+                                <td class="content-control">{{ $value->name }}</td>
+                                <td>
+                                    <a class="btn btn-info" href="{{ route('timeshipping.edit', $value->id) }}">Edit</a>
+                                </td>
+                                <td>
+                                    <form action="{{ route('timeshipping.destroy', $value->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    <a class="btn btn-primary" href="/timeshipping/download" role="button">Download Data</a>
+                </table>
+            </div>
+        </div>
