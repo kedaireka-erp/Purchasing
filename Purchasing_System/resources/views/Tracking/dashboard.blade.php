@@ -75,140 +75,47 @@
     
     <div class="card-body">
         <div class="table-responsive">
-            <table id="example3" class="display" style="width:100%">
+           <table id="example3" class="display" style="width:100%">
                 <thead>
                     <tr align="right">
+                        {{-- <td align="center">
+                                <div class="form-check custom-checkbox ms-2">
+                                    <input type="checkbox" class="form-check-input" id="checkAll" required="">
+                                    <label class="form-check-label" for="checkAll"></label>
+                                </div>
+                            </td> --}}
+                            <td> Pilih </td>
                         <td align="left">Nomor PR</td>
                         <td>Deadline Date</td>
                         <td>Nama Barang</td>
                         <td>Quantity</td>
                         <td>Unit</td>
-                        <td>Outstanding</td>
-                        <td>Sudah Datang</td>
-                        <td>Status</td>
-                        <td align="center">Action</td>
+                        <td>Requester</td>
+                        <td>Divisi</td>
                     </tr>
                 </thead>
                 <tbody>
-                    @if (count($purchase_requests) == 0)
-                        <tr>
-                            <td colspan="8" align="center" style="color: gray; background-color: white"> <i>Data
-                                    kosong</i> </td>
-                        </tr>
-                    @endif
-
-                    @foreach ($purchase_requests as $no => $item)
+                   
+                    @foreach ($items as $no => $item)
                         <tr align="right">
-                            {{-- <td align="center">
-                                <div class="form-check custom-checkbox ms-2">
-                                    <input type="checkbox" class="form-check-input" id="customCheckBox2" required="">
-                                    <label class="form-check-label" for="customCheckBox2"></label>
-                                </div>
-                            </td> --}}
+                            <td align="center">
+                                
+                                    <input type="checkbox" name="ids[{{ $item->id }}]" value="{{ $item->id }}" class="form-check-input" id="customCheckBox2">
+                                
+                            </td>
                             <td class="content-control" align="left">{{ $item->no_pr }}</td>
-                            <td class="content-control">
-                                {{ \Carbon\Carbon::parse($item->deadline_date)->format('d F Y') }}</td>
-                                <td>
-                                    @foreach ($item->item as $no => $it)
-                                        <ul>{{ $it->master_item->item_name }}</ul>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach ($item->item as $no => $it)
-                                        <ul>{{ $it->stok }}</ul>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach ($item->item as $no => $it)
-                                        <ul>{{ $it->satuan->unit }}</ul>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach ($item->item as $no => $it)
-                                        <ul>{{ $it->outstanding }}</ul>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    @foreach ($item->item as $no => $it)
-                                        <ul>{{ $it->sudah_datang }}</ul>
-                                    @endforeach
-                                </td>
-                                @if ($item->status == 'outstanding')
-                                    <td> <button class="pending btn btn-warning"> {{ $item->status }}
-                                        </button></td>
-                                @elseif ($item->status == 'closed')
-                                    <td> <button class="approve btn btn-warning"> {{ $item->status }}
-                                        </button></td>
-                                @endif
-                                <td>
-                                    <form method="GET" action="/" style="margin-right:10px">
-                                        @csrf
-                                        <input type="hidden" value="EDIT" name="_method">
-                                        <button type="submit" class="btn btn-warning" id="edit"> <i
-                                                class="fa fa-edit"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
+                            <td class="content-control" align="left">{{ $item->deadline_date }}</td>
+                            <td class="content-control" align="left">{{ $item->item_name }}</td>
+                            <td class="content-control" align="left">{{ $item->stok }}</td>
+                            <td class="content-control" align="left">{{ $item->name }}</td>
+                            <td class="content-control" align="left">{{ $item->requester }}</td>
+                            <td class="content-control" align="left">{{ $item->divisi }}</td>
+                            {{-- <td class="content-control" align="left">{{ $item->purchase->get(0)->deadline_date }}</td> --}}
+                            {{-- <td class="content-control" align="left">{{ $item->id_master_item }}</td>
+                            <td class="content-control" align="left">{{ $item->stok }}</td>
+                            <td class="content-control" align="left">{{ $item->outstanding }}</td> --}}
+                        </tr>
                         @endforeach
-                            {{-- <td class="content-control">{{ $purchase_request->requester }}</td>
-                            <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
-                            <td class="content-control">{{ $purchase_request->type }}</td>
-                            @if ($purchase_request->approval_status == 'pending')
-                                <td> <a class="pending content-control">
-                                        {{ $purchase_request->approval_status }}
-                                    </a></td>
-                            @elseif ($purchase_request->approval_status == 'approve')
-                                <td> <button class="approve btn btn-warning">
-                                        {{ $purchase_request->approval_status }}
-                                    </button></td>
-                            @endif
-
-
-                            <td class="d-flex justify-content-center">
-
-                                <form method="GET"
-                                    action="{{ route('purchase_request.view', $purchase_request->id) }}"
-                                    style="margin-right:10px">
-                                    @csrf
-                                    <input type="hidden" value="VIEW" name="_method">
-                                    <button type="submit" class="btn btn-warning" id="view"> <i
-                                            class="fa fa-eye"></i>
-                                    </button>
-                                </form>
-                                {{-- <form method="GET" action="{{ route('purchase_request.plus', $purchase_request->id) }}"
-                                style="margin-right:10px">
-                                @csrf
-                                <input type="hidden" value="PLUS" name="_method">
-                                <button type="submit" class="btn btn-warning" id="plus"> <i
-                                        class="fa fa-plus"></i>
-                                </button>
-                            </form> --}}
-
-                                {{-- <form method="GET"
-                                    action="{{ route('purchase_request.edit', $purchase_request->id) }}"
-                                    style="margin-right:10px">
-                                    @csrf
-                                    <input type="hidden" value="EDIT" name="_method">
-                                    <button type="submit" class="btn btn-warning" id="edit"> <i
-                                            class="fa fa-edit"></i>
-                                    </button>
-                                </form> --}}
-
-
-
-                                {{-- <form method="POST" onsubmit="return confirm('Move data to trash?')"
-                                action="{{ route('purchase_request.destroy', $purchase_request->id) }}">
-                                @csrf
-                                <input type="hidden" value="DELETE" name="_method">
-                                <button type="submit" class="btn btn-danger" id="delete"> <i
-                                        class="bi bi-trash"></i>
-                                </button>
-                            </form> --}}
-                            {{-- </td>
-
-                        </tr> --}}
-                    {{-- @endforeach  --}}
                 </tbody>
             </table>
         </div>

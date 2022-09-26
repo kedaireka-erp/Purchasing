@@ -94,4 +94,29 @@ class OrderController extends Controller
 
         return redirect('/order');
     }
+
+     public function item(){
+        $purchase_requests = PurchaseRequest::with('Prefixe')->get();
+        $time = Timeshipping::get();
+        $Prefixe= Prefix::get();
+        $payment = Payment::get();
+        $items = DB::table('item_requests')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('orders', 'orders.id', '=', 'order_id.id_request')
+            ->join('items', 'items.id', '=', 'item_requests.id_item')
+            ->join('satuans', 'satuans.id', '=', 'items.id_satuan')
+            ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+            ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
+            ->select('item_requests.id' ,'orders.no_po','purchase_requests.no_pr', 'purchase_requests.deadline_date','items.stok','purchase_requests.requester','prefixes.divisi','satuans.name','master_items.item_name')
+            ->get();
+            
+        
+        
+        
+            $purchase_requests = PurchaseRequest::get();
+            $Prefixe = Prefix::get();
+            
+
+        return view('Tracking.dashboard', compact('orders','items','time','payment','purchase_requests',"Prefixe"));
+    }
 }

@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             MasterShip::class,
             MasterPrefix::class,
             MasterSatuan::class,
-            MasterItem::class
+            MasterItem::class,
+            Po_Seeder::class
         ]);
     }
 }
