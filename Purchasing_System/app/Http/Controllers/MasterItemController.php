@@ -46,10 +46,14 @@ class MasterItemController extends Controller
         // $items = Master_Item::find($request->id_master_item);
 
         $items = DB::table('master_items')->where('id',$id)->get();
-        $items->update([
-            'item_name'=> $request -> item_name,
-            'stock'=> $request -> stock,
-        ]);
+
+        $items = New Master_Item;
+        $items->item_name = $request->item_name;
+        $items->stock =$request->stock;
+        // $items->update([
+        //     'item_name'=> $request -> item_name,
+        //     'stock'=> $request -> stock,
+        // ]);
         // if($request->item_name == $items->item_name)
         // {
         //     $validated = $request->validate([

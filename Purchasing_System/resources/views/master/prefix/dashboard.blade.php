@@ -79,10 +79,10 @@
                             </td> --}}
                         <tr style="text-align: center">
                             <th width="10%">No</th>
-                            <th width="25%">Divisi</th>
+                            <th width="20%">Divisi</th>
                             <th width="20%">Nama Prefix</th>
-                            <th width="25%">Tanggal Pembuatan</th>
-                            <th width="20%"></th>
+                            <th width="20%">Tanggal Pembuatan</th>
+                            <th width="5%"></th>
                         </tr>
                         </tr>
                     </thead>

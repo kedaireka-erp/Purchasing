@@ -81,7 +81,7 @@
                             <td width="15%">Location Name</td>
                             <td width="45%">Address</td>
                             <td width="20%">Tanggal Pembuatan</td>
-                            <td width="15%">Action</td>
+                            <td width="5%"> </td>
                         </tr>
                         </tr>
                     </thead>

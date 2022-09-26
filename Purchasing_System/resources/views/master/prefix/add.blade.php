@@ -1,4 +1,4 @@
-@extends('layout.sidebar')
+{{-- @extends('layout.sidebar')
 
 @section('judul-laman', 'Tambah Master Prefix')
 
@@ -20,7 +20,7 @@
                         <hr>
                     </div>
                 </div>
-
+ --}}
 
                 <div id="form" style="margin-top: 10px">
                     <form action="{{ route('prefix.prefixstore') }}" method="post">
@@ -51,8 +51,8 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            {{-- </div>
 
         </div>
     </section>
-@endsection
+@endsection --}}

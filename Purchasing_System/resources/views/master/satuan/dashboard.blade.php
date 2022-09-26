@@ -81,7 +81,7 @@
                             <td width="30%">Nama Barang</td>
                             <td width="20%">Stok</td>
                             <td width="20%">Tanggal Pembuatan</th>
-                            <td width="20%"></td>
+                            <td width="5%"></td>
                         </tr>
                     </thead>
                     <tbody>

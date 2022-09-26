@@ -132,10 +132,10 @@
                                             <div class="py-2">
                                                 <a data-bs-toggle="modal" data-bs-target="#exampleModalItemCenter" class="dropdown-item"
                                                     onClick="item_view({{ $item->id }})">Detail</a>
-                                                    {{-- <a
+                                                    <a
                                                     data-bs-toggle="modal" data-bs-target="#exampleModalItemCenter" class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModalItemCenter"
-                                                    onClick="item_edit({{ $item->id }})">Edit</a> --}}
+                                                    onClick="item_edit({{ $item->id }})">Edit</a>
                                                 <form action="{{ route('master_item.midelete', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
