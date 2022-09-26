@@ -22,67 +22,73 @@ class HomeController extends Controller
     }
     public function approval()
     {
-        $purchase_requests=PurchaseRequest::get();
-        return view('Approval.dashboard',compact("purchase_requests"));
+        $purchase_requests = PurchaseRequest::get();
+        return view('Approval.dashboard', compact("purchase_requests"));
     }
 
     public function accept_page()
     {
-        $purchase_requests=PurchaseRequest::where('approval_status','approve')->get();
-        return view('Approval.diterima',compact("purchase_requests"));
+        $purchase_requests = PurchaseRequest::where('approval_status', 'approve')->get();
+        return view('Approval.diterima', compact("purchase_requests"));
     }
 
-    public function view($id){
+    public function view($id)
+    {
         $purchase_requests = PurchaseRequest::find($id);
-        $item = Item::with('master_item','satuan')->get();
+        $item = Item::with('master_item', 'satuan')->get();
         $Location = location::get();
         $Ship = ships::get();
         $Prefixe = Prefix::get();
 
-        return view('Approval.view', compact('purchase_requests', 'Location', 'Ship', 'Prefixe','item'));
+        return view('Approval.view', compact('purchase_requests', 'Location', 'Ship', 'Prefixe', 'item'));
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $purchase_requests = PurchaseRequest::findOrFail($id);
-        $Location=location::get();
-        $Ship=ships::get();
-        $Prefixe=Prefix::get();
+        $Location = location::get();
+        $Ship = ships::get();
+        $Prefixe = Prefix::get();
 
-        return view('Approval.edit', compact('purchase_requests','Location', 'Ship', 'Prefixe'));
+        return view('Approval.edit', compact('purchase_requests', 'Location', 'Ship', 'Prefixe'));
     }
 
-    public function accept($id){
+    public function accept($id)
+    {
         $purchase_requests = PurchaseRequest::findOrFail($id);
-        $Location=location::get();
-        $Ship=ships::get();
-        $Prefixe=Prefix::get();
+        $Location = location::get();
+        $Ship = ships::get();
+        $Prefixe = Prefix::get();
 
-        return view('Approval.accept', compact('purchase_requests','Location', 'Ship', 'Prefixe'));
+        return view('Approval.accept', compact('purchase_requests', 'Location', 'Ship', 'Prefixe'));
     }
 
-    public function update(request $request, $id){
+    public function update(request $request, $id)
+    {
         //perlu diubah
 
-    DB::table('purchase_requests')-> where('id',$id)->update([
-		'approval_status' => $request->approval_status,
-		
-	]);
+        DB::table('purchase_requests')->where('id', $id)->update([
+            'tanggal_diterima' => $request->tanggal_diterima,
+            'approval_status' => $request->approval_status
 
-    $purchase_requests=PurchaseRequest::paginate(5);
+        ]);
+
+        $purchase_requests = PurchaseRequest::paginate(5);
         return redirect('approval');
-}
+    }
 
-public function update_accept(request $request, $id){
-    DB::table('purchase_requests')-> where('id',$id)->update([
-		'accept_status' => $request->accept_status,
-		
-	]);
-    return redirect('approval/accept');
-}
-public function delete($id)
-{
-	DB::table('purchase_requests')->where('id',$id)->delete();
-		
-	return redirect('approval')->with('terhapus','Berhasil purchasing request');
-}
+    public function update_accept(request $request, $id)
+    {
+        DB::table('purchase_requests')->where('id', $id)->update([
+            'accept_status' => $request->accept_status,
+
+        ]);
+        return redirect('approval/accept');
+    }
+    public function delete($id)
+    {
+        DB::table('purchase_requests')->where('id', $id)->delete();
+
+        return redirect('approval')->with('terhapus', 'Berhasil purchasing request');
+    }
 }

@@ -16,7 +16,7 @@
 @section('wrap_title')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Purchase Requet</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Purchase Request</a></li>
             <li class="breadcrumb-item"><a href="javascript:void(0)">Request Detail</a></li>
         </ol>
     </div>
@@ -149,8 +149,8 @@
 
 
     <!--**********************************
-                                                        Content body start
-                                                    ***********************************-->
+                                                            Content body start
+                                                        ***********************************-->
 
     <div class="row">
         <div class="col-md-5">
@@ -298,52 +298,56 @@
                                     <div class="my-post-content pt-3">
                                         <div class="post-input">
                                             <table style="margin-top: -150px">
-                                                <tr class="tr" >
+                                                <tr class="tr">
                                                     <td width="220px">Tanggal Pengajuan</td>
-                                                    <td>:   {{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }} </td>
+                                                    <td>:
+                                                        {{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}
+                                                    </td>
                                                 </tr>
                                                 <br>
-                                                <tr class="tr" >
+                                                <tr class="tr">
                                                     <td width="200px">Tanggal Deadline</td>
-                                                    <td>:  {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }} </td>
+                                                    <td>:
+                                                        {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}
+                                                    </td>
                                                 </tr>
                                                 <br>
-                                                <tr class="tr" >
+                                                <tr class="tr">
                                                     <td width="200px">Requester</td>
-                                                    <td>:  {{$purchase_requests->requester }}</td>
+                                                    <td>: {{ $purchase_requests->requester }}</td>
                                                 </tr>
                                                 <br>
-                                                <tr class="tr" >
+                                                <tr class="tr">
                                                     <td width="200px">Devisi</td>
-                                                    <td>:  {{$purchase_requests->Prefixe->divisi}}</td>
+                                                    <td>: {{ $purchase_requests->Prefixe->divisi }}</td>
                                                 </tr>
                                                 <br>
-                                                <tr class="tr" >
+                                                <tr class="tr">
                                                     <td width="200px">Project/Customer</td>
-                                                    <td>: {{$purchase_requests->project }} </td>
+                                                    <td>: {{ $purchase_requests->project }} </td>
                                                 </tr>
                                                 <br>
-                                                <tr class="tr" >
+                                                <tr class="tr">
                                                     <td width="200px">Kebutuhan/Pengiriman</td>
-                                                    <td>: {{$purchase_requests->requester }} </td>
+                                                    <td>: {{ $purchase_requests->requester }} </td>
                                                 </tr>
                                                 <br>
-                                              
-                                                <tr class="tr" >
+
+                                                <tr class="tr">
                                                     <td width="200px">Alamat</td>
-                                                    <td>: {{ $purchase_requests->location->location_name }}</</td>
+                                                    <td>: {{ $purchase_requests->location->location_name }}</< /td>
                                                 </tr>
                                                 <br>
-                                                <tr class="tr" >
+                                                <tr class="tr">
                                                     <td width="200px">Note</td>
                                                     <td>: {{ $purchase_requests->note }}</td>
                                                 </tr>
                                                 <br>
-                                                <tr class="tr" >
+                                                <tr class="tr">
                                                     <td width="200px">Approval PR</td>
                                                     <td>: {{ $purchase_requests->approval_status }}</td>
                                                 </tr>
-                                                
+
                                             </table>
                                         </div>
                                     </div>
@@ -443,7 +447,7 @@
 
     </div>
     <!--**********************************
-                                                        Content body end
-                                                    ***********************************-->
+                                                            Content body end
+                                                        ***********************************-->
 
 @endsection
