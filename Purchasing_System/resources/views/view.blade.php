@@ -149,31 +149,33 @@
 
 
     <!--**********************************
-                Content body start
-            ***********************************-->
-   
-        <div class="row">
-            <div class="col-md-5">
-                <div class="card" style="height: 450px">
-                    <div class="card-header border-0 pb-0">
-                        <h4 class="card-title"> Approval Tracking </h4>
-                    </div>
-                    <div class="card-body">
-                        <div id="DZ_W_TimeLine" class="widget-timeline dlab-scroll height370">
-                            <ul class="timeline">
-                                @if($purchase_requests->approval_status == 'pending' && $purchase_requests->accept_status == 'pending')
+                                                        Content body start
+                                                    ***********************************-->
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card" style="height: 450px">
+                <div class="card-header border-0 pb-0">
+                    <h4 class="card-title"> Approval Tracking </h4>
+                </div>
+                <div class="card-body">
+                    <div id="DZ_W_TimeLine" class="widget-timeline dlab-scroll height370">
+                        <ul class="timeline">
+                            @if ($purchase_requests->approval_status == 'pending' && $purchase_requests->accept_status == 'pending')
                                 <li>
                                     <div class="timeline-badge primary"></div>
                                     <a class="timeline-panel text-muted" href="#">
                                         <span> Pending </span>
-                                        <h6 class="mb-0"> Purchase Request belum diterima oleh tim Purchasing </strong>.</h6>
+                                        <h6 class="mb-0"> Purchase Request belum diterima oleh tim Purchasing </strong>.
+                                        </h6>
                                     </a>
                                 </li>
                                 <li>
                                     <div class="timeline-badge primary"></div>
                                     <a class="timeline-panel text-muted" href="#">
                                         <span> Pending </span>
-                                        <h6 class="mb-0"> Purchase Request belum mendapat persetujuan dari manager divisi </h6>
+                                        <h6 class="mb-0"> Purchase Request belum mendapat persetujuan dari manager divisi
+                                        </h6>
                                     </a>
                                 </li>
                                 <li>
@@ -182,21 +184,24 @@
                                     <a class="timeline-panel text-muted" href="#">
                                         <span>{{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</span>
                                         <h6 class="mb-0"> Purchase Request telah diajukan</h6>
-                                        <p align="justify"> Puchase Request masuk dalam tahap pending, segera hubungi menager divisi untuk melakukan pengecekan dan approval</p>
+                                        <p align="justify"> Puchase Request masuk dalam tahap pending, segera hubungi
+                                            menager divisi untuk melakukan pengecekan dan approval</p>
                                     </a>
                                 </li>
-                                @elseif($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'pending')
+                            @elseif($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'pending')
                                 <li>
                                     <div class="timeline-badge primary"></div>
                                     <a class="timeline-panel text-muted" href="#">
                                         <span> Pending </span>
-                                        <h6 class="mb-0"> Purchase Request belum diterima oleh tim Purchasing </strong>.</h6>
+                                        <h6 class="mb-0"> Purchase Request belum diterima oleh tim Purchasing </strong>.
+                                        </h6>
                                     </a>
                                 </li>
                                 <li>
                                     <div class="timeline-badge warning"></div>
                                     <a class="timeline-panel text-muted" href="#">
-                                        <h6 class="mb-0"> Purchase Request telah mendapat persetujuan dari manager divisi </h6>
+                                        <h6 class="mb-0"> Purchase Request telah mendapat persetujuan dari manager divisi
+                                        </h6>
                                     </a>
                                 </li>
                                 <li>
@@ -205,21 +210,25 @@
                                     <a class="timeline-panel text-muted" href="#">
                                         <span>{{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</span>
                                         <h6 class="mb-0"> Purchase Request telah diajukan</h6>
-                                        <p align="justify"> Pengajuan Puchase Request telah disetujui, tetapi belum diterima oleh tim Purchasing</p>
+                                        <p align="justify"> Pengajuan Puchase Request telah disetujui, tetapi belum diterima
+                                            oleh tim Purchasing</p>
                                     </a>
                                 </li>
-                                @elseif($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'accept')
+                            @elseif($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'accept')
                                 <li>
                                     <div class="timeline-badge success"></div>
                                     <a class="timeline-panel text-muted" href="#">
-                                        <span> {{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }} </span>
-                                        <h6 class="mb-0"> Purchase Request telah diterima oleh tim Purchasing </strong>.</h6>
+                                        <span> {{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }}
+                                        </span>
+                                        <h6 class="mb-0"> Purchase Request telah diterima oleh tim Purchasing </strong>.
+                                        </h6>
                                     </a>
                                 </li>
                                 <li>
                                     <div class="timeline-badge success"></div>
                                     <a class="timeline-panel text-muted" href="#">
-                                        <h6 class="mb-0"> Purchase Request telah mendapat persetujuan dari manager divisi </h6>
+                                        <h6 class="mb-0"> Purchase Request telah mendapat persetujuan dari manager divisi
+                                        </h6>
                                     </a>
                                 </li>
                                 <li>
@@ -231,8 +240,8 @@
                                         <p align="justify"> Pengajuan Puchase Request telah disetujui semua pihak</p>
                                     </a>
                                 </li>
-                                @endif
-                                {{-- <li>
+                            @endif
+                            {{-- <li>
                                     <div class="timeline-badge danger">
                                     </div>
                                     <a class="timeline-panel text-muted" href="#">
@@ -263,64 +272,131 @@
                                         <span>20 minutes ago</span>
                                         <h6 class="mb-0">Mashable, a news website and blog, goes live.</h6>
                                     </a>
-                                </li>  --}}
-                            </ul>
-                        </div>
+                                </li> --}}
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-md-7">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="profile-tab">
-                            <div class="custom-tab-1">
-                                <ul class="nav nav-tabs">
-                                    <li class="nav-item"><a href="#my-posts" data-bs-toggle="tab"
-                                            class="nav-link active show">Detail Request</a>
-                                    </li>
-                                    <li class="nav-item"><a href="#about-me" data-bs-toggle="tab"
-                                            class="nav-link"> Item </a>
-                                    </li>
-                                    {{-- <li class="nav-item"><a href="#profile-settings" data-bs-toggle="tab"
+        </div>
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-body">
+                    <div class="profile-tab">
+                        <div class="custom-tab-1">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item"><a href="#my-posts" data-bs-toggle="tab"
+                                        class="nav-link active show">Detail Request</a>
+                                </li>
+                                <li class="nav-item"><a href="#about-me" data-bs-toggle="tab" class="nav-link"> Item </a>
+                                </li>
+                                {{-- <li class="nav-item"><a href="#profile-settings" data-bs-toggle="tab"
                                             class="nav-link"> Update Form </a>
                                     </li> --}}
-                                </ul>
-                                <div class="tab-content">
-                                    <div id="my-posts" class="tab-pane fade active show">
-                                        <div class="my-post-content pt-3">
-                                            <div class="post-input">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="about-me" class="tab-pane fade">
-                                        <div class="profile-about-me">
+                            </ul>
+                            <div class="tab-content">
+                                <div id="my-posts" class="tab-pane fade active show">
+                                    <div class="my-post-content pt-3">
+                                        <div class="post-input">
 
                                         </div>
                                     </div>
-                                    {{-- <div id="profile-settings" class="tab-pane fade">
+                                </div>
+                                <div id="about-me" class="tab-pane fade">
+                                    <div class="profile-about-me">
+
+                                        {{-- ini tabel item di tracking --}}
+                                        @if ($purchase_requests->type == 'othergood')
+                                            <table class="table table-striped" id="body">
+                                                <thead>
+                                                    <tr style="text-align: center">
+                                                        <td scope="col">No.</td>
+                                                        <td scope="col">Description of Goods</td>
+                                                        <td scope="col">Quantity</td>
+                                                        <td scope="col">Unit</td>
+                                                    </tr>
+                                                </thead>
+
+                                                @php
+                                                    $nomor = 1;
+                                                @endphp
+
+
+                                                <tbody>
+
+                                                    @foreach ($purchase_requests->item as $yes)
+                                                        <tr style="text-align: center">
+                                                            <td>{{ $nomor++ }}</td>
+                                                            <td>{{ $yes->master_item->item_name }}</td>
+                                                            <td>{{ $yes->stok }}</td>
+                                                            <td>{{ $yes->satuan->unit }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        @elseif ($purchase_requests->type == 'powder')
+                                            <table class="table table-striped" id="body">
+                                                <thead>
+                                                    <tr style="text-align: center">
+                                                        <td scope="col">No.</td>
+                                                        <td scope="col">Suppllier</td>
+                                                        <td scope="col">Grade</td>
+                                                        <td scope="col">Warna</td>
+                                                        <td scope="col">Kode Warna</td>
+                                                        <td scope="col">Finish</td>
+                                                        <td scope="col">Quantity</td>
+                                                        <td scope="col">m2</td>
+
+                                                    </tr>
+                                                </thead>
+                                                @php
+                                                    $nomor = 1;
+                                                @endphp
+
+                                                {{-- @if ($item->id_request == $purchase_requests->id) --}}
+                                                <tbody>
+
+                                                    @foreach ($purchase_requests->powder as $yes)
+                                                        <tr style="text-align: center">
+                                                            <td>{{ $nomor++ }}</td>
+                                                            <td>{{ $yes->supplier->vendor }}</td>
+                                                            <td>{{ $yes->grade->type }}</td>
+                                                            <td>{{ $yes->warna }}</td>
+                                                            <td>{{ $yes->kode_warna }}</td>
+                                                            <td>{{ $yes->finish }}</td>
+                                                            <td>{{ $yes->quantity }}</td>
+                                                            <td>{{ $yes->m2 }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                                {{-- @endif --}}
+                                            </table>
+                                        @endif
+
+                                    </div>
+                                </div>
+                                {{-- <div id="profile-settings" class="tab-pane fade">
                                         <div class="pt-3">
                                             <div class="settings-form">
                                                 
                                         </div>
                                     </div> --}}
-                                </div>
                             </div>
-                            <!-- Modal -->
-                            
                         </div>
+                        <!-- Modal -->
+
                     </div>
                 </div>
             </div>
         </div>
-        
+    </div>
 
 
 
-            
+
+
     </div>
     <!--**********************************
-                Content body end
-            ***********************************-->
+                                                        Content body end
+                                                    ***********************************-->
 
 @endsection
