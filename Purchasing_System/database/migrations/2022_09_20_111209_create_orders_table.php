@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("supplier")->nullable();
             $table->string("nama_supplier")->nullable();
             $table->unsignedBigInteger("id_waktu")->nullable();
+            $table->unsignedBigInteger("id_alamat_kirim")->nullable();
             $table->unsignedBigInteger("id_pembayaran")->nullable();
             $table->string("alamat_penagihan")->nullable();
             $table->string("lain_lain")->nullable();
@@ -30,6 +31,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign("id_waktu")->references("id")->on("timeshippings")->onDelete("restrict")->onUpdate("cascade")->nullable();
+            $table->foreign("id_alamat_kirim")->references("id")->on("locations")->onDelete("restrict")->onUpdate("cascade")->nullable();
             $table->foreign("id_pembayaran")->references("id")->on("payments")->onDelete("restrict")->onUpdate("cascade")->nullable();
         });
     }

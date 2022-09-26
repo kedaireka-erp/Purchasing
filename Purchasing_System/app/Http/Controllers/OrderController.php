@@ -6,9 +6,12 @@ namespace App\Http\Controllers;
 use App\Models\ItemRequest;
 use App\Models\Item;
 use App\Models\Order;
-use App\Models\Location;
+use App\Models\Supplier;
+use App\Models\Grade;
+use App\Models\location;
 use App\Models\ships;
 use App\Models\Prefix;
+use App\Models\Powder;
 use App\Models\PurchaseRequest;
 use App\Models\Timeshipping;
 use App\Models\Payment;
@@ -19,47 +22,47 @@ use Carbon\Carbon;
 class OrderController extends Controller
 {
     public function index(){
-    //     $orders = Order::get();
-    //     $time = Timeshipping::get();
-    //     $payment = Payment::get();
+    
+    
+        $orders = Order::with('location','payment','timeshipping')->get();
 
-    //     $items = Item::with('master_item','satuan')->get();
-
-    //    $purchase_requests = PurchaseRequest::with('Prefixe')->get();
-    $purchase_requests = PurchaseRequest::has('order')->get();
-    $items = Item::with('master_item','satuan')->get();
-
-    $Location=location::get();
-    $Ship=ships::get();
-    $Prefixe=Prefix::get();
-
-
-        return view('PO.dashboard', compact('items','purchase_requests','Location','Ship','Prefixe'));
+        return view('PO.dashboard', compact('orders'));
     }
 
+   
     public function create(){
-        $purchase_requests = PurchaseRequest::with('Prefixe')->get();
+        $purchase_requests = PurchaseRequest::where('accept_status','accept')->get();
         $time = Timeshipping::get();
         $Prefixe= Prefix::get();
+        $location= Location::get();
         $payment = Payment::get();
         $items = DB::table('item_requests')
             ->where('order_id',NULL)
             ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->where('purchase_requests.approval_status','approve')
+            ->where('purchase_requests.accept_status','accept')
             ->join('items', 'items.id', '=', 'item_requests.id_item')
             ->join('satuans', 'satuans.id', '=', 'items.id_satuan')
             ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
             ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
             ->select('item_requests.id' ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','items.stok','purchase_requests.requester','prefixes.divisi','satuans.name','master_items.item_name')
             ->get();
-            
-        
-        
-        
-            $purchase_requests = PurchaseRequest::get();
+
+        $powders = DB::table('item_requests')
+            ->where('order_id',NULL)
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+            ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
+            ->join('grades', 'grades.id', '=', 'powders.grades_id')
+            ->join('suppliers', 'suppliers.id', '=', 'powders.suppliers_id')
+            ->select('item_requests.id' ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.type','suppliers.vendor')
+            ->get();
+
             $Prefixe = Prefix::get();
             
+            
 
-        return view('PO.index', compact('items','time','payment','purchase_requests',"Prefixe"));
+        return view('PO.index', compact('location','powders','items','time','payment','purchase_requests',"Prefixe"));
     }
     
     
@@ -74,6 +77,7 @@ class OrderController extends Controller
         $order->nama_supplier = $request->nama_supplier;
         $order->id_waktu = $request->id_waktu;
         $order->id_pembayaran = $request->id_pembayaran;
+        $order->id_alamat_kirim = $request->id_alamat_kirim;
         $order->alamat_penagihan = $request->alamat_penagihan;
         $order->lain_lain = $request->lain_lain;
         $order->note = $request->note;

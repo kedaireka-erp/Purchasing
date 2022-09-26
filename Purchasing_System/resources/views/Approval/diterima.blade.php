@@ -129,9 +129,10 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
-                                                
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('purchase_request.view', $purchase_request->id) }}">Detail</a>
+
+                                                <a class="dropdown-item"
+                                                    href="{{ route('approval.acceptpr', $purchase_request->id) }}">Ubah
+                                                    Status</a>
 
                                                 <form action="/" method="POST">
                                                     @csrf
@@ -155,7 +156,7 @@
                                                 class="fa fa-eye"></i>
                                         </button>
                                     </form> --}}
-                                    {{-- <form method="GET" action="{{ route('purchase_request.plus', $purchase_request->id) }}"
+                                {{-- <form method="GET" action="{{ route('purchase_request.plus', $purchase_request->id) }}"
                                     style="margin-right:10px">
                                     @csrf
                                     <input type="hidden" value="PLUS" name="_method">
@@ -164,7 +165,7 @@
                                     </button>
                                 </form> --}}
 
-                                    {{-- @if ($purchase_request->accept_status == 'pending')
+                                {{-- @if ($purchase_request->accept_status == 'pending')
                                         <form method="GET"
                                             action="{{ route('approval.acceptpr', $purchase_request->id) }}"
                                             style="margin-right:10px">
@@ -178,7 +179,7 @@
 
 
 
-                                    {{-- <form method="POST" onsubmit="return confirm('Move data to trash?')"
+                                {{-- <form method="POST" onsubmit="return confirm('Move data to trash?')"
                                     action="{{ route('purchase_request.destroy', $purchase_request->id) }}">
                                     @csrf
                                     <input type="hidden" value="DELETE" name="_method">

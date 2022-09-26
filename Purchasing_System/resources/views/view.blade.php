@@ -149,8 +149,8 @@
 
 
     <!--**********************************
-                                                            Content body start
-                                                        ***********************************-->
+                                                                Content body start
+                                                            ***********************************-->
 
     <div class="row">
         <div class="col-md-5">
@@ -179,7 +179,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <div class="timeline-badge warning">
+                                    <div class="timeline-badge danger">
                                     </div>
                                     <a class="timeline-panel text-muted" href="#">
                                         <span>{{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</span>
@@ -447,7 +447,7 @@
 
     </div>
     <!--**********************************
-                                                            Content body end
-                                                        ***********************************-->
+                                                                Content body end
+                                                            ***********************************-->
 
 @endsection

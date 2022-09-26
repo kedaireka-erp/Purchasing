@@ -174,15 +174,15 @@
                         </ul>
                     </li>
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                        <i class="fas fa-chart-line"></i>
+                            <i class="fas fa-chart-line"></i>
 
-                        <span class="nav-text">Tracking</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="/tracking/approval">Approval Tracking</a></li>
-                        <li><a href="/tracking">Request Tracking</a></li>
-                    </ul>
-                </li>
+                            <span class="nav-text">Tracking</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="/tracking/approval">Approval Tracking</a></li>
+                            <li><a href="/tracking">Request Tracking</a></li>
+                        </ul>
+                    </li>
 
             </div>
         </div>

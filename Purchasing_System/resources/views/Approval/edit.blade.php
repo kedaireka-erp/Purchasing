@@ -1,12 +1,12 @@
 @extends('layout.sidebar')
 
-@section('judul-laman', 'View Purchasing Request')
+@section('judul-laman', 'Approval Purchasing Request')
 
 @section('Judul-content')
 
     <div class="d-flex justify-content-between">
         <div class="title-page">
-            View Purchasing Request
+            Approve Purchasing Request
         </div>
         <a href="/purchase_request" type="button" class="btn-close" aria-label="Close"></a>
     </div>
@@ -149,8 +149,8 @@
 
 
     <!--**********************************
-                                                                                                                            Content body start
-                                                                                                                        ***********************************-->
+                                                                                                                                                        Content body start
+                                                                                                                                                    ***********************************-->
 
     <div class="row">
         <div class="col-md-5">
@@ -179,7 +179,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <div class="timeline-badge warning">
+                                    <div class="timeline-badge danger">
                                     </div>
                                     <a class="timeline-panel text-muted" href="#">
                                         <span>{{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</span>
@@ -428,45 +428,39 @@
 
 
                                 <div id="approval" class="tab-pane fade">
-                                    <div class="col-5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70"
-                                            fill="orange" class="bi bi-pause-circle-fill" viewBox="0 0 16 16"
-                                            style="margin-top:30px">
-                                            <path
-                                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z" />
-                                        </svg>
-                                        <form action="{{ route('approval.updateApp', $purchase_requests->id) }}"
-                                            method="post">
 
-                                            @csrf
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label"> Tanggal Penerimaan </label>
-                                                        <input name="tanggal_diterima" class="form-control"
-                                                            type="date">
-                                                    </div>
-                                                    <div class="status" style="margin-top:20px">
-                                                        <label class="form-label"> Ubah Status </label>
-                                                        <select class="form-select"
-                                                            style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
-                                                            id="approval_status" name="approval_status">
-                                                            <option value="{{ $purchase_requests->approval_status }}"
-                                                                selected disabled>
-                                                                {{ $purchase_requests->approval_status }}</option>
-                                                            <option value="pending">pending</option>
-                                                            <option value="approve">approve</option>
-                                                            <option value="ignore">ignore</option>
-                                                        </select>
-                                                    </div>
+                                    <form action="{{ route('approval.updateApp', $purchase_requests->id) }}"
+                                        method="post">
+
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-12" style="margin-top: 30px">
+                                                <div class="mb-3">
+                                                    <label class="form-label"> Tanggal Penerimaan </label>
+                                                    <input name="tanggal_diterima" class="input-rounded form-control wide"
+                                                        type="date">
                                                 </div>
-                                                <div class="col-12">
-                                                    <button style="margin-top:10px" class="btn btn-primary"> Simpan
-                                                    </button>
+                                                <div class="status" style="margin-top:20px">
+                                                    <label class="form-label"> Ubah Status </label>
+                                                    <select class="default-select input-rounded form-control wide mb-3"
+                                                        style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
+                                                        id="approval_status" name="approval_status">
+                                                        <option value="{{ $purchase_requests->approval_status }}" selected
+                                                            disabled>
+                                                            {{ $purchase_requests->approval_status }}</option>
+                                                        <option value="pending">pending</option>
+                                                        <option value="approve">approve</option>
+                                                        <option value="ignore">ignore</option>
+                                                    </select>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
+                                            <div class="col-12">
+                                                <button style="margin-top:10px" class="btn btn-primary"> Simpan
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+
 
                                 </div>
                             </div>
@@ -484,7 +478,7 @@
 
     </div>
     <!--**********************************
-                                                                                                                            Content body end
-                                                                                                                        ***********************************-->
+                                                                                                                                                        Content body end
+                                                                                                                                                    ***********************************-->
 
 @endsection

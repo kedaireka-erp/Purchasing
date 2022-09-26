@@ -25,4 +25,7 @@ class location extends Model
     public function purchase_requests(){
         return $this->hasMany(PurchaseRequest::class, "locations_id", "id");
     }
+    public function order(){
+        return $this->hasMany(Order::class, "id_alamat_kirim", "id");
+    }
 }

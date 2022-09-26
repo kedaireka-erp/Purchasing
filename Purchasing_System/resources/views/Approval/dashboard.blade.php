@@ -131,7 +131,8 @@
                                             <div class="py-2">
 
                                                 <a class="dropdown-item"
-                                                    href="{{ route('approval.edit', $purchase_request->id) }}">Detail</a>
+                                                    href="{{ route('approval.edit', $purchase_request->id) }}">Ubah
+                                                    Status</a>
 
                                                 <form action="/" method="POST">
                                                     @csrf

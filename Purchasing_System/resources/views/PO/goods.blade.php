@@ -15,6 +15,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item active"><a href="javascript:void(0)">Order</a></li>
             <li class="breadcrumb-item"><a href="javascript:void(0)">Purchase Order</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">PO Other Good</a></li>
         </ol>
     </div>
 @endsection
@@ -81,13 +82,14 @@
                     <thead>
                         <tr align="right">
 
-                            <td align="left">Nomor PO</td>
-                            <td>Supplier</td>
-                            <td>Alamat Kirim</td>
-                            <td>Pembayaran</td>
-                            <td>Waktu Pengiriman</td>
-                            <td>Tanggal Pembuatan</td>
-                            <td></td>
+                            <td align="left">Nomor PR</td>
+                            <td>Deadline Date</td>
+                            <td>Nama Barang</td>
+                            <td>Quantity</td>
+                            <td>Unit</td>
+                            <td>Requester</td>
+                            <td>Divisi</td>
+                            <td>Aksi</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -95,17 +97,32 @@
 
 
 
-                        @foreach ($orders as $item)
+                        @foreach ($purchase_requests as $no => $item)
                             <tr align="right">
-
-                                <td align="left">{{ $item->no_po }}</td>
-                                <td>{{ $item->supplier }}</td>
-                                <td>{{ $item->location->location_name }}</td>
-                                <td>{{ $item->payment->name }}</td>
-                                <td>{{ $item->timeshipping->name }}</td>
-                                <td class="content-control">
-                                    {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}
+                                <td>
+                                    @foreach ($item->order as $na => $ito)
+                                        <ul class="content-control" align="left">{{ $ito->no_po }}</ul>
+                                    @endforeach
                                 </td>
+                                <td class="content-control">
+                                    {{ \Carbon\Carbon::parse($item->deadline_date)->format('d F Y') }}</td>
+                                <td>
+                                    @foreach ($item->item as $no => $it)
+                                        <ul>{{ $it->master_item->item_name }}</ul>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($item->item as $no => $it)
+                                        <ul>{{ $it->stok }}</ul>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach ($item->item as $no => $it)
+                                        <ul>{{ $it->satuan->unit }}</ul>
+                                    @endforeach
+                                </td>
+                                <td class="content-control" align="left">{{ $item->requester }}</td>
+                                <td class="content-control" align="left">{{ $item->Prefixe->divisi }}</td>
                                 <td class="py-2 text-end">
                                     <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
                                             type="button" id="order-dropdown-1" data-bs-toggle="dropdown"
@@ -127,8 +144,8 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
-                                                <a class="dropdown-item" href="#">Print</a>
-                                                <form action="/" method="POST">
+                                                <a href="#" class="dropdown-item">Print</a>
+                                                <form action="{{ route('prefix.prefixdelete', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="dropdown-item text-danger">Delete</button>
