@@ -132,9 +132,50 @@
             </div>
         </div>
 
+        <div class="modal fade" id="exampleModalItemCenter">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" align="center" id="ItemModalLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="item_page" class="pd-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Required vendors -->
         <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
+
+        <script>
+            function ship_create() {
+                $.get("{{ route('master_item.create') }}", {}, function(data, status) {
+                    $("#ItemModalLabel").html('Add Item');
+                    $("#item_page").html(data);
+                    $("#exampleModalItemCenter").modal('show');
+                })
+            }
+        
+            function ship_edit(id) {
+                $.get("{{ url('masteritem/edit') }}/" + id, {}, function(data, status) {
+                    $("#ItemModalLabel").html('Edit Item');
+                    $("#item_page").html(data);
+                    $("#exampleModalItemCenter").modal('show');
+                })
+            }
+        
+            function ship_view(id) {
+                $.get("{{ url('masteritem/view') }}/" + id, {}, function(data, status) {
+                    $("#ItemModalLabel").html('View Item');
+                    $("#item_page").html(data);
+                    $("#exampleModalItemCenter").modal('show');
+                })
+            }
+        
+        </script>
           
 
     @endsection

@@ -1,4 +1,8 @@
-
+.tr{
+    font-size: 16px;
+    font-weight: 400px;
+    line-height: 30px;
+}
 .content-control {
     font-size: 14px !important;
 }

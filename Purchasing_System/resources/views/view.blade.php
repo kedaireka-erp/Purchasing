@@ -154,7 +154,7 @@
 
     <div class="row">
         <div class="col-md-5">
-            <div class="card" style="height: 450px">
+            <div class="card" style="height: 550px">
                 <div class="card-header border-0 pb-0">
                     <h4 class="card-title"> Approval Tracking </h4>
                 </div>
@@ -297,7 +297,54 @@
                                 <div id="my-posts" class="tab-pane fade active show">
                                     <div class="my-post-content pt-3">
                                         <div class="post-input">
-
+                                            <table style="margin-top: -150px">
+                                                <tr class="tr" >
+                                                    <td width="220px">Tanggal Pengajuan</td>
+                                                    <td>:   {{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }} </td>
+                                                </tr>
+                                                <br>
+                                                <tr class="tr" >
+                                                    <td width="200px">Tanggal Deadline</td>
+                                                    <td>:  {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }} </td>
+                                                </tr>
+                                                <br>
+                                                <tr class="tr" >
+                                                    <td width="200px">Requester</td>
+                                                    <td>:  {{$purchase_requests->requester }}</td>
+                                                </tr>
+                                                <br>
+                                                <tr class="tr" >
+                                                    <td width="200px">Devisi</td>
+                                                    <td>:  {{$purchase_requests->Prefixe->divisi}}</td>
+                                                </tr>
+                                                <br>
+                                                <tr class="tr" >
+                                                    <td width="200px">Project/Customer</td>
+                                                    <td>: {{$purchase_requests->project }} </td>
+                                                </tr>
+                                                <br>
+                                                <tr class="tr" >
+                                                    <td width="200px">Kebutuhan/Pengiriman</td>
+                                                    <td>: {{$purchase_requests->requester }} </td>
+                                                </tr>
+                                                <br>
+                                              
+                                                <tr class="tr" >
+                                                    <td width="200px">Alamat</td>
+                                                    <td>: {{ $purchase_requests->location->location_name }}</</td>
+                                                </tr>
+                                                <br>
+                                                <tr class="tr" >
+                                                    <td width="200px">Note</td>
+                                                    <td>: {{ $purchase_requests->note }}</td>
+                                                </tr>
+                                                <br>
+                                                <tr class="tr" >
+                                                    <td width="200px">Approval PR</td>
+                                                    <td>: {{ $purchase_requests->approval_status }}</td>
+                                                </tr>
+                                                
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
