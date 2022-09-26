@@ -81,7 +81,7 @@
                             <td>Requester</td>
                             <td>Divisi</td>
                             <td>Type</td>
-                            <td>Status</td>
+                            <td>Project</td>
                             <td align="center">Action</td>
                         </tr>
                     </thead>
@@ -107,7 +107,42 @@
                                 <td class="content-control">{{ $purchase_request->requester }}</td>
                                 <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
                                 <td class="content-control">{{ $purchase_request->type }}</td>
-                                @if ($purchase_request->approval_status == 'pending')
+                                <td class="content-control">{{ $purchase_request->project }}</td>
+                                <td class="py-2 text-end">
+                                    <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
+                                            type="button" id="order-dropdown-1" data-bs-toggle="dropdown"
+                                            data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
+                                                    viewbox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24" height="24">
+                                                        </rect>
+                                                        <circle fill="#000000" cx="5" cy="12" r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="12" cy="12" r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="19" cy="12" r="2">
+                                                        </circle>
+                                                    </g>
+                                                </svg></span></button>
+                                        <div class="dropdown-menu dropdown-menu-end border py-0"
+                                            aria-labelledby="order-dropdown-1">
+                                            <div class="py-2">
+                                                
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('purchase_request.view', $purchase_request->id) }}">Detail</a>
+
+                                                <form action="/" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="dropdown-item text-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                {{-- @if ($purchase_request->approval_status == 'pending')
                                     <td> <a class="pending content-control">
                                             {{ $purchase_request->approval_status }}
                                         </a></td>
@@ -115,10 +150,10 @@
                                     <td> <button class="approve btn btn-warning">
                                             {{ $purchase_request->approval_status }}
                                         </button></td>
-                                @endif
+                                @endif --}}
 
 
-                                <td class="d-flex justify-content-center">
+                                {{-- <td class="d-flex justify-content-center">
 
                                     <form method="GET"
                                         action="{{ route('purchase_request.view', $purchase_request->id) }}"
@@ -128,7 +163,7 @@
                                         <button type="submit" class="btn btn-warning" id="view"> <i
                                                 class="fa fa-eye"></i>
                                         </button>
-                                    </form>
+                                    </form> --}}
                                     {{-- <form method="GET" action="{{ route('purchase_request.plus', $purchase_request->id) }}"
                                     style="margin-right:10px">
                                     @csrf
@@ -138,7 +173,7 @@
                                     </button>
                                 </form> --}}
 
-                                @if ($purchase_request->approval_status == 'pending')
+                                {{-- @if ($purchase_request->approval_status == 'pending')
                                 <form method="GET" action="{{ route('approval.edit', $purchase_request->id) }}"
                                     style="margin-right:10px">
                                     @csrf
@@ -147,7 +182,7 @@
                                             class="fa fa-edit"></i>
                                     </button>
                                 </form>
-                            @endif
+                            @endif --}}
 
 
 
