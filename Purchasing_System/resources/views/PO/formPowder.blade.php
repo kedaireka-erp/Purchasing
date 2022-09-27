@@ -67,9 +67,9 @@
                                       </td> --}}
                                     <td> Pilih </td>
                                     <td align="left">Nomor PR</td>
-                                    <td>Nama Barang</td>
-                                    <td>Quantity</td>
-                                    <td>Unit</td>
+                                    <td>Warna</td>
+                                    <td>Tipe</td>
+                                    <td>Vendor</td>
                                     <td>Requester</td>
                                     <td>Divisi</td>
                                 </tr>

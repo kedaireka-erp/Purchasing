@@ -60,12 +60,7 @@
                             <h4 class="card-title">Data Request Tracking</h4>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div id="button_add">
-                            <a href="{{ route('purchase_request.create') }}" class="btn btn-success" id="add"> +Add Data
-                            </a>
-                        </div>
-                    </div>
+
     
     
                 </div>
@@ -86,16 +81,17 @@
                             </td> --}}
                             <td> Pilih </td>
                         <td align="left">Nomor PR</td>
+                        {{-- <td>Nomer PO</td> --}}
                         <td>Deadline Date</td>
                         <td>Nama Barang</td>
-                        <td>Quantity</td>
-                        <td>Unit</td>
+                        <td>Outstanding</td>
+                        <td>Sudah Datang</td>
                         <td>Requester</td>
                         <td>Divisi</td>
                     </tr>
                 </thead>
                 <tbody>
-                   
+                   {{-- Ubah --}}
                     @foreach ($items as $no => $item)
                         <tr align="right">
                             <td align="center">
@@ -103,19 +99,61 @@
                                     <input type="checkbox" name="ids[{{ $item->id }}]" value="{{ $item->id }}" class="form-check-input" id="customCheckBox2">
                                 
                             </td>
-                            <td class="content-control" align="left">{{ $item->no_pr }}</td>
-                            <td class="content-control" align="left">{{ $item->deadline_date }}</td>
-                            <td class="content-control" align="left">{{ $item->item_name }}</td>
-                            <td class="content-control" align="left">{{ $item->stok }}</td>
-                            <td class="content-control" align="left">{{ $item->name }}</td>
-                            <td class="content-control" align="left">{{ $item->requester }}</td>
-                            <td class="content-control" align="left">{{ $item->divisi }}</td>
+                            <td class="content-control" align="center">{{ $item->no_pr }}</td>
+                            {{-- <td class="content-control" align="center">{{ $item->get[0]->no-po}}</td> --}}
+                            <td class="content-control" align="center">{{ $item->deadline_date }}</td>
+                            <td class="content-control" align="center">{{ $item->item_name }}</td>
+                            <td class="content-control" align="center">{{ $item->outstanding }}</td>
+                            <td class="content-control" align="center">{{ $item->sudah_datang }}</td>
+                            <td class="content-control" align="center">{{ $item->requester }}</td>
+                            <td class="content-control" align="center">{{ $item->divisi }}</td>
                             {{-- <td class="content-control" align="left">{{ $item->purchase->get(0)->deadline_date }}</td> --}}
                             {{-- <td class="content-control" align="left">{{ $item->id_master_item }}</td>
                             <td class="content-control" align="left">{{ $item->stok }}</td>
                             <td class="content-control" align="left">{{ $item->outstanding }}</td> --}}
                         </tr>
                         @endforeach
+                </tbody>
+            </table>
+
+            <table id="example3" class="display" style="width:100%">
+                <thead>
+                    <tr align="right">
+                        {{-- <td align="center">
+                              <div class="form-check custom-checkbox ms-2">
+                                  <input type="checkbox" class="form-check-input" id="checkAll" required="">
+                                  <label class="form-check-label" for="checkAll"></label>
+                              </div>
+                          </td> --}}
+                        <td> Pilih </td>
+                        <td align="left">Nomor PR</td>
+                        <td>Warna</td>
+                        <td>Tipe</td>
+                        <td>Vendor</td>
+                        <td>Requester</td>
+                        <td>Divisi</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach ($powders as $no => $itex)
+                        <tr align="right">
+                            <td align="center">
+
+                                <input type="checkbox" name="ids[{{ $itex->id }}]"
+                                    value="{{ $itex->id }}" class="form-check-input"
+                                    id="customCheckBox2">
+
+                            </td>
+                            <td class="content-control" align="center">{{ $itex->no_pr }}</td>
+                            <td class="content-control" align="center">{{ $itex->warna }}</td>
+                            <td class="content-control" align="center">{{ $itex->type }}</td>
+                            <td class="content-control" align="center">{{ $itex->vendor }}</td>
+                            <td class="content-control" align="center">{{ $itex->requester }}</td>
+                            <td class="content-control" align="center">{{ $itex->divisi }}</td>
+
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

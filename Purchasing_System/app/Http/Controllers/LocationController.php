@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use File;
+
+use Response;
 
 class LocationController extends Controller
 {
@@ -75,37 +81,38 @@ class LocationController extends Controller
         return redirect("/location")->with('terhapus','Berhasil menghapus data master lokasi');
      }
 
-     public function excel(){
+    public function excel(){
+        require 'C:\Users\USER\Documents\GitHub\Purchasing\Purchasing_System\vendor\autoload.php'; 
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
         
-        
-        // Nama file excel
-        $fileName = "Master_Locations_" . date('Y-m-d') . ".xls"; 
-        
-        // Nama kolom
-        $fields = array("Nama Lokasi","Alamat", "Tanggal Pembuatan", "Tanggal Perubahan Data"); 
-        
-        // Menampilkan nama kolom pada baris pertama
-        $excelData = implode("\t", array_values($fields)) . "\n"; 
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'NAMA LOKASI');
+        $sheet->setCellValue('C1', 'ALAMAT');
+        $sheet->setCellValue('D1', 'TANGGAL DITAMBAHKAN');
+        $sheet->setCellValue('E1', 'TERAKHIR DIUBAH');
         
         
         $query = DB::table('locations')->get(); 
+        $i=2;
+        $no=1;
+        foreach ($query as $d=> $row){ 
         
-            // Output setiap barisan data
-            foreach ($query as $row){ 
-                
-                $lineData = array($row->location_name, $row->address, $row->created_at, $row->updated_at); 
-                
-                $excelData .= implode("\t", array_values($lineData)) . "\n"; 
-            } 
+            $sheet->setCellValue('A'.$i, $no++);
+            $sheet->setCellValue('B'.$i, $row->location_name);
+            $sheet->setCellValue('C'.$i, $row->address);
+            $sheet->setCellValue('D'.$i, $row->created_at);
+            $sheet->setCellValue('E'.$i, $row->updated_at);   
+            $i++;
+        }
+        $fileName = "Master_Location_" . date('Y-m-d').".xlsx"; 
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($fileName);
         
+        $filepath = public_path($fileName);
+        return Response::download($filepath);
         
-        // Headers download 
-        header("Content-Type:application/vnd.ms-excel");
-        header("Content-Disposition: attachment; filename=\"$fileName\""); 
-        
-        // Render data excel
-        echo $excelData; 
-    
-        exit;
+
             }
 }

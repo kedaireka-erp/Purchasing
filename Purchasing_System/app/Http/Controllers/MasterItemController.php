@@ -5,6 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Master_Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use File;
+
+use Response;
+
+
 
 class MasterItemController extends Controller
 {
@@ -12,6 +20,7 @@ class MasterItemController extends Controller
     	$items = DB::table('master_items')->paginate(5);
     	return view('master_item.index', ['items' => $items]);
     }
+    
 
     public function cari(Request $request)
 	{
@@ -106,38 +115,89 @@ class MasterItemController extends Controller
 	return redirect('/masteritem')->with('terhapus','Berhasil menghapus data master barang');
     }
 
+    
+
     public function excel(){
+        require 'C:\Users\USER\Documents\GitHub\Purchasing\Purchasing_System\vendor\autoload.php'; 
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
         
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'NAMA BARANG');
+        $sheet->setCellValue('C1', 'STOK');
+        $sheet->setCellValue('D1', 'TANGGAL DITAMBAHKAN');
+        $sheet->setCellValue('E1', 'TERAKHIR DIUBAH');
         
-        // Nama file excel
-        $fileName = "Master_Item_" . date('Y-m-d') . ".xls"; 
-        
-        // Nama kolom
-        $fields = array("Nama Barang", "Stok", "Tanggal Pembuatan", "Tanggal Perubahan Data"); 
-        
-        // Menampilkan nama kolom pada baris pertama
-        $excelData = implode("\t", array_values($fields)) . "\n"; 
-        
+        //Sheet style top
+        $sheet->getStyle('A1')->getBorders()->getTop()
+        ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+        $sheet->getStyle('B1')->getBorders()->getTop()
+        ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+        $sheet->getStyle('C1')->getBorders()->getTop()
+        ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+        $sheet->getStyle('D1')->getBorders()->getTop()
+        ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+        $sheet->getStyle('E1')->getBorders()->getTop()
+        ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+
+        //Sheet style left
+        $sheet->getStyle('A1')->getBorders()->getLeft()
+        ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+
+        //sheet style right
+        $sheet->getStyle('E1')->getBorders()->getRight()
+        ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
         
         $query = DB::table('master_items')->get(); 
-        
-            // Output setiap barisan data
-            foreach ($query as $row){ 
-                
-                $lineData = array($row->item_name, $row->stock, $row->created_at, $row->updated_at); 
-                
-                $excelData .= implode("\t", array_values($lineData)) . "\n"; 
-            } 
-        
-        
-        // Headers download 
-        header("Content-Type:application/vnd.ms-excel");
-        header("Content-Disposition: attachment; filename=\"$fileName\""); 
-        
-        // Render data excel
-        echo $excelData; 
-    
-        exit;
+        $i=2;
+        $no=1;
+        $counter=1;
+        foreach ($query as  $row){ 
+            
+            $sheet->setCellValue('A'.$i, $no++);
+            $sheet->setCellValue('B'.$i, $row->item_name);
+            $sheet->setCellValue('C'.$i, $row->stock);
+            $sheet->setCellValue('D'.$i, $row->created_at);
+            $sheet->setCellValue('E'.$i, $row->updated_at);   
+             if ($counter == count( $query )){
+            //Sheet style left
+            $sheet->getStyle('A'.$i)->getBorders()->getLeft()
+            ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+            //Sheet style right
+            $sheet->getStyle('E'.$i)->getBorders()->getRight()
+            ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+            //Sheet style bottom
+            $sheet->getStyle('A'.$i)->getBorders()->getBottom()
+            ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+            $sheet->getStyle('B'.$i)->getBorders()->getBottom()
+            ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+            $sheet->getStyle('C'.$i)->getBorders()->getBottom()
+            ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+            $sheet->getStyle('D'.$i)->getBorders()->getBottom()
+            ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+            $sheet->getStyle('E'.$i)->getBorders()->getBottom()
+            ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
             }
+            else{
 
+            //Sheet style left
+            $sheet->getStyle('A'.$i)->getBorders()->getLeft()
+            ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+            //Sheet style right
+            $sheet->getStyle('E'.$i)->getBorders()->getRight()
+            ->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+            }
+            $counter = $counter + 1;
+    $i++;
+        }
+        $fileName = "Master_Item_" . date('Y-m-d').".xlsx"; 
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($fileName);
+        
+        $filepath = public_path($fileName);
+        return Response::download($filepath);
+        
+
+            }
 }

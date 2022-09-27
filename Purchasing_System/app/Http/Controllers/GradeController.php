@@ -5,6 +5,12 @@ use App\Models\Grade;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use File;
+
+use Response;
 
 class GradeController extends Controller
 {
@@ -61,26 +67,38 @@ class GradeController extends Controller
     }
 
     #Export Excel
+
     public function excel(){
-        // Nama file excel
-        $fileName = "Master_Grades_" . date('Y-m-d') . ".xls"; 
-        // Nama kolom
-        $fields = array("Tipe",  "Tanggal Pembuatan", "Tanggal Perubahan Data"); 
-        // Menampilkan nama kolom pada baris pertama
-        $excelData = implode("\t", array_values($fields)) . "\n"; 
+        require 'C:\Users\USER\Documents\GitHub\Purchasing\Purchasing_System\vendor\autoload.php'; 
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'TIPE');
+        $sheet->setCellValue('C1', 'TANGGAL DITAMBAHKAN');
+        $sheet->setCellValue('D1', 'TERAKHIR DIUBAH');
+        
+        
+        
         $query = DB::table('grades')->get(); 
-            // Output setiap barisan data
-            foreach ($query as $row){ 
-                
-                $lineData = array($row->type, $row->created_at, $row->updated_at); 
-                
-                $excelData .= implode("\t", array_values($lineData)) . "\n"; 
-            } 
-        // Headers download 
-        header("Content-Type:application/vnd.ms-excel");
-        header("Content-Disposition: attachment; filename=\"$fileName\""); 
-        // Render data excel
-        echo $excelData; 
-        exit;
-    }
+        $i=2;
+        $no=1;
+        foreach ($query as $d=> $row){ 
+        
+            $sheet->setCellValue('A'.$i, $no++);
+            $sheet->setCellValue('B'.$i, $row->type);
+            $sheet->setCellValue('C'.$i, $row->created_at);
+            $sheet->setCellValue('D'.$i, $row->updated_at);   
+            $i++;
+        }
+        $fileName = "Master_Grade_" . date('Y-m-d').".xlsx"; 
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($fileName);
+        
+        $filepath = public_path($fileName);
+        return Response::download($filepath);
+        
+
+            }
 }

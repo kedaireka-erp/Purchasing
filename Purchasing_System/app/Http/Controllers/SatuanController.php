@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use File;
+
+use Response;
 
 class SatuanController extends Controller
 {
@@ -90,38 +96,41 @@ class SatuanController extends Controller
         
         return redirect('/satuan')->with('terhapus','Berhasil Menghapus Data');
     }
+
+
     public function excel(){
+        require 'C:\Users\USER\Documents\GitHub\Purchasing\Purchasing_System\vendor\autoload.php'; 
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
         
-        
-        // Nama file excel
-        $fileName = "Master_Satuan_" . date('Y-m-d') . ".xls"; 
-        
-        // Nama kolom
-        $fields = array("Nama","Unit", "Tanggal Pembuatan", "Tanggal Perubahan Data"); 
-        
-        // Menampilkan nama kolom pada baris pertama
-        $excelData = implode("\t", array_values($fields)) . "\n"; 
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'NAMA');
+        $sheet->setCellValue('C1', 'UNIT');
+        $sheet->setCellValue('D1', 'TANGGAL DITAMBAHKAN');
+        $sheet->setCellValue('E1', 'TERAKHIR DIUBAH');
         
         
         $query = DB::table('satuans')->get(); 
+        $i=2;
+        $no=1;
+        foreach ($query as $d=> $row){ 
         
-            // Output setiap barisan data
-            foreach ($query as $row){ 
-                
-                $lineData = array($row->name, $row->unit, $row->created_at, $row->updated_at); 
-                
-                $excelData .= implode("\t", array_values($lineData)) . "\n"; 
-            } 
+            $sheet->setCellValue('A'.$i, $no++);
+            $sheet->setCellValue('B'.$i, $row->name);
+            $sheet->setCellValue('C'.$i, $row->unit);
+            $sheet->setCellValue('D'.$i, $row->created_at);
+            $sheet->setCellValue('E'.$i, $row->updated_at);   
+            $i++;
+        }
+        $fileName = "Master_Satuan_" . date('Y-m-d').".xlsx"; 
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($fileName);
         
+        $filepath = public_path($fileName);
+        return Response::download($filepath);
         
-        // Headers download 
-        header("Content-Type:application/vnd.ms-excel");
-        header("Content-Disposition: attachment; filename=\"$fileName\""); 
-        
-        // Render data excel
-        echo $excelData; 
-    
-        exit;
+
             }
 
 }

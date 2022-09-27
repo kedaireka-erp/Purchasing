@@ -6,6 +6,12 @@ use App\Models\ships;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ships_request;
+use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use File;
+
+use Response;
 
 
 class ships_controller extends Controller
@@ -103,37 +109,40 @@ class ships_controller extends Controller
         \redirect('ships')->with('terhapus','Berhasil menghapus data kebutuhan');
     }
 
+    
+
     public function excel(){
+        require 'C:\Users\USER\Documents\GitHub\Purchasing\Purchasing_System\vendor\autoload.php'; 
+
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
         
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'TIPE');
+        $sheet->setCellValue('C1', 'TANGGAL DITAMBAHKAN');
+        $sheet->setCellValue('D1', 'TERAKHIR DIUBAH');
         
-        // Nama file excel
-        $fileName = "Master_Ships_" . date('Y-m-d') . ".xls"; 
-        
-        // Nama kolom
-        $fields = array("Tipe",  "Tanggal Pembuatan", "Tanggal Perubahan Data"); 
-        
-        // Menampilkan nama kolom pada baris pertama
-        $excelData = implode("\t", array_values($fields)) . "\n"; 
         
         
         $query = DB::table('ships')->get(); 
+        $i=2;
+        $no=1;
+        foreach ($query as $d=> $row){ 
         
-            // Output setiap barisan data
-            foreach ($query as $row){ 
-                
-                $lineData = array($row->type, $row->created_at, $row->updated_at); 
-                
-                $excelData .= implode("\t", array_values($lineData)) . "\n"; 
-            } 
+            $sheet->setCellValue('A'.$i, $no++);
+            $sheet->setCellValue('B'.$i, $row->type);
+            $sheet->setCellValue('C'.$i, $row->created_at);
+            $sheet->setCellValue('D'.$i, $row->updated_at);   
+            $i++;
+        }
+        $fileName = "Master_Ship_" . date('Y-m-d').".xlsx"; 
+        $writer = new Xlsx($spreadsheet);
+        $writer->save($fileName);
         
+        $filepath = public_path($fileName);
+        return Response::download($filepath);
         
-        // Headers download 
-        header("Content-Type:application/vnd.ms-excel");
-        header("Content-Disposition: attachment; filename=\"$fileName\""); 
-        
-        // Render data excel
-        echo $excelData; 
-    
-        exit;
+
             }
+
 }

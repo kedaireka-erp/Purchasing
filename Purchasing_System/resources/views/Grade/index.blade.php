@@ -111,7 +111,8 @@
                                 </tr>
                             @endforeach
                         </tbody>
-
+                        <a class="btn btn-primary" href="/masteritem/download" 
+		role="button">Download Data</a>
                     </table>
                 </div>
             </div>
