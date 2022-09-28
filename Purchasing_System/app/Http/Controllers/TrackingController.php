@@ -55,12 +55,23 @@ class TrackingController extends Controller
             
             ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
             ->join('items', 'items.id', '=', 'item_requests.id_item')
-            // ->join('orders', 'orders.id', '=', 'item_requests.order_id')
+            ->join('orders', 'orders.id', '=', 'item_requests.order_id')
             // ->join('satuans', 'satuans.id', '=', 'items.id_satuan')
             ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
             ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
             
-            ->select('item_requests.id' ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','items.outstanding', 'items.sudah_datang','purchase_requests.requester','prefixes.divisi','master_items.item_name')
+            ->select('orders.no_po','purchase_requests.no_pr','purchase_requests.deadline_date','purchase_requests.requester','items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
+            ->get();
+
+            $toms = DB::table('item_requests')
+            
+            
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('items', 'items.id', '=', 'item_requests.id_item')
+            ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+            ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
+            
+            ->select('purchase_requests.no_pr','purchase_requests.deadline_date','purchase_requests.requester','items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
             ->get();
 
         $powders = DB::table('item_requests')
@@ -78,6 +89,6 @@ class TrackingController extends Controller
             
 
 
-        return view('Tracking.dashboard', compact('location','powders','items','time','payment','purchase_requests',"Prefixe"));
+        return view('Tracking.dashboard', compact('toms','location','powders','items','time','payment','purchase_requests',"Prefixe"));
     }
 }

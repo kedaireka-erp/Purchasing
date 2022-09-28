@@ -14,7 +14,7 @@
     <div class="row page-titles">
         <ol class="breadcrumb">
             <li class="breadcrumb-item active"><a href="javascript:void(0)">Request Tracking</a></li>
-       
+
         </ol>
     </div>
 @endsection
@@ -35,10 +35,10 @@
                         </a>
                     </div> --}}
 
-                {{-- </div>
+    {{-- </div>
             </div>
         </div>
-    </div> --}} 
+    </div> --}}
 
     {{-- <div class="container">
         <h1>Purchase Request</h1>
@@ -52,129 +52,182 @@
         <div class="col-12">
             <a href="{{ route('purchase_request.create') }}" class="btn btn-primary" type="submit">Add</a>
         </div> --}}
-        <div class="card">
-            <div id="chead">
-                <div class="row">
-                    <div class="col-9">
-                        <div class="card-header">
-                            <h4 class="card-title">Data Request Tracking</h4>
-                        </div>
+    <div class="card">
+        <div id="chead">
+            <div class="row">
+                <div class="col-9">
+                    <div class="card-header">
+                        <h4 class="card-title">Data Request Tracking</h4>
                     </div>
-
-    
-    
                 </div>
-                <hr>
+
+
+
             </div>
-    
-    
-    <div class="card-body">
-        <div class="table-responsive">
-           <table id="example3" class="display" style="width:100%">
-                <thead>
-                    <tr align="right">
-                        {{-- <td align="center">
-                                <div class="form-check custom-checkbox ms-2">
-                                    <input type="checkbox" class="form-check-input" id="checkAll" required="">
-                                    <label class="form-check-label" for="checkAll"></label>
-                                </div>
-                            </td> --}}
-                            <td> Pilih </td>
-                        <td align="left">Nomor PR</td>
-                        {{-- <td>Nomer PO</td> --}}
-                        <td>Deadline Date</td>
-                        <td>Nama Barang</td>
-                        <td>Outstanding</td>
-                        <td>Sudah Datang</td>
-                        <td>Requester</td>
-                        <td>Divisi</td>
-                    </tr>
-                </thead>
-                <tbody>
-                   {{-- Ubah --}}
-                    @foreach ($items as $no => $item)
-                        <tr align="right">
-                            <td align="center">
-                                
-                                    <input type="checkbox" name="ids[{{ $item->id }}]" value="{{ $item->id }}" class="form-check-input" id="customCheckBox2">
-                                
-                            </td>
-                            <td class="content-control" align="center">{{ $item->no_pr }}</td>
-                            {{-- <td class="content-control" align="center">{{ $item->get[0]->no-po}}</td> --}}
-                            <td class="content-control" align="center">{{ $item->deadline_date }}</td>
-                            <td class="content-control" align="center">{{ $item->item_name }}</td>
-                            <td class="content-control" align="center">{{ $item->outstanding }}</td>
-                            <td class="content-control" align="center">{{ $item->sudah_datang }}</td>
-                            <td class="content-control" align="center">{{ $item->requester }}</td>
-                            <td class="content-control" align="center">{{ $item->divisi }}</td>
-                            {{-- <td class="content-control" align="left">{{ $item->purchase->get(0)->deadline_date }}</td> --}}
-                            {{-- <td class="content-control" align="left">{{ $item->id_master_item }}</td>
-                            <td class="content-control" align="left">{{ $item->stok }}</td>
-                            <td class="content-control" align="left">{{ $item->outstanding }}</td> --}}
-                        </tr>
-                        @endforeach
-                </tbody>
-            </table>
-
-            <table id="example3" class="display" style="width:100%">
-                <thead>
-                    <tr align="right">
-                        {{-- <td align="center">
-                              <div class="form-check custom-checkbox ms-2">
-                                  <input type="checkbox" class="form-check-input" id="checkAll" required="">
-                                  <label class="form-check-label" for="checkAll"></label>
-                              </div>
-                          </td> --}}
-                        <td> Pilih </td>
-                        <td align="left">Nomor PR</td>
-                        <td>Warna</td>
-                        <td>Tipe</td>
-                        <td>Vendor</td>
-                        <td>Requester</td>
-                        <td>Divisi</td>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @foreach ($powders as $no => $itex)
-                        <tr align="right">
-                            <td align="center">
-
-                                <input type="checkbox" name="ids[{{ $itex->id }}]"
-                                    value="{{ $itex->id }}" class="form-check-input"
-                                    id="customCheckBox2">
-
-                            </td>
-                            <td class="content-control" align="center">{{ $itex->no_pr }}</td>
-                            <td class="content-control" align="center">{{ $itex->warna }}</td>
-                            <td class="content-control" align="center">{{ $itex->type }}</td>
-                            <td class="content-control" align="center">{{ $itex->vendor }}</td>
-                            <td class="content-control" align="center">{{ $itex->requester }}</td>
-                            <td class="content-control" align="center">{{ $itex->divisi }}</td>
-
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <hr>
         </div>
-    </div>
 
 
-    <!-- Required vendors -->
-    <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
-    <!-- Apex Chart -->
-    <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}"></script>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="example3" class="display" style="width:100%">
+                    <thead>
+                        <tr align="center">
+                            <td> Nomor PO </td>
+                            <td> Nomor PR </td>
+                            <td>Deadline Date</td>
+                            <td>Nama Barang</td>
+                            <td>Outstanding</td>
+                            <td>Sudah Datang</td>
+                            <td>Requester</td>
+                            <td>Divisi</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{-- Ubah --}}
+                        @foreach ($items as $no => $item)
+                            <tr align="center">
+                                <td class="content-control-sm" align="center">{{ $item->no_pr }}</td>
+                                <td class="content-control-sm" align="center">{{ $item->no_po }}</td>
+                                <td class="content-control-sm" align="center">{{ $item->deadline_date }}</td>
+                                <td class="content-control-sm" align="left">{{ $item->item_name }}</td>
+                                <td class="content-control-sm" align="center">{{ $item->outstanding }}</td>
+                                <td class="content-control-sm" align="center">{{ $item->sudah_datang }}</td>
+                                <td class="content-control-sm" align="center">{{ $item->requester }}</td>
+                                <td class="content-control-sm" align="center">{{ $item->divisi }}</td>
+                                <td class="py-2 text-end">
+                                    <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
+                                            type="button" id="order-dropdown-1" data-bs-toggle="dropdown"
+                                            data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
+                                                    viewbox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24" height="24">
+                                                        </rect>
+                                                        <circle fill="#000000" cx="5" cy="12" r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="12" cy="12" r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="19" cy="12" r="2">
+                                                        </circle>
+                                                    </g>
+                                                </svg></span></button>
+                                        <div class="dropdown-menu dropdown-menu-end border py-0"
+                                            aria-labelledby="order-dropdown-1">
+                                            <div class="py-2">
+                                                <a class="dropdown-item" href="/"">Detail</a>
+                                                <a class="dropdown-item" href="/"">Edit</a>
+                                                <form action="/" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="dropdown-item text-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
 
-    <!-- Datatable -->
-    <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
+                            </tr>
+                        @endforeach
 
-    <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
 
-    <script src="{{ asset('assets/js/custom.min.js') }}"></script>
-    <script src="{{ asset('assets/js/dlabnav-init.js') }}"></script>
-    {{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
-    {{-- <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script> --}}
+                    </tbody>
+                </table>
 
-@endsection
+                <table id="example3" class="display" style="width:100%">
+                    <thead>
+                        <tr align="center">
+                            <td class="content-control-md"> Nomor PO </td>
+                            <td class="content-control-md"> Nomor PR </td>
+                            <td class="content-control-md">Deadline Date</td>
+                            <td class="content-control-md">Nama Barang</td>
+                            <td class="content-control-md">Outstanding</td>
+                            <td class="content-control-md">Sudah Datang</td>
+                            <td class="content-control-md">Requester</td>
+                            <td class="content-control-md">Divisi</td>
+                            <td class="content-control-md"></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{-- Ubah --}}
+                        @foreach ($toms as $no => $item)
+                            <tr align="center">
+                                <td class="content-control-sm" align="center"> -- NONE -- </td>
+                                <td class="content-control-sm" align="center">{{ $item->no_pr }}</td>
+                                <td class="content-control-sm" align="center">{{ $item->deadline_date }}</td>
+                                <td class="content-control-sm" align="left">{{ $item->item_name }}</td>
+                                <td class="content-control-sm" align="center">{{ $item->outstanding }}</td>
+                                <td class="content-control-sm" align="center">{{ $item->sudah_datang }}</td>
+                                <td class="content-control-sm" align="center">{{ $item->requester }}</td>
+                                <td class="content-control-sm" align="center">{{ $item->divisi }}</td>
+                                <td class="py-2 text-end">
+                                    <div class="dropdown text-sans-serif"><button
+                                            class="btn btn-primary tp-btn-light sharp" type="button"
+                                            id="order-dropdown-1" data-bs-toggle="dropdown" data-boundary="viewport"
+                                            aria-haspopup="true" aria-expanded="false"><span><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="18px"
+                                                    height="18px" viewbox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none"
+                                                        fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24"
+                                                            height="24">
+                                                        </rect>
+                                                        <circle fill="#000000" cx="5" cy="12"
+                                                            r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="12" cy="12"
+                                                            r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="19" cy="12"
+                                                            r="2">
+                                                        </circle>
+                                                    </g>
+                                                </svg></span></button>
+                                        <div class="dropdown-menu dropdown-menu-end border py-0"
+                                            aria-labelledby="order-dropdown-1">
+                                            <div class="py-2">
+                                                <a class="dropdown-item" href="/"">Detail</a>
+                                                <a class="dropdown-item" href="/"">Edit</a>
+                                                <form action="/" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="dropdown-item text-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        @endforeach
+
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+        <!-- Required vendors -->
+        <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
+        <!-- Apex Chart -->
+        <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}"></script>
+
+        <!-- Datatable -->
+        <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
+
+        <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+
+        <script src="{{ asset('assets/js/custom.min.js') }}"></script>
+        <script src="{{ asset('assets/js/dlabnav-init.js') }}"></script>
+        {{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
+        {{-- <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script> --}}
+
+    @endsection

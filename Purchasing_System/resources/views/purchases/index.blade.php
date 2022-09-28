@@ -3,10 +3,8 @@
 @section('judul-laman', 'Dashboard Purchase Request')
 
 @section('datatable')
+    {{-- Style Datatable --}}
     <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
-    <!-- Custom Stylesheet -->
-    <link href="{{ asset('assets/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
-
 @endsection
 
 
@@ -22,10 +20,6 @@
 @endsection
 
 @section('content')
-
-
-
-
     <div class="card">
         <div id="chead">
             <div class="row">
@@ -40,8 +34,6 @@
                         </a>
                     </div>
                 </div>
-
-
             </div>
             <hr>
         </div>
@@ -51,14 +43,15 @@
             <div class="table-responsive">
                 <table id="example3" class="display" style="width:100%">
                     <thead>
-                        <tr align="right">
-                            <td align="left">Nomor PR</td>
-                            <td>Deadline Date</td>
-                            <td>Requester</td>
-                            <td>Divisi</td>
-                            <td>Type</td>
-                            <td>Status</td>
-                            <td align="center"></td>
+                        <tr class="content-control-md" align="right">
+                            <td width="15%" align="left">Nomor PR</td>
+                            <td width="10%">Pengajuan</td>
+                            <td width="10%">Deadline</td>
+                            <td width="20%">Requester</td>
+                            <td width="10%">Divisi</td>
+                            <td width="10%">Type</td>
+                            <td width="20%" align="center">Status</td>
+                            <td width="5%" align="center"></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,19 +60,16 @@
 
                                 <td class="content-control" align="left">{{ $purchase_request->no_pr }}</td>
                                 <td class="content-control">
-                                    {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d F Y') }}</td>
+                                    {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}</td>
+                                <td class="content-control">
+                                    {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}</td>
                                 <td class="content-control">{{ $purchase_request->requester }}</td>
                                 <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
                                 <td class="content-control">{{ $purchase_request->type }}</td>
-                                @if ($purchase_request->approval_status == 'pending')
-                                <td> <a class="pending content-control">
-                                        {{ $purchase_request->approval_status }}
-                                    </a></td>
-                            @elseif ($purchase_request->approval_status == 'approve')
-                                <td> <button class="approve btn btn-warning">
-                                        {{ $purchase_request->approval_status }}
-                                    </button></td>
-                            @endif
+                                <td class="content-control" align="left">
+                                    @include('purchases.status')
+                                </td>
+
                                 <td class="py-2 text-end">
                                     <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
                                             type="button" id="order-dropdown-1" data-bs-toggle="dropdown"
@@ -116,43 +106,6 @@
                                         </div>
                                     </div>
                                 </td>
-
-                                {{-- <td class="d-flex justify-content-center">
-                                    @if ($purchase_request->type == 'othergood')
-                                        <form method="GET"
-                                            action="{{ route('purchase_request.view', $purchase_request->id) }}"
-                                            style="margin-right:10px">
-                                            @csrf
-                                            <input type="hidden" value="VIEW" name="_method">
-                                            <button type="submit" class="btn btn-warning" id="view"> <i
-                                                    class="fa fa-eye"></i>
-                                            </button>
-                                        </form>
-                                    @elseif ($purchase_request->type == 'powder')
-                                        <form method="GET"
-                                            action="{{ route('purchase_request.detail', $purchase_request->id) }}"
-                                            style="margin-right:10px">
-                                            @csrf
-                                            <input type="hidden" value="VIEW" name="_method">
-                                            <button type="submit" class="btn btn-warning" id="view"> <i
-                                                    class="fa fa-eye"></i>
-                                            </button>
-                                        </form>
-                                    @endif
-                                    
-
-                                    <form method="GET"
-                                        action="{{ route('purchase_request.edit', $purchase_request->id) }}"
-                                        style="margin-right:10px">
-                                        @csrf
-                                        <input type="hidden" value="EDIT" name="_method">
-                                        <button type="submit" class="btn btn-warning" id="edit"> <i
-                                                class="fa fa-edit"></i>
-                                        </button>
-                                    </form>
-
-                                </td> --}}
-
                             </tr>
                         @endforeach
                     </tbody>
@@ -163,19 +116,11 @@
 
         <!-- Required vendors -->
         <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
-        <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
-        <!-- Apex Chart -->
-        <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}"></script>
 
         <!-- Datatable -->
         <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
 
-        <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
 
-        <script src="{{ asset('assets/js/custom.min.js') }}"></script>
-        <script src="{{ asset('assets/js/dlabnav-init.js') }}"></script>
-        {{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
-        {{-- <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script> --}}
 
     @endsection

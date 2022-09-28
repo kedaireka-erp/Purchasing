@@ -105,8 +105,7 @@ class SatuanController extends Controller
         $sheet = $spreadsheet->getActiveSheet();
         
         $sheet->setCellValue('A1', 'No');
-        $sheet->setCellValue('B1', 'NAMA');
-        $sheet->setCellValue('C1', 'UNIT');
+        $sheet->setCellValue('B1', 'NAMA WARNA');
         $sheet->setCellValue('D1', 'TANGGAL DITAMBAHKAN');
         $sheet->setCellValue('E1', 'TERAKHIR DIUBAH');
         
@@ -118,12 +117,11 @@ class SatuanController extends Controller
         
             $sheet->setCellValue('A'.$i, $no++);
             $sheet->setCellValue('B'.$i, $row->name);
-            $sheet->setCellValue('C'.$i, $row->unit);
             $sheet->setCellValue('D'.$i, $row->created_at);
             $sheet->setCellValue('E'.$i, $row->updated_at);   
             $i++;
         }
-        $fileName = "Master_Satuan_" . date('Y-m-d').".xlsx"; 
+        $fileName = "Master_Color_" . date('Y-m-d').".xlsx"; 
         $writer = new Xlsx($spreadsheet);
         $writer->save($fileName);
         

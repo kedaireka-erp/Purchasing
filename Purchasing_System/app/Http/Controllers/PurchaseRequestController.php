@@ -11,7 +11,7 @@ use App\Models\Master_Item;
 use App\Models\Satuan;
 use App\Models\Item;
 use App\Models\ItemRequest;
-use App\Models\powder;
+use App\Models\Powder;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -26,10 +26,12 @@ class PurchaseRequestController extends Controller
         if ($request->filled('search')) {
             $purchase_requests = PurchaseRequest::search($request->search)->get();
         }else{
-            $purchase_requests = PurchaseRequest::with('Prefixe')->get();
+            $items = Item::get();
+            $powders = Powder::get();
+            $purchase_requests = PurchaseRequest::has('item')->with('Prefixe')->get();
         }
 
-        return view('purchases.index', compact('purchase_requests'));
+        return view('purchases.index', compact('items','powders','purchase_requests'));
     }
 
     public function track(Request $request){
@@ -219,12 +221,6 @@ class PurchaseRequestController extends Controller
         $purchase_requests = PurchaseRequest::find($id);
         $item = Item::with('master_item','satuan')->get();
 
-        // $item = DB::table('items')
-        //         ->join('purchase_requests', 'id_request', '=', 'purchase_requests.id')
-        //         ->join('master_items', 'id_master_item', '=', 'master_items.id')
-        //         ->join('satuans', 'id_satuan', '=', 'satuans.id')
-        //         ->select('items.*', 'master_items.item_name','satuans.unit')
-        //         ->get();
 
         $Location=location::get();
         $Ship=ships::get();

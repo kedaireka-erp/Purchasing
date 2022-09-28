@@ -4,7 +4,15 @@
     line-height: 30px;
 }
 .content-control {
-    font-size: 14px !important;
+    font-size: 12px !important;
+    font-weight: bold;
+}
+
+.content-control-sm {
+    font-size: 11px !important;
+}
+.content-control-md {
+    font-size: 12px !important;
 }
 .box {
     width: 100%;
@@ -270,19 +278,25 @@ select:focus {
 }
 
 .pending {
-    background-color: lightyellow !important;
+    background-color: rgb(247, 247, 134) !important;
     color: orange !important;
-    border-radius: 20px !important;
-    height: 5px;
-    width: 100px;
-    margin-top: -10px !important;
+    border-radius: 10px !important;
+    width:20px;
+    font-size: 11px !important;
 }
 
 .approve {
     background-color: lightgreen !important;
     color: green !important;
-    border-radius: 20px !important;
-    font-size: 13px !important;
+    border-radius: 10px !important;
+    font-size: 11px !important;
+}
+
+.reject {
+    background-color: lightcoral !important;
+    color: red !important;
+    border-radius: 10px !important;
+    font-size: 11px !important;
 }
 
 .formulir-control {

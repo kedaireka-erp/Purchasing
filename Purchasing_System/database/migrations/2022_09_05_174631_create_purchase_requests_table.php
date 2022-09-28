@@ -24,8 +24,8 @@ return new class extends Migration
             $table->text("note")->nullable();
             $table->string("attachment")->nullable();
             $table->timestamp('tanggal_diterima')->nullable();
-            $table->enum('approval_status', ['pending', 'approve', 'ignore'])->default('pending');
-            $table->enum('accept_status', ['pending', 'accept'])->default('pending');
+            $table->enum('approval_status', ['pending', 'approve', 'reject'])->default('pending');
+            $table->enum('accept_status', ['pending', 'accept','reject'])->default('pending');
             $table->enum('status', ['closed', 'outstanding'])->default('outstanding');
             $table->softDeletes();
             $table->timestamps();

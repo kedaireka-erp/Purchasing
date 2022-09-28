@@ -9,6 +9,7 @@ use App\Http\Controllers\PrefixController;
 use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\ships_controller;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ColourController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SupplierController;
@@ -158,6 +159,17 @@ route::group(['as'=>'powder.','prefix'=>'powder'], function(){
     route::get('/edit/{id}', [PowderController::class, 'edit'])->name('edit');
     route::post('/update/{id}', [PowderController::class, 'update'])->name('update');
     route::delete('destroy/{id}', [PowderController::class, 'destroy'])->name('destroy');
+});
+
+route::group(['as'=>'colour.','prefix'=>'colour'], function(){
+    route::get('/', [ColourController::class, 'index']);
+    route::get('/create', [ColourController::class, 'create'])->name('create');
+    route::post('/store', [ColourController::class, 'store'])->name('store');
+    route::get('/edit/{id}', [ColourController::class, 'edit'])->name('edit');
+    route::get('/view/{id}', [ColourController::class, 'view'])->name('view');
+    Route::get("/download", [ColourController::class, "excel"])->name("download");
+    route::post('/update/{id}', [ColourController::class, 'update'])->name('update');
+    route::delete('destroy/{id}', [ColourController::class, 'destroy'])->name('destroy');
 });
 
     Route::group(['as' => 'approval.', 'prefix' => 'approval'], function () {

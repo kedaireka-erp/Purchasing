@@ -136,6 +136,7 @@
                                     <li><a href="/masteritem">Master Item</a></li>
                                     <li><a href="/prefix">Master Prefix</a></li>
                                     <li><a href="/location">Master Lokasi</a></li>
+                                    <li><a href="/colour">Master Color</a></li>
                                     <li><a href="/satuan">Master Satuan</a></li>
                                     <li><a href="/grade">Master Grade</a></li>
                                     <li><a href="/ships">Master Kebutuhan</a></li>
@@ -194,7 +195,7 @@
             Content body start
         ***********************************-->
         <div class="content-body">
-            <div class="container">
+            <div class="container-fluid">
                 @yield('wrap_title')
                 @yield('content')
             </div>
