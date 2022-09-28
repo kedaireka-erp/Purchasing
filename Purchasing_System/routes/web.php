@@ -187,4 +187,5 @@ route::group(['as'=>'order.','prefix'=>'order'], function(){
     route::get('/', [OrderController::class, 'index']);
     route::get('/create', [OrderController::class, 'create']);
     route::post('/store', [OrderController::class, 'store_item'])->name('orderstore');
+    route::get('/view/{id}', [OrderController::class, 'view'])->name('view');
 });

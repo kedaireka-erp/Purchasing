@@ -114,13 +114,23 @@ class OrderController extends Controller
             ->select('item_requests.id' ,'orders.no_po','purchase_requests.no_pr', 'purchase_requests.deadline_date','items.stok','purchase_requests.requester','prefixes.divisi','satuans.name','master_items.item_name')
             ->get();
             
-        
-        
-        
             $purchase_requests = PurchaseRequest::get();
             $Prefixe = Prefix::get();
             
 
         return view('Tracking.dashboard', compact('orders','items','time','payment','purchase_requests',"Prefixe"));
+    }
+
+    public function view($id){
+
+         $orders =Order::has('purchases')
+         ->with('payment','timeshipping','location')
+         ->find($id);
+         
+
+
+        //  dd($orders);
+
+        return view('PO.view', compact('orders'));
     }
 }

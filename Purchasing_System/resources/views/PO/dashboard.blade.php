@@ -127,6 +127,7 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
+                                                <a class="dropdown-item" href="{{ route('order.view',$item->id)}}">Detail</a>
                                                 <a class="dropdown-item" href="#">Print</a>
                                                 <form action="/" method="POST">
                                                     @csrf
