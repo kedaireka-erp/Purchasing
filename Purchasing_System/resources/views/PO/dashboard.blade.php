@@ -99,7 +99,7 @@
                             <tr align="right">
 
                                 <td align="left">{{ $item->no_po }}</td>
-                                <td>{{ $item->supplier }}</td>
+                                <td>{{ $item->supplier->vendor }}</td>
                                 <td>{{ $item->location->location_name }}</td>
                                 <td>{{ $item->payment->name }}</td>
                                 <td>{{ $item->timeshipping->name }}</td>

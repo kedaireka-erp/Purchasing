@@ -16,7 +16,7 @@ class Order extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'no_po', 'supplier' ,'nama_supplier', 'id_waktu', 'id_alamat_kirim', 'id_pembayaran', 'alamat_penagihan', 
+        'no_po', 'supplier' ,'id_supplier', 'id_waktu', 'id_alamat_kirim', 'id_pembayaran', 'alamat_penagihan', 
         'lain_lain', 'note', 'signature','nama'
     ];
 
@@ -38,6 +38,11 @@ class Order extends Model
     public function location()
     {
         return $this->belongsTo(location::class,'id_alamat_kirim');
+    }
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class, 'id_supplier', 'id');
     }
 
     

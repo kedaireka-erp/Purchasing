@@ -6,9 +6,13 @@
                 <div class="card-body">
 
                     <div class="mb-3">
-                        <label for="tanggal_pengajuan" class="form-label font">Supplier</label>
-                        <input type="text" class="input-rounded form-control wide mb-3" placeholder="--INPUT--"
-                            name="supplier">
+                        <label for="id_supplier" class="form-label font">Supplier</label>
+                        <select name="id_supplier" id="id_supplier" class="form-select input-rounded form-control wide-mb3">
+                            <option selected disabled>-- Pilih Tipe --</option>
+                            @foreach ($supplier as $item)
+                            <option value="{{ $item->id }}">{{ $item->vendor }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="divisi" class="form-label font">Atas Nama</label>

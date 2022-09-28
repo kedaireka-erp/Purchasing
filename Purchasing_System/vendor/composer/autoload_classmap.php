@@ -37,6 +37,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Requests\\PaymentRequest' => $baseDir . '/app/Http/Requests/PaymentRequest.php',
     'App\\Http\\Requests\\ships_request' => $baseDir . '/app/Http/Requests/ships_request.php',
+    'App\\Models\\Colour' => $baseDir . '/app/Models/Colour.php',
     'App\\Models\\Grade' => $baseDir . '/app/Models/Grade.php',
     'App\\Models\\Item' => $baseDir . '/app/Models/Item.php',
     'App\\Models\\ItemRequest' => $baseDir . '/app/Models/ItemRequest.php',

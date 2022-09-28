@@ -24,7 +24,7 @@ class OrderController extends Controller
     public function index(){
     
     
-        $orders = Order::with('location','payment','timeshipping')->get();
+        $orders = Order::with('location','payment','timeshipping','supplier')->get();
 
         return view('PO.dashboard', compact('orders'));
     }
@@ -36,6 +36,7 @@ class OrderController extends Controller
         $Prefixe= Prefix::get();
         $location= Location::get();
         $payment = Payment::get();
+        $supplier = Supplier::get();
         $items = DB::table('item_requests')
             ->where('order_id',NULL)
             ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
@@ -62,7 +63,7 @@ class OrderController extends Controller
             
             
 
-        return view('PO.index', compact('location','powders','items','time','payment','purchase_requests',"Prefixe"));
+        return view('PO.index', compact('supplier','location','powders','items','time','payment','purchase_requests',"Prefixe"));
     }
     
     
@@ -74,7 +75,7 @@ class OrderController extends Controller
         $order = New Order;
         
         $order->supplier = $request->supplier;
-        $order->nama_supplier = $request->nama_supplier;
+        $order->id_supplier = $request->id_supplier;
         $order->id_waktu = $request->id_waktu;
         $order->id_pembayaran = $request->id_pembayaran;
         $order->id_alamat_kirim = $request->id_alamat_kirim;

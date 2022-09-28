@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Order;
 use App\Models\ships;
 use App\Models\Prefix;
+use App\Models\Payment;
 use App\Models\location;
 use App\Models\Timeshipping;
-use App\Models\Payment;
 use Illuminate\Http\Request;
 use App\Models\PurchaseRequest;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,7 @@ class TrackingController extends Controller
         $time = Timeshipping::get();
         $Prefixe= Prefix::get();
         $payment = Payment::get();
+        $order = Order::get();
         $items = DB::table('item_requests')
             ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
             ->join('orders', 'orders.id', '=', 'order_id.id_request')
