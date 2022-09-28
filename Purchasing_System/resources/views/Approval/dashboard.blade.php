@@ -81,7 +81,7 @@
                             <td>Requester</td>
                             <td>Divisi</td>
                             <td>Type</td>
-                            <td>Project</td>
+                            <td>Status</td>
                             <td align="center">Action</td>
                         </tr>
                     </thead>
@@ -107,7 +107,15 @@
                                 <td class="content-control">{{ $purchase_request->requester }}</td>
                                 <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
                                 <td class="content-control">{{ $purchase_request->type }}</td>
-                                <td class="content-control">{{ $purchase_request->project }}</td>
+                                @if ($purchase_request->approval_status == 'pending')
+                                <td> <a class="pending content-control">
+                                        {{ $purchase_request->approval_status }}
+                                    </a></td>
+                            @elseif ($purchase_request->approval_status == 'approve')
+                                <td> <button class="approve btn btn-warning">
+                                        {{ $purchase_request->approval_status }}
+                                    </button></td>
+                            @endif
                                 <td class="py-2 text-end">
                                     <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
                                             type="button" id="order-dropdown-1" data-bs-toggle="dropdown"
