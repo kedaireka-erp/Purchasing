@@ -144,7 +144,7 @@
         <div class="col-lg-6">
             <div class="mb-3">
                 <label for="kode_warna" class="form-label font">Kode Warna</label>
-                <input type="color" class="form-control" value="#e33535" name="kode_warna">
+                <input type="text" class="form-control" name="kode_warna">
             </div>
         </div>
     </div>
