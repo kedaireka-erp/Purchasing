@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Grade;
+use App\Models\Colour;
 use App\Models\location;
 use App\Models\Prefix;
 use App\Models\PurchaseRequest;
@@ -28,7 +29,7 @@ class PurchaseRequestController extends Controller
         }else{
             $items = Item::get();
             $powders = Powder::get();
-            $purchase_requests = PurchaseRequest::has('item')->with('Prefixe')->get();
+            $purchase_requests = PurchaseRequest::get();
         }
 
         return view('purchases.index', compact('items','powders','purchase_requests'));
@@ -49,6 +50,7 @@ class PurchaseRequestController extends Controller
     //     Index Create
     // ********************
     public function create(){
+        $colour = Colour::get();
         $purchase_requests = PurchaseRequest::with('Prefixe');
         $Location = location::get();
         $Ship = ships::get();
@@ -59,7 +61,7 @@ class PurchaseRequestController extends Controller
         $Supplier = Supplier::get();
         $Powder = powder::get();
         
-        return view('purchases.create', compact('Location','Ship', "Prefixe",'master_item','satuan', 'Grade', 'Supplier'));
+        return view('purchases.create', compact('colour','Location','Ship', "Prefixe",'master_item','satuan', 'Grade', 'Supplier'));
     }
 
 
@@ -187,7 +189,7 @@ class PurchaseRequestController extends Controller
         $powder->grades_id = $request->grades_id;
         $powder->suppliers_id = $request->suppliers_id;
         $powder->warna =$request->warna;
-        $powder->kode_warna =$request->kode_warna;
+        $powder->color_id =$request->color_id;
         $powder->finish =$request->finish;
         $powder->finishing =$request->finishing;
         $powder->quantity =$request->quantity;

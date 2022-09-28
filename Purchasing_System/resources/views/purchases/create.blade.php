@@ -1,6 +1,6 @@
 @extends('layout.sidebar')
 
-@section('judul-laman', 'Dashboard Purchase Request')
+@section('judul-laman', 'Create Purchase Request')
 
 @section('Judul-content')
     <div class="title-page">

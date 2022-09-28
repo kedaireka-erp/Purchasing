@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::table('powders', function (Blueprint $table) {
             $table->unsignedBigInteger("grades_id")->after("id")->nullable();
+            $table->unsignedBigInteger("color_id")->after("id")->nullable();
             $table->foreign("grades_id")->references("id")->on("grades")->onDelete("restrict")->onUpdate("cascade")->nullable();
+            $table->foreign("color_id")->references("id")->on("colours")->onDelete("restrict")->onUpdate("cascade")->nullable();
         });
     }
 

@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('powders', function (Blueprint $table) {
             $table->id();
             $table->string('warna', 100)->nullable();
-            $table->string('kode_warna', 100)->nullable();
             $table->enum('finish', ['interior', 'eksterior'])->nullable();
             $table->enum('finishing', ['SG', 'MATT', 'SUPERMATT', 'GLOSS', 'METALLIC', 'SAND TEXTURE', 'SUBLIMASI'])->nullable();
             $table->integer('quantity')->nullable();

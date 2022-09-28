@@ -11,4 +11,10 @@ class Colour extends Model
     protected $tables = 'colours';
     protected $primarykey = 'id';
     protected $fillable = ['name'];
+
+
+    public function powder()
+    {
+        return $this->hasMany(Powder::class);
+    }
 }

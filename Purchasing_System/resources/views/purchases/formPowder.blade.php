@@ -143,8 +143,19 @@
         </div>
         <div class="col-lg-6">
             <div class="mb-3">
-                <label for="kode_warna" class="form-label font">Kode Warna</label>
-                <input type="text" class="form-control" name="kode_warna" placeholder="--INPUT--">
+                <label for="Grade">Kode Warna<span style="color:red">*</span></label>
+                <select class="default-select input-rounded form-control wide mb-3"
+                    aria-label="Default select example" id="Grade" name="color_id"
+                    value="{{ old('color_id') }}">
+                    <option selected disabled>-- Pilih Kode Warna --</option>
+                    @foreach ($colour as $gra)
+                        <option value="{{ $gra->id }}">{{ ucfirst($gra->name) }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('color_id')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
         </div>
     </div>
