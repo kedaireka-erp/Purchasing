@@ -151,8 +151,18 @@
                             <span class="nav-text">Approval</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="/approval">Approval Manager</a></li>
-                            <li><a href="/approval/accept">Approval Tim Purchasing</a></li>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Approval Manager</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/approval">Approval Pending</a></li>
+                                    <li><a href="/approval/done">Approval Done</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Approval <br> Tim Purchasing</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/approval/accept">Approval Pending</a></li>
+                                    <li><a href="/approval/accept/done">Approval Done</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
 

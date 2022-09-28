@@ -107,13 +107,13 @@
                                 <td class="content-control">{{ $purchase_request->requester }}</td>
                                 <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
                                 <td class="content-control">{{ $purchase_request->type }}</td>
-                                @if ($purchase_request->approval_status == 'pending')
+                                @if ($purchase_request->accept_status == 'pending')
                                 <td> <a class="pending content-control">
-                                        {{ $purchase_request->approval_status }}
+                                        {{ $purchase_request->accept_status }}
                                     </a></td>
-                            @elseif ($purchase_request->approval_status == 'approve')
+                            @elseif ($purchase_request->accept_status == 'accept')
                                 <td> <button class="approve btn btn-warning">
-                                        {{ $purchase_request->approval_status }}
+                                        {{ $purchase_request->accept_status."ed" }}
                                     </button></td>
                             @endif
                                 <td class="py-2 text-end">

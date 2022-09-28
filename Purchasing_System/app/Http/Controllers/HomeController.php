@@ -22,13 +22,24 @@ class HomeController extends Controller
     }
     public function approval()
     {
-        $purchase_requests = PurchaseRequest::get();
+        $purchase_requests = PurchaseRequest::where('approval_status', 'pending')->get();
         return view('Approval.dashboard', compact("purchase_requests"));
     }
-
-    public function accept_page()
+    public function approval_done()
     {
         $purchase_requests = PurchaseRequest::where('approval_status', 'approve')->get();
+        return view('Approval.dashboard', compact("purchase_requests"));
+    }
+    
+    public function accept_page()
+    {
+        $purchase_requests = PurchaseRequest::where('approval_status', 'approve')->where('accept_status', 'pending')->get();
+        return view('Approval.diterima', compact("purchase_requests"));
+    }
+
+    public function accept_page_done()
+    {
+        $purchase_requests = PurchaseRequest::where('approval_status', 'approve')->where('accept_status', 'accept')->get();
         return view('Approval.diterima', compact("purchase_requests"));
     }
 

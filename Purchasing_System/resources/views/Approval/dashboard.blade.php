@@ -113,7 +113,7 @@
                                     </a></td>
                             @elseif ($purchase_request->approval_status == 'approve')
                                 <td> <button class="approve btn btn-warning">
-                                        {{ $purchase_request->approval_status }}
+                                        {{ $purchase_request->approval_status."d" }}
                                     </button></td>
                             @endif
                                 <td class="py-2 text-end">
