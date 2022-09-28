@@ -113,7 +113,7 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
     Route::post('/storeitem/{id}', [PurchaseRequestController::class, 'storeplus'])->name("storeplus");
     Route::get('/edit/{id}', [PurchaseRequestController::class, "edit"])->name("edit");
     Route::post('/update{id}', [PurchaseRequestController::class, "update"])->name("update");
-    Route::delete('/destroy{id}', [PurchaseRequestController::class, "destroy"])->name("destroy");
+    Route::delete('/destroy/{id}', [PurchaseRequestController::class, "destroy"])->name("destroy");
     });
     Route::get('/Othergood', [HomeController::class, 'coba'])->name('coba');
 

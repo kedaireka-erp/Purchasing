@@ -9,11 +9,6 @@
 
 @endsection
 
-{{-- @section('Judul-content')
-    <div class="title-page">
-        Purchase Request
-    </div>
-@endsection --}}
 
 @section('title_content', 'Purchase Request')
 
@@ -98,11 +93,13 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
-                                                
-                                                    <a class="dropdown-item"
-                                                        href="{{ route('purchase_request.view', $purchase_request->id) }}">Detail</a>
 
-                                                <form action="/" method="POST">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('purchase_request.view', $purchase_request->id) }}">Detail</a>
+
+                                                <form
+                                                    action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
+                                                    method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="dropdown-item text-danger">Delete</button>
