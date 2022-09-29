@@ -50,6 +50,7 @@
                 $('#msg_div').removeClass('d-none');
                 $('.btn-close').click();
                 location_read();
+                location_reader();
 
                 document.getElementById("contactForm").reset();
                 setTimeout(function() {

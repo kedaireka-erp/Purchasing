@@ -441,4 +441,45 @@ class PurchaseRequestController extends Controller
 
         return view('purchases.ships.read', compact('Ship'));
     }
+
+    // item
+    public function create_item(){
+        return view('purchases.item.add');
+    }
+
+    public function store_item(Request $request)
+    {
+        $master_item = New Master_Item;
+        $master_item->item_name = $request->item_name;
+        $master_item->save();
+        return redirect('/purchase_request/create');
+    }
+
+    public function read_item(Request $request)
+    {
+        $master_item = Master_Item::get();
+
+        return view('purchases.item.read', compact('master_item'));
+    }
+
+    // unit
+    public function create_unit(){
+        return view('purchases.unit.add');
+    }
+
+    public function store_unit(Request $request)
+    {
+        $satuan = New Satuan;
+        $satuan->name = $request->name;
+        $satuan->unit = $request->unit;
+        $satuan->save();
+        return redirect('/purchase_request/create');
+    }
+
+    public function read_unit(Request $request)
+    {
+        $satuan = Satuan::get();
+
+        return view('purchases.unit.read', compact('satuan'));
+    }
 }

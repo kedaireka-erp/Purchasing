@@ -49,7 +49,7 @@
                 $('#res_message').html(response.msg);
                 $('#msg_div').removeClass('d-none');
                 $('.btn-close').click();
-                prefix_read();
+                prefix_reader();
 
                 document.getElementById("contactForm").reset();
                 setTimeout(function() {

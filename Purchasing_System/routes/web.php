@@ -134,6 +134,15 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
     Route::get('/create/ships/read', [PurchaseRequestController::class, "read_ships"])->name('read_ships');
     Route::post('purchase_request/create/ships/store', [PurchaseRequestController::class, "store_ships"])->name('store_ships');
 
+    Route::get('/create/item', [PurchaseRequestController::class, "create_item"])->name('create_item');
+    Route::get('/create/item/read', [PurchaseRequestController::class, "read_item"])->name('read_item');
+    Route::post('purchase_request/create/item/store', [PurchaseRequestController::class, "store_item"])->name('store_item');
+
+    Route::get('/create/unit', [PurchaseRequestController::class, "create_unit"])->name('create_unit');
+    Route::get('/create/unit/read', [PurchaseRequestController::class, "read_unit"])->name('read_unit');
+    Route::post('purchase_request/create/unit/store', [PurchaseRequestController::class, "store_unit"])->name('store_unit');
+
+
 
     Route::post('/storegood', [PurchaseRequestController::class, "item_store"])->name("storegood");
     Route::post('/storepowder', [PurchaseRequestController::class, "powder_store"])->name("storepowder");

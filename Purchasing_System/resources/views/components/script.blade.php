@@ -8,18 +8,12 @@
 <!-- Required vendors -->
 <!-- Required vendors -->
 <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
-<script src="{{ asset('assets/js/plugins-init/sweetalert.init.js') }}"></script>
 <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
 
 <!-- Datatable -->
 <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
-
-
-
-
 
 
 <script src="{{ asset('assets/js/custom.min.js') }}"></script>

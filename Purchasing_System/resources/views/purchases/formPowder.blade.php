@@ -41,12 +41,13 @@
             <div class="mb-3">
                 <label for="prefixes_id" class="form-label">Divisi<span style="color:red">*</span></label>
                 <div class="row">
-                    <div class="col-lg-10 col-md-2 col-sm-2">
+                    <div class="col-lg-10 col-md-9 col-sm-2">
                         <div id="reader_prefix"></div>
                     </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2">
+                    <div class="col-lg-2 col-md-3 col-sm-2">
                         <a onClick="prefix_create()" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
-                            style="width: 100%" class="input-rounded btn btn-primary"> +
+                            style="width: 100%" class="input-rounded btn btn-primary"> <i class="fa fa-plus"
+                                style="font-size:14px"></i>
                         </a>
                     </div>
                 </div>
@@ -70,12 +71,13 @@
             <div class="mb-3">
                 <label for="Location">Lokasi<span style="color:red">*</span></label>
                 <div class="row">
-                    <div class="col-lg-10 col-md-2 col-sm-2">
+                    <div class="col-lg-10 col-md-9 col-sm-2">
                         <div id="reader_location"></div>
                     </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2">
+                    <div class="col-lg-2 col-md-3 col-sm-2">
                         <a onClick="location_create()" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
-                            style="width: 100%" class="input-rounded btn btn-primary"> +
+                            style="width: 100%" class="input-rounded btn btn-primary"> <i class="fa fa-plus"
+                                style="font-size:14px"></i>
                         </a>
                     </div>
                 </div>
@@ -90,12 +92,13 @@
             <div class="mb-3">
                 <label for="Ship">Kebutuhan/ Pengiriman<span style="color:red">*</span></label>
                 <div class="row">
-                    <div class="col-lg-10 col-md-2 col-sm-2">
+                    <div class="col-lg-10 col-md-9 col-sm-2">
                         <div id="reader_ships"></div>
                     </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2">
+                    <div class="col-lg-2 col-md-3 col-sm-2">
                         <a onClick="ships_create()" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
-                            style="width: 100%" class="input-rounded btn btn-primary"> +
+                            style="width: 100%" class="input-rounded btn btn-primary"> <i class="fa fa-plus"
+                                style="font-size:14px"></i>
                         </a>
                     </div>
                 </div>
@@ -142,12 +145,13 @@
                 <label for="Grade">Kode Warna<span style="color:red">*</span></label>
 
                 <div class="row">
-                    <div class="col-lg-10 col-md-2 col-sm-2">
+                    <div class="col-lg-10 col-md-9 col-sm-2">
                         <div id="reader_color"></div>
                     </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2">
+                    <div class="col-lg-2 col-md-3 col-sm-2">
                         <a onClick="color_create()" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
-                            style="width: 100%" class="input-rounded btn btn-primary"> +
+                            style="width: 100%" class="input-rounded btn btn-primary"> <i class="fa fa-plus"
+                                style="font-size:14px"></i>
                         </a>
                     </div>
                 </div>
@@ -163,12 +167,13 @@
                 <label for="Grade">Grade<span style="color:red">*</span></label>
 
                 <div class="row">
-                    <div class="col-lg-10 col-md-2 col-sm-2">
+                    <div class="col-lg-10 col-md-9 col-sm-2">
                         <div id="reader_grade"></div>
                     </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2">
+                    <div class="col-lg-2 col-md-3 col-sm-2">
                         <a onClick="grade_create()" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
-                            style="width: 100%" class="input-rounded btn btn-primary"> +
+                            style="width: 100%" class="input-rounded btn btn-primary"> <i class="fa fa-plus"
+                                style="font-size:14px"></i>
                         </a>
                     </div>
                 </div>
@@ -178,13 +183,13 @@
             <div class="mb-3">
                 <label for="Supplier">Supplier<span style="color:red">*</span></label>
                 <div class="row">
-                    <div class="col-lg-10 col-md-2 col-sm-2">
+                    <div class="col-lg-10 col-md-9 col-sm-2">
                         <div id="reader_supplier"></div>
                     </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2">
+                    <div class="col-lg-2 col-md-3 col-sm-2">
                         <a onClick="supplier_create()" data-bs-toggle="modal"
                             data-bs-target="#exampleModalPowderCenter" style="width: 100%"
-                            class="input-rounded btn btn-primary"> +
+                            class="input-rounded btn btn-primary"> <i class="fa fa-plus" style="font-size:14px"></i>
                         </a>
                     </div>
                 </div>
@@ -294,126 +299,8 @@
     </div>
 
 
-    <div class="modal fade" id="exampleModalPowderCenter">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" align="center" id="PowderModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div id="powder_page" class="pd-2"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 
     <button type="submit" class="btn btn-primary submit-powder">Submit</button>
 </form>
-
-
-<!-- Required vendors -->
-<script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        prefix_read();
-        location_read();
-        ships_read();
-        color_read();
-        supplier_read();
-        grade_read();
-    });
-
-    function location_read() {
-        $.get("{{ url('purchase_request/create/location/read') }}", {}, function(data, status) {
-            $("#reader_location").html(data);
-        });
-    }
-
-    function location_create() {
-        $.get("{{ url('purchase_request/create/location') }}", {}, function(data, status) {
-            $("#PowderModalLabel").html('Add Location');
-            $("#powder_page").html(data);
-            $("#exampleModalPowderCenter").modal('show');
-
-        })
-    }
-
-    function supplier_read() {
-        $.get("{{ url('purchase_request/create/supplier/read') }}", {}, function(data, status) {
-            $("#reader_supplier").html(data);
-        });
-    }
-
-    function supplier_create() {
-        $.get("{{ url('purchase_request/create/supplier') }}", {}, function(data, status) {
-            $("#PowderModalLabel").html('Add Supplier');
-            $("#powder_page").html(data);
-            $("#exampleModalPowderCenter").modal('show');
-
-        })
-    }
-
-
-    function color_read() {
-        $.get("{{ url('purchase_request/create/color/read') }}", {}, function(data, status) {
-            $("#reader_color").html(data);
-        });
-    }
-
-    function color_create() {
-        $.get("{{ url('purchase_request/create/color') }}", {}, function(data, status) {
-            $("#PowderModalLabel").html('Add Color');
-            $("#powder_page").html(data);
-            $("#exampleModalPowderCenter").modal('show');
-
-        })
-    }
-
-    function prefix_read() {
-        $.get("{{ url('purchase_request/create/prefix/read') }}", {}, function(data, status) {
-            $("#reader_prefix").html(data);
-        });
-    }
-
-    function prefix_create() {
-        $.get("{{ url('purchase_request/create/prefix') }}", {}, function(data, status) {
-            $("#PowderModalLabel").html('Add Prefix');
-            $("#powder_page").html(data);
-            $("#exampleModalPowderCenter").modal('show');
-
-        })
-    }
-
-    function grade_read() {
-        $.get("{{ url('purchase_request/create/grade/read') }}", {}, function(data, status) {
-            $("#reader_grade").html(data);
-        });
-    }
-
-    function grade_create() {
-        $.get("{{ url('purchase_request/create/grade') }}", {}, function(data, status) {
-            $("#PowderModalLabel").html('Add Grade');
-            $("#powder_page").html(data);
-            $("#exampleModalPowderCenter").modal('show');
-
-        })
-    }
-
-    function ships_read() {
-        $.get("{{ url('purchase_request/create/ships/read') }}", {}, function(data, status) {
-            $("#reader_ships").html(data);
-        });
-    }
-
-    function ships_create() {
-        $.get("{{ url('purchase_request/create/ships') }}", {}, function(data, status) {
-            $("#PowderModalLabel").html('Add Kebutuhan');
-            $("#powder_page").html(data);
-            $("#exampleModalPowderCenter").modal('show');
-
-        })
-    }
-</script>
