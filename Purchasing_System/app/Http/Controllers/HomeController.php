@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\location;
 use App\Models\Prefix;
 use App\Models\PurchaseRequest;
+use App\Models\Colour;
 use App\Models\ships;
 use App\Models\Master_Item;
 use App\Models\Satuan;
+use App\Models\Supplier;
+use App\Models\Grade;
 use App\Models\Item;
 use App\Models\ItemRequest;
 use Illuminate\Support\Facades\DB;
@@ -28,6 +31,11 @@ class HomeController extends Controller
     public function approval_done()
     {
         $purchase_requests = PurchaseRequest::where('approval_status', 'approve')->get();
+        return view('Approval.dashboard', compact("purchase_requests"));
+    }
+    public function approval_reject()
+    {
+        $purchase_requests = PurchaseRequest::where('approval_status', 'reject')->get();
         return view('Approval.dashboard', compact("purchase_requests"));
     }
     
@@ -56,12 +64,15 @@ class HomeController extends Controller
 
     public function edit($id)
     {
+        $Supplier = Supplier::get();
+        $Grade = Grade::get();
         $purchase_requests = PurchaseRequest::findOrFail($id);
+        $colour = Colour::get();
         $Location = location::get();
         $Ship = ships::get();
         $Prefixe = Prefix::get();
 
-        return view('Approval.edit', compact('purchase_requests', 'Location', 'Ship', 'Prefixe'));
+        return view('Approval.edit', compact('Supplier','Grade','colour','purchase_requests', 'Location', 'Ship', 'Prefixe'));
     }
 
     public function accept($id)

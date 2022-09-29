@@ -151,13 +151,15 @@
                             <span class="nav-text">Approval</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Approval Manager</a>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Manager</a>
                                 <ul aria-expanded="false">
-                                    <li><a href="/approval">Approval Pending</a></li>
-                                    <li><a href="/approval/done">Approval Done</a></li>
+                                    <li><a href="/approval">PR Pending</a></li>
+                                    <li><a href="/approval/done">PR Approved</a></li>
+                                    <li><a href="/approval/reject">PR Reject</a></li>
                                 </ul>
                             </li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Approval <br> Tim Purchasing</a>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Approval <br> Tim
+                                    Purchasing</a>
                                 <ul aria-expanded="false">
                                     <li><a href="/approval/accept">Approval Pending</a></li>
                                     <li><a href="/approval/accept/done">Approval Done</a></li>

@@ -215,6 +215,7 @@ route::group(['as'=>'colour.','prefix'=>'colour'], function(){
     Route::group(['as' => 'approval.', 'prefix' => 'approval'], function () {
         Route::get('/', [HomeController::class, 'Approval']);
         Route::get('/done', [HomeController::class, 'approval_done']);
+        Route::get('/reject', [HomeController::class, 'approval_reject']);
         Route::get('/accept', [HomeController::class, 'accept_page']);
         Route::get('/accept/done', [HomeController::class, 'accept_page_done']);
         Route::get('/view/{id}', [HomeController::class, "view"])->name("view");

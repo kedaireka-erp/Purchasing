@@ -57,7 +57,6 @@
                     <tbody>
                         @foreach ($purchase_requests as $no => $purchase_request)
                             <tr align="right">
-
                                 <td class="content-control" align="left">{{ $purchase_request->no_pr }}</td>
                                 <td class="content-control">
                                     {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}</td>

@@ -17,140 +17,13 @@
     <div class="row page-titles">
         <ol class="breadcrumb">
             <li class="breadcrumb-item active"><a href="javascript:void(0)">Approval Manager</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Approval</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Edit PR</a></li>
         </ol>
     </div>
 @endsection
 
 @section('content')
 
-
-
-
-    {{-- <div class="container">
-
-        <div class="viewpr">
-            <div id="header">
-                <div class="row">
-                    <div class="col-6" style="margin-top: 10px">
-                        <div class="row">
-                            <div class="col-3">
-                                <img class="logo_pr" src="{{ asset('images/logo_compagnie.png') }}">
-                            </div>
-                            <div class="col-9">
-                                <span class="text_pr">PT. ALLURE ALLUMINIO</span>
-                                <p class="subtext_pr">Jakarta</p>
-                                <p class="subtext_pr">Telp: (021) 45850530</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-2"></div>
-
-                    <div class="col-4">
-                        <span class="bold"> Purchase Request </span>
-                        <p class="text_pr">No: {{ $purchase_requests->no_pr }}</p>
-                        <table style="margin-top: 20px " class="subhead_pr">
-                            <tr>
-                                <td>Pengajuan</td>
-                                <td>: {{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</td>
-                            </tr>
-                            <br>
-                            <tr>
-                                <td width="80px">Deadline</td>
-                                <td>: {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}</td>
-                            </tr>
-                            <br>
-                            <tr>
-                                <td width="80px">Alamat</td>
-                                <td>: {{ $purchase_requests->location->location_name }}</td>
-                            </tr>
-                        </table>
-
-                    </div>
-                </div>
-            </div>
-
-
-            <table class="table table-striped" id="body">
-                <thead>
-                    <tr style="text-align: center">
-                        <th scope="col">No.</th>
-                        <th scope="col">Description of Goods</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Unit</th>
-                    </tr>
-                </thead>
-                @php
-                    $nomor = 1;
-                @endphp
-
-                
-                <tbody>
-
-                    @foreach ($purchase_requests->item as $yes)
-                        <tr style="text-align: center">
-                            <td>{{ $nomor++ }}</td>
-                            <td>{{ $yes->master_item }}</td>
-                            <td>{{ $yes->stok }}</td>
-                            <td>{{ $yes->satuan }}</td>
-                        </tr>
-                    @endforeach
-
-
-
-
-                </tbody>
-               
-            </table>
-
-            <div id="footer" style="margin-top: 80px">
-                <hr>
-                <div class="row">
-                    <div class="col-6">
-                        <p class="subhead_pr">Project/Customer : {{ $purchase_requests->project }}</p>
-                        <p class="subhead_pr" style="margin-top: 130px">Kebutuhan/Pengiriman : <span
-                                style="font-weight: bold">{{ $purchase_requests->Ship->type }}</span></p>
-                        <p class="subhead_pr">Note : {{ $purchase_requests->note }} </p>
-                    </div>
-                    <div class="col-1"></div>
-
-                    <div class="col-5" align="center">
-                        <p class="subhead_pr">Requester/Divisi : {{ $purchase_requests->requester }}/
-                            {{ $purchase_requests->Prefixe->divisi }} </p>
-
-                        @if ($purchase_requests->approval_status == 'pending')
-                            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="orange"
-                                class="bi bi-pause-circle-fill" viewBox="0 0 16 16" style="margin-top:30px">
-                                <path
-                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.25 5C5.56 5 5 5.56 5 6.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C7.5 5.56 6.94 5 6.25 5zm3.5 0c-.69 0-1.25.56-1.25 1.25v3.5a1.25 1.25 0 1 0 2.5 0v-3.5C11 5.56 10.44 5 9.75 5z" />
-                            </svg>
-                        @elseif($purchase_requests->approval_status == 'approve')
-                            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="green"
-                                class="bi bi-check-circle-fill" viewBox="0 0 16 16"style="margin-top:30px">
-                                <path
-                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                            </svg>
-                        @endif
-
-
-                        <p class="subhead_pr" style="margin-top:20px"><span
-                                style="font-weight: bold; text-transform:uppercase;font-size:15px">{{ $purchase_requests->approval_status }}</span>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div style="margin-top:100px"></div>
-    </div> --}}
-
-
-    <!--**********************************
-                                                                                                                                                        Content body start
-                                                                                                                                                    ***********************************-->
 
     <div class="row">
         <div class="col-md-5">
@@ -161,118 +34,7 @@
                 <div class="card-body">
                     <div id="DZ_W_TimeLine" class="widget-timeline dlab-scroll height370">
                         <ul class="timeline">
-                            @if ($purchase_requests->approval_status == 'pending' && $purchase_requests->accept_status == 'pending')
-                                <li>
-                                    <div class="timeline-badge primary"></div>
-                                    <a class="timeline-panel text-muted" href="#">
-                                        <span> Pending </span>
-                                        <h6 class="mb-0"> Purchase Request belum diterima oleh tim Purchasing </strong>.
-                                        </h6>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge primary"></div>
-                                    <a class="timeline-panel text-muted" href="#">
-                                        <span> Pending </span>
-                                        <h6 class="mb-0"> Purchase Request belum mendapat persetujuan dari manager divisi
-                                        </h6>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge danger">
-                                    </div>
-                                    <a class="timeline-panel text-muted" href="#">
-                                        <span>{{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</span>
-                                        <h6 class="mb-0"> Purchase Request telah diajukan</h6>
-                                        <p align="justify"> Puchase Request masuk dalam tahap pending, segera hubungi
-                                            menager divisi untuk melakukan pengecekan dan approval</p>
-                                    </a>
-                                </li>
-                            @elseif($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'pending')
-                                <li>
-                                    <div class="timeline-badge primary"></div>
-                                    <a class="timeline-panel text-muted" href="#">
-                                        <span> Pending </span>
-                                        <h6 class="mb-0"> Purchase Request belum diterima oleh tim Purchasing </strong>.
-                                        </h6>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge warning"></div>
-                                    <a class="timeline-panel text-muted" href="#">
-                                        <h6 class="mb-0"> Purchase Request telah mendapat persetujuan dari manager divisi
-                                        </h6>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge warning">
-                                    </div>
-                                    <a class="timeline-panel text-muted" href="#">
-                                        <span>{{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</span>
-                                        <h6 class="mb-0"> Purchase Request telah diajukan</h6>
-                                        <p align="justify"> Pengajuan Puchase Request telah disetujui, tetapi belum diterima
-                                            oleh tim Purchasing</p>
-                                    </a>
-                                </li>
-                            @elseif($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'accept')
-                                <li>
-                                    <div class="timeline-badge success"></div>
-                                    <a class="timeline-panel text-muted" href="#">
-                                        <span> {{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }}
-                                        </span>
-                                        <h6 class="mb-0"> Purchase Request telah diterima oleh tim Purchasing </strong>.
-                                        </h6>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge success"></div>
-                                    <a class="timeline-panel text-muted" href="#">
-                                        <h6 class="mb-0"> Purchase Request telah mendapat persetujuan dari manager divisi
-                                        </h6>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge success">
-                                    </div>
-                                    <a class="timeline-panel text-muted" href="#">
-                                        <span>{{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</span>
-                                        <h6 class="mb-0"> Purchase Request telah diajukan</h6>
-                                        <p align="justify"> Pengajuan Puchase Request telah disetujui semua pihak</p>
-                                    </a>
-                                </li>
-                            @endif
-                            {{-- <li>
-                                    <div class="timeline-badge danger">
-                                    </div>
-                                    <a class="timeline-panel text-muted" href="#">
-                                        <span>30 minutes ago</span>
-                                        <h6 class="mb-0">john just buy your product <strong class="text-warning">Sell $250</strong></h6>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge success">
-                                    </div>
-                                    <a class="timeline-panel text-muted" href="#">
-                                        <span>15 minutes ago</span>
-                                        <h6 class="mb-0">StumbleUpon is acquired by eBay. </h6>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge warning">
-                                    </div>
-                                    <a class="timeline-panel text-muted" href="#">
-                                        <span>20 minutes ago</span>
-                                        <h6 class="mb-0">Mashable, a news website and blog, goes live.</h6>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge dark">
-                                    </div>
-                                    <a class="timeline-panel text-muted" href="#">
-                                        <span>20 minutes ago</span>
-                                        <h6 class="mb-0">Mashable, a news website and blog, goes live.</h6>
-                                    </a>
-                                </li> --}}
+                            @include('Approval.timeline')
                         </ul>
                     </div>
                 </div>
@@ -284,17 +46,19 @@
                     <div class="profile-tab">
                         <div class="custom-tab-1">
                             <ul class="nav nav-tabs">
-                                <li class="nav-item"><a href="#my-posts" data-bs-toggle="tab"
-                                        class="nav-link active show">Detail Request</a>
+                                <li class="nav-item"><a href="#my-posts" data-bs-toggle="tab" class="nav-link">Detail
+                                        Request</a>
                                 </li>
-                                <li class="nav-item"><a href="#about-me" data-bs-toggle="tab" class="nav-link"> Item </a>
+                                <li class="nav-item"><a href="#about-me" data-bs-toggle="tab" class="nav-link active show">
+                                        Edit Item
+                                    </a>
                                 </li>
                                 <li class="nav-item"><a href="#approval" data-bs-toggle="tab" class="nav-link">
                                         Approval </a>
                                 </li>
                             </ul>
                             <div class="tab-content">
-                                <div id="my-posts" class="tab-pane fade active show">
+                                <div id="my-posts" class="tab-pane fade">
                                     <div class="my-post-content pt-3">
                                         <div class="post-input">
                                             <table style="margin-top: -150px">
@@ -352,77 +116,218 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div id="about-me" class="tab-pane fade">
+                                <div id="about-me" class="tab-pane fade active show">
                                     <div class="profile-about-me">
 
                                         {{-- ini tabel item di tracking --}}
                                         @if ($purchase_requests->type == 'othergood')
-                                            <table class="table table-striped" id="body">
-                                                <thead>
-                                                    <tr style="text-align: center">
-                                                        <td scope="col">No.</td>
-                                                        <td scope="col">Description of Goods</td>
-                                                        <td scope="col">Quantity</td>
-                                                        <td scope="col">Unit</td>
-                                                    </tr>
-                                                </thead>
-
-                                                @php
-                                                    $nomor = 1;
-                                                @endphp
-
-
-                                                <tbody>
-
-                                                    @foreach ($purchase_requests->item as $yes)
-                                                        <tr style="text-align: center">
-                                                            <td>{{ $nomor++ }}</td>
-                                                            <td>{{ $yes->master_item->item_name }}</td>
-                                                            <td>{{ $yes->stok }}</td>
-                                                            <td>{{ $yes->satuan->unit }}</td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
                                         @elseif ($purchase_requests->type == 'powder')
-                                            <table class="table table-striped" id="body">
-                                                <thead>
-                                                    <tr style="text-align: center">
-                                                        <td scope="col">No.</td>
-                                                        <td scope="col">Suppllier</td>
-                                                        <td scope="col">Grade</td>
-                                                        <td scope="col">Warna</td>
-                                                        <td scope="col">Kode Warna</td>
-                                                        <td scope="col">Finish</td>
-                                                        <td scope="col">Quantity</td>
-                                                        <td scope="col">m2</td>
+                                            @foreach ($purchase_requests->powder as $yes)
+                                                <div class="head" style="margin-top:50px"></div>
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <label for="warna" class="form-label font pt-3">warna</label>
+                                                    </div>
+                                                    <div class="col-lg-9">
+                                                        <div class="mb-3">
+                                                            <input type="text" class="form-control input-rounded"
+                                                                value="{{ $yes->warna }}" name="warna">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <div class="mb-3">
+                                                            <label for="color_id" class="form-label font pt-3">Kode
+                                                                Warna<span style="color:red">*</span></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-9">
+                                                        <div class="mb-3">
+                                                            <select
+                                                                class="default-select input-rounded form-control wide mb-3"
+                                                                aria-label="Default select example" id="Grade"
+                                                                name="color_id" value="{{ old('color_id') }}">
+                                                                <option selected disabled>-- Pilih Kode Warna --</option>
+                                                                @foreach ($colour as $gra)
+                                                                    <option value="{{ $gra->id }}">
+                                                                        {{ ucfirst($gra->name) }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('color_id')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <div class="mb-3">
+                                                            <label for="Grade">Grade<span
+                                                                    style="color:red">*</span></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-9">
+                                                        <div class="mb-3">
+                                                            <select
+                                                                class="default-select input-rounded form-control wide mb-3"
+                                                                aria-label="Default select example" id="Grade"
+                                                                name="grades_id" value="{{ old('grades_id') }}">
+                                                                <option selected disabled>-- Pilih Grade --</option>
+                                                                @foreach ($Grade as $gra)
+                                                                    <option value="{{ $gra->id }}">
+                                                                        {{ ucfirst($gra->tipe) }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('grades_id')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
 
-                                                    </tr>
-                                                </thead>
-                                                @php
-                                                    $nomor = 1;
-                                                @endphp
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <label for="Supplier">Supplier<span
+                                                                style="color:red">*</span></label>
+                                                    </div>
+                                                    <div class="col-lg-9">
+                                                        <div class="mb-3">
+                                                            <select
+                                                                class="default-select input-rounded form-control wide mb-3"
+                                                                aria-label="Default select example" id="Supplier"
+                                                                name="suppliers_id" value="{{ old('suppliers_id') }}">
+                                                                <option selected disabled>-- Pilih Supplier --</option>
+                                                                @foreach ($Supplier as $sup)
+                                                                    <option value="{{ $sup->id }}">
+                                                                        {{ ucfirst($sup->vendor) }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                            @error('suppliers_id')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                                                {{-- @if ($item->id_request == $purchase_requests->id) --}}
-                                                <tbody>
 
-                                                    @foreach ($purchase_requests->powder as $yes)
-                                                        <tr style="text-align: center">
-                                                            <td>{{ $nomor++ }}</td>
-                                                            <td>{{ $yes->supplier->vendor }}</td>
-                                                            <td>{{ $yes->grade->type }}</td>
-                                                            <td>{{ $yes->warna }}</td>
-                                                            <td>{{ $yes->kode_warna }}</td>
-                                                            <td>{{ $yes->finish }}</td>
-                                                            <td>{{ $yes->quantity }}</td>
-                                                            <td>{{ $yes->m2 }}</td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                                {{-- @endif --}}
-                                            </table>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+
+
+                                                            <label for="finish" class="form-label font">Finish</label>
+                                                            <select
+                                                                class="default-select input-rounded form-control wide mb-3"
+                                                                aria-label="Default select example" name="finish">
+                                                                <option selected disabled> -- PILIH OPSI -- </option>
+                                                                <option value="interior"> Interior </option>
+                                                                <option value="eksterior"> Eksterior </option>
+                                                            </select>
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+
+
+                                                            <label for="finishing"
+                                                                class="form-label font">Finishing</label>
+                                                            <select
+                                                                class="default-select input-rounded form-control wide mb-3"
+                                                                aria-label="Default select example" name="finishing">
+                                                                <option selected disabled> -- PILIH OPSI-- </option>
+                                                                <option value="SG"> SG </option>
+                                                                <option value="MATT"> MATT </option>
+                                                                <option value="SUPERMATT"> SUPERMATT </option>
+                                                                <option value="GLOSS"> GLOSS </option>
+                                                                <option value="METALLIC"> METALLIC </option>
+                                                                <option value="SAND TEXTURE"> SAND TEXTURE </option>
+                                                                <option value="SUBLIMASI"> SUBLIMASI </option>
+                                                            </select>
+
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="mb-3">
+                                                            <label for="quantity" class="form-label font">Quantity</label>
+                                                            <input type="number" name="quantity"
+                                                                class="form-control input-rounded"
+                                                                value="{{ $yes->quantity }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="mb-3">
+                                                            <label for="tanggal_pengajuan"
+                                                                class="form-label font">m2</label>
+                                                            <input type="number" class="form-control input-rounded"
+                                                                name="m2"  value="{{ $yes->m2 }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <div class="col-">
+                                                                <label for="tanggal_pengajuan"
+                                                                    class="form-label font">Estimasi
+                                                                    m2/Kg</label>
+                                                                <input type="number" class="form-control input-rounded"
+                                                                    name="estimasi"  value="{{ $yes->estimasi }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label for="tanggal_pengajuan" class="form-label font">Stock
+                                                                Powder Fresh
+                                                                (Kgs)
+                                                            </label>
+                                                            <input type="number" class="form-control input-rounded"
+                                                            value="{{ $yes->fresh }}" name="fresh">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label for="tanggal_pengajuan" class="form-label font">Stock
+                                                                Powder Recycle
+                                                                (Kgs)</label>
+                                                            <input type="number" class="form-control input-rounded"
+                                                            value="{{ $yes->recycle }}" name="recycle">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="mb-3">
+                                                            <label for="tanggal_pengajuan" class="form-label font">Alokasi
+                                                                powder Fresh</label>
+                                                            <input type="number" class="form-control input-rounded"
+                                                               value="{{ $yes->alokasi }}" name="alokasi">
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            @endforeach
                                         @endif
-
+                                        <button style="margin-top:10px" class="btn btn-primary"> Simpan
+                                        </button>
                                     </div>
                                 </div>
 
@@ -478,7 +383,7 @@
 
     </div>
     <!--**********************************
-                                                                                                                                                        Content body end
-                                                                                                                                                    ***********************************-->
+                                                                                                                                                                                                                                                                                                                    Content body end
+                                                                                                                                                                                                                                                                                                                ***********************************-->
 
 @endsection

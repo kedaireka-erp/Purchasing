@@ -278,7 +278,6 @@ select:focus {
 }
 
 .pending {
-    background-color: rgb(247, 247, 134) !important;
     color: orange !important;
     border-radius: 10px !important;
     width:20px;
@@ -286,14 +285,12 @@ select:focus {
 }
 
 .approve {
-    background-color: lightgreen !important;
     color: green !important;
     border-radius: 10px !important;
     font-size: 11px !important;
 }
 
 .reject {
-    background-color: lightcoral !important;
     color: red !important;
     border-radius: 10px !important;
     font-size: 11px !important;
