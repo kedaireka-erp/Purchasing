@@ -161,8 +161,9 @@
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Approval <br> Tim
                                     Purchasing</a>
                                 <ul aria-expanded="false">
-                                    <li><a href="/approval/accept">Approval Pending</a></li>
-                                    <li><a href="/approval/accept/done">Approval Done</a></li>
+                                    <li><a href="/approval/accept">PR Pending</a></li>
+                                    <li><a href="/approval/accept/done">PR Accept</a></li>
+                                    <li><a href="/approval/accept/reject">PR Reject</a></li>
                                 </ul>
                             </li>
                         </ul>

@@ -66,11 +66,11 @@
                                         </a></td>
                                 @elseif ($purchase_request->approval_status == 'approve')
                                     <td align="center"> <a class="approve content-control">
-                                            <i class="fa fa-check"></i> {{ $purchase_request->approval_status }}
+                                            <i class="fa fa-check"></i> {{ $purchase_request->approval_status."d" }}
                                         </a></td>
                                 @elseif ($purchase_request->approval_status == 'reject')
                                     <td align="center"> <a class="reject content-control">
-                                            <i class="fa fa-close"></i> {{ $purchase_request->approval_status }}
+                                            <i class="fa fa-close"></i> {{ $purchase_request->approval_status."ed" }}
                                         </a></td>
                                 @endif
 

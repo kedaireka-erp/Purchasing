@@ -444,6 +444,7 @@
                                                             {{ $purchase_requests->accept_status }}</option>
                                                         <option value="pending">pending</option>
                                                         <option value="accept">accept</option>
+                                                        <option value="reject">reject</option>
                                                     </select>
                                                 </div>
                                             </div>

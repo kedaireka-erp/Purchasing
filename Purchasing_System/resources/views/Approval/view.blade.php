@@ -213,7 +213,7 @@
                                                             {{ $purchase_requests->approval_status }}</option>
                                                         <option value="pending">pending</option>
                                                         <option value="approve">approve</option>
-                                                        <option value="ignore">ignore</option>
+                                                        <option value="reject">reject</option>
                                                     </select>
                                                 </div>
                                             </div>

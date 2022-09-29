@@ -218,6 +218,7 @@ route::group(['as'=>'colour.','prefix'=>'colour'], function(){
         Route::get('/reject', [HomeController::class, 'approval_reject']);
         Route::get('/accept', [HomeController::class, 'accept_page']);
         Route::get('/accept/done', [HomeController::class, 'accept_page_done']);
+        Route::get('/accept/reject', [HomeController::class, 'accept_page_reject']);
         Route::get('/view/{id}', [HomeController::class, "view"])->name("view");
         Route::get('/edit/{id}', [HomeController::class, "edit"])->name("edit");
         Route::get('/accept/{id}', [HomeController::class, "accept"])->name("acceptpr");

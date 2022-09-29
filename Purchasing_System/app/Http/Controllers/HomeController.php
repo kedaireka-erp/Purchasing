@@ -50,6 +50,11 @@ class HomeController extends Controller
         $purchase_requests = PurchaseRequest::where('approval_status', 'approve')->where('accept_status', 'accept')->get();
         return view('Approval.diterima', compact("purchase_requests"));
     }
+    public function accept_page_reject()
+    {
+        $purchase_requests = PurchaseRequest::where('approval_status', 'approve')->where('accept_status', 'reject')->get();
+        return view('Approval.diterima', compact("purchase_requests"));
+    }
 
     public function view($id)
     {
