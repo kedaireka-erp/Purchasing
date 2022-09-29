@@ -50,7 +50,7 @@ class ships_controller extends Controller
     public function store(ships_request $request)
     {
         $model = new ships;
-        $model->type = $request->type;
+        $model->tipe = $request->tipe;
         $model->save();
 
         return \redirect('ships')->with('success', 'Data kebutuhan berhasil ditambahkan');
@@ -89,7 +89,7 @@ class ships_controller extends Controller
     public function update(ships_request $request, $id)
     {
         $model = ships::find($id);
-        $model->type = $request->type;
+        $model->tipe = $request->tipe;
         $model->save();
 
         return \redirect('ships')->with('teredit', 'Data kebutuhan berhasil diedit');

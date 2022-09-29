@@ -59,7 +59,7 @@
                             @foreach ($grade as $value)
                                 <tr align="center">
                                     <td class="content-control">{{ $loop->iteration }}</td>
-                                    <td class="content-control">{{ $value->type }}</td>
+                                    <td class="content-control">{{ $value->tipe }}</td>
                                     <td class="content-control">{{ $value->grade_powder }}</td>
                                     <td class="content-control">
                                         {{ \Carbon\Carbon::parse($value->created_at)->format('d F Y') }}
@@ -111,8 +111,7 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                        <a class="btn btn-primary" href="/masteritem/download" 
-		role="button">Download Data</a>
+                        <a class="btn btn-primary" href="/masteritem/download" role="button">Download Data</a>
                     </table>
                 </div>
             </div>
@@ -144,7 +143,7 @@
                         $("#exampleModalGradeCenter").modal('show');
                     })
                 }
-            
+
                 function grade_edit(id) {
                     $.get("{{ url('grade/edit') }}/" + id, {}, function(data, status) {
                         $("#GradeModalLabel").html('Edit Grade');
@@ -152,7 +151,7 @@
                         $("#exampleModalGradeCenter").modal('show');
                     })
                 }
-            
+
                 function grade_view(id) {
                     $.get("{{ url('grade/view') }}/" + id, {}, function(data, status) {
                         $("#GradeModalLabel").html('View Grade');

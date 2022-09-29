@@ -1,7 +1,7 @@
 <div id="form" style="margin-top: 10px">
     <div class="mb-3">
         <label class="form-label">Grade Type <span class="text-danger">*</span> </label>
-        <input type="text" name="type" class="form-control" disabled value="{{ $grade->type }}">
+        <input type="text" name="type" class="form-control" disabled value="{{ $grade->tipe }}">
     </div>
     <div class="mb-3">
         <label class="form-label">Grade Powder</label>

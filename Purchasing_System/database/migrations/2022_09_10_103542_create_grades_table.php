@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            $table->string('type', 100)->nullable();
+            $table->string('tipe', 100)->nullable();
             $table->string('grade_powder')->nullable();
             $table->string('sieve_no_all')->nullable();
             $table->string('sieve_no_half')->nullable();

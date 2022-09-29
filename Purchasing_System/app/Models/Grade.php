@@ -11,7 +11,7 @@ class Grade extends Model
     protected $tables = "grades";
     protected $primarykey = "id";
     protected $fillable = [
-        "type",
+        "tipe",
         "grade_powder", 
         "sieve_no_all",
         "sieve_no_half",

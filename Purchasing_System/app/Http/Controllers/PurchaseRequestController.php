@@ -58,10 +58,10 @@ class PurchaseRequestController extends Controller
         $master_item = Master_Item::get();
         $satuan = Satuan::get();
         $Grade = Grade::get();
-        $Supplier = Supplier::get();
+        $color = Supplier::get();
         $Powder = powder::get();
         
-        return view('purchases.create', compact('colour','Location','Ship', "Prefixe",'master_item','satuan', 'Grade', 'Supplier'));
+        return view('purchases.create', compact('colour','Location','Ship', "Prefixe",'master_item','satuan', 'Grade'));
     }
 
 
@@ -301,5 +301,144 @@ class PurchaseRequestController extends Controller
     public function show($id){
 
         
+    }
+
+
+    public function create_location(){
+        return view('purchases.location.add');
+    }
+
+    public function store_location(Request $request)
+    {
+        
+
+        $location = Location::create([
+            'location_name' => $request->location_name,
+            'address' => $request->address
+        ]);
+
+        return redirect('/purchase_request/create');
+    }
+
+    public function read_location(Request $request)
+    {
+        $Location = Location::get();
+
+        return view('purchases.location.read', compact('Location'));
+    }
+
+
+
+    public function create_supplier(){
+        return view('purchases.supplier.add');
+    }
+
+    public function store_supplier(Request $request)
+    {
+        
+
+        $Supplier = Supplier::create([
+            'vendor' => $request->vendor,
+        ]);
+
+        return redirect('/purchase_request/create');
+    }
+
+    public function read_supplier(Request $request)
+    {
+        $Supplier = Supplier::get();
+
+        return view('purchases.supplier.read', compact('Supplier'));
+    }
+
+
+    public function create_color(){
+        return view('purchases.color.add');
+    }
+
+    public function store_color(Request $request)
+    {
+        
+
+        $colour = Colour::create([
+            'name' => $request->name,
+        ]);
+
+        return redirect('/purchase_request/create');
+    }
+
+    public function read_color(Request $request)
+    {
+        $colour = Colour::get();
+
+        return view('purchases.color.read', compact('colour'));
+    }
+
+    
+    // prefix
+    public function create_prefix(){
+        return view('purchases.prefix.add');
+    }
+
+    public function store_prefix(Request $request)
+    {
+        
+
+        $Prefixe = Prefix::create([
+            'prefix' => $request->prefix,
+            'divisi' => $request->divisi,
+        ]);
+
+        return redirect('/purchase_request/create');
+    }
+
+    public function read_prefix(Request $request)
+    {
+        $Prefixe = Prefix::get();
+
+        return view('purchases.prefix.read', compact('Prefixe'));
+    }
+
+    // grade
+    public function create_grade(){
+        return view('purchases.grade.add');
+    }
+
+    public function store_grade(Request $request)
+    {
+        
+
+        $Grade = Grade::create([
+            'tipe' => $request->tipe,
+        ]);
+
+        return redirect('/purchase_request/create');
+    }
+
+    public function read_grade(Request $request)
+    {
+        $Grade = Grade::get();
+
+        return view('purchases.grade.read', compact('Grade'));
+    }
+
+    // ships
+    public function create_ships(){
+        return view('purchases.ships.add');
+    }
+
+    public function store_ships(Request $request)
+    {
+        $Ship = New ships;
+        $Ship->tipe = $request->tipe;
+        $Ship->save();
+        return redirect('/purchase_request/create');
+    }
+
+    public function read_ships(Request $request)
+    {
+        $Ship = ships::get();
+
+        return view('purchases.ships.read', compact('Ship'));
     }
 }

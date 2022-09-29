@@ -24,7 +24,7 @@ class ships_request extends FormRequest
     public function rules()
     {
         return [
-            'type' => 'required | unique:ships'
+            'tipe' => 'required | unique:ships'
         ];
     }
 }

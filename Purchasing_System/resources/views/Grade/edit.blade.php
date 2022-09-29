@@ -3,7 +3,7 @@
         @csrf
         <div class="mb-3">
             <label class="form-label">Grade Type <span class="text-danger">*</span> </label>
-            <input type="text" name="type" class="form-control" placeholder="-- INPUT --"
+            <input type="text" name="tipe" class="form-control" placeholder="-- INPUT --"
                 value="{{ $grade->type }}">
         </div>
         <div class="mb-3">

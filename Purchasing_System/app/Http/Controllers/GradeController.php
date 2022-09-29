@@ -32,7 +32,7 @@ class GradeController extends Controller
     public function store(Request $request){
    
         $grade = new Grade;
-        $grade->type = $request->type;
+        $grade->tipe = $request->tipe;
         $grade->grade_powder = $request->grade_powder;
         $grade->sieve_no_all = $request->sieve_no_all;
         $grade->sieve_no_half = $request->sieve_no_half;
@@ -54,7 +54,7 @@ class GradeController extends Controller
     #Simpan perubahan Master Grade
     public function update(Request $request, $id){
         $grade = Grade::find($id);
-        $grade->type = $request->type;
+        $grade->tipe = $request->tipe;
         $grade->save();
         return \redirect('grade')->with('teredit', 'Data berhasil diedit');
     }
@@ -87,7 +87,7 @@ class GradeController extends Controller
         foreach ($query as $d=> $row){ 
         
             $sheet->setCellValue('A'.$i, $no++);
-            $sheet->setCellValue('B'.$i, $row->type);
+            $sheet->setCellValue('B'.$i, $row->tipe);
             $sheet->setCellValue('C'.$i, $row->created_at);
             $sheet->setCellValue('D'.$i, $row->updated_at);   
             $i++;

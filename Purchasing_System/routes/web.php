@@ -107,6 +107,34 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
     Route::get('/', [PurchaseRequestController::class, 'index']);
     Route::get('/detail/{id}', [PurchaseRequestController::class, 'detail'])->name('detail');
     Route::get('/create', [PurchaseRequestController::class, "create"])->name('create');
+
+
+    Route::get('/create/location', [PurchaseRequestController::class, "create_location"])->name('create_location');
+    Route::get('/create/location/read', [PurchaseRequestController::class, "read_location"])->name('read_location');
+    Route::post('purchase_request/create/location/store', [PurchaseRequestController::class, "store_location"])->name('store_location');
+
+    Route::get('/create/supplier', [PurchaseRequestController::class, "create_supplier"])->name('create_supplier');
+    Route::get('/create/supplier/read', [PurchaseRequestController::class, "read_supplier"])->name('read_supplier');
+    Route::post('purchase_request/create/supplier/store', [PurchaseRequestController::class, "store_supplier"])->name('store_supplier');
+
+
+    Route::get('/create/color', [PurchaseRequestController::class, "create_color"])->name('create_color');
+    Route::get('/create/color/read', [PurchaseRequestController::class, "read_color"])->name('read_color');
+    Route::post('purchase_request/create/color/store', [PurchaseRequestController::class, "store_color"])->name('store_color');
+
+    Route::get('/create/prefix', [PurchaseRequestController::class, "create_prefix"])->name('create_prefix');
+    Route::get('/create/prefix/read', [PurchaseRequestController::class, "read_prefix"])->name('read_prefix');
+    Route::post('purchase_request/create/prefix/store', [PurchaseRequestController::class, "store_prefix"])->name('store_prefix');
+
+    Route::get('/create/grade', [PurchaseRequestController::class, "create_grade"])->name('create_grade');
+    Route::get('/create/grade/read', [PurchaseRequestController::class, "read_grade"])->name('read_grade');
+    Route::post('purchase_request/create/grade/store', [PurchaseRequestController::class, "store_grade"])->name('store_grade');
+
+    Route::get('/create/ships', [PurchaseRequestController::class, "create_ships"])->name('create_ships');
+    Route::get('/create/ships/read', [PurchaseRequestController::class, "read_ships"])->name('read_ships');
+    Route::post('purchase_request/create/ships/store', [PurchaseRequestController::class, "store_ships"])->name('store_ships');
+
+
     Route::post('/storegood', [PurchaseRequestController::class, "item_store"])->name("storegood");
     Route::post('/storepowder', [PurchaseRequestController::class, "powder_store"])->name("storepowder");
     Route::get('/view/{id}', [PurchaseRequestController::class, "view"])->name("view");
@@ -115,7 +143,9 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
     Route::get('/edit/{id}', [PurchaseRequestController::class, "edit"])->name("edit");
     Route::post('/update{id}', [PurchaseRequestController::class, "update"])->name("update");
     Route::delete('/destroy/{id}', [PurchaseRequestController::class, "destroy"])->name("destroy");
-    });
+});
+
+
     Route::get('/Othergood', [HomeController::class, 'coba'])->name('coba');
 
     Route::get('/formPO', [FormPOController::class, 'indexPO'])->name('formPO');
