@@ -7,11 +7,12 @@
 
                     <div class="mb-3">
                         <label for="id_supplier" class="form-label font">Supplier</label>
-                        <select class="form-select input-rounded form-control wide mb-3" name="id_supplier" id="id_supplier">
-                        <option selected disabled>-- Pilih Tipe --</option>
-                        @foreach ($supplier as $item)
-                            <option value="{{ $item->id }}">{{ $item->vendor }}</option>
-                        @endforeach
+                        <select class="form-select input-rounded form-control wide mb-3" name="id_supplier"
+                            id="id_supplier">
+                            <option selected disabled>-- Pilih Tipe --</option>
+                            @foreach ($supplier as $item)
+                                <option value="{{ $item->id }}">{{ $item->vendor }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3">

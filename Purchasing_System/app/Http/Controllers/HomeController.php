@@ -27,29 +27,20 @@ class HomeController extends Controller
     {
         $purchase_requests_pending = PurchaseRequest::where('approval_status','=','pending')->get();
         $purchase_requests_approve = PurchaseRequest::where('approval_status', '=', 'approve')->get();
-        $purchase_request_reject = PurchaseRequest::where('accept_status', '=', 'reject')->get();
+        $purchase_request_reject = PurchaseRequest::where('approval_status', '=', 'reject')->get();
         return view('Approval.dashboard', compact("purchase_requests_pending", 'purchase_requests_approve', 'purchase_request_reject'));
 
         
         
     }
-    public function approval_done()
-    {
-        $purchase_requests = PurchaseRequest::where('approval_status', 'approve')->get();
-        return view('Approval.dashboard', compact("purchase_requests"));
-    }
-    public function approval_reject()
-    {
-        $purchase_requests = PurchaseRequest::where('approval_status', 'reject')->get();
-        return view('Approval.dashboard', compact("purchase_requests"));
-    }
+ 
     
     public function accept_page()
     {
-        $purchase_requests_pending = PurchaseRequest::where('approval_status', 'approve')->where('accept_status', '=', 'pending')->get();
-        $purchase_request_done = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status','=', 'accept')->get();
-        $purchase_request_reject = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status','=', 'reject')->get();
-        return view('Approval.diterima', compact("purchase_requests_pending", 'purchase_request_done', 'purchase_request_reject'));
+        $purchase_requests_pending = PurchaseRequest::where('approval_status', 'approve')->where('accept_status', 'pending')->get();
+        $purchase_requests_approve = PurchaseRequest::where('approval_status', 'approve')->where('accept_status', 'accept')->get();
+        $purchase_request_reject = PurchaseRequest::where('approval_status', 'approve')->where('accept_status', 'reject')->get();
+        return view('Approval.diterima',  compact("purchase_requests_pending", 'purchase_requests_approve', 'purchase_request_reject'));
     }
 
     public function view($id)
@@ -103,23 +94,23 @@ class HomeController extends Controller
     public function store_reject(Request $request, $id)
     {
         DB::table('purchase_requests')->where('id', $id)->update([
-            'feedback' => $request->feedback,
+            'feedback_manager' => $request->feedback_manager,
             'approval_status' => 'reject'
         ]);
         
 
-        return redirect('/approval/reject');
+        return redirect('/approval');
     }
 
     public function store_accept_reject(Request $request, $id)
     {
         DB::table('purchase_requests')->where('id', $id)->update([
-            'feedback' => $request->feedback,
+            'feedback_purchasing' => $request->feedback_purchasing,
             'accept_status' => 'reject'
         ]);
         
 
-        return redirect('approval/accept/reject');
+        return redirect('approval/accept');
     }
 
 

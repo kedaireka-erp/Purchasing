@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            MasterGrade::class,
             MasterLocation::class,
             MasterShip::class,
             MasterPrefix::class,

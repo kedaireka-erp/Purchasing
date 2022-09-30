@@ -17,11 +17,15 @@ class Po_Seeder extends Seeder
     public function run()
     {
         $payment = new Payment;
-        $payment->name = 'Transfer';
+        $payment->name = 'CBD';
+        $payment->save();
+
+        $payment = new Payment;
+        $payment->name = 'COD';
         $payment->save();
 
         $timeshipping = new Timeshipping;
-        $timeshipping->name ='quick';
+        $timeshipping->name ='Segera';
         $timeshipping->save();
 
     }

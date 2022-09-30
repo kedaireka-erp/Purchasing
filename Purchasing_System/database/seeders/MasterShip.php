@@ -16,7 +16,7 @@ class MasterShip extends Seeder
     public function run()
     {
         $ship = New ships;
-        $ship->tipe = "Reguler";
+        $ship->tipe = "Reguler (Sesuai Standar Supplier)";
         $ship->save();
 
         $ship = New ships;

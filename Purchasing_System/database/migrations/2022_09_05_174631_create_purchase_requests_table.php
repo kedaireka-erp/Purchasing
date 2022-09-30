@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string("requester")->nullable();
             $table->string("project")->nullable();
             $table->text("note")->nullable();
-            $table->text("feedback")->nullable();
+            $table->text("feedback_manager")->nullable();
+            $table->text("feedback_purchasing")->nullable();
             $table->string("attachment")->nullable();
             $table->timestamp('tanggal_diterima')->nullable();
             $table->enum('approval_status', ['pending', 'edit','approve', 'reject'])->default('pending');

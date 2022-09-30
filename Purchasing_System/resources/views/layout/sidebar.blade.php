@@ -152,14 +152,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/approval" aria-expanded="false">Manager</a></li>
-                            <li><a href="approval/accept" aria-expanded="false">Tim
-                                    Purchasing</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="/approval/accept">PR Pending</a></li>
-                                    <li><a href="/approval/accept/done">PR Accept</a></li>
-                                    <li><a href="/approval/accept/reject">PR Reject</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="/approval/accept" aria-expanded="false">Purchasing Tim</a></li>
                         </ul>
                     </li>
 
