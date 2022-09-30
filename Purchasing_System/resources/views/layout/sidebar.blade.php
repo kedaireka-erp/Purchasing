@@ -151,13 +151,7 @@
                             <span class="nav-text">Approval</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Manager</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="/approval">PR Pending</a></li>
-                                    <li><a href="/approval/done">PR Approved</a></li>
-                                    <li><a href="/approval/reject">PR Reject</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="/approval" aria-expanded="false">Manager</a></li>
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Tim
                                     Purchasing</a>
                                 <ul aria-expanded="false">
