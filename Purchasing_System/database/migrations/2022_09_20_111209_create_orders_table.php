@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->integer('number')->nullable();
             $table->string("no_po")->nullable();
-            $table->string("supplier")->nullable();
             $table->string("nama_supplier")->nullable();
             $table->unsignedBigInteger("id_waktu")->nullable();
             $table->unsignedBigInteger("id_alamat_kirim")->nullable();

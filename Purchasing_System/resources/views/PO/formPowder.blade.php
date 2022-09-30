@@ -91,7 +91,7 @@
                                         </td>
                                         <td class="content-control" align="left">{{ $itex->no_pr }}</td>
                                         <td class="content-control" align="left">{{ $itex->warna }}</td>
-                                        <td class="content-control" align="left">{{ $itex->type }}</td>
+                                        <td class="content-control" align="left">{{ $itex->tipe }}</td>
                                         <td class="content-control" align="left">{{ $itex->vendor }}</td>
                                         <td class="content-control" align="left">{{ $itex->requester }}</td>
                                         <td class="content-control" align="left">{{ $itex->divisi }}</td>

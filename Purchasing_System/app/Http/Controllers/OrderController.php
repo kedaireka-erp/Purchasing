@@ -56,7 +56,7 @@ class OrderController extends Controller
             ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
             ->join('grades', 'grades.id', '=', 'powders.grades_id')
             ->join('suppliers', 'suppliers.id', '=', 'powders.suppliers_id')
-            ->select('item_requests.id' ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.type','suppliers.vendor')
+            ->select('item_requests.id' ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
             ->get();
 
             $Prefixe = Prefix::get();
