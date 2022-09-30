@@ -46,19 +46,10 @@ class HomeController extends Controller
     
     public function accept_page()
     {
-        $purchase_requests = PurchaseRequest::where('approval_status', 'approve')->where('accept_status', 'pending')->get();
-        return view('Approval.diterima', compact("purchase_requests"));
-    }
-
-    public function accept_page_done()
-    {
-        $purchase_requests = PurchaseRequest::where('approval_status', 'approve')->where('accept_status', 'accept')->get();
-        return view('Approval.diterima', compact("purchase_requests"));
-    }
-    public function accept_page_reject()
-    {
-        $purchase_requests = PurchaseRequest::where('approval_status', 'approve')->where('accept_status', 'reject')->get();
-        return view('Approval.diterima', compact("purchase_requests"));
+        $purchase_requests_pending = PurchaseRequest::where('approval_status', 'approve')->where('accept_status', '=', 'pending')->get();
+        $purchase_request_done = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status','=', 'accept')->get();
+        $purchase_request_reject = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status','=', 'reject')->get();
+        return view('Approval.diterima', compact("purchase_requests_pending", 'purchase_request_done', 'purchase_request_reject'));
     }
 
     public function view($id)

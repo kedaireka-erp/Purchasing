@@ -152,7 +152,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/approval" aria-expanded="false">Manager</a></li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Tim
+                            <li><a href="approval/accept" aria-expanded="false">Tim
                                     Purchasing</a>
                                 <ul aria-expanded="false">
                                     <li><a href="/approval/accept">PR Pending</a></li>
