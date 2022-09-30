@@ -66,11 +66,11 @@
                                         </a></td>
                                 @elseif ($purchase_request->approval_status == 'approve')
                                     <td align="center"> <a class="approve content-control">
-                                            <i class="fa fa-check"></i> {{ $purchase_request->approval_status."d" }}
+                                            <i class="fa fa-check"></i> {{ $purchase_request->approval_status . 'd' }}
                                         </a></td>
                                 @elseif ($purchase_request->approval_status == 'reject')
                                     <td align="center"> <a class="reject content-control">
-                                            <i class="fa fa-close"></i> {{ $purchase_request->approval_status."ed" }}
+                                            <i class="fa fa-close"></i> {{ $purchase_request->approval_status . 'ed' }}
                                         </a></td>
                                 @endif
 
@@ -97,10 +97,16 @@
                                             <div class="py-2">
 
                                                 <a class="dropdown-item"
-                                                    href="{{ route('approval.view', $purchase_request->id) }}"> Tinjau PR
+                                                    href="{{ route('approval.view', $purchase_request->id) }}"> Change
+                                                    Status
                                                 </a>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('approval.edit', $purchase_request->id) }}"> Edit PR
+                                                    href="{{ route('approval.edit', $purchase_request->id) }}"> Change and
+                                                    Edit
+                                                </a>
+                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
+                                                    class="dropdown-item text-danger"
+                                                    onClick="reject_create({{ $purchase_request->id }})"> Reject
                                                 </a>
 
                                             </div>
@@ -112,6 +118,23 @@
                     </tbody>
                 </table>
             </div>
+
+            <div class="modal fade" id="exampleModalPowderCenter">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" align="center" id="PowderModalLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal">
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="powder_page" class="pd-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
 
@@ -119,6 +142,18 @@
         <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
 
         <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            function reject_create(id) {
+                $.get("{{ url('approval/create/reject') }}/" + id, {}, function(data, status) {
+                    $("#PowderModalLabel").html('Reject Note');
+                    $("#powder_page").html(data);
+                    $("#exampleModalPowderCenter").modal('show');
+
+                })
+            }
+        </script>
 
     @endsection

@@ -14,7 +14,7 @@ class PurchaseRequest extends Model
 
     protected $table = 'purchase_requests';
     protected $primaryKey = 'id';
-    protected $fillable=['no_pr','type','deadline_date','color_id','locations_id','ships_id', 'requester', 'prefixes_id', 'project', 'note', 'attachment','tanggal_diterima'];
+    protected $fillable=['no_pr','feedback','type','deadline_date','color_id','locations_id','ships_id', 'requester', 'prefixes_id', 'project', 'note', 'attachment','tanggal_diterima'];
     protected $dates=['delete_at'];
 
     public function toSearchableArray()

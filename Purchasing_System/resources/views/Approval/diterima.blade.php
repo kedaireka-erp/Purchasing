@@ -108,18 +108,18 @@
                                 <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
                                 <td class="content-control">{{ $purchase_request->type }}</td>
                                 @if ($purchase_request->accept_status == 'pending')
-                                <td align="center"> <a class="pending content-control">
-                                    <i class="fa fa-clock-o"></i> {{ $purchase_request->accept_status }}
-                                    </a></td>
-                            @elseif ($purchase_request->accept_status == 'accept')
-                                <td align="center"> <a class="approve content-control">
-                                    <i class="fa fa-check"></i> {{ $purchase_request->accept_status."ed" }}
-                                </a></td>
-                            @elseif ($purchase_request->accept_status == 'reject')
-                            <td align="center"> <a class="reject content-control">
-                                    <i class="fa fa-close"></i> {{ $purchase_request->accept_status."ed" }}
-                                </a></td>
-                            @endif
+                                    <td align="center"> <a class="pending content-control">
+                                            <i class="fa fa-clock-o"></i> {{ $purchase_request->accept_status }}
+                                        </a></td>
+                                @elseif ($purchase_request->accept_status == 'accept')
+                                    <td align="center"> <a class="approve content-control">
+                                            <i class="fa fa-check"></i> {{ $purchase_request->accept_status . 'ed' }}
+                                        </a></td>
+                                @elseif ($purchase_request->accept_status == 'reject')
+                                    <td align="center"> <a class="reject content-control">
+                                            <i class="fa fa-close"></i> {{ $purchase_request->accept_status . 'ed' }}
+                                        </a></td>
+                                @endif
                                 <td class="py-2 text-end">
                                     <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
                                             type="button" id="order-dropdown-1" data-bs-toggle="dropdown"
@@ -142,88 +142,59 @@
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
 
-                                                <a class="dropdown-item"
-                                                    href="{{ route('approval.acceptpr', $purchase_request->id) }}">Ubah
-                                                    Status</a>
+                                                <a class="dropdown-item" href="/">Accept PR</a>
+                                                <a class="dropdown-item" href="/">Accept and Edit PR</a>
 
-                                                <form action="/" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="dropdown-item text-danger">Delete</button>
-                                                </form>
+                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
+                                                    class="dropdown-item text-danger"
+                                                    onClick="reject_create({{ $purchase_request->id }})"> Reject
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </td>
 
 
-                                {{-- <td class="d-flex justify-content-center">
-
-                                    <form method="GET"
-                                        action="{{ route('purchase_request.view', $purchase_request->id) }}"
-                                        style="margin-right:10px">
-                                        @csrf
-                                        <input type="hidden" value="VIEW" name="_method">
-                                        <button type="submit" class="btn btn-warning" id="view"> <i
-                                                class="fa fa-eye"></i>
-                                        </button>
-                                    </form> --}}
-                                {{-- <form method="GET" action="{{ route('purchase_request.plus', $purchase_request->id) }}"
-                                    style="margin-right:10px">
-                                    @csrf
-                                    <input type="hidden" value="PLUS" name="_method">
-                                    <button type="submit" class="btn btn-warning" id="plus"> <i
-                                            class="fa fa-plus"></i>
-                                    </button>
-                                </form> --}}
-
-                                {{-- @if ($purchase_request->accept_status == 'pending')
-                                        <form method="GET"
-                                            action="{{ route('approval.acceptpr', $purchase_request->id) }}"
-                                            style="margin-right:10px">
-                                            @csrf
-                                            <input type="hidden" value="EDIT" name="_method">
-                                            <button type="submit" class="btn btn-warning" id="edit"> <i
-                                                    class="fa fa-edit"></i>
-                                            </button>
-                                        </form>
-                                    @endif --}}
-
-
-
-                                {{-- <form method="POST" onsubmit="return confirm('Move data to trash?')"
-                                    action="{{ route('purchase_request.destroy', $purchase_request->id) }}">
-                                    @csrf
-                                    <input type="hidden" value="DELETE" name="_method">
-                                    <button type="submit" class="btn btn-danger" id="delete"> <i
-                                            class="bi bi-trash"></i>
-                                    </button>
-                                </form> --}}
                                 </td>
 
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                <div class="modal fade" id="exampleModalPowderCenter">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" align="center" id="PowderModalLabel"></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="powder_page" class="pd-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
 
         <!-- Required vendors -->
         <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
-        <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
-        <!-- Apex Chart -->
-        <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}"></script>
 
-        <!-- Datatable -->
         <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
 
-        <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
 
-        <script src="{{ asset('assets/js/custom.min.js') }}"></script>
-        <script src="{{ asset('assets/js/dlabnav-init.js') }}"></script>
-        {{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
-        {{-- <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script> --}}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            function reject_create(id) {
+                $.get("{{ url('approval/accept/create/reject') }}/" + id, {}, function(data, status) {
+                    $("#PowderModalLabel").html('Reject Note');
+                    $("#powder_page").html(data);
+                    $("#exampleModalPowderCenter").modal('show');
+
+                })
+            }
+        </script>
 
     @endsection

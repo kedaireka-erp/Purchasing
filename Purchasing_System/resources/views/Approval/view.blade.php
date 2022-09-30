@@ -92,26 +92,30 @@
                                                 <br>
                                                 <tr class="tr">
                                                     <td width="200px">Kebutuhan/Pengiriman</td>
-                                                    <td>: {{ $purchase_requests->requester }} </td>
+                                                    <td>: {{ $purchase_requests->ship->tipe }} </td>
                                                 </tr>
                                                 <br>
 
                                                 <tr class="tr">
                                                     <td width="200px">Alamat</td>
-                                                    <td>: {{ $purchase_requests->location->location_name }}</< /td>
-                                                </tr>
-                                                <br>
-                                                <tr class="tr">
-                                                    <td width="200px">Note</td>
-                                                    <td>: {{ $purchase_requests->note }}</td>
+                                                    <td>: {{ $purchase_requests->location->location_name }}</td>
                                                 </tr>
                                                 <br>
                                                 <tr class="tr">
                                                     <td width="200px">Approval PR</td>
                                                     <td>: {{ $purchase_requests->approval_status }}</td>
                                                 </tr>
+                                                <br>
+                                                <tr class="tr">
+                                                    <td width="200px">Note</td>
+
+                                                    <td>: </td>
+                                                </tr>
+                                                <br>
+
 
                                             </table>
+                                            <p> {!! $purchase_requests->note !!} </p>
                                         </div>
                                     </div>
                                 </div>
@@ -213,7 +217,6 @@
                                                             {{ $purchase_requests->approval_status }}</option>
                                                         <option value="pending">pending</option>
                                                         <option value="approve">approve</option>
-                                                        <option value="reject">reject</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -241,7 +244,7 @@
 
     </div>
     <!--**********************************
-                                                                                                                                                                            Content body end
-                                                                                                                                                                        ***********************************-->
+                                                                                                                                                                                    Content body end
+                                                                                                                                                                                ***********************************-->
 
 @endsection

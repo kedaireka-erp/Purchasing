@@ -29,6 +29,7 @@
                 $('#msg_div').removeClass('d-none');
                 $('.btn-close').click();
                 ships_reader();
+                ships_read();
 
                 document.getElementById("contactForm").reset();
                 setTimeout(function() {

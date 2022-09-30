@@ -90,6 +90,43 @@ class HomeController extends Controller
         return view('Approval.accept', compact('purchase_requests', 'Location', 'Ship', 'Prefixe'));
     }
 
+    public function create_reject($id)
+    {
+        $reject = PurchaseRequest::findOrFail($id);
+        return view('Approval.reject.add',compact('reject'));
+        
+    }
+
+    public function create_accept_reject($id)
+    {
+        $reject = PurchaseRequest::findOrFail($id);
+        return view('Approval.reject_Purchasing.add',compact('reject'));
+        
+    }
+
+    public function store_reject(Request $request, $id)
+    {
+        DB::table('purchase_requests')->where('id', $id)->update([
+            'feedback' => $request->feedback,
+            'approval_status' => 'reject'
+        ]);
+        
+
+        return redirect('/approval/reject');
+    }
+
+    public function store_accept_reject(Request $request, $id)
+    {
+        DB::table('purchase_requests')->where('id', $id)->update([
+            'feedback' => $request->feedback,
+            'accept_status' => 'reject'
+        ]);
+        
+
+        return redirect('approval/accept/reject');
+    }
+
+
     public function update(request $request, $id)
     {
         //perlu diubah

@@ -49,6 +49,7 @@
                 $('#msg_div').removeClass('d-none');
                 $('.btn-close').click();
                 unit_read();
+                unit_reader();
 
                 document.getElementById("contactForm").reset();
                 setTimeout(function() {

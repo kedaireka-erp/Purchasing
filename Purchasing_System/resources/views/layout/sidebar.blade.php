@@ -158,7 +158,7 @@
                                     <li><a href="/approval/reject">PR Reject</a></li>
                                 </ul>
                             </li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Approval <br> Tim
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Tim
                                     Purchasing</a>
                                 <ul aria-expanded="false">
                                     <li><a href="/approval/accept">PR Pending</a></li>

@@ -22,10 +22,11 @@ return new class extends Migration
             $table->string("requester")->nullable();
             $table->string("project")->nullable();
             $table->text("note")->nullable();
+            $table->text("feedback")->nullable();
             $table->string("attachment")->nullable();
             $table->timestamp('tanggal_diterima')->nullable();
-            $table->enum('approval_status', ['pending', 'approve', 'reject'])->default('pending');
-            $table->enum('accept_status', ['pending', 'accept','reject'])->default('pending');
+            $table->enum('approval_status', ['pending', 'edit','approve', 'reject'])->default('pending');
+            $table->enum('accept_status', ['pending', 'edit', 'accept','reject'])->default('pending');
             $table->enum('status', ['closed', 'outstanding'])->default('outstanding');
             $table->softDeletes();
             $table->timestamps();

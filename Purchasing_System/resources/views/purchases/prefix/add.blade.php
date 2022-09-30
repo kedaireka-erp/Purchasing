@@ -50,6 +50,7 @@
                 $('#msg_div').removeClass('d-none');
                 $('.btn-close').click();
                 prefix_reader();
+                prefix_read();
 
                 document.getElementById("contactForm").reset();
                 setTimeout(function() {
