@@ -25,8 +25,17 @@ class HomeController extends Controller
     }
     public function approval()
     {
+<<<<<<< Updated upstream
         $purchase_requests = PurchaseRequest::where('approval_status', 'pending')->get();
         return view('Approval.dashboard', compact("purchase_requests"));
+=======
+        $purchase_requests_pending = PurchaseRequest::where('approval_status','=','pending')->get();
+        $purchase_requests_approve = PurchaseRequest::where('approval_status', '=', 'approve')->get();
+        return view('Approval.dashboard', compact("purchase_requests_pending", 'purchase_requests_approve'));
+
+        
+        
+>>>>>>> Stashed changes
     }
     public function approval_done()
     {
