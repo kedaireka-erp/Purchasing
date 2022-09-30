@@ -5,11 +5,20 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '6e2d4ae8fd0f20166e5ebdcff7b6c4c4615e5aca',
+        'reference' => 'b5197ac04010851b9732d5ae00d6b551f41367db',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
     'versions' => array(
+        'algolia/algoliasearch-client-php' => array(
+            'pretty_version' => '3.3.2',
+            'version' => '3.3.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../algolia/algoliasearch-client-php',
+            'aliases' => array(),
+            'reference' => 'cbd07bc0bb7303ff71e238d2d6284ef8469e1d5a',
+            'dev_requirement' => false,
+        ),
         'brick/math' => array(
             'pretty_version' => '0.10.2',
             'version' => '0.10.2.0',
@@ -379,7 +388,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '6e2d4ae8fd0f20166e5ebdcff7b6c4c4615e5aca',
+            'reference' => 'b5197ac04010851b9732d5ae00d6b551f41367db',
             'dev_requirement' => false,
         ),
         'laravel/pint' => array(
@@ -410,12 +419,12 @@
             'dev_requirement' => false,
         ),
         'laravel/scout' => array(
-            'pretty_version' => 'v9.4.10',
-            'version' => '9.4.10.0',
+            'pretty_version' => 'v9.4.11',
+            'version' => '9.4.11.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../laravel/scout',
             'aliases' => array(),
-            'reference' => '45c7222ccd8f5d8ee069a85deeef799b7dcd79fa',
+            'reference' => '24ed5c0724078f52b04227121b26e9f15fdb04c9',
             'dev_requirement' => false,
         ),
         'laravel/serializable-closure' => array(
@@ -772,8 +781,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(
