@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit01a42aa5f9dde2eea8d11083adc6ee31
+class ComposerStaticInited7cb526535861f2fa22362afc15410c
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -595,6 +595,7 @@ class ComposerStaticInit01a42aa5f9dde2eea8d11083adc6ee31
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\ColourController' => __DIR__ . '/../..' . '/app/Http/Controllers/ColourController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FormPOController' => __DIR__ . '/../..' . '/app/Http/Controllers/FormPOController.php',
         'App\\Http\\Controllers\\GradeController' => __DIR__ . '/../..' . '/app/Http/Controllers/GradeController.php',
@@ -624,6 +625,7 @@ class ComposerStaticInit01a42aa5f9dde2eea8d11083adc6ee31
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\PaymentRequest' => __DIR__ . '/../..' . '/app/Http/Requests/PaymentRequest.php',
         'App\\Http\\Requests\\ships_request' => __DIR__ . '/../..' . '/app/Http/Requests/ships_request.php',
+        'App\\Models\\Colour' => __DIR__ . '/../..' . '/app/Models/Colour.php',
         'App\\Models\\Grade' => __DIR__ . '/../..' . '/app/Models/Grade.php',
         'App\\Models\\Item' => __DIR__ . '/../..' . '/app/Models/Item.php',
         'App\\Models\\ItemRequest' => __DIR__ . '/../..' . '/app/Models/ItemRequest.php',
@@ -760,6 +762,7 @@ class ComposerStaticInit01a42aa5f9dde2eea8d11083adc6ee31
         'Database\\Seeders\\MasterSatuan' => __DIR__ . '/../..' . '/database/seeders/MasterSatuan.php',
         'Database\\Seeders\\MasterShip' => __DIR__ . '/../..' . '/database/seeders/MasterShip.php',
         'Database\\Seeders\\Po_Seeder' => __DIR__ . '/../..' . '/database/seeders/Po_Seeder.php',
+        'Database\\Seeders\\SupplierSeeder' => __DIR__ . '/../..' . '/database/seeders/SupplierSeeder.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
         'DeepCopy\\Exception\\PropertyException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',
@@ -6259,10 +6262,10 @@ class ComposerStaticInit01a42aa5f9dde2eea8d11083adc6ee31
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit01a42aa5f9dde2eea8d11083adc6ee31::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit01a42aa5f9dde2eea8d11083adc6ee31::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit01a42aa5f9dde2eea8d11083adc6ee31::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit01a42aa5f9dde2eea8d11083adc6ee31::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInited7cb526535861f2fa22362afc15410c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInited7cb526535861f2fa22362afc15410c::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInited7cb526535861f2fa22362afc15410c::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInited7cb526535861f2fa22362afc15410c::$classMap;
 
         }, null, ClassLoader::class);
     }
