@@ -89,11 +89,11 @@
                                             <div class="py-2">
 
                                                 <a class="dropdown-item"
-                                                    href="{{ route('approval.view', $purchase_request->id) }}"> Change
+                                                    href="{{ route('approval.purchasing_view', $purchase_request->id) }}"> Change
                                                     Status
                                                 </a>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('approval.edit', $purchase_request->id) }}"> Change and
+                                                    href="{{ route('approval.purchasing_edit', $purchase_request->id) }}"> Change and
                                                     Edit
                                                 </a>
                                                 <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
@@ -196,8 +196,8 @@
                                                         aria-labelledby="order-dropdown-1">
                                                         <div class="py-2">
 
-                                                            <a class="dropdown-item" href="/">Accept PR</a>
-                                                            <a class="dropdown-item" href="/">Accept and Edit PR</a>
+                                                            <a class="dropdown-item" href="{{ route('approval.purchasing_view', $purchase_request->id) }}">Accept PR</a>
+                                                            <a class="dropdown-item" href="{{ route('approval.purchasing_edit', $purchase_request->id) }}">Accept and Edit PR</a>
 
                                                             <a data-bs-toggle="modal"
                                                                 data-bs-target="#exampleModalPowderCenter"
@@ -312,8 +312,6 @@
                                 </tbody>
                             </table>
                         </div>
-
-
                     </div>
                 </div>
 

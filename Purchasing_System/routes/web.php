@@ -220,10 +220,12 @@ route::group(['as'=>'colour.','prefix'=>'colour'], function(){
         Route::get('/accept/create/reject/{id}', [HomeController::class, 'create_accept_reject']);
         Route::post('create/reject/store/{id}', [HomeController::class, 'store_reject'])->name('reject_store');
         Route::post('accept/reject/store/{id}', [HomeController::class, 'store_accept_reject'])->name('accept_store');
-        Route::get('/accept/done', [HomeController::class, 'accept_page_done']);
-        Route::get('/accept/reject', [HomeController::class, 'accept_page_reject']);
+        // Route::get('/accept/done', [HomeController::class, 'accept_page_done']);
+        // Route::get('/accept/reject', [HomeController::class, 'accept_page_reject']);
         Route::get('/view/{id}', [HomeController::class, "view"])->name("view");
+        Route::get('/purchase_view/{id}', [HomeController::class, "purchasing_view"])->name("purchasing_view");
         Route::get('/edit/{id}', [HomeController::class, "edit"])->name("edit");
+        Route::get('/purchasing_edit/{id}', [HomeController::class, "purchasing_edit"])->name("purchasing_edit");
         Route::post('/updategood/{id}', [HomeController::class, "update_good"])->name("update_good");
         Route::post('/updatepowder/{id}', [HomeController::class, "update_powder"])->name("update_powder");
         Route::get('/accept/{id}', [HomeController::class, "accept"])->name("acceptpr");
@@ -231,6 +233,7 @@ route::group(['as'=>'colour.','prefix'=>'colour'], function(){
         Route::post('/accepted/{id}', [HomeController::class, "update_accept"])->name("update_accept");
         Route::delete('/destroy{id}', [HomeController::class, "delete"])->name("deleteApp");
         Route::delete('/delete/{id}', [HomeController::class, 'delete_item'])->name("itemdelete");
+
 });
     
     route::group(['as'=>'timeshipping.','prefix'=>'timeshipping'], function(){

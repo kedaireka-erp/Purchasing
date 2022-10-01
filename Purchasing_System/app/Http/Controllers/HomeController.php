@@ -56,6 +56,31 @@ class HomeController extends Controller
 
         return view('Approval.view', compact('purchase_requests', 'Location', 'Ship', 'Prefixe', 'item'));
     }
+    public function purchasing_view($id)
+    {
+        $purchase_requests = PurchaseRequest::find($id);
+        $item = Item::with('master_item', 'satuan')->get();
+        $Location = location::get();
+        $Ship = ships::get();
+        $Prefixe = Prefix::get();
+
+        return view('Approval.accept', compact('purchase_requests', 'Location', 'Ship', 'Prefixe', 'item'));
+    }
+
+    public function purchasing_edit($id)
+    {
+        $Supplier = Supplier::get();
+        $Grade = Grade::get();
+        $purchase_requests = PurchaseRequest::findOrFail($id);
+        $colour = Colour::get();
+        $Location = location::get();
+        $Ship = ships::get();
+        $satuan = Satuan::get();
+        $master_item = Master_Item::get();
+        $Prefixe = Prefix::get();
+
+        return view('Approval.purchasing_edit', compact('satuan','master_item','Supplier','Grade','colour','purchase_requests', 'Location', 'Ship', 'Prefixe'));
+    }
 
     public function edit($id)
     {
