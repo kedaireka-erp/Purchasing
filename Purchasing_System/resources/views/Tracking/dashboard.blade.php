@@ -117,8 +117,8 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
-                                                <a class="dropdown-item" href="/"">Detail</a>
-                                                <a class="dropdown-item" href="/"">Edit</a>
+                                                <a class="dropdown-item" href="{{ route('tracking.detail', $item->id) }}">Detail</a>
+                                                {{-- <a class="dropdown-item" href="{{ route('tracking.view', $item->no_pr, $item->no_po) }}">Edit</a> --}}
                                                 <form action="/" method="POST">
                                                     @csrf
                                                     @method('DELETE')
@@ -189,8 +189,8 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
-                                                <a class="dropdown-item" href="/"">Detail</a>
-                                                <a class="dropdown-item" href="/"">Edit</a>
+                                                <a class="dropdown-item" href="/">Detail</a>
+                                                {{-- <a class="dropdown-item" href="{{ route('tracking.view', $items->purchase_request->id) }}">Edit</a> --}}
                                                 <form action="/" method="POST">
                                                     @csrf
                                                     @method('DELETE')

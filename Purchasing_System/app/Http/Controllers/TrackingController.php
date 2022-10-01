@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Grade;
 use App\Models\Order;
 use App\Models\ships;
 use App\Models\Prefix;
 use App\Models\Payment;
 use App\Models\location;
+use App\Models\Supplier;
+use App\Models\ItemRequest;
 use App\Models\Timeshipping;
 use Illuminate\Http\Request;
 use App\Models\PurchaseRequest;
@@ -60,7 +63,7 @@ class TrackingController extends Controller
             ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
             ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
             
-            ->select('orders.no_po','purchase_requests.no_pr','purchase_requests.deadline_date','purchase_requests.requester','items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
+            ->select('item_requests.id','orders.no_po','purchase_requests.no_pr','purchase_requests.deadline_date','purchase_requests.requester','items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
             ->get();
 
             $toms = DB::table('item_requests')
@@ -81,7 +84,7 @@ class TrackingController extends Controller
             ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
             ->join('grades', 'grades.id', '=', 'powders.grades_id')
             ->join('suppliers', 'suppliers.id', '=', 'powders.suppliers_id')
-            ->select('item_requests.id' ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.type','suppliers.vendor')
+            ->select('item_requests.id' ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
             ->get();
 
             $Prefixe = Prefix::get();
@@ -90,5 +93,49 @@ class TrackingController extends Controller
 
 
         return view('Tracking.dashboard', compact('toms','location','powders','items','time','payment','purchase_requests',"Prefixe"));
+    }
+    public function view($id){
+        $purchase_requests = PurchaseRequest::find($id);
+        $item = Item::with('master_item','satuan')->get();
+
+
+        $Location=location::get();
+        $Ship=ships::get();
+        $Prefixe=Prefix::get();
+        $Grade = Grade::get();
+        $Supplier = Supplier::get();
+
+        return view('Tracking.view', compact('purchase_requests', 'Location', 'Ship', 'Prefixe','item', 'Grade', 'Supplier'));
+    }
+
+    public function detail($id)
+    {
+        
+        $tracking=ItemRequest::find($id);
+        // dd($tracking);
+        return view('Tracking.view',compact('tracking'));
+    }
+
+    public function update_good(Request $request, $id)
+    {
+        $item = Item::findOrFail($id);
+        
+        $item->update([
+            'sudah_datang' => $request->sudah_datang,
+            'tanggal_kedatangan_barang' => $request->tanggal_kedatangan_barang
+        ]);
+        // $items = DB::table('item_requests')
+        // ->where ('id', $id)->get();
+        // $items->update([
+        //         'sudah_datang' => $items->sudah_datang + $request->sudah_datang,
+        //         'tanggal_kedatangan_barang' => $request->tanggal_kedatangan_barang
+        //     ]);
+        //     // DB::table('master_items')->insert([
+		// 	'item_name' => $request->item_name,
+        //     'stock' => $request->stock
+		// ]);
+
+
+        return redirect('/tracking');
     }
 }

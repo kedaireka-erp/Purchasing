@@ -49,7 +49,9 @@ class Item extends Model
         static::creating(function($item){
             $item->outstanding = $item->stok - $item->sudah_datang;
         });
-        static::updating(function ($invoice) {
+        static::updating(function ($item) {
+            $item->outstanding = $item->outstanding - $item->sudah_datang;
+            $item->sudah_datang = $item->stok-$item->outstanding;
 
         });
     }

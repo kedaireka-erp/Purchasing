@@ -61,6 +61,8 @@
 
                                         <a class="dropdown-item"
                                             href="{{ route('purchase_request.view', $purchase_request->id) }}">Detail</a>
+                                        <a class="dropdown-item"
+                                            href="{{ route('tracking.view', $purchase_request->id) }}">Edit</a>
                                         @if ($purchase_request->approval_status == 'pending' && $purchase_request->accept_status == 'pending')
                                             <form action="/" method="POST">
                                                 @csrf

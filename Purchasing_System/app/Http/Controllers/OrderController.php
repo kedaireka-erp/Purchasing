@@ -74,7 +74,7 @@ class OrderController extends Controller
         
         $order = New Order;
         
-        $order->supplier = $request->supplier;
+        $order->nama_supplier = $request->nama_supplier;
         $order->id_supplier = $request->id_supplier;
         $order->id_waktu = $request->id_waktu;
         $order->id_pembayaran = $request->id_pembayaran;
