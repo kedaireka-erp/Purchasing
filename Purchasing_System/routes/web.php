@@ -11,7 +11,6 @@ use App\Http\Controllers\ships_controller;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ColourController;
 use App\Http\Controllers\LocationController;
-use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\MasterItemController;
@@ -32,7 +31,6 @@ use App\Http\Controllers\OrderController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
-Route::get('/purchase', [PurchaseController::class, 'index'])->name('dashboard-purchase');
 
 Route::group(['as' => 'satuan.', 'prefix' => 'satuan'], function () {
     Route::get('/', [SatuanController::class, 'index'])->name('satuandash');
@@ -226,11 +224,14 @@ route::group(['as'=>'colour.','prefix'=>'colour'], function(){
         Route::get('/accept/reject', [HomeController::class, 'accept_page_reject']);
         Route::get('/view/{id}', [HomeController::class, "view"])->name("view");
         Route::get('/edit/{id}', [HomeController::class, "edit"])->name("edit");
+        Route::post('/updategood/{id}', [HomeController::class, "update_good"])->name("update_good");
+        Route::post('/updatepowder/{id}', [HomeController::class, "update_powder"])->name("update_powder");
         Route::get('/accept/{id}', [HomeController::class, "accept"])->name("acceptpr");
         Route::post('/update/{id}', [HomeController::class, "update"])->name("updateApp");
         Route::post('/accepted/{id}', [HomeController::class, "update_accept"])->name("update_accept");
         Route::delete('/destroy{id}', [HomeController::class, "delete"])->name("deleteApp");
-        });
+        Route::delete('/delete/{id}', [HomeController::class, 'delete_item'])->name("itemdelete");
+});
     
     route::group(['as'=>'timeshipping.','prefix'=>'timeshipping'], function(){
     route::get('/', [TimeshippingController::class, 'index']);

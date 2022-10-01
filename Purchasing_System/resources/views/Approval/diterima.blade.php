@@ -35,7 +35,6 @@
         <div class="card-body">
             <div class="table-responsive">
                 <br>
-                <h2>Approval Pending</h2>
                 <table id="example3" class="display" style="width:100%">
                     <thead>
                         <tr class="content-control-md" align="right">
@@ -61,19 +60,11 @@
                                 <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
                                 <td class="content-control">{{ $purchase_request->type }}</td>
 
-                                @if ($purchase_request->accept_status == 'pending')
-                                    <td align="center"> <a class="pending content-control">
-                                            <i class="fa fa-clock-o"></i> {{ $purchase_request->approval_status }}
-                                        </a></td>
-                                @elseif ($purchase_request->approval_status == 'approve')
-                                    <td align="center"> <a class="approve content-control">
-                                            <i class="fa fa-check"></i> {{ $purchase_request->approval_status . 'd' }}
-                                        </a></td>
-                                @elseif ($purchase_request->approval_status == 'reject')
-                                    <td align="center"> <a class="reject content-control">
-                                            <i class="fa fa-close"></i> {{ $purchase_request->approval_status . 'ed' }}
-                                        </a></td>
-                                @endif
+
+                                <td align="center"> <a class="pending content-control">
+                                        <i class="fa fa-clock-o"></i> {{ $purchase_request->accept_status }}
+                                    </a></td>
+
 
                                 <td class="py-2 text-end">
                                     <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
@@ -118,47 +109,7 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
-            <<<<<<< Updated upstream <div class="card-body">
-                <div class="table-responsive">
-                    <br>
-                    <h2>Reject by Purchasing Team</h2>
-                    <table id="example3" class="display" style="width:100%">
-                        <thead>
-                            <tr class="content-control-md" align="right">
-                                <td width="15%" align="left">Nomor PR</td>
-                                <td width="10%">Pengajuan</td>
-                                <td width="10%">Deadline</td>
-                                <td width="20%">Requester</td>
-                                <td width="10%">Divisi</td>
-                                <td width="10%">Type</td>
-                                <td width="20%" align="center">Status</td>
-                                <td width="5%" align="center"></td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (count($purchase_request_reject) == 0)
-                                <tr>
-                                    <td colspan="8" align="center" style="color: gray; background-color: white">
-                                        <i>Data
-                                            kosong</i> </td>
-                                </tr>
-                            @endif
-                            =======
-                </div>
-        </div>
-        >>>>>>> Stashed changes
 
-        @foreach ($purchase_request_reject as $no => $purchase_request)
-            <tr align="right">
-                <td class="content-control" align="left">{{ $purchase_request->no_pr }}</td>
-                <td class="content-control">
-                    {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}</td>
-                <td class="content-control">
-                    {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}</td>
-                <td class="content-control">{{ $purchase_request->requester }}</td>
-                <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
-                <td class="content-control">{{ $purchase_request->type }}</td>
 
 
                 <div class="card" style="margin-top: 80px">
@@ -203,20 +154,16 @@
                                             <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
                                             <td class="content-control">{{ $purchase_request->type }}</td>
 
-                                            @if ($purchase_request->accept_status == 'pending')
-                                                <td align="center"> <a class="pending content-control">
-                                                        <i class="fa fa-clock-o"></i>
-                                                        {{ $purchase_request->accept_status }}
+
+                                            @if ($purchase_request->accept_status == 'edit')
+                                                <td align="center"> <a class="edit content-control">
+                                                        <i class="fa fa-check"></i>
+                                                        accept with {{ $purchase_request->accept_status . 'ed' }}
                                                     </a></td>
                                             @elseif ($purchase_request->accept_status == 'accept')
                                                 <td align="center"> <a class="approve content-control">
                                                         <i class="fa fa-check"></i>
                                                         {{ $purchase_request->accept_status . 'd' }}
-                                                    </a></td>
-                                            @elseif ($purchase_request->accept_status == 'reject')
-                                                <td align="center"> <a class="reject content-control">
-                                                        <i class="fa fa-close"></i>
-                                                        {{ $purchase_request->accept_status . 'ed' }}
                                                     </a></td>
                                             @endif
 
@@ -313,22 +260,10 @@
                                             <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
                                             <td class="content-control">{{ $purchase_request->type }}</td>
 
-                                            @if ($purchase_request->accept_status == 'pending')
-                                                <td align="center"> <a class="pending content-control">
-                                                        <i class="fa fa-clock-o"></i>
-                                                        {{ $purchase_request->approval_status }}
-                                                    </a></td>
-                                            @elseif ($purchase_request->accept_status == 'accept')
-                                                <td align="center"> <a class="approve content-control">
-                                                        <i class="fa fa-check"></i>
-                                                        {{ $purchase_request->approval_status . 'd' }}
-                                                    </a></td>
-                                            @elseif ($purchase_request->accept_status == 'reject')
-                                                <td align="center"> <a class="reject content-control">
-                                                        <i class="fa fa-close"></i>
-                                                        {{ $purchase_request->approval_status . 'ed' }}
-                                                    </a></td>
-                                            @endif
+                                            <td align="center"> <a class="reject content-control">
+                                                    <i class="fa fa-close"></i>
+                                                    {{ $purchase_request->accept_status . 'ed' }}
+                                                </a></td>
 
                                             <td class="py-2 text-end">
                                                 <div class="dropdown text-sans-serif"><button

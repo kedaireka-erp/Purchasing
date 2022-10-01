@@ -60,19 +60,9 @@
                                 <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
                                 <td class="content-control">{{ $purchase_request->type }}</td>
 
-                                @if ($purchase_request->approval_status == 'pending')
-                                    <td align="center"> <a class="pending content-control">
-                                            <i class="fa fa-clock-o"></i> {{ $purchase_request->approval_status }}
-                                        </a></td>
-                                @elseif ($purchase_request->approval_status == 'approve')
-                                    <td align="center"> <a class="approve content-control">
-                                            <i class="fa fa-check"></i> {{ $purchase_request->approval_status . 'd' }}
-                                        </a></td>
-                                @elseif ($purchase_request->approval_status == 'reject')
-                                    <td align="center"> <a class="reject content-control">
-                                            <i class="fa fa-close"></i> {{ $purchase_request->approval_status . 'ed' }}
-                                        </a></td>
-                                @endif
+                                <td align="center"> <a class="pending content-control">
+                                        <i class="fa fa-clock-o"></i> {{ $purchase_request->approval_status }}
+                                    </a></td>
 
                                 <td class="py-2 text-end">
                                     <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
@@ -162,17 +152,14 @@
                                 <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
                                 <td class="content-control">{{ $purchase_request->type }}</td>
 
-                                @if ($purchase_request->approval_status == 'pending')
-                                    <td align="center"> <a class="pending content-control">
-                                            <i class="fa fa-clock-o"></i> {{ $purchase_request->approval_status }}
+                                @if ($purchase_request->approval_status == 'edit')
+                                    <td align="left"> <a class="edit content-control">
+                                            <i class="fa fa-check"></i>
+                                            approve with {{ $purchase_request->approval_status . 'ed' }}
                                         </a></td>
                                 @elseif ($purchase_request->approval_status == 'approve')
-                                    <td align="center"> <a class="approve content-control">
+                                    <td align="left"> <a class="approve content-control">
                                             <i class="fa fa-check"></i> {{ $purchase_request->approval_status . 'd' }}
-                                        </a></td>
-                                @elseif ($purchase_request->approval_status == 'reject')
-                                    <td align="center"> <a class="reject content-control">
-                                            <i class="fa fa-close"></i> {{ $purchase_request->approval_status . 'ed' }}
                                         </a></td>
                                 @endif
 
@@ -269,19 +256,11 @@
                                 <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
                                 <td class="content-control">{{ $purchase_request->type }}</td>
 
-                                @if ($purchase_request->approval_status == 'pending')
-                                    <td align="center"> <a class="pending content-control">
-                                            <i class="fa fa-clock-o"></i> {{ $purchase_request->approval_status }}
-                                        </a></td>
-                                @elseif ($purchase_request->approval_status == 'approve')
-                                    <td align="center"> <a class="approve content-control">
-                                            <i class="fa fa-check"></i> {{ $purchase_request->approval_status . 'd' }}
-                                        </a></td>
-                                @elseif ($purchase_request->approval_status == 'reject')
-                                    <td align="center"> <a class="reject content-control">
-                                            <i class="fa fa-close"></i> {{ $purchase_request->approval_status . 'ed' }}
-                                        </a></td>
-                                @endif
+
+                                <td align="center"> <a class="reject content-control">
+                                        <i class="fa fa-close"></i> {{ $purchase_request->approval_status . 'ed' }}
+                                    </a></td>
+
 
                                 <td class="py-2 text-end">
                                     <div class="dropdown text-sans-serif"><button

@@ -121,269 +121,372 @@
 
                                         {{-- ini tabel item di tracking --}}
                                         @if ($purchase_requests->type == 'othergood')
-                                        @elseif ($purchase_requests->type == 'powder')
-                                            @foreach ($purchase_requests->powder as $yes)
-                                                <div class="head" style="margin-top:50px"></div>
-                                                <div class="row">
-                                                    <div class="col-lg-3">
-                                                        <label for="warna" class="form-label font pt-3">warna</label>
-                                                    </div>
-                                                    <div class="col-lg-9">
-                                                        <div class="mb-3">
-                                                            <input type="text" class="form-control input-rounded"
-                                                                value="{{ $yes->warna }}" name="warna">
+                                            @foreach ($purchase_requests->item as $index => $good)
+                                                <form action="{{ route('approval.update_good', $good->id) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    <div class="head" style="margin-top:50px"></div>
+
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <div class="mb-3">
+                                                                <label for="item_name" class="form-label font pt-3">Nama
+                                                                    Item {{ $index + 1 }} <span
+                                                                        style="color:red">*</span></label>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-3">
-                                                        <div class="mb-3">
-                                                            <label for="color_id" class="form-label font pt-3">Kode
-                                                                Warna<span style="color:red">*</span></label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-9">
-                                                        <div class="mb-3">
-                                                            <select
-                                                                class="default-select input-rounded form-control wide mb-3"
-                                                                aria-label="Default select example" id="Grade"
-                                                                name="color_id" value="{{ old('color_id') }}">
-                                                                <option selected disabled>-- Pilih Kode Warna --</option>
-                                                                @foreach ($colour as $gra)
-                                                                    <option value="{{ $gra->id }}">
-                                                                        {{ ucfirst($gra->name) }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-                                                            @error('color_id')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-3">
-                                                        <div class="mb-3">
-                                                            <label for="Grade">Grade<span
-                                                                    style="color:red">*</span></label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-9">
-                                                        <div class="mb-3">
-                                                            <select
-                                                                class="default-select input-rounded form-control wide mb-3"
-                                                                aria-label="Default select example" id="Grade"
-                                                                name="grades_id" value="{{ old('grades_id') }}">
-                                                                <option selected disabled>-- Pilih Grade --</option>
-                                                                @foreach ($Grade as $gra)
-                                                                    <option value="{{ $gra->id }}">
-                                                                        {{ ucfirst($gra->tipe) }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-                                                            @error('grades_id')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-3">
-                                                        <label for="Supplier">Supplier<span
-                                                                style="color:red">*</span></label>
-                                                    </div>
-                                                    <div class="col-lg-9">
-                                                        <div class="mb-3">
-                                                            <select
-                                                                class="default-select input-rounded form-control wide mb-3"
-                                                                aria-label="Default select example" id="Supplier"
-                                                                name="suppliers_id" value="{{ old('suppliers_id') }}">
-                                                                <option selected disabled>-- Pilih Supplier --</option>
-                                                                @foreach ($Supplier as $sup)
-                                                                    <option value="{{ $sup->id }}">
-                                                                        {{ ucfirst($sup->vendor) }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-                                                            @error('suppliers_id')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-
-
-                                                            <label for="finish" class="form-label font">Finish</label>
-                                                            <select
-                                                                class="default-select input-rounded form-control wide mb-3"
-                                                                aria-label="Default select example" name="finish">
-                                                                <option selected disabled> -- PILIH OPSI -- </option>
-                                                                <option value="interior"> Interior </option>
-                                                                <option value="eksterior"> Eksterior </option>
-                                                            </select>
-
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-
-
-                                                            <label for="finishing"
-                                                                class="form-label font">Finishing</label>
-                                                            <select
-                                                                class="default-select input-rounded form-control wide mb-3"
-                                                                aria-label="Default select example" name="finishing">
-                                                                <option selected disabled> -- PILIH OPSI-- </option>
-                                                                <option value="SG"> SG </option>
-                                                                <option value="MATT"> MATT </option>
-                                                                <option value="SUPERMATT"> SUPERMATT </option>
-                                                                <option value="GLOSS"> GLOSS </option>
-                                                                <option value="METALLIC"> METALLIC </option>
-                                                                <option value="SAND TEXTURE"> SAND TEXTURE </option>
-                                                                <option value="SUBLIMASI"> SUBLIMASI </option>
-                                                            </select>
-
-
-                                                        </div>
-                                                    </div>
-
-
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="mb-3">
-                                                            <label for="quantity" class="form-label font">Quantity</label>
-                                                            <input type="number" name="quantity"
-                                                                class="form-control input-rounded"
-                                                                value="{{ $yes->quantity }}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="mb-3">
-                                                            <label for="tanggal_pengajuan"
-                                                                class="form-label font">m2</label>
-                                                            <input type="number" class="form-control input-rounded"
-                                                                name="m2"  value="{{ $yes->m2 }}">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <div class="col-">
-                                                                <label for="tanggal_pengajuan"
-                                                                    class="form-label font">Estimasi
-                                                                    m2/Kg</label>
-                                                                <input type="number" class="form-control input-rounded"
-                                                                    name="estimasi"  value="{{ $yes->estimasi }}">
+                                                        <div class="col-lg-9">
+                                                            <div class="mb-3">
+                                                                <select
+                                                                    class="default-select input-rounded form-control wide mb-3"
+                                                                    aria-label="Default select example" id="id_master_item"
+                                                                    name="id_master_item"
+                                                                    value="{{ old('id_master_item') }}">
+                                                                    <option selected disabled>-- Pilih Item --</option>
+                                                                    @foreach ($master_item as $items)
+                                                                        <option value="{{ $items->id }}"
+                                                                            {{ $items->id == $good->id_master_item ? 'selected' : '' }}>
+                                                                            {{ ucfirst($items->item_name) }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('id_master_item')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label for="tanggal_pengajuan" class="form-label font">Stock
-                                                                Powder Fresh
-                                                                (Kgs)
-                                                            </label>
-                                                            <input type="number" class="form-control input-rounded"
-                                                            value="{{ $yes->fresh }}" name="fresh">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <label for="quantity" class="form-label font pt-3">Quantity Item
+                                                                {{ $index + 1 }} </label>
+                                                        </div>
+                                                        <div class="col-lg-9">
+                                                            <div class="mb-3">
+                                                                <input type="text" class="form-control input-rounded"
+                                                                    value="{{ $good->stok }}" name="stok">
+                                                            </div>
                                                         </div>
                                                     </div>
+
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <div class="mb-3">
+                                                                <label for="item_name" class="form-label font pt-3">Satuan
+                                                                    Item {{ $index + 1 }} <span
+                                                                        style="color:red">*</span></label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-9">
+                                                            <div class="mb-3">
+                                                                <select
+                                                                    class="default-select input-rounded form-control wide mb-3"
+                                                                    aria-label="Default select example" id="id_satuan"
+                                                                    name="id_satuan" value="{{ old('id_satuan') }}">
+                                                                    <option selected disabled>-- Pilih Satuan --</option>
+                                                                    @foreach ($satuan as $unit)
+                                                                        <option value="{{ $unit->id }}"
+                                                                            {{ $unit->id == $good->id_satuan ? 'selected' : '' }}>
+                                                                            {{ ucfirst($unit->name) }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('id_satuan')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <button style="margin-top:10px" class="btn btn-primary">
+                                                                Simpan
+                                                            </button>
+                                                        </div>
+                                                </form>
+                                                <div class="col-lg-6">
+                                                    <form action="{{ route('approval.itemdelete', $good->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button style="margin-top:10px" class="btn btn-danger">
+                                                            Hapus
+                                                        </button>
+                                                    </form>
 
                                                 </div>
 
-
-
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label for="tanggal_pengajuan" class="form-label font">Stock
-                                                                Powder Recycle
-                                                                (Kgs)</label>
-                                                            <input type="number" class="form-control input-rounded"
-                                                            value="{{ $yes->recycle }}" name="recycle">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label for="tanggal_pengajuan" class="form-label font">Alokasi
-                                                                powder Fresh</label>
-                                                            <input type="number" class="form-control input-rounded"
-                                                               value="{{ $yes->alokasi }}" name="alokasi">
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-                                            @endforeach
-                                        @endif
-                                        <button style="margin-top:10px" class="btn btn-primary"> Simpan
-                                        </button>
                                     </div>
-                                </div>
 
-
-                                <div id="approval" class="tab-pane fade">
-
-                                    <form action="{{ route('approval.updateApp', $purchase_requests->id) }}"
-                                        method="post">
-
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col-12" style="margin-top: 30px">
-                                                <div class="mb-3">
-                                                    <label class="form-label"> Tanggal Penerimaan </label>
-                                                    <input name="tanggal_diterima" class="input-rounded form-control wide"
-                                                        type="date">
+                                    <hr>
+                                    @endforeach
+                                @elseif ($purchase_requests->type == 'powder')
+                                    @foreach ($purchase_requests->powder as $yes)
+                                        <form action="{{ route('approval.update_powder', $yes->id) }}" method="post">
+                                            @csrf
+                                            <div class="head" style="margin-top:50px"></div>
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <label for="warna" class="form-label font pt-3">warna</label>
                                                 </div>
-                                                <div class="status" style="margin-top:20px">
-                                                    <label class="form-label"> Ubah Status </label>
-                                                    <select class="default-select input-rounded form-control wide mb-3"
-                                                        style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
-                                                        id="approval_status" name="approval_status">
-                                                        <option value="{{ $purchase_requests->approval_status }}" selected
-                                                            disabled>
-                                                            {{ $purchase_requests->approval_status }}</option>
-                                                        <option value="pending">pending</option>
-                                                        <option value="approve">approve</option>
-                                                        <option value="ignore">ignore</option>
-                                                    </select>
+                                                <div class="col-lg-9">
+                                                    <div class="mb-3">
+                                                        <input type="text" class="form-control input-rounded"
+                                                            value="{{ $yes->warna }}" name="warna">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <button style="margin-top:10px" class="btn btn-primary"> Simpan
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <div class="mb-3">
+                                                        <label for="color_id" class="form-label font pt-3">Kode
+                                                            Warna<span style="color:red">*</span></label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <div class="mb-3">
+                                                        <select class="default-select input-rounded form-control wide mb-3"
+                                                            aria-label="Default select example" id="Grade"
+                                                            name="color_id" value="{{ old('color_id') }}">
+                                                            <option selected disabled>-- Pilih Kode Warna --</option>
+                                                            @foreach ($colour as $gra)
+                                                                <option value="{{ $gra->id }}"
+                                                                    {{ $gra->id == $yes->color_id ? 'selected' : '' }}>
+                                                                    {{ ucfirst($gra->name) }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('color_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <div class="mb-3">
+                                                        <label for="Grade">Grade<span
+                                                                style="color:red">*</span></label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <div class="mb-3">
+                                                        <select class="default-select input-rounded form-control wide mb-3"
+                                                            aria-label="Default select example" id="Grade"
+                                                            name="grades_id" value="{{ old('grades_id') }}">
+                                                            <option selected disabled>-- Pilih Grade --</option>
+                                                            @foreach ($Grade as $gra)
+                                                                <option value="{{ $gra->id }}"
+                                                                    {{ $gra->id == $yes->grades_id ? 'selected' : '' }}>
+                                                                    {{ ucfirst($gra->tipe) }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('grades_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3">
+                                                    <label for="Supplier">Supplier<span style="color:red">*</span></label>
+                                                </div>
+                                                <div class="col-lg-9">
+                                                    <div class="mb-3">
+                                                        <select class="default-select input-rounded form-control wide mb-3"
+                                                            aria-label="Default select example" id="Supplier"
+                                                            name="suppliers_id" value="{{ old('suppliers_id') }}">
+                                                            <option selected disabled>-- Pilih Supplier --</option>
+                                                            @foreach ($Supplier as $sup)
+                                                                <option value="{{ $sup->id }}"
+                                                                    {{ $sup->id == $yes->suppliers_id ? 'selected' : '' }}>
+                                                                    {{ ucfirst($sup->vendor) }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('suppliers_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+
+
+                                                        <label for="finish" class="form-label font">Finish</label>
+                                                        <select class="default-select input-rounded form-control wide mb-3"
+                                                            aria-label="Default select example" name="finish">
+                                                            <option value="{{ $yes->finish }}" selected>
+                                                                {{ $yes->finish }}</option>
+                                                            <option value="interior"> Interior </option>
+                                                            <option value="eksterior"> Eksterior </option>
+                                                        </select>
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+
+
+                                                        <label for="finishing" class="form-label font">Finishing</label>
+                                                        <select class="default-select input-rounded form-control wide mb-3"
+                                                            aria-label="Default select example" name="finishing">
+                                                            <option selected value="{{ $yes->finishing }}">
+                                                                {{ $yes->finishing }} </option>
+                                                            <option value="SG"> SG </option>
+                                                            <option value="MATT"> MATT </option>
+                                                            <option value="SUPERMATT"> SUPERMATT </option>
+                                                            <option value="GLOSS"> GLOSS </option>
+                                                            <option value="METALLIC"> METALLIC </option>
+                                                            <option value="SAND TEXTURE"> SAND TEXTURE </option>
+                                                            <option value="SUBLIMASI"> SUBLIMASI </option>
+                                                        </select>
+
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="mb-3">
+                                                        <label for="quantity" class="form-label font">Quantity</label>
+                                                        <input type="number" name="quantity"
+                                                            class="form-control input-rounded"
+                                                            value="{{ $yes->quantity }}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="mb-3">
+                                                        <label for="tanggal_pengajuan" class="form-label font">m2</label>
+                                                        <input type="number" class="form-control input-rounded"
+                                                            name="m2" value="{{ $yes->m2 }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <div class="col-">
+                                                            <label for="tanggal_pengajuan"
+                                                                class="form-label font">Estimasi
+                                                                m2/Kg</label>
+                                                            <input type="number" class="form-control input-rounded"
+                                                                name="estimasi" value="{{ $yes->estimasi }}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="tanggal_pengajuan" class="form-label font">Stock
+                                                            Powder Fresh
+                                                            (Kgs)
+                                                        </label>
+                                                        <input type="number" class="form-control input-rounded"
+                                                            value="{{ $yes->fresh }}" name="fresh">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="tanggal_pengajuan" class="form-label font">Stock
+                                                            Powder Recycle
+                                                            (Kgs)</label>
+                                                        <input type="number" class="form-control input-rounded"
+                                                            value="{{ $yes->recycle }}" name="recycle">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="tanggal_pengajuan" class="form-label font">Alokasi
+                                                            powder Fresh</label>
+                                                        <input type="number" class="form-control input-rounded"
+                                                            value="{{ $yes->alokasi }}" name="alokasi">
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <button style="margin-top:10px" class="btn btn-primary">
+                                                    Simpan
                                                 </button>
                                             </div>
-                                        </div>
-                                    </form>
-
+                                        </form>
+                                    @endforeach
+                                    @endif
 
                                 </div>
                             </div>
-                            <!-- Modal -->
 
+
+                            <div id="approval" class="tab-pane fade">
+
+                                <form action="{{ route('approval.updateApp', $purchase_requests->id) }}" method="post">
+
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-12" style="margin-top: 30px">
+                                            <div class="mb-3">
+                                                <label class="form-label"> Tanggal Penerimaan </label>
+                                                <input name="tanggal_diterima" class="input-rounded form-control wide"
+                                                    type="date">
+                                            </div>
+                                            <div class="status" style="margin-top:20px">
+                                                <label class="form-label"> Ubah Status </label>
+                                                <select class="default-select input-rounded form-control wide mb-3"
+                                                    style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
+                                                    id="approval_status" name="approval_status">
+                                                    <option value="{{ $purchase_requests->approval_status }}" selected
+                                                        disabled>
+                                                        {{ $purchase_requests->approval_status }}</option>
+                                                    <option value="pending">pending</option>
+                                                    <option value="edit">approve</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button style="margin-top:10px" class="btn btn-primary"> Simpan
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                            </div>
                         </div>
+                        <!-- Modal -->
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
 
 
 
     </div>
-    <!--**********************************
-                                                                                                                                                                                                                                                                                                                    Content body end
-                                                                                                                                                                                                                                                                                                                ***********************************-->
+
 
 @endsection
