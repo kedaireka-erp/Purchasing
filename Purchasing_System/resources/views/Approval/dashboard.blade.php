@@ -222,7 +222,7 @@
             <div class="row">
                 <div class="col-9">
                     <div class="card-header">
-                        <h4 class="card-title">Data PR Ditolak</h4>
+                        <h4 class="card-title">Data PR Ditolak Oleh Tim Purchasing</h4>
                     </div>
                 </div>
 
