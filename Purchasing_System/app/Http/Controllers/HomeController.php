@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function approval()
     {
         $purchase_requests_pending = PurchaseRequest::where('approval_status','=','pending')->get();
-        $purchase_requests_approve = PurchaseRequest::where('approval_status', '=', 'approve')->orWhere('approval_status','=','edit')->get();
+        $purchase_requests_approve = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status','=', 'pending')->orwhere('accept_status', '=', 'accept')->get();
         $purchase_request_reject = PurchaseRequest::where('approval_status', '=', 'reject')->orwhere('accept_status', '=', 'reject')->get();
         return view('Approval.dashboard', compact("purchase_requests_pending", 'purchase_requests_approve', 'purchase_request_reject'));
 
