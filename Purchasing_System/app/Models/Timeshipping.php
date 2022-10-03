@@ -10,7 +10,7 @@ class Timeshipping extends Model
     use HasFactory;
     protected $table = 'timeshippings';
     protected $primarykey = 'id';
-    protected $fillable = ['name','created_at'];
+    protected $fillable = ['name_time','created_at'];
 
     public function order()
     {

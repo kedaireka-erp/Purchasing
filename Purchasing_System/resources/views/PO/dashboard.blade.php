@@ -19,39 +19,7 @@
     </div>
 @endsection
 @section('content')
-    {{-- <div id="tombol">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-md-6 mb-2">
-                    <form action="/" method="get">
-                        <input class="form-control fa" name="search" type="search" placeholder="&#xf002      Search "
-                            value="">
-                    </form>
-                </div>
-                <div class="col-lg-4 col-md-2"></div>
-                <div class="col-lg-3 col-md-4">
-                    {{-- <div id="button_add">
-                        <a href="/" class="btn btn-success" id="add"> +Add Data
-                        </a>
-                    </div> --}}
 
-    {{-- </div>
-            </div>
-        </div>
-    </div> --}}
-
-    {{-- <div class="container">
-        <h1>Purchase Request</h1>
-        <form method="GET">
-            <div class="input-group mb-3">
-                <input type="text" name="search" value="{{ request()->get('search') }}" class="form-control"
-                    placeholder="Search..." aria-label="Search" aria-describedby="button-addon2">
-                <button class="btn btn-success" type="submit" id="button-addon2">Search</button>
-            </div>
-        </form>
-        <div class="col-12">
-            <a href="{{ route('purchase_request.create') }}" class="btn btn-primary" type="submit">Add</a>
-        </div> --}}
     <div class="card">
         <div id="chead">
             <div class="row">
@@ -60,13 +28,6 @@
                         <h4 class="card-title">Data Purchase Order</h4>
                     </div>
                 </div>
-                {{-- <div class="col-3">
-                        <div id="button_add">
-                              
-                            <a href="{{ route('purchase_request.create') }}" class="btn btn-success" id="add"> +Buat PO
-                            </a>
-                        </div>
-                    </div> --}}
 
 
             </div>
@@ -101,7 +62,7 @@
                                 <td class="content-control-md" align="left">{{ $item->no_po }}</td>
                                 <td class="content-control-md">{{ $item->nama_supplier }}</td>
                                 <td class="content-control-md">{{ $item->location->location_name }}</td>
-                                <td class="content-control-md">{{ $item->payment->name }}</td>
+                                <td class="content-control-md">{{ $item->payment->name_payment }}</td>
                                 @if ($item->timeshipping == null)
                                     <td class="content-control-md">
                                         {{ \Carbon\Carbon::parse($item->tanggal_kirim)->format('d/m/Y') }}</td>
@@ -157,18 +118,7 @@
 
     <!-- Required vendors -->
     <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
-    <!-- Apex Chart -->
-    <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}"></script>
-
-    <!-- Datatable -->
     <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
 
-    <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
-
-    <script src="{{ asset('assets/js/custom.min.js') }}"></script>
-    <script src="{{ asset('assets/js/dlabnav-init.js') }}"></script>
-    {{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
-    {{-- <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script> --}}
 @endsection

@@ -28,8 +28,8 @@
 
  --}}
 
- 
- {{-- @extends('layout.sidebar')
+
+{{-- @extends('layout.sidebar')
 
  @section('judul-laman', 'Tambah Master Grade')
  
@@ -52,18 +52,19 @@
              </div>
          </div>
   --}}
- 
-  
 
-            <div>
-                <label class="form-label">Payment Method</label>
-                <input type="text" name="name" class="form-control" placeholder="Input Payment Method" value="{{ $model->name }}">
-                @foreach ($errors->get('name') as $msg)
-                    <p class="text-danger">{{ $msg }}</p>
-                @endforeach
-            </div> <br>
-        
-        {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+<div>
+    <label class="form-label">Payment Method</label>
+    <input type="text" name="name_payment" class="form-control" placeholder="Input Payment Method"
+        value="{{ $model->name }}">
+    @foreach ($errors->get('name_payment') as $msg)
+        <p class="text-danger">{{ $msg }}</p>
+    @endforeach
+</div> <br>
+
+{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </div>
 </div>
 

@@ -22,7 +22,7 @@ class TimeshippingController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->search;
-        $timeshipping = Timeshipping::where('name', 'like', '%' .$keyword. '%')
+        $timeshipping = Timeshipping::where('name_time', 'like', '%' .$keyword. '%')
         ->paginate(5);
         return \view('Timeshipping.index', \compact('timeshipping'));
     }
@@ -47,7 +47,7 @@ class TimeshippingController extends Controller
     public function store(Request $request)
     {
         $timeshipping = new Timeshipping;
-        $timeshipping->name = $request->name;
+        $timeshipping->name_time = $request->name_time;
         $timeshipping->save();
 
         return \redirect('timeshipping')->with('success', 'Data berhasil ditambahkan');
@@ -93,7 +93,7 @@ class TimeshippingController extends Controller
     public function update(Request $request, $id)
     {
         $timeshipping = Timeshipping::find($id);
-        $timeshipping->name = $request->name;
+        $timeshipping->name_time = $request->name_time;
         $timeshipping->save();
 
         return \redirect('timeshipping')->with('teredit', 'Data berhasil diedit');
@@ -134,7 +134,7 @@ class TimeshippingController extends Controller
         foreach ($query as $d=> $row){ 
         
             $sheet->setCellValue('A'.$i, $no++);
-            $sheet->setCellValue('B'.$i, $row->name);
+            $sheet->setCellValue('B'.$i, $row->name_time);
             $sheet->setCellValue('C'.$i, $row->created_at);
             $sheet->setCellValue('D'.$i, $row->updated_at);   
             $i++;

@@ -24,7 +24,7 @@ class PaymentController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->search;
-        $payments = Payment::where('name', 'like', '%' .$keyword. '%')
+        $payments = Payment::where('name_payment', 'like', '%' .$keyword. '%')
         ->paginate(5);
         return \view('Payment.index', \compact('payments'));
     }
@@ -49,7 +49,7 @@ class PaymentController extends Controller
     public function store(PaymentRequest $request)
     {
         $model = new payment;
-        $model->name = $request->name;
+        $model->name_payment = $request->name_payment;
         $model->save();
 
         return \redirect('payment')->with('success', 'Data berhasil ditambahkan');
@@ -93,7 +93,7 @@ class PaymentController extends Controller
     public function update(PaymentRequest $request, $id)
     {
         $model = payment::find($id);
-        $model->name = $request->name;
+        $model->name_payment = $request->name_payment;
         $model->save();
 
         return \redirect('payment')->with('teredit', 'Data berhasil diedit');

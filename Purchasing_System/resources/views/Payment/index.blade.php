@@ -81,50 +81,45 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($payments as $key => $value )
+                        @foreach ($payments as $key => $value)
                             <tr align="center">
-                                <td class="content-control">{{ $key+$payments->firstitem() }}</td>
-                                <td class="content-control">{{ $value->name }}</td>
+                                <td class="content-control">{{ $key + $payments->firstitem() }}</td>
+                                <td class="content-control">{{ $value->name_payment }}</td>
                                 <td class="content-control">
                                     {{ \Carbon\Carbon::parse($value->created_at)->format('d F Y') }}
                                 </td>
                                 <td class="py-2 text-end">
-                                    <div class="dropdown text-sans-serif"><button
-                                            class="btn btn-primary tp-btn-light sharp" type="button"
-                                            id="order-dropdown-1" data-bs-toggle="dropdown" data-boundary="viewport"
-                                            aria-haspopup="true" aria-expanded="false"><span><svg
+                                    <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
+                                            type="button" id="order-dropdown-1" data-bs-toggle="dropdown"
+                                            data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span><svg
                                                     xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="18px"
-                                                    height="18px" viewbox="0 0 24 24" version="1.1">
-                                                    <g stroke="none" stroke-width="1" fill="none"
-                                                        fill-rule="evenodd">
-                                                        <rect x="0" y="0" width="24"
-                                                            height="24">
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
+                                                    viewbox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24" height="24">
                                                         </rect>
-                                                        <circle fill="#000000" cx="5" cy="12"
-                                                            r="2">
+                                                        <circle fill="#000000" cx="5" cy="12" r="2">
                                                         </circle>
-                                                        <circle fill="#000000" cx="12" cy="12"
-                                                            r="2">
+                                                        <circle fill="#000000" cx="12" cy="12" r="2">
                                                         </circle>
-                                                        <circle fill="#000000" cx="19" cy="12"
-                                                            r="2">
+                                                        <circle fill="#000000" cx="19" cy="12" r="2">
                                                         </circle>
                                                     </g>
                                                 </svg></span></button>
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
-                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalPaymentCenter" class="dropdown-item"
+                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalPaymentCenter"
+                                                    class="dropdown-item"
                                                     onClick="payment_view({{ $value->id }})">Detail</a><a
-                                                    data-bs-toggle="modal" data-bs-target="#exampleModalPaymentCenter" class="dropdown-item" data-bs-toggle="modal"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModalPaymentCenter"
+                                                    class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModalPaymentCenter"
                                                     onClick="payment_edit({{ $value->id }})">Edit</a>
                                                 <form action="{{ route('payment.destroy', $value->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit"
-                                                        class="dropdown-item text-danger">Delete</button>
+                                                    <button type="submit" class="dropdown-item text-danger">Delete</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -138,7 +133,7 @@
             </div>
         </div>
 
-       
+
 
         <div class="modal fade" id="exampleModalPaymentCenter">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -155,31 +150,31 @@
             </div>
         </div>
         <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
-                <script>
-                    function payment_create() {
-                        $.get("{{ route('payment.create') }}", {}, function(data, status) {
-                            $("#PaymentModalLabel").html('Add Payment');
-                            $("#payment_page").html(data);
-                            $("#exampleModalPaymentCenter").modal('show');
-                        })
-                    }
-                
-                    function payment_edit(id) {
-                        $.get("{{ url('payment/edit') }}/" + id, {}, function(data, status) {
-                            $("#PaymentModalLabel").html('Edit Payment');
-                            $("#payment_page").html(data);
-                            $("#exampleModalPaymentCenter").modal('show');
-                        })
-                    }
-                
-                    function payment_view(id) {
-                        $.get("{{ url('payment/view') }}/" + id, {}, function(data, status) {
-                            $("#PaymentModalLabel").html('View Payment');
-                            $("#payment_page").html(data);
-                            $("#exampleModalPaymentCenter").modal('show');
-                        })
-                    }
-                </script>
+        <script>
+            function payment_create() {
+                $.get("{{ route('payment.create') }}", {}, function(data, status) {
+                    $("#PaymentModalLabel").html('Add Payment');
+                    $("#payment_page").html(data);
+                    $("#exampleModalPaymentCenter").modal('show');
+                })
+            }
+
+            function payment_edit(id) {
+                $.get("{{ url('payment/edit') }}/" + id, {}, function(data, status) {
+                    $("#PaymentModalLabel").html('Edit Payment');
+                    $("#payment_page").html(data);
+                    $("#exampleModalPaymentCenter").modal('show');
+                })
+            }
+
+            function payment_view(id) {
+                $.get("{{ url('payment/view') }}/" + id, {}, function(data, status) {
+                    $("#PaymentModalLabel").html('View Payment');
+                    $("#payment_page").html(data);
+                    $("#exampleModalPaymentCenter").modal('show');
+                })
+            }
+        </script>
 
 
     @endsection

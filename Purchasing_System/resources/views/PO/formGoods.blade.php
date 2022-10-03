@@ -6,15 +6,21 @@
                 <div class="card-body">
 
                     <div class="mb-3">
-                        <label for="id_supplier" class="form-label font">Supplier</label>
-                        <select name="id_supplier" id="id_supplier"
-                            class="form-select input-rounded form-control wide-mb3">
-                            <option selected disabled>-- Pilih Tipe --</option>
-                            @foreach ($supplier as $item)
-                                <option value="{{ $item->id }}">{{ $item->vendor }}</option>
-                            @endforeach
-                        </select>
+                        <label for="id_supplier" class="form-label font">Supplier<span style="color:red">*</span></label>
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <div id="reader_supplier_po"></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <a onClick="supplier_po_create()" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModalPOCenter" style="width: 100%"
+                                    class="input-rounded btn btn-primary"> <i class="fa fa-plus"
+                                        style="font-size:14px"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
+
                     <div class="mb-3">
                         <label for="divisi" class="form-label font">Atas Nama</label>
                         <input type="text" class="input-rounded form-control wide mb-3" placeholder="--INPUT--"
@@ -22,13 +28,18 @@
                     </div>
                     <div class="mb-3">
                         <label for="id_pembayaran" class="form-label">Pembayaran</label>
-                        <select class="form-select input-rounded form-control wide mb-3" name="id_pembayaran">
-                            <option selected disabled>-- Pilih Tipe --</option>
-                            @foreach ($payment as $pemb)
-                                <option value="{{ $pemb->id }}">{{ $pemb->name }}
-                                </option>
-                            @endforeach
-                        </select>
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <div id="reader_payment_po"></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <a onClick="payment_po_create()" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModalPOCenter" style="width: 100%"
+                                    class="input-rounded btn btn-primary"> <i class="fa fa-plus"
+                                        style="font-size:14px"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="nama_barang" class="form-label">Waktu Pengiriman</label>
@@ -36,14 +47,18 @@
                     </div>
                     <div class="mb-3">
                         <label for="Location">Lokasi<span style="color:red">*</span></label>
-                        <select class="form-select input-rounded form-control wide mb-3" name="id_alamat_kirim"
-                            value="{{ old('id_alamat_kirim') }}">
-                            <option selected disabled>-- Pilih Tipe --</option>
-                            @foreach ($location as $item)
-                                <option value="{{ $item->id }}">{{ ucfirst($item->location_name) }}
-                                </option>
-                            @endforeach
-                        </select>
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <div id="reader_location_po"></div>
+                            </div>
+                            <div class="col-lg-3">
+                                <a onClick="location_po_create()" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModalPOCenter" style="width: 100%"
+                                    class="input-rounded btn btn-primary"> <i class="fa fa-plus"
+                                        style="font-size:14px"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -79,10 +94,12 @@
 
                                             </td>
                                             <td class="content-control-sm" align="left">{{ $item->no_pr }}</td>
-                                            <td class="content-control-sm" align="left">{{ $item->item_name }}</td>
+                                            <td class="content-control-sm" align="left">{{ $item->item_name }}
+                                            </td>
                                             <td class="content-control-sm" align="left">{{ $item->stok }}</td>
                                             <td class="content-control-sm" align="left">{{ $item->name }}</td>
-                                            <td class="content-control-sm" align="left">{{ $item->requester }}</td>
+                                            <td class="content-control-sm" align="left">{{ $item->requester }}
+                                            </td>
                                             <td class="content-control-sm" align="left">{{ $item->divisi }}</td>
 
                                         </tr>
@@ -120,7 +137,8 @@
                         <label for="note" class="form-label font">Note</label>
                         <input
                             value="Harap melampirkan copy PO+surat jalan asli+Inv asli+materai pada saat penagihan (Materai Rp. 10,000 untuk transaksi diatas Rp. 5 juta)"
-                            class="form-control input-powder" id="note" placeholder="-- INPUT --" name="note">
+                            class="form-control input-powder" id="note" placeholder="-- INPUT --"
+                            name="note">
 
                     </div>
                     <div class="row">

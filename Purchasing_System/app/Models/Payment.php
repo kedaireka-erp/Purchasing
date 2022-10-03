@@ -13,7 +13,7 @@ class Payment extends Model
     
     protected $primaryKey = 'id';
 
-    protected $fillable = ['name','created_at'];
+    protected $fillable = ['name_payment','created_at'];
 
    
 }

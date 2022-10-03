@@ -66,7 +66,7 @@ class OrderController extends Controller
         return view('PO.index', compact('supplier','location','powders','items','time','payment','purchase_requests',"Prefixe"));
     }
     
-    public function create_time(){
+    public function read_time(){
         $time = Timeshipping::get();
 
         return view('PO.time.read', compact('time'));
@@ -75,6 +75,78 @@ class OrderController extends Controller
     public function create_date(){
         
         return view('PO.time.date');
+    }
+
+    public function read_supplier(){
+        $supplier = Supplier::get();
+
+        return view('PO.supplier.read', compact('supplier'));
+    }
+
+    public function create_supplier(){
+        return view('PO.supplier.add');
+    }
+
+    public function create_time(){
+        return view('PO.time.add');
+    }
+
+    public function store_supplier(Request $request){
+        $Supplier = Supplier::create([
+            'vendor' => $request->vendor,
+        ]);
+
+        return redirect('/order/create');
+    }
+
+    public function store_time(Request $request){
+        $time = Timeshipping::create([
+            'name_time' => $request->name_time,
+        ]);
+
+        return redirect('/order/create');
+    }
+
+    public function read_location(){
+        $location = Location::get();
+
+        return view('PO.location.read', compact('location'));
+    }
+
+    public function create_location(){
+        return view('PO.location.add');
+    }
+
+    public function store_location(Request $request)
+    {
+        
+
+        $location = Location::create([
+            'location_name' => $request->location_name,
+            'address' => $request->address
+        ]);
+
+        return redirect('/order/create');
+    }
+
+    public function read_payment(){
+        $payment = Payment::get();
+
+        return view('PO.payment.read', compact('payment'));
+    }
+
+    public function create_payment(){
+        return view('PO.payment.add');
+    }
+
+    public function store_payment(Request $request)
+    {
+        
+        $payment = Payment::create([
+            'name_payment' => $request->name_payment,
+        ]);
+
+        return redirect('/order/create');
     }
 
     public function store_item(Request $request)

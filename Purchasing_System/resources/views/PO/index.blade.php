@@ -39,6 +39,21 @@
         </div>
     </div>
 
+    <div class="modal fade" id="exampleModalPOCenter">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" align="center" id="POModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="PO_page" class="pd-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Required vendors -->
     <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
     <!-- Datatable -->
@@ -48,14 +63,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+            supplier_read();
             time_read();
+            payment_read();
+            location_read();
+            location_reader();
+            payment_reader();
+            supplier_reader();
             time_reader();
         });
 
         function time_read() {
-            $.get("{{ url('order/create/time') }}", {}, function(data, status) {
+            $.get("{{ url('order/read/time') }}", {}, function(data, status) {
                 $("#read_time").html(data);
             });
+            time_reader();
         }
 
         function date_read() {
@@ -66,7 +88,7 @@
         }
 
         function time_reader() {
-            $.get("{{ url('order/create/time') }}", {}, function(data, status) {
+            $.get("{{ url('order/read/time') }}", {}, function(data, status) {
                 $("#reader_time").html(data);
             });
         }
@@ -77,12 +99,74 @@
             });
         }
 
+        function supplier_read() {
+            $.get("{{ url('order/read/supplier') }}", {}, function(data, status) {
+                $("#read_supplier_po").html(data);
+            });
+        }
 
-        function location_create() {
+        function supplier_reader() {
+            $.get("{{ url('order/read/supplier') }}", {}, function(data, status) {
+                $("#reader_supplier_po").html(data);
+            });
+        }
+
+        function time_create() {
+            $.get("{{ url('order/create/time') }}", {}, function(data, status) {
+                $("#POModalLabel").html('Add Supplier');
+                $("#PO_page").html(data);
+                $("#exampleModalPOCenter").modal('show');
+
+            })
+        }
+
+        function supplier_po_create() {
+            $.get("{{ url('order/create/supplier') }}", {}, function(data, status) {
+                $("#POModalLabel").html('Add Supplier');
+                $("#PO_page").html(data);
+                $("#exampleModalPOCenter").modal('show');
+
+            })
+        }
+
+        function location_read() {
+            $.get("{{ url('order/read/location') }}", {}, function(data, status) {
+                $("#read_location_po").html(data);
+            });
+        }
+
+        function location_reader() {
+            $.get("{{ url('order/read/location') }}", {}, function(data, status) {
+                $("#reader_location_po").html(data);
+            });
+        }
+
+        function location_po_create() {
             $.get("{{ url('order/create/location') }}", {}, function(data, status) {
-                $("#PowderModalLabel").html('Add Location');
-                $("#powder_page").html(data);
-                $("#exampleModalPowderCenter").modal('show');
+                $("#POModalLabel").html('Add Location');
+                $("#PO_page").html(data);
+                $("#exampleModalPOCenter").modal('show');
+
+            })
+        }
+
+        function payment_read() {
+            $.get("{{ url('order/read/payment') }}", {}, function(data, status) {
+                $("#read_payment_po").html(data);
+            });
+        }
+
+        function payment_reader() {
+            $.get("{{ url('order/read/payment') }}", {}, function(data, status) {
+                $("#reader_payment_po").html(data);
+            });
+        }
+
+        function payment_po_create() {
+            $.get("{{ url('order/create/payment') }}", {}, function(data, status) {
+                $("#POModalLabel").html('Add Payment');
+                $("#PO_page").html(data);
+                $("#exampleModalPOCenter").modal('show');
 
             })
         }
