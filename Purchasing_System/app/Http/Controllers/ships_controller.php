@@ -112,8 +112,7 @@ class ships_controller extends Controller
     
 
     public function excel(){
-        require 'C:\Users\USER\Documents\GitHub\Purchasing\Purchasing_System\vendor\autoload.php'; 
-
+      
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         

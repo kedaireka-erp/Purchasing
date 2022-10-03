@@ -62,7 +62,8 @@
                                             class="nav-link"> Update Form </a>
                                     </li> --}}
                             </ul>
-                            @foreach ($tracking->purchase as $purchase_requests)
+                            @foreach ($tracking->purchase1 as $purchase_requests)
+                            
                             <div class="tab-content">
                                 <div id="my-posts" class="tab-pane fade active show">
                                     <div class="my-post-content pt-3">
@@ -131,6 +132,7 @@
                                     <div class="profile-about-me">
 
                                         {{-- ini tabel item di tracking --}}
+                                        {{-- @if ($purchase_requests->type == 'othergood') --}}
                                         @if ($purchase_requests->type == 'othergood')
                                             <table class="table table-striped" id="body">
                                                 <thead>
@@ -219,19 +221,50 @@
                                                         <tr style="text-align: center">
                                                             <td>{{ $nomor++ }}</td>
                                                             <td>{{ $yes->supplier->vendor }}</td>
-                                                            <td>{{ $yes->grade->type }}</td>
+                                                            <td>{{ $yes->grade->tipe }}</td>
                                                             <td>{{ $yes->warna }}</td>
-                                                            <td>{{ $yes->kode_warna }}</td>
+                                                            <td>{{ $yes->colour->name }}</td>
                                                             <td>{{ $yes->finish }}</td>
                                                             <td>{{ $yes->outstanding }}</td>
                                                             <td>{{ $yes->sudah_datang }}</td>
                                                             <td>{{ $yes->m2 }}</td>
                                                         </tr>
+                                                        
                                                     @endforeach
                                                 </tbody>
                                                 {{-- @endif --}}
 
                                             </table>
+                                            @foreach ($tracking->powder1 as $powder)
+                                            <form 
+                                            action="{{ route('tracking.update_good', $powder->id) }}"
+                                                method="post">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-12" style="margin-top: 30px">
+                                                        <div class="mb-3">
+                                                            <label class="form-label"> Sudah Datang </label>
+                                                            <input name="sudah_datang" class="input-rounded form-control wide"
+                                                                type="number">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="col-12" style="margin-top: 30px">
+                                                        <div class="mb-3">
+                                                            <label class="form-label"> Tanggal Penerimaan </label>
+                                                            <input name="tanggal_kedatangan_barang" class="input-rounded form-control wide"
+                                                                type="date">
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button style="margin-top:10px" class="btn btn-primary"> Simpan
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                            @endforeach
 
                                         @endif
 
@@ -245,9 +278,9 @@
                                         </div>
                                     </div> --}}
                             </div>
-                            @endforeach
                         </div>
                         <!-- Modal -->
+                        @endforeach
 
                     </div>
                 </div>

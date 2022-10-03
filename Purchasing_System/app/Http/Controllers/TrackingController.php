@@ -114,16 +114,65 @@ class TrackingController extends Controller
         $tracking=ItemRequest::find($id);
         // dd($tracking);
         return view('Tracking.view',compact('tracking'));
+
+        //tes
+        // $purchase_requests = PurchaseRequest::get();
+        // $time = Timeshipping::get();
+        // $Prefixe= Prefix::get();
+        // $location= Location::get();
+        // $payment = Payment::get();
+        // $items = DB::table('item_requests')
+            
+        //     ->where('item_requests.id_request',$id)
+        //     ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+        //     ->join('items', 'items.id', '=', 'item_requests.id_item')
+        //     ->join('orders', 'orders.id', '=', 'item_requests.order_id')
+        //     // ->join('satuans', 'satuans.id', '=', 'items.id_satuan')
+        //     ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+        //     ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
+            
+        //     ->select('item_requests.id','orders.no_po',
+        //     'purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','purchase_requests.requester','purchase_requests.project',
+        //     'items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
+        //     ->get();
+
+        //     $toms = DB::table('item_requests')
+            
+            
+        //     ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+        //     ->join('items', 'items.id', '=', 'item_requests.id_item')
+        //     ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+        //     ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
+            
+        //     ->select('purchase_requests.no_pr','purchase_requests.deadline_date','purchase_requests.requester','items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
+        //     ->get();
+
+        // $powders = DB::table('item_requests')
+            
+        //     ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+        //     ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+        //     ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
+        //     ->join('grades', 'grades.id', '=', 'powders.grades_id')
+        //     ->join('suppliers', 'suppliers.id', '=', 'powders.suppliers_id')
+        //     ->select('item_requests.id' ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
+        //     ->get();
+
+        //     $Prefixe = Prefix::get();
+
+        //     return view('Tracking.view', compact('toms','location','powders','items','time','payment','purchase_requests',"Prefixe"));
     }
 
     public function update_good(Request $request, $id)
     {
         $item = Item::findOrFail($id);
-        
+        if($item->outstanding >= $request->sudah_datang) {
         $item->update([
+            
             'sudah_datang' => $request->sudah_datang,
             'tanggal_kedatangan_barang' => $request->tanggal_kedatangan_barang
+            
         ]);
+    
         // $items = DB::table('item_requests')
         // ->where ('id', $id)->get();
         // $items->update([
@@ -137,5 +186,10 @@ class TrackingController extends Controller
 
 
         return redirect('/tracking');
+        }
+        else{
+            return redirect('/tracking')->with('failed', 'Barang datang melebihi jumlah outstanding');
+
+        }
     }
 }

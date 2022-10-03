@@ -20,9 +20,25 @@ class powder extends Model
         return $this->belongsTo(Supplier::class, 'suppliers_id');
     }
 
+    public function colour(){
+        return $this->belongsTo(Colour::class, 'color_id');
+    }
+
     public function purchase(){
         return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id_request', 'powder_id');
     }
+    public static function boot()
+    {
+        parent::boot();
 
+        static::creating(function($powder){
+            $powder->outstanding = $powder->stok - $powder->sudah_datang;
+        });
+        static::updating(function ($powder) {
+            $powder->outstanding = $powder->outstanding - $powder->sudah_datang;
+            $powder->sudah_datang = $powder->stok-$powder->outstanding;
+
+        });
+    }
   
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Colour;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class ColourController extends Controller
 {
@@ -63,7 +65,7 @@ class ColourController extends Controller
     }
 
     public function excel(){
-        require 'C:\Users\USER\Documents\GitHub\Purchasing\Purchasing_System\vendor\autoload.php'; 
+        
 
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();

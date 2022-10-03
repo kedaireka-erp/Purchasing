@@ -15,11 +15,24 @@ class ItemRequest extends Model
     
     public function purchase()
     {
+        // return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id_request');
         return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id_request');
     }
+    public function purchase1()
+    {
+        // return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id_request');
+        return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id_request','id_request');
+    }
+
     public function item(){
         return $this->belongsToMany(Item::class, 'item_requests','id_request','id_item');
+        
     }
+    public function powder1(){
+        return $this->belongsToMany(Powder::class, 'item_requests','id_request','powder_id');
+        
+    }
+    
     public function order(){
         return $this->belongsToMany(Order::class, 'item_requests','id_request', 'order_id');
     }
