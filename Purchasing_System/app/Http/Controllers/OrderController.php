@@ -56,7 +56,7 @@ class OrderController extends Controller
             ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
             ->join('grades', 'grades.id', '=', 'powders.grades_id')
             ->join('suppliers', 'suppliers.id', '=', 'powders.suppliers_id')
-            ->select('item_requests.id' ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
+            ->select('item_requests.id','purchase_requests.approval_status','purchase_requests.accept_status'  ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
             ->get();
 
             $Prefixe = Prefix::get();
@@ -66,14 +66,23 @@ class OrderController extends Controller
         return view('PO.index', compact('supplier','location','powders','items','time','payment','purchase_requests',"Prefixe"));
     }
     
-    
+    public function create_time(){
+        $time = Timeshipping::get();
+
+        return view('PO.time.read', compact('time'));
+    }
+
+    public function create_date(){
+        
+        return view('PO.time.date');
+    }
 
     public function store_item(Request $request)
     {
         $purchase_requests = PurchaseRequest::with('Prefixe')->get();
         
         $order = New Order;
-        
+        $order->tanggal_kirim = $request->tanggal_kirim;
         $order->nama_supplier = $request->nama_supplier;
         $order->id_supplier = $request->id_supplier;
         $order->id_waktu = $request->id_waktu;

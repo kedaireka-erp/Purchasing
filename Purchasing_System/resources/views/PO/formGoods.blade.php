@@ -7,10 +7,11 @@
 
                     <div class="mb-3">
                         <label for="id_supplier" class="form-label font">Supplier</label>
-                        <select name="id_supplier" id="id_supplier" class="form-select input-rounded form-control wide-mb3">
+                        <select name="id_supplier" id="id_supplier"
+                            class="form-select input-rounded form-control wide-mb3">
                             <option selected disabled>-- Pilih Tipe --</option>
                             @foreach ($supplier as $item)
-                            <option value="{{ $item->id }}">{{ $item->vendor }}</option>
+                                <option value="{{ $item->id }}">{{ $item->vendor }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -31,13 +32,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="nama_barang" class="form-label">Waktu Pengiriman</label>
-                        <select class="form-select input-rounded form-control wide mb-3" name="id_waktu">
-                            <option selected disabled>-- Pilih Tipe --</option>
-                            @foreach ($time as $it)
-                                <option value="{{ $it->id }}">{{ $it->name }}
-                                </option>
-                            @endforeach
-                        </select>
+                        <div id="reader_time"></div>
                     </div>
                     <div class="mb-3">
                         <label for="Location">Lokasi<span style="color:red">*</span></label>
@@ -62,13 +57,7 @@
 
                         <table id="example3" class="display" style="width:100%">
                             <thead>
-                                <tr align="right">
-                                    {{-- <td align="center">
-                                        <div class="form-check custom-checkbox ms-2">
-                                            <input type="checkbox" class="form-check-input" id="checkAll" required="">
-                                            <label class="form-check-label" for="checkAll"></label>
-                                        </div>
-                                    </td> --}}
+                                <tr class="content-control-md" align="right">
                                     <td> Pilih </td>
                                     <td align="left">Nomor PR</td>
                                     <td>Nama Barang</td>
@@ -79,24 +68,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 @foreach ($items as $no => $item)
-                                    <tr align="right">
-                                        <td align="center">
+                                    @if ($item->accept_status == 'accept' || $item->accept_status == 'edit')
+                                        <tr align="right">
+                                            <td align="center">
 
-                                            <input type="checkbox" name="ids[{{ $item->id }}]"
-                                                value="{{ $item->id }}" class="form-check-input"
-                                                id="customCheckBox2">
+                                                <input type="checkbox" name="ids[{{ $item->id }}]"
+                                                    value="{{ $item->id }}" class="form-check-input"
+                                                    id="customCheckBox2">
 
-                                        </td>
-                                        <td class="content-control" align="left">{{ $item->no_pr }}</td>
-                                        <td class="content-control" align="left">{{ $item->item_name }}</td>
-                                        <td class="content-control" align="left">{{ $item->stok }}</td>
-                                        <td class="content-control" align="left">{{ $item->name }}</td>
-                                        <td class="content-control" align="left">{{ $item->requester }}</td>
-                                        <td class="content-control" align="left">{{ $item->divisi }}</td>
+                                            </td>
+                                            <td class="content-control-sm" align="left">{{ $item->no_pr }}</td>
+                                            <td class="content-control-sm" align="left">{{ $item->item_name }}</td>
+                                            <td class="content-control-sm" align="left">{{ $item->stok }}</td>
+                                            <td class="content-control-sm" align="left">{{ $item->name }}</td>
+                                            <td class="content-control-sm" align="left">{{ $item->requester }}</td>
+                                            <td class="content-control-sm" align="left">{{ $item->divisi }}</td>
 
-                                    </tr>
+                                        </tr>
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -112,26 +102,25 @@
         <div class="card">
             <div class="card-body">
                 <div class="content">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label for="tanggal_pengajuan" class="form-label font">Alamat Penagihan</label>
-                                <input type="textarea" class="form-control input-powder" name="alamat_penagihan">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label for="tanggal_pengajuan" class="form-label font">Lain-Lain</label>
-                                <input type="textarea" class="form-control input-powder" name="lain-lain">
-                            </div>
-                        </div>
-                    </div>
-
 
                     <div class="mb-3">
+                        <div class="mb-3">
+                            <label for="tanggal_pengajuan" class="form-label font">Alamat Penagihan</label>
+                            <input
+                                value="Kantor PT. Allure Alluminio, Rukan Artha Gading Niaga Blok B No. 17, Kelapa Gading, Jakarta Utara"
+                                type="text" class="form-control input-powder" name="alamat_penagihan">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tanggal_pengajuan" class="form-label font">Lain-Lain</label>
+                        <input type="text" class="form-control input-powder" name="lain-lain"
+                            value="Invoice, Kwitansi, Faktur Pajak dan Surat Jalan atas nama  PT. ALLURE ALLUMINIO dengan alamat sesuai NPWP">
+                    </div>
+                    <div class="mb-3">
                         <label for="note" class="form-label font">Note</label>
-                        <textarea rows="4" cols="50" class="form-control input-powder" id="note" placeholder="-- INPUT --"
-                            name="note"></textarea>
+                        <input
+                            value="Harap melampirkan copy PO+surat jalan asli+Inv asli+materai pada saat penagihan (Materai Rp. 10,000 untuk transaksi diatas Rp. 5 juta)"
+                            class="form-control input-powder" id="note" placeholder="-- INPUT --" name="note">
 
                     </div>
                     <div class="row">
@@ -158,7 +147,7 @@
                     </div>
 
 
-                    <input type="submit" class="btn btn-primary submit-powder" value="Submit">
+                    <input width="100%" type="submit" class="btn btn-primary submit-powder" value="Submit">
 
 
                 </div>

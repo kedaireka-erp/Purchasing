@@ -15,7 +15,7 @@ class Order extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = [
+    protected $fillable = ['tanggal_kirim',
         'no_po', 'supplier' ,'id_supplier', 'id_waktu', 'id_alamat_kirim', 'id_pembayaran', 'alamat_penagihan', 
         'lain_lain', 'note', 'signature','nama'
     ];
@@ -109,7 +109,7 @@ class Order extends Model
                 echo "Terjadi kesalahan penulisan tanggal";
             }
 
-            $order->no_po = str_pad($order->number, 3, '0', STR_PAD_LEFT) . '/' . 'PO'.'/'.'AA'.'/'.'WS'. '/'. $month . '/'. Carbon::now()->year;
+            $order->no_po = Carbon::now()->format('y') . 'P' . 'S' . $month .  str_pad($order->number, 3, '0', STR_PAD_LEFT);
         });
         // static::updating(function ($purchase_requests) {
         //     // $purchase_requests->tanggal_diterima = PurchaseRequest::where('approval_status', 'pending')->update(array('approval_status' => 'approval')) ->update(array('tanggal_diterima' => format("Y-m-d")));

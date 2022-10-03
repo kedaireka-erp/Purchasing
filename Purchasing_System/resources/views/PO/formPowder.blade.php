@@ -32,13 +32,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="nama_barang" class="form-label">Waktu Pengiriman</label>
-                        <select class="form-select input-rounded form-control wide mb-3" name="id_waktu">
-                            <option selected disabled>-- Pilih Tipe --</option>
-                            @foreach ($time as $it)
-                                <option value="{{ $it->id }}">{{ $it->name }}
-                                </option>
-                            @endforeach
-                        </select>
+                        <div id="read_time"></div>
                     </div>
                     <div class="mb-3">
                         <label for="Location">Lokasi<span style="color:red">*</span></label>
@@ -63,41 +57,38 @@
 
                         <table id="example3" class="display" style="width:100%">
                             <thead>
-                                <tr align="right">
-                                    {{-- <td align="center">
-                                          <div class="form-check custom-checkbox ms-2">
-                                              <input type="checkbox" class="form-check-input" id="checkAll" required="">
-                                              <label class="form-check-label" for="checkAll"></label>
-                                          </div>
-                                      </td> --}}
+                                <tr class="content-control-md" align="right">
                                     <td> Pilih </td>
-                                    <td align="left">Nomor PR</td>
-                                    <td>Warna</td>
-                                    <td>Tipe</td>
-                                    <td>Vendor</td>
-                                    <td>Requester</td>
-                                    <td>Divisi</td>
+                                    <td width="25%" align="left">Nomor PR</td>
+                                    <td width="10%">Warna</td>
+                                    <td width="10%">Tipe</td>
+                                    <td width="20%">Vendor</td>
+                                    <td width="20%">Requester</td>
+                                    <td width="15%">Divisi</td>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 @foreach ($powders as $no => $itex)
-                                    <tr align="right">
-                                        <td align="center">
+                                    @if ($itex->accept_status == 'accept' || $itex->accept_status == 'edit')
+                                        <tr align="right">
+                                            <td align="center">
 
-                                            <input type="checkbox" name="ids[{{ $itex->id }}]"
-                                                value="{{ $itex->id }}" class="form-check-input"
-                                                id="customCheckBox2">
+                                                <input type="checkbox" name="ids[{{ $itex->id }}]"
+                                                    value="{{ $itex->id }}" class="form-check-input"
+                                                    id="customCheckBox2">
 
-                                        </td>
-                                        <td class="content-control" align="left">{{ $itex->no_pr }}</td>
-                                        <td class="content-control" align="left">{{ $itex->warna }}</td>
-                                        <td class="content-control" align="left">{{ $itex->tipe }}</td>
-                                        <td class="content-control" align="left">{{ $itex->vendor }}</td>
-                                        <td class="content-control" align="left">{{ $itex->requester }}</td>
-                                        <td class="content-control" align="left">{{ $itex->divisi }}</td>
+                                            </td>
 
-                                    </tr>
+                                            <td class="content-control-sm" align="left">{{ $itex->no_pr }}</td>
+                                            <td class="content-control-sm" align="left">{{ $itex->warna }}</td>
+                                            <td class="content-control-sm" align="left">{{ $itex->tipe }}</td>
+                                            <td class="content-control-sm" align="left">{{ $itex->vendor }}</td>
+                                            <td class="content-control-sm" align="left">{{ $itex->requester }}</td>
+                                            <td class="content-control-sm" align="left">{{ $itex->divisi }}</td>
+
+                                        </tr>
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -113,26 +104,25 @@
         <div class="card">
             <div class="card-body">
                 <div class="content">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label for="tanggal_pengajuan" class="form-label font">Alamat Penagihan</label>
-                                <input type="textarea" class="form-control input-powder" name="alamat_penagihan">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="mb-3">
-                                <label for="tanggal_pengajuan" class="form-label font">Lain-Lain</label>
-                                <input type="textarea" class="form-control input-powder" name="lain-lain">
-                            </div>
-                        </div>
-                    </div>
-
 
                     <div class="mb-3">
+                        <div class="mb-3">
+                            <label for="tanggal_pengajuan" class="form-label font">Alamat Penagihan</label>
+                            <input
+                                value="Kantor PT. Allure Alluminio, Rukan Artha Gading Niaga Blok B No. 17, Kelapa Gading, Jakarta Utara"
+                                type="text" class="form-control input-powder" name="alamat_penagihan">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tanggal_pengajuan" class="form-label font">Lain-Lain</label>
+                        <input type="text" class="form-control input-powder" name="lain-lain"
+                            value="Invoice, Kwitansi, Faktur Pajak dan Surat Jalan atas nama  PT. ALLURE ALLUMINIO dengan alamat sesuai NPWP">
+                    </div>
+                    <div class="mb-3">
                         <label for="note" class="form-label font">Note</label>
-                        <textarea rows="4" cols="50" class="form-control input-powder" id="note" placeholder="-- INPUT --"
-                            name="note"></textarea>
+                        <input
+                            value="Harap melampirkan copy PO+surat jalan asli+Inv asli+materai pada saat penagihan (Materai Rp. 10,000 untuk transaksi diatas Rp. 5 juta)"
+                            class="form-control input-powder" id="note" placeholder="-- INPUT --" name="note">
 
                     </div>
                     <div class="row">
@@ -159,7 +149,7 @@
                     </div>
 
 
-                    <input type="submit" class="btn btn-primary submit-powder" value="Submit">
+                    <input style="width:100%" type="submit" class="btn btn-primary submit-powder" value="Submit">
 
 
                 </div>

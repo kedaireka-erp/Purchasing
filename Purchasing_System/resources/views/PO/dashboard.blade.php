@@ -79,15 +79,15 @@
 
                 <table id="example3" class="display" style="width:100%">
                     <thead>
-                        <tr align="right">
+                        <tr class="content-control-md" align="right">
 
-                            <td align="left">Nomor PO</td>
-                            <td>Supplier</td>
-                            <td>Alamat Kirim</td>
-                            <td>Pembayaran</td>
-                            <td>Waktu Pengiriman</td>
-                            <td>Tanggal Pembuatan</td>
-                            <td></td>
+                            <td align="left" width="20%">Nomor PO</td>
+                            <td width="20%">Supplier</td>
+                            <td width="20%">Alamat Kirim</td>
+                            <td width="10%">Pembayaran</td>
+                            <td width="15%">Waktu Pengiriman</td>
+                            <td width="15%">Tanggal Pembuatan</td>
+                            <td width="5%"></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -98,13 +98,18 @@
                         @foreach ($orders as $item)
                             <tr align="right">
 
-                                <td align="left">{{ $item->no_po }}</td>
-                                <td>{{ $item->nama_supplier }}</td>
-                                <td>{{ $item->location->location_name }}</td>
-                                <td>{{ $item->payment->name }}</td>
-                                <td>{{ $item->timeshipping->name }}</td>
-                                <td class="content-control">
-                                    {{ \Carbon\Carbon::parse($item->created_at)->format('d F Y') }}
+                                <td class="content-control-md" align="left">{{ $item->no_po }}</td>
+                                <td class="content-control-md">{{ $item->nama_supplier }}</td>
+                                <td class="content-control-md">{{ $item->location->location_name }}</td>
+                                <td class="content-control-md">{{ $item->payment->name }}</td>
+                                @if ($item->timeshipping == null)
+                                    <td class="content-control-md">
+                                        {{ \Carbon\Carbon::parse($item->tanggal_kirim)->format('d/m/Y') }}</td>
+                                @else
+                                    <td class="content-control-md">{{ $item->timeshipping->name }}</td>
+                                @endif
+                                <td class="content-control-md">
+                                    {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}
                                 </td>
                                 <td class="py-2 text-end">
                                     <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
@@ -127,7 +132,8 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
-                                                <a class="dropdown-item" href="{{ route('order.view',$item->id)}}">Detail</a>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('order.view', $item->id) }}">Detail</a>
                                                 <a class="dropdown-item" href="#">Print</a>
                                                 <form action="/" method="POST">
                                                     @csrf

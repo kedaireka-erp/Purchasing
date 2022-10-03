@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("nama_supplier")->nullable();
             $table->unsignedBigInteger("id_waktu")->nullable();
             $table->unsignedBigInteger("id_alamat_kirim")->nullable();
+            $table->date("tanggal_kirim")->nullable();  
             $table->unsignedBigInteger("id_pembayaran")->nullable();
             $table->string("alamat_penagihan")->nullable();
             $table->string("lain_lain")->nullable();

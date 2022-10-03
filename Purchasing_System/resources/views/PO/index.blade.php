@@ -39,24 +39,53 @@
         </div>
     </div>
 
-
-
-
     <!-- Required vendors -->
     <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
-    <!-- Apex Chart -->
-    <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}"></script>
-
     <!-- Datatable -->
     <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
 
-    <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            time_read();
+            time_reader();
+        });
 
-    <script src="{{ asset('assets/js/custom.min.js') }}"></script>
-    <script src="{{ asset('assets/js/dlabnav-init.js') }}"></script>
-    {{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
-    {{-- <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script> --}}
+        function time_read() {
+            $.get("{{ url('order/create/time') }}", {}, function(data, status) {
+                $("#read_time").html(data);
+            });
+        }
+
+        function date_read() {
+            $.get("{{ url('order/create/date') }}", {}, function(data, status) {
+                $("#read_time").html(data);
+            });
+            date_reader();
+        }
+
+        function time_reader() {
+            $.get("{{ url('order/create/time') }}", {}, function(data, status) {
+                $("#reader_time").html(data);
+            });
+        }
+
+        function date_reader() {
+            $.get("{{ url('order/create/date') }}", {}, function(data, status) {
+                $("#reader_time").html(data);
+            });
+        }
+
+
+        function location_create() {
+            $.get("{{ url('order/create/location') }}", {}, function(data, status) {
+                $("#PowderModalLabel").html('Add Location');
+                $("#powder_page").html(data);
+                $("#exampleModalPowderCenter").modal('show');
+
+            })
+        }
+    </script>
 
 @endsection

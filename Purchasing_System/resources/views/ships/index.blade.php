@@ -76,106 +76,92 @@
             </div>
             <hr>
             <x-alert></x-alert>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table id="example3" class="display" style="width:100%">
-                    <thead>
-                        <tr align="center">
-                            {{-- <td align="center">
-                                <div class="form-check custom-checkbox ms-2">
-                                    <input type="checkbox" class="form-check-input" id="checkAll" required="">
-                                    <label class="form-check-label" for="checkAll"></label>
-                                </div>
-                            </td> --}}
-                            <td width="10%">No</td>
-                            <td width="50%">Kebutuhan/ Pengiriman</td>
-                            <td width="20%">Tanggal Pembuatan</td>
-                            <td width="20%" colspan="2">Action</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (count($datas) == 0)
-                            <tr>
-                                <td colspan="6" align="center" style="color: gray; background-color: white"><i>
-                                        Data kosong
-                                    </i></td>
-                            </tr>
-                        @endif
-                        @foreach ($datas as $key => $value)
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example3" class="display" style="width:100%">
+                        <thead>
                             <tr align="center">
-                                <td class="content-control">{{ $key + $datas->firstitem() }}</td>
-                                <td class="content-control">{{ $value->type }}</td>
-                                <td class="content-control">
-                                    {{ \Carbon\Carbon::parse($value->created_at)->format('d F Y') }} </td>
-                                <td class="d-flex justify-content-center">
-                                    <form method="GET" action="{{ url('ships/' . $value->id . '/edit') }}"
-                                        style="margin-right:10px">
-                                        @csrf
-                                        <input type="hidden" value="EDIT" name="_method">
-                                        <button type="submit" class="btn btn-warning" id="edit"> <i
-                                                class="fa fa-edit"></i>
-                                        </button>
-                                    </form>
-                                    <form method="POST" onsubmit="return confirm('Move data to trash?')"
-                                        action="{{ url('ships/' . $value->id) }}">
-                                        @csrf
-                                        <input type="hidden" value="DELETE" name="_method">
-                                        <button type="submit" class="btn btn-danger" id="delete"> <i
-                                                class="bi bi-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
+                                <td width="10%">No</td>
+                                <td width="50%">Kebutuhan/ Pengiriman</td>
+                                <td width="30%">Tanggal Pembuatan</td>
+                                <td width="10%" colspan="2">Action</td>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach ($datas as $key => $value)
+                                <tr align="center">
+                                    <td class="content-control">{{ $key + $datas->firstitem() }}</td>
+                                    <td class="content-control">{{ $value->type }}</td>
+                                    <td class="content-control">
+                                        {{ \Carbon\Carbon::parse($value->created_at)->format('d F Y') }} </td>
+                                    <td class="d-flex justify-content-center">
+                                        <form method="GET" action="{{ url('ships/' . $value->id . '/edit') }}"
+                                            style="margin-right:10px">
+                                            @csrf
+                                            <input type="hidden" value="EDIT" name="_method">
+                                            <button type="submit" class="btn btn-warning" id="edit"> <i
+                                                    class="fa fa-edit"></i>
+                                            </button>
+                                        </form>
+                                        <form method="POST" onsubmit="return confirm('Move data to trash?')"
+                                            action="{{ url('ships/' . $value->id) }}">
+                                            @csrf
+                                            <input type="hidden" value="DELETE" name="_method">
+                                            <button type="submit" class="btn btn-danger" id="delete"> <i
+                                                    class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
 
-        <div class="modal fade" id="exampleModalItemCenter">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" align="center" id="ItemModalLabel"></h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal">
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="item_page" class="pd-2"></div>
+            <div class="modal fade" id="exampleModalItemCenter">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" align="center" id="ItemModalLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal">
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="item_page" class="pd-2"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Required vendors -->
-        <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
+            <!-- Required vendors -->
+            <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
 
-        <script>
-            function ship_create() {
-                $.get("{{ route('master_item.create') }}", {}, function(data, status) {
-                    $("#ItemModalLabel").html('Add Item');
-                    $("#item_page").html(data);
-                    $("#exampleModalItemCenter").modal('show');
-                })
-            }
-        
-            function ship_edit(id) {
-                $.get("{{ url('masteritem/edit') }}/" + id, {}, function(data, status) {
-                    $("#ItemModalLabel").html('Edit Item');
-                    $("#item_page").html(data);
-                    $("#exampleModalItemCenter").modal('show');
-                })
-            }
-        
-            function ship_view(id) {
-                $.get("{{ url('masteritem/view') }}/" + id, {}, function(data, status) {
-                    $("#ItemModalLabel").html('View Item');
-                    $("#item_page").html(data);
-                    $("#exampleModalItemCenter").modal('show');
-                })
-            }
-        
-        </script>
-          
+            <script>
+                function ship_create() {
+                    $.get("{{ route('master_item.create') }}", {}, function(data, status) {
+                        $("#ItemModalLabel").html('Add Item');
+                        $("#item_page").html(data);
+                        $("#exampleModalItemCenter").modal('show');
+                    })
+                }
 
-    @endsection
+                function ship_edit(id) {
+                    $.get("{{ url('masteritem/edit') }}/" + id, {}, function(data, status) {
+                        $("#ItemModalLabel").html('Edit Item');
+                        $("#item_page").html(data);
+                        $("#exampleModalItemCenter").modal('show');
+                    })
+                }
+
+                function ship_view(id) {
+                    $.get("{{ url('masteritem/view') }}/" + id, {}, function(data, status) {
+                        $("#ItemModalLabel").html('View Item');
+                        $("#item_page").html(data);
+                        $("#exampleModalItemCenter").modal('show');
+                    })
+                }
+            </script>
+
+
+        @endsection

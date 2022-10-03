@@ -235,6 +235,7 @@ return array(
     'Cron\\MonthField' => $vendorDir . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
+    'Database\\Seeders\\MasterGrade' => $baseDir . '/database/seeders/MasterGrade.php',
     'Database\\Seeders\\MasterItem' => $baseDir . '/database/seeders/MasterItem.php',
     'Database\\Seeders\\MasterLocation' => $baseDir . '/database/seeders/MasterLocation.php',
     'Database\\Seeders\\MasterPrefix' => $baseDir . '/database/seeders/MasterPrefix.php',
