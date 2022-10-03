@@ -153,7 +153,7 @@
                                             <tr class="tr">
                                                 <td width="200px">Supplier</td>
                                                 <td>:
-                                                    {{ $orders->supplier }}
+                                                    {{ $orders->supplier->vendor }}
                                                 </td>
                                             </tr>
                                             <br>
@@ -164,17 +164,17 @@
                                             <br>
                                             <tr class="tr">
                                                 <td width="200px">Pembayaran</td>
-                                                <td>: {{ $orders->payment->name}}</td>
+                                                <td>: {{ $orders->payment->name_payment}}</td>
                                             </tr>
                                             <br>
                                             <tr class="tr">
                                                 <td width="200px">Alamat Kirim</td>
-                                                <td>: {{ $orders->location->name }} </td>
+                                                <td>: {{ $orders->location->location_name}} </td>
                                             </tr>
                                             <br>
                                             <tr class="tr">
                                                 <td width="200px">Waktu Pengiriman</td>
-                                                <td>: {{ $orders->timeshipping->name}}</< /td>
+                                                <td>: {{ $orders->timeshipping}}</td>
                                             </tr>
                                             <br>
                                             <tr class="tr">

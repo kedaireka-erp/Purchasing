@@ -165,10 +165,13 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
         route::get('/edit/{id}', [TrackingController::class, 'edit'])->name('edit');
         route::post('/update/{id}', [TrackingController::class, 'update'])->name('update');
         route::post('/update_good/{id}', [TrackingController::class, 'update_good'])->name('update_good');
+        route::post('/update_Tpowder/{id}', [TrackingController::class, 'update_Tpowder'])->name('update_Tpowder');
         route::delete('destroy/{id}', [TrackingController::class, 'destroy'])->name('destroy');
         route::get('/view/{id}', [TrackingController::class, 'view'])->name('view');
         route::get('/detail/{id}', [TrackingController::class, 'detail'])->name('detail');
+        route::get('/detail_powders/{id}', [TrackingController::class, 'detail_powders'])->name('detail_powders');
         Route::get('/approval', [PurchaseRequestController::class, 'track']);
+        Route::get('/dl', [TrackingController::class, 'dl'])->name('dl');;
     });
 
 

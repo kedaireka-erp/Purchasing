@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\Grade;
 use App\Models\Order;
 use App\Models\ships;
+use App\Models\Powder;
 use App\Models\Prefix;
 use App\Models\Payment;
 use App\Models\location;
@@ -66,34 +67,12 @@ class TrackingController extends Controller
             ->select('item_requests.id','orders.no_po','purchase_requests.no_pr','purchase_requests.deadline_date','purchase_requests.requester','items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
             ->get();
 
-            $toms = DB::table('item_requests')
-            
-            
-            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
-            ->join('items', 'items.id', '=', 'item_requests.id_item')
-            ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
-            ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
-            
-            ->select('purchase_requests.no_pr','purchase_requests.deadline_date','purchase_requests.requester','items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
-            ->get();
+        // $items=Item::has('order','purchase')->get();
 
-        $powders = DB::table('item_requests')
             
-            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
-            ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
-            ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
-            ->join('grades', 'grades.id', '=', 'powders.grades_id')
-            ->join('suppliers', 'suppliers.id', '=', 'powders.suppliers_id')
-            ->select('item_requests.id' ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
-            ->get();
-
-            $Prefixe = Prefix::get();
-            
-            
-
-
-        return view('Tracking.dashboard_good', compact('toms','location','powders','items','time','payment','purchase_requests',"Prefixe"));
+        return view('Tracking.dashboard_good', compact('location','items','time','payment','purchase_requests',"Prefixe"));
     }
+
     public function index_powder()
     {
         $purchase_requests = PurchaseRequest::get();
@@ -104,14 +83,15 @@ class TrackingController extends Controller
 
         $powders = DB::table('item_requests')
             
-        ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
-        ->join('powders','powders.id','=','item_requests.powder_id')
-        ->join('orders', 'orders.id', '=', 'item_requests.order_id')
-        ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
-        ->join('grades', 'grades.id', '=', 'powders.grades_id')
-        ->join('colours', 'colours.id', '=', 'powders.color_id')
-        ->select('item_requests.id','orders.no_po','purchase_requests.no_pr','purchase_requests.deadline_date','purchase_requests.requester','colours.name','powders.sudah_datang','powders.outstanding','prefixes.divisi', 'grades.tipe')
-        ->get();
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+            ->join('orders', 'orders.id', '=', 'item_requests.order_id')
+            ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
+            ->join('grades', 'grades.id', '=', 'powders.grades_id')
+            ->join('colours', 'colours.id', '=', 'powders.color_id')
+            ->join('suppliers', 'suppliers.id', '=', 'powders.suppliers_id')
+            ->select('item_requests.id','powders.sudah_datang' ,'powders.outstanding','colours.name','orders.no_po','purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
+            ->get();
 
             $Prefixe = Prefix::get();
             
@@ -137,60 +117,77 @@ class TrackingController extends Controller
     public function detail($id)
     {
         
-        $tracking = ItemRequest::find($id);
+        // $tracking=ItemRequest::find($id);
         // dd($tracking);
-        return view('Tracking.view',compact('tracking'));
+        $purchase_requests = PurchaseRequest::get();
+        $time = Timeshipping::get();
+        $Prefixe= Prefix::get();
+        $location= Location::get();
+        $payment = Payment::get();
+        $tracking = DB::table('item_requests')
+            
+            ->where('item_requests.id',$id)
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('items', 'items.id', '=', 'item_requests.id_item')
+            ->join('orders', 'orders.id', '=', 'item_requests.order_id')
+            ->join('satuans', 'satuans.id', '=', 'items.id_satuan')
+            ->join('locations', 'locations.id', '=', 'purchase_requests.locations_id')
+            ->join('ships', 'ships.id', '=', 'purchase_requests.ships_id')
+            ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+            ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
+            
+            ->select('item_requests.id_item','locations.location_name','purchase_requests.note','purchase_requests.approval_status','ships.tipe','satuans.unit','item_requests.id','orders.no_po','purchase_requests.project','purchase_requests.type','purchase_requests.no_pr','purchase_requests.created_at',
+            'purchase_requests.deadline_date','purchase_requests.requester','items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
+            ->get();
 
-        //tes
-        // $purchase_requests = PurchaseRequest::get();
-        // $time = Timeshipping::get();
-        // $Prefixe= Prefix::get();
-        // $location= Location::get();
-        // $payment = Payment::get();
-        // $items = DB::table('item_requests')
+        $powders = DB::table('item_requests')
             
-        //     ->where('item_requests.id_request',$id)
-        //     ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
-        //     ->join('items', 'items.id', '=', 'item_requests.id_item')
-        //     ->join('orders', 'orders.id', '=', 'item_requests.order_id')
-        //     // ->join('satuans', 'satuans.id', '=', 'items.id_satuan')
-        //     ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
-        //     ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
-            
-        //     ->select('item_requests.id','orders.no_po',
-        //     'purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','purchase_requests.requester','purchase_requests.project',
-        //     'items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
-        //     ->get();
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+            ->join('orders', 'orders.id', '=', 'item_requests.order_id')
+            ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
+            ->join('grades', 'grades.id', '=', 'powders.grades_id')
+            ->join('colours', 'colours.id', '=', 'powders.color_id')
+            ->join('suppliers', 'suppliers.id', '=', 'powders.suppliers_id')
+            ->select('item_requests.id','powders.sudah_datang' ,'powders.outstanding','colours.name','orders.no_po','purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
+            ->get();
+        return view('Tracking.view',compact('tracking','powders'));
 
-        //     $toms = DB::table('item_requests')
-            
-            
-        //     ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
-        //     ->join('items', 'items.id', '=', 'item_requests.id_item')
-        //     ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
-        //     ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
-            
-        //     ->select('purchase_requests.no_pr','purchase_requests.deadline_date','purchase_requests.requester','items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
-        //     ->get();
-
-        // $powders = DB::table('item_requests')
-            
-        //     ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
-        //     ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
-        //     ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
-        //     ->join('grades', 'grades.id', '=', 'powders.grades_id')
-        //     ->join('suppliers', 'suppliers.id', '=', 'powders.suppliers_id')
-        //     ->select('item_requests.id' ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
-        //     ->get();
-
-        //     $Prefixe = Prefix::get();
-
-        //     return view('Tracking.view', compact('toms','location','powders','items','time','payment','purchase_requests',"Prefixe"));
     }
+
+    public function detail_powders($id)
+    {
+        
+        // $tracking=ItemRequest::find($id);
+        // dd($tracking);
+        $purchase_requests = PurchaseRequest::get();
+        $time = Timeshipping::get();
+        $Prefixe= Prefix::get();
+        $location= Location::get();
+        $payment = Payment::get();
+       
+
+        $powders = DB::table('item_requests')
+        ->where('item_requests.id',$id)
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+            ->join('orders', 'orders.id', '=', 'item_requests.order_id')
+            ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
+            ->join('grades', 'grades.id', '=', 'powders.grades_id')
+            ->join('colours', 'colours.id', '=', 'powders.color_id')
+            ->join('ships', 'ships.id', '=', 'purchase_requests.ships_id')
+            ->join('locations', 'locations.id', '=', 'purchase_requests.locations_id')
+            ->join('suppliers', 'suppliers.id', '=', 'powders.suppliers_id')
+            ->select('item_requests.powder_id','powders.finishing','powders.m2','purchase_requests.type','purchase_requests.approval_status','ships.tipe','locations.location_name','purchase_requests.note','item_requests.id','purchase_requests.project','purchase_requests.created_at','powders.sudah_datang' ,'powders.outstanding','colours.name','orders.no_po','purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
+            ->get();
+        return view('Tracking.view_powder',compact('powders'));
+    }
+
 
     public function update_good(Request $request, $id)
     {
         $item = Item::findOrFail($id);
+        
         if($item->outstanding >= $request->sudah_datang) {
         $item->update([
             
@@ -198,24 +195,37 @@ class TrackingController extends Controller
             'tanggal_kedatangan_barang' => $request->tanggal_kedatangan_barang
             
         ]);
-    
-        // $items = DB::table('item_requests')
-        // ->where ('id', $id)->get();
-        // $items->update([
-        //         'sudah_datang' => $items->sudah_datang + $request->sudah_datang,
-        //         'tanggal_kedatangan_barang' => $request->tanggal_kedatangan_barang
-        //     ]);
-        //     // DB::table('master_items')->insert([
-		// 	'item_name' => $request->item_name,
-        //     'stock' => $request->stock
-		// ]);
 
 
-        return redirect('/tracking');
+        return redirect('/tracking/good');
         }
         else{
             return redirect('/tracking')->with('failed', 'Barang datang melebihi jumlah outstanding');
 
         }
     }
+
+    public function update_Tpowder(Request $request, $id)
+    {
+        
+        $powder = Powder::findOrFail($id);
+        if($powder->outstanding >= $request->sudah_datang) {
+        $powder->update([
+            
+            'sudah_datang' => $request->sudah_datang,
+            'tanggal_kedatangan_barang' => $request->tanggal_kedatangan_barang
+            
+        ]);
+
+
+        return redirect('/tracking/powder');
+        }
+        else{
+            return redirect('/tracking/powder')->with('failed', 'Barang datang melebihi jumlah outstanding');
+
+        }
+    }
+
+    
+
 }

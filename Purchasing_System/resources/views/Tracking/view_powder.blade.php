@@ -62,7 +62,7 @@
                                             class="nav-link"> Update Form </a>
                                     </li> --}}
                             </ul>
-                            @foreach ($tracking as $purchase_requests)
+                            @foreach ($powders as $purchase_requests)
                             
                             <div class="tab-content">
                                 <div id="my-posts" class="tab-pane fade active show">
@@ -128,74 +128,9 @@
                                     </div>
                                 </div>
                                @endforeach
-                                <div id="about-me" class="tab-pane fade">
-                                    <div class="profile-about-me">
-                                        @foreach ($tracking as $purchase_requests)
-                                            
-                                        {{-- ini tabel item di tracking --}}
-                                        {{-- @if ($purchase_requests->type == 'othergood') --}}
-                                        @if ($purchase_requests->type == 'othergood')
-                                            <table class="table table-striped" id="body">
-                                                <thead>
-                                                    <tr style="text-align: center">
-                                                        <td scope="col">No.</td>
-                                                        <td scope="col">Description of Goods</td>
-                                                        <td scope="col">Outstanding</td>
-                                                        <td scope="col">Sudah Datang</td>
-                                                        <td scope="col">Unit</td>
-                                                    </tr>
-                                                </thead>
-
-                                                @php
-                                                    $nomor = 1;
-                                                @endphp
-
-
-                                                <tbody>
-
-                                                    {{-- @foreach ($purchase_requests->item as $yes) --}}
-                                                        <tr style="text-align: center">
-                                                            <td>{{ $nomor++ }}</td>
-                                                            <td>{{ $purchase_requests->item_name }}</td>
-                                                            <td>{{ $purchase_requests->outstanding }}</td>
-                                                            <td>{{ $purchase_requests->sudah_datang }}</td>
-                                                            <td>{{ $purchase_requests->unit }}</td>
-                                                        </tr>
-                                                    {{-- @endforeach --}}
-                                                </tbody>
-                                            </table>
-
-                                            @foreach ($tracking as $item)
-                                            <form 
-                                            action="{{ route('tracking.update_good', $item->id_item) }}"
-                                                method="post">
-                                                @csrf
-                                                <div class="row">
-                                                    <div class="col-12" style="margin-top: 30px">
-                                                        <div class="mb-3">
-                                                            <label class="form-label"> Sudah Datang </label>
-                                                            <input name="sudah_datang" class="input-rounded form-control wide"
-                                                                type="number">
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    <div class="col-12" style="margin-top: 30px">
-                                                        <div class="mb-3">
-                                                            <label class="form-label"> Tanggal Penerimaan </label>
-                                                            <input name="tanggal_kedatangan_barang" class="input-rounded form-control wide"
-                                                                type="date">
-                                                        </div>
-                                                        
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <button style="margin-top:10px" class="btn btn-primary"> Simpan
-                                                        </button>
-                                                    </div>
-                                                </div>
-
-                                            </form>
-                                            @endforeach
-                                        {{-- @elseif ($purchase_requests->type == 'powder')
+                               <div id="about-me" class="tab-pane fade">
+                                <div class="profile-about-me">
+                                        @if ($purchase_requests->type == 'powder')
                                             <table class="table table-striped" id="body">
                                                 <thead>
                                                     <tr style="text-align: center">
@@ -213,32 +148,32 @@
                                                 </thead>
                                                 @php
                                                     $nomor = 1;
-                                                @endphp --}}
+                                                @endphp
 
                                                 {{-- @if ($item->id_request == $purchase_requests->id) --}}
-                                                {{-- <tbody>
+                                                <tbody>
 
-                                                    @foreach ($purchase_requests->powder as $yes)
+                                                    {{-- @foreach ($purchase_requests->powder as $yes) --}}
                                                         <tr style="text-align: center">
                                                             <td>{{ $nomor++ }}</td>
-                                                            <td>{{ $yes->supplier->vendor }}</td>
-                                                            <td>{{ $yes->grade->tipe }}</td>
-                                                            <td>{{ $yes->warna }}</td>
-                                                            <td>{{ $yes->colour->name }}</td>
-                                                            <td>{{ $yes->finish }}</td>
-                                                            <td>{{ $yes->outstanding }}</td>
-                                                            <td>{{ $yes->sudah_datang }}</td>
-                                                            <td>{{ $yes->m2 }}</td>
+                                                            <td>{{ $purchase_requests->vendor }}</td>
+                                                            <td>{{ $purchase_requests->tipe }}</td>
+                                                            <td>{{ $purchase_requests->warna }}</td>
+                                                            <td>{{ $purchase_requests->name }}</td>
+                                                            <td>{{ $purchase_requests->finishing }}</td>
+                                                            <td>{{ $purchase_requests->outstanding }}</td>
+                                                            <td>{{ $purchase_requests->sudah_datang }}</td>
+                                                            <td>{{ $purchase_requests->m2 }}</td>
                                                         </tr>
                                                         
-                                                    @endforeach
+                                                    {{-- @endforeach --}}
                                                 </tbody>
-                                                {{-- @endif --}}
+                                                @endif
 
-                                            {{-- </table>
-                                            @foreach ($tracking->powder1 as $powder)
+                                            </table>
+                                            @foreach ($powders as $powder)
                                             <form 
-                                            action="{{ route('tracking.update_good', $powder->id) }}"
+                                            action="{{ route('tracking.update_Tpowder', $powder->powder_id) }}"
                                                 method="post">
                                                 @csrf
                                                 <div class="row">
@@ -265,9 +200,9 @@
                                                 </div>
 
                                             </form>
-                                            @endforeach --}} 
+                                            @endforeach 
 
-                                        @endif
+                                        {{-- @endif --}}
 
                                     </div>
                                 </div>
@@ -285,7 +220,7 @@
                         
 
                     </div>
-                    @endforeach
+                   
                 </div>
             </div>
         </div>

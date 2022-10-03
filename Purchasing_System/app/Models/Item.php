@@ -29,7 +29,9 @@ class Item extends Model
     {
         return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id_request','id_item');
     }
-    
+    public function order(){
+        return $this->belongsToMany(Order::class, 'item_requests','id_item', 'order_id');
+    }
     //Tiap Satu item PR dapat memuat maksimal 1 id dalam master item
     public function master_item()
     {
@@ -44,15 +46,26 @@ class Item extends Model
 
     public static function boot()
     {
+        // parent::boot();
+
+        // static::creating(function($item){
+        //     $item->outstanding = $item->stok - $item->sudah_datang;
+        // });
+        // static::updating(function ($item) {
+        //     $item->outstanding = $item->stok - $item->sudah_datang;
+
+        //     // $item->outstanding = $item->outstanding - $item->sudah_datang;
+        //     // $item->sudah_datang = $item->stok-$item->outstanding;
+
+        // });
         parent::boot();
 
-        static::creating(function($item){
-            $item->outstanding = $item->stok - $item->sudah_datang;
+        static::creating(function($powder){
+            $powder->outstanding = $powder->stok - $powder->sudah_datang;
         });
-        static::updating(function ($item) {
-            $item->outstanding = $item->stok - $item->sudah_datang;
-            // $item->outstanding = $item->outstanding - $item->sudah_datang;
-            // $item->sudah_datang = $item->stok-$item->outstanding;
+        static::updating(function ($powder) {
+            $powder->outstanding = $powder->outstanding - $powder->sudah_datang;
+            $powder->sudah_datang = $powder->stok-$powder->outstanding;
 
         });
     }

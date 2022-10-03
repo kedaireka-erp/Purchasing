@@ -21,7 +21,7 @@ class ItemRequest extends Model
     public function purchase1()
     {
         // return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id_request');
-        return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id_request','id_request');
+        return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id','id_item');
     }
 
     public function item(){

@@ -88,7 +88,7 @@
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
                                                 <a class="dropdown-item"
-                                                    href="{{ route('tracking.detail', $item->id) }}">Detail</a>
+                                                    href="{{ route('tracking.detail_powders', $item->id) }}">Detail</a>
                                                 {{-- <a class="dropdown-item" href="{{ route('tracking.view', $item->no_pr, $item->no_po) }}">Edit</a> --}}
                                                 <form action="/" method="POST">
                                                     @csrf
