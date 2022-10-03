@@ -158,7 +158,8 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
     Route::get('/formPO', [FormPOController::class, 'indexPO'])->name('formPO');
 
     route::group(['as' => 'tracking.', 'prefix' => 'tracking'], function () {
-        route::get('/', [TrackingController::class, 'index']);
+        route::get('/good', [TrackingController::class, 'index_good']);
+        route::get('/powder', [TrackingController::class, 'index_powder']);
         route::get('/create', [TrackingController::class, 'create'])->name('create');
         route::post('/store', [TrackingController::class, 'store'])->name('store');
         route::get('/edit/{id}', [TrackingController::class, 'edit'])->name('edit');

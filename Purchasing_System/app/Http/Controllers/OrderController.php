@@ -46,7 +46,7 @@ class OrderController extends Controller
             ->join('satuans', 'satuans.id', '=', 'items.id_satuan')
             ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
             ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
-            ->select('item_requests.id' ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','items.stok','purchase_requests.requester','prefixes.divisi','satuans.name','master_items.item_name')
+            ->select('item_requests.id','purchase_requests.approval_status','purchase_requests.accept_status' ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','items.stok','purchase_requests.requester','prefixes.divisi','satuans.name','master_items.item_name')
             ->get();
 
         $powders = DB::table('item_requests')

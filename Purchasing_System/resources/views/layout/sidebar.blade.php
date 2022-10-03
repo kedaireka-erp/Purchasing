@@ -181,7 +181,13 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/tracking/approval">Approval Tracking</a></li>
-                            <li><a href="/tracking">Request Tracking</a></li>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Request
+                                    Tracking</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/tracking/powder">Powder</a></li>
+                                    <li><a href="/tracking/good">Other Good</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
 

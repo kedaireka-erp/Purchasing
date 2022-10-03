@@ -130,7 +130,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tanggal_pengajuan" class="form-label font">Lain-Lain</label>
-                        <input type="text" class="form-control input-powder" name="lain-lain"
+                        <input type="text" class="form-control input-powder" name="lain_lain"
                             value="Invoice, Kwitansi, Faktur Pajak dan Surat Jalan atas nama  PT. ALLURE ALLUMINIO dengan alamat sesuai NPWP">
                     </div>
                     <div class="mb-3">

@@ -50,8 +50,9 @@ class Item extends Model
             $item->outstanding = $item->stok - $item->sudah_datang;
         });
         static::updating(function ($item) {
-            $item->outstanding = $item->outstanding - $item->sudah_datang;
-            $item->sudah_datang = $item->stok-$item->outstanding;
+            $item->outstanding = $item->stok - $item->sudah_datang;
+            // $item->outstanding = $item->outstanding - $item->sudah_datang;
+            // $item->sudah_datang = $item->stok-$item->outstanding;
 
         });
     }

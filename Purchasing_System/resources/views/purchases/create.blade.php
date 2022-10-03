@@ -45,7 +45,7 @@
                         <div class="tab-2">
                             <label for="tab2-2" class="title-form">Other Good</label>
                             <input id="tab2-2" name="tabs-two" type="radio">
-                            <div>
+                            <div disabled="disabled">
                                 <form action="{{ route('purchase_request.storegood') }}" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
@@ -55,7 +55,7 @@
                                                 <label for="type" class="form-label font">Type<span
                                                         style="color:red">*</span></label>
                                                 <input readonly name="type" id="type"
-                                                    class="form-control input-rounded form-control-lg" value="othergood"
+                                                    class="form-control input-rounded form-control" value="othergood"
                                                     selected>
                                             </div>
                                         </div>

@@ -46,7 +46,7 @@ class TrackingController extends Controller
     }
 
     
-    public function index()
+    public function index_good()
     {
         $purchase_requests = PurchaseRequest::get();
         $time = Timeshipping::get();
@@ -92,7 +92,33 @@ class TrackingController extends Controller
             
 
 
-        return view('Tracking.dashboard', compact('toms','location','powders','items','time','payment','purchase_requests',"Prefixe"));
+        return view('Tracking.dashboard_good', compact('toms','location','powders','items','time','payment','purchase_requests',"Prefixe"));
+    }
+    public function index_powder()
+    {
+        $purchase_requests = PurchaseRequest::get();
+        $time = Timeshipping::get();
+        $Prefixe= Prefix::get();
+        $location= Location::get();
+        $payment = Payment::get();
+
+        $powders = DB::table('item_requests')
+            
+        ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+        ->join('powders','powders.id','=','item_requests.powder_id')
+        ->join('orders', 'orders.id', '=', 'item_requests.order_id')
+        ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+        ->join('grades', 'grades.id', '=', 'powders.grades_id')
+        ->join('colours', 'colours.id', '=', 'powders.color_id')
+        ->select('item_requests.id','orders.no_po','purchase_requests.no_pr','purchase_requests.deadline_date','purchase_requests.requester','colours.name','powders.sudah_datang','powders.outstanding','prefixes.divisi', 'grades.tipe')
+        ->get();
+
+            $Prefixe = Prefix::get();
+            
+            
+
+
+        return view('Tracking.dashboard_powder', compact('location','powders','time','payment','purchase_requests',"Prefixe"));
     }
     public function view($id){
         $purchase_requests = PurchaseRequest::find($id);
@@ -111,7 +137,7 @@ class TrackingController extends Controller
     public function detail($id)
     {
         
-        $tracking=ItemRequest::find($id);
+        $tracking = ItemRequest::find($id);
         // dd($tracking);
         return view('Tracking.view',compact('tracking'));
 

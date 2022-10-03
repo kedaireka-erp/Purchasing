@@ -67,7 +67,7 @@
                                     <td class="content-control-md">
                                         {{ \Carbon\Carbon::parse($item->tanggal_kirim)->format('d/m/Y') }}</td>
                                 @else
-                                    <td class="content-control-md">{{ $item->timeshipping->name }}</td>
+                                    <td class="content-control-md">{{ $item->timeshipping->name_time }}</td>
                                 @endif
                                 <td class="content-control-md">
                                     {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}
