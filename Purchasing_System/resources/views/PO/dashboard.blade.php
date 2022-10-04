@@ -110,7 +110,7 @@
                                                 <a class="dropdown-item"
                                                     href="{{ route('order.view', $item->id) }}">Detail</a>
                                                 <a class="dropdown-item" href="#">Print</a>
-                                                <form action="/" method="POST">
+                                                <form action="{{ route('order.destroyApp', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="dropdown-item text-danger">Delete</button>

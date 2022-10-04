@@ -19,39 +19,6 @@
     </div>
 @endsection
 @section('content')
-    {{-- <div id="tombol">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-md-6 mb-2">
-                    <form action="/" method="get">
-                        <input class="form-control fa" name="search" type="search" placeholder="&#xf002      Search "
-                            value="">
-                    </form>
-                </div>
-                <div class="col-lg-4 col-md-2"></div>
-                <div class="col-lg-3 col-md-4">
-                    {{-- <div id="button_add">
-                        <a href="/" class="btn btn-success" id="add"> +Add Data
-                        </a>
-                    </div> --}}
-
-    {{-- </div>
-            </div>
-        </div>
-    </div> --}}
-
-    {{-- <div class="container">
-        <h1>Purchase Request</h1>
-        <form method="GET">
-            <div class="input-group mb-3">
-                <input type="text" name="search" value="{{ request()->get('search') }}" class="form-control"
-                    placeholder="Search..." aria-label="Search" aria-describedby="button-addon2">
-                <button class="btn btn-success" type="submit" id="button-addon2">Search</button>
-            </div>
-        </form>
-        <div class="col-12">
-            <a href="{{ route('purchase_request.create') }}" class="btn btn-primary" type="submit">Add</a>
-        </div> --}}
     <div class="card">
         <div id="chead">
             <div class="row">
@@ -81,6 +48,7 @@
                             <td>Sudah Datang</td>
                             <td>Requester</td>
                             <td>Divisi</td>
+                            <td>status</td>
                             <td></td>
                         </tr>
                     </thead>
@@ -88,14 +56,27 @@
                         {{-- Ubah --}}
                         @foreach ($items as $no => $item)
                             <tr align="center">
-                                <td class="content-control-sm" align="left">{{ $item->no_po }}</td>
-                                <td class="content-control-sm" align="left">{{ $item->no_pr }}</td>
-                                <td class="content-control-sm" align="left">{{ $item->deadline_date }}</td>
-                                <td class="content-control-sm" align="left">{{ $item->item_name }}</td>
+                                <td class="content-control-sm" align="center">{{ $item->no_po }}</td>
+                                <td class="content-control-sm" align="center">{{ $item->no_pr }}</td>
+                                <td class="content-control-sm" align="center">{{ $item->deadline_date }}</td>
+                                <td class="content-control-sm" align="center">{{ $item->item_name }}</td>
                                 <td class="content-control-sm" align="center">{{ $item->outstanding }}</td>
                                 <td class="content-control-sm" align="center">{{ $item->sudah_datang }}</td>
                                 <td class="content-control-sm" align="center">{{ $item->requester }}</td>
                                 <td class="content-control-sm" align="center">{{ $item->divisi }}</td>
+                                @if ($item->status == 'outstanding')
+                                    <td>
+                                        <a class="pending content-control-sm">
+                                            <i class="fa fa-clock-o"></i> {{ $item->status }}
+                                        </a>
+                                    </td>
+                                @elseif($item->status == 'closed')
+                                    <td>
+                                        <a class="approve content-control-sm">
+                                            <i class="fa fa-check"></i> {{ $item->status }}
+                                        </a>
+                                    </td>
+                                @endif
                                 <td class="py-2 text-end">
                                     <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
                                             type="button" id="order-dropdown-1" data-bs-toggle="dropdown"
@@ -118,8 +99,7 @@
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
                                                 <a class="dropdown-item"
-                                                    href="{{ route('tracking.detail', $item->id) }}">Detail</a>
-                                                {{-- <a class="dropdown-item" href="{{ route('tracking.view', $item->no_pr, $item->no_po) }}">Edit</a> --}}
+                                                    href="{{ route('tracking.detail', $item->id) }}">Tinjau</a>
                                                 <form action="/" method="POST">
                                                     @csrf
                                                     @method('DELETE')

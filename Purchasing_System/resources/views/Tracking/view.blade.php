@@ -29,8 +29,8 @@
 
 
     <!--**********************************
-                                                                                                                    Content body start
-                                                                                                                ***********************************-->
+                                                                                                                                Content body start
+                                                                                                                            ***********************************-->
 
     <div class="row">
         <div class="col-md-5">
@@ -41,7 +41,7 @@
                 <div class="card-body">
                     <div id="DZ_W_TimeLine" class="widget-timeline dlab-scroll height370">
                         <ul class="timeline">
-                            {{-- @include('Approval.timeline') --}}
+                            {{-- @include('Tracking.timeline') --}}
                         </ul>
                     </div>
                 </div>

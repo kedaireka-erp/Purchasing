@@ -1,4 +1,4 @@
-@if ($purchase_requests->approval_status == 'pending' && $purchase_requests->accept_status == 'pending')
+@if ($tracking->approval_status == 'pending' && $tracking->accept_status == 'pending')
     <li>
         <div class="timeline-badge primary"></div>
         <a class="timeline-panel text-muted" href="#">
@@ -19,13 +19,13 @@
         <div class="timeline-badge danger">
         </div>
         <a class="timeline-panel text-muted" href="#">
-            <span>{{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</span>
+            <span>{{ \Carbon\Carbon::parse($tracking->created_at)->format('d F Y') }}</span>
             <h6 class="mb-0"> Purchase Request telah diajukan</h6>
             <p align="justify"> Puchase Request masuk dalam tahap pending, segera hubungi
                 menager divisi untuk melakukan pengecekan dan approval</p>
         </a>
     </li>
-@elseif ($purchase_requests->approval_status == 'reject' && $purchase_requests->accept_status == 'pending')
+@elseif ($tracking->approval_status == 'reject' && $tracking->accept_status == 'pending')
     <li>
         <div class="timeline-badge primary"></div>
         <a class="timeline-panel text-muted" href="#">
@@ -37,7 +37,7 @@
     <li>
         <div class="timeline-badge danger"></div>
         <a class="timeline-panel text-muted" href="#">
-            <span>{{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}</span>
+            <span>{{ \Carbon\Carbon::parse($tracking->tanggal_diterima)->format('d F Y') }}</span>
             <h6 class="mb-0"> Purchase Request direject oleh manager divisi, cek catatan dan alasan reject
             </h6>
         </a>
@@ -46,12 +46,12 @@
         <div class="timeline-badge danger">
         </div>
         <a class="timeline-panel text-muted" href="#">
-            <span>{{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</span>
+            <span>{{ \Carbon\Carbon::parse($tracking->created_at)->format('d F Y') }}</span>
             <h6 class="mb-0"> Purchase Request telah diajukan</h6>
             <p align="justify"> Puchase Request telah diterima menager divisi</p>
         </a>
     </li>
-@elseif($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'pending')
+@elseif($tracking->approval_status == 'approve' && $tracking->accept_status == 'pending')
     <li>
         <div class="timeline-badge primary"></div>
         <a class="timeline-panel text-muted" href="#">
@@ -71,17 +71,17 @@
         <div class="timeline-badge warning">
         </div>
         <a class="timeline-panel text-muted" href="#">
-            <span>{{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</span>
+            <span>{{ \Carbon\Carbon::parse($tracking->created_at)->format('d F Y') }}</span>
             <h6 class="mb-0"> Purchase Request telah diajukan</h6>
             <p align="justify"> Pengajuan Puchase Request telah disetujui, tetapi belum diterima
                 oleh tim Purchasing</p>
         </a>
     </li>
-@elseif ($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'reject')
+@elseif ($tracking->approval_status == 'approve' && $tracking->accept_status == 'reject')
     <li>
         <div class="timeline-badge danger"></div>
         <a class="timeline-panel text-muted" href="#">
-            <span>{{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }}</span>
+            <span>{{ \Carbon\Carbon::parse($tracking->updated_at)->format('d F Y') }}</span>
             <h6 class="mb-0"> Purchase Request direject oleh tim Purchasing, cek catatan dan alasan reject
             </h6>
         </a>
@@ -89,7 +89,7 @@
     <li>
         <div class="timeline-badge warning"></div>
         <a class="timeline-panel text-muted" href="#">
-            <span>{{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}</span>
+            <span>{{ \Carbon\Carbon::parse($tracking->tanggal_diterima)->format('d F Y') }}</span>
             <h6 class="mb-0"> Purchase Request telah mendapat persetujuan dari manager divisi
             </h6>
         </a>
@@ -98,16 +98,16 @@
         <div class="timeline-badge warning">
         </div>
         <a class="timeline-panel text-muted" href="#">
-            <span>{{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</span>
+            <span>{{ \Carbon\Carbon::parse($tracking->created_at)->format('d F Y') }}</span>
             <h6 class="mb-0"> Purchase Request telah diajukan</h6>
             <p align="justify"> Puchase Request telah diterima menager divisi</p>
         </a>
     </li>
-@elseif($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'accept')
+@elseif($tracking->approval_status == 'approve' && $tracking->accept_status == 'accept')
     <li>
         <div class="timeline-badge success"></div>
         <a class="timeline-panel text-muted" href="#">
-            <span> {{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }}
+            <span> {{ \Carbon\Carbon::parse($tracking->updated_at)->format('d F Y') }}
             </span>
             <h6 class="mb-0"> Purchase Request telah diterima oleh tim Purchasing </strong>.
             </h6>
@@ -124,7 +124,7 @@
         <div class="timeline-badge success">
         </div>
         <a class="timeline-panel text-muted" href="#">
-            <span>{{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</span>
+            <span>{{ \Carbon\Carbon::parse($tracking->created_at)->format('d F Y') }}</span>
             <h6 class="mb-0"> Purchase Request telah diajukan</h6>
             <p align="justify"> Pengajuan Puchase Request telah disetujui semua pihak</p>
         </a>

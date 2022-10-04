@@ -64,7 +64,7 @@ class TrackingController extends Controller
             ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
             ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
             
-            ->select('item_requests.id','orders.no_po','purchase_requests.no_pr','purchase_requests.deadline_date','purchase_requests.requester','items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
+            ->select('item_requests.id','purchase_requests.status','orders.no_po','purchase_requests.no_pr','purchase_requests.deadline_date','purchase_requests.requester','items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
             ->get();
 
         // $items=Item::has('order','purchase')->get();
@@ -90,7 +90,7 @@ class TrackingController extends Controller
             ->join('grades', 'grades.id', '=', 'powders.grades_id')
             ->join('colours', 'colours.id', '=', 'powders.color_id')
             ->join('suppliers', 'suppliers.id', '=', 'powders.suppliers_id')
-            ->select('item_requests.id','powders.sudah_datang' ,'powders.outstanding','colours.name','orders.no_po','purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
+            ->select('item_requests.id','purchase_requests.status','powders.sudah_datang' ,'powders.outstanding','colours.name','orders.no_po','purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
             ->get();
 
             $Prefixe = Prefix::get();
@@ -136,7 +136,7 @@ class TrackingController extends Controller
             ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
             ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
             
-            ->select('item_requests.id_item','locations.location_name','purchase_requests.note','purchase_requests.approval_status','ships.tipe','satuans.unit','item_requests.id','orders.no_po','purchase_requests.project','purchase_requests.type','purchase_requests.no_pr','purchase_requests.created_at',
+            ->select('item_requests.id_item','locations.location_name','purchase_requests.note','purchase_requests.approval_status','ships.tipe','satuans.unit','item_requests.id','orders.no_po','purchase_requests.project','purchase_requests.type','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.accept_status',
             'purchase_requests.deadline_date','purchase_requests.requester','items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
             ->get();
 

@@ -215,4 +215,12 @@ class OrderController extends Controller
 
         return view('PO.view', compact('orders'));
     }
+
+    public function destroy($id){
+
+        $orders = Order::findOrFail($id);
+        $orders->delete();
+
+        return redirect("/order");
+     }
 }

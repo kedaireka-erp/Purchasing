@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('finish', ['interior', 'eksterior'])->nullable();
             $table->enum('finishing', ['SG', 'MATT', 'SUPERMATT', 'GLOSS', 'METALLIC', 'SAND TEXTURE', 'SUBLIMASI'])->nullable();
             $table->integer('quantity')->nullable();
-            $table->integer('m2')->nullable();
+            $table->string('m2', 100)->nullable();
             $table->integer('estimasi')->nullable();
             $table->integer('fresh')->nullable();
             $table->integer('recycle')->nullable();

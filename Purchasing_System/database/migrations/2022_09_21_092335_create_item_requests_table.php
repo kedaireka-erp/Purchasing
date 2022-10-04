@@ -22,10 +22,10 @@ return new class extends Migration
             $table->timestamps();
             
             
-            $table->foreign("powder_id")->references("id")->on("powders")->onDelete("restrict")->onUpdate("cascade")->nullable();
-            $table->foreign("id_request")->references("id")->on("purchase_requests")->onDelete("restrict")->onUpdate("cascade")->nullable();
-            $table->foreign("id_item")->references("id")->on("items")->onDelete("restrict")->onUpdate("cascade")->nullable();
-            $table->foreign("order_id")->references("id")->on("orders")->onDelete("restrict")->onUpdate("cascade")->nullable();
+            $table->foreign("powder_id")->references("id")->on("powders")->onDelete("cascade")->onUpdate("cascade")->nullable();
+            $table->foreign("id_request")->references("id")->on("purchase_requests")->onDelete("cascade")->onUpdate("cascade")->nullable();
+            $table->foreign("id_item")->references("id")->on("items")->onDelete("cascade")->onUpdate("cascade")->nullable();
+            $table->foreign("order_id")->references("id")->on("orders")->onDelete("cascade")->onUpdate("cascade")->nullable();
             
         });
     }

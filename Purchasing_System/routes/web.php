@@ -273,4 +273,5 @@ route::group(['as'=>'order.','prefix'=>'order'], function(){
     route::get('/create', [OrderController::class, 'create']);
     route::post('/store', [OrderController::class, 'store_item'])->name('orderstore');
     route::get('/view/{id}', [OrderController::class, 'view'])->name('view');
+    Route::delete('/destroy{id}', [OrderController::class, "destroy"])->name("destroyApp");
 });
