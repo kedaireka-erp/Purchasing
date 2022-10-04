@@ -25,8 +25,8 @@ class ships_controller extends Controller
     {
         $keyword = $request->search;
         //$datas = ships::all();
-        $datas = ships::where('type', 'LIKE', '%' .$keyword. '%')
-        ->paginate(5);
+        $datas = ships::where('tipe', 'LIKE', '%' . $keyword . '%')
+            ->paginate(5);
         return \view('ships.index', \compact('datas'));
     }
 
@@ -106,42 +106,40 @@ class ships_controller extends Controller
         $model = ships::find($id);
         $model->delete();
         return
-        \redirect('ships')->with('terhapus','Berhasil menghapus data kebutuhan');
+            \redirect('ships')->with('terhapus', 'Berhasil menghapus data kebutuhan');
     }
 
-    
 
-    public function excel(){
-      
+
+    public function excel()
+    {
+
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        
+
         $sheet->setCellValue('A1', 'No');
         $sheet->setCellValue('B1', 'TIPE');
         $sheet->setCellValue('C1', 'TANGGAL DITAMBAHKAN');
         $sheet->setCellValue('D1', 'TERAKHIR DIUBAH');
-        
-        
-        
-        $query = DB::table('ships')->get(); 
-        $i=2;
-        $no=1;
-        foreach ($query as $d=> $row){ 
-        
-            $sheet->setCellValue('A'.$i, $no++);
-            $sheet->setCellValue('B'.$i, $row->type);
-            $sheet->setCellValue('C'.$i, $row->created_at);
-            $sheet->setCellValue('D'.$i, $row->updated_at);   
+
+
+
+        $query = DB::table('ships')->get();
+        $i = 2;
+        $no = 1;
+        foreach ($query as $d => $row) {
+
+            $sheet->setCellValue('A' . $i, $no++);
+            $sheet->setCellValue('B' . $i, $row->type);
+            $sheet->setCellValue('C' . $i, $row->created_at);
+            $sheet->setCellValue('D' . $i, $row->updated_at);
             $i++;
         }
-        $fileName = "Master_Ship_" . date('Y-m-d').".xlsx"; 
+        $fileName = "Master_Ship_" . date('Y-m-d') . ".xlsx";
         $writer = new Xlsx($spreadsheet);
         $writer->save($fileName);
-        
+
         $filepath = public_path($fileName);
         return Response::download($filepath);
-        
-
-            }
-
+    }
 }

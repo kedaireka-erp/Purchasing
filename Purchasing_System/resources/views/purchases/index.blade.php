@@ -95,6 +95,9 @@
                                                 <a class="dropdown-item"
                                                     href="{{ route('purchase_request.view', $purchase_request->id) }}">Detail</a>
 
+                                                <a class="dropdown-item"
+                                                    href="{{ route('purchase_request.edit', $purchase_request->id) }}">Edit</a>
+
                                                 <form
                                                     action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
                                                     method="POST">
@@ -146,20 +149,26 @@
                                 </td>
 
                                 <td class="py-2 text-end">
-                                    <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
-                                            type="button" id="order-dropdown-1" data-bs-toggle="dropdown"
-                                            data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span><svg
+                                    <div class="dropdown text-sans-serif"><button
+                                            class="btn btn-primary tp-btn-light sharp" type="button"
+                                            id="order-dropdown-1" data-bs-toggle="dropdown" data-boundary="viewport"
+                                            aria-haspopup="true" aria-expanded="false"><span><svg
                                                     xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
-                                                    viewbox="0 0 24 24" version="1.1">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <rect x="0" y="0" width="24" height="24">
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="18px"
+                                                    height="18px" viewbox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none"
+                                                        fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24"
+                                                            height="24">
                                                         </rect>
-                                                        <circle fill="#000000" cx="5" cy="12" r="2">
+                                                        <circle fill="#000000" cx="5" cy="12"
+                                                            r="2">
                                                         </circle>
-                                                        <circle fill="#000000" cx="12" cy="12" r="2">
+                                                        <circle fill="#000000" cx="12" cy="12"
+                                                            r="2">
                                                         </circle>
-                                                        <circle fill="#000000" cx="19" cy="12" r="2">
+                                                        <circle fill="#000000" cx="19" cy="12"
+                                                            r="2">
                                                         </circle>
                                                     </g>
                                                 </svg></span></button>
@@ -178,7 +187,8 @@
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="dropdown-item text-danger">Delete</button>
+                                                    <button type="submit"
+                                                        class="dropdown-item text-danger">Delete</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -225,20 +235,26 @@
                                 </td>
 
                                 <td class="py-2 text-end">
-                                    <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
-                                            type="button" id="order-dropdown-1" data-bs-toggle="dropdown"
-                                            data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span><svg
+                                    <div class="dropdown text-sans-serif"><button
+                                            class="btn btn-primary tp-btn-light sharp" type="button"
+                                            id="order-dropdown-1" data-bs-toggle="dropdown" data-boundary="viewport"
+                                            aria-haspopup="true" aria-expanded="false"><span><svg
                                                     xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
-                                                    viewbox="0 0 24 24" version="1.1">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <rect x="0" y="0" width="24" height="24">
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="18px"
+                                                    height="18px" viewbox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none"
+                                                        fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24"
+                                                            height="24">
                                                         </rect>
-                                                        <circle fill="#000000" cx="5" cy="12" r="2">
+                                                        <circle fill="#000000" cx="5" cy="12"
+                                                            r="2">
                                                         </circle>
-                                                        <circle fill="#000000" cx="12" cy="12" r="2">
+                                                        <circle fill="#000000" cx="12" cy="12"
+                                                            r="2">
                                                         </circle>
-                                                        <circle fill="#000000" cx="19" cy="12" r="2">
+                                                        <circle fill="#000000" cx="19" cy="12"
+                                                            r="2">
                                                         </circle>
                                                     </g>
                                                 </svg></span></button>
@@ -249,12 +265,16 @@
                                                 <a class="dropdown-item"
                                                     href="{{ route('purchase_request.view', $purchase_request->id) }}">Detail</a>
 
+                                                <a class="dropdown-item"
+                                                    href="{{ route('purchase_request.edit', $purchase_request->id) }}">Edit</a>
+
                                                 <form
                                                     action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="dropdown-item text-danger">Delete</button>
+                                                    <button type="submit"
+                                                        class="dropdown-item text-danger">Delete</button>
                                                 </form>
                                             </div>
                                         </div>
