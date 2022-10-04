@@ -31,6 +31,8 @@ use App\Http\Controllers\OrderController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+Route::get('/manager', [HomeController::class, 'manager'])->name('manager');
+Route::get('/purchasing', [HomeController::class, 'purchasing'])->name('purchasing');
 
 Route::group(['as' => 'satuan.', 'prefix' => 'satuan'], function () {
     Route::get('/', [SatuanController::class, 'index'])->name('satuandash');

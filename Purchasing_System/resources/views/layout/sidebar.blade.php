@@ -120,8 +120,8 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/">Dashboard Admin Divisi</a></li>
-                            <li><a href="/adminmana">Dashboard Manager</a></li>
-                            <li><a href="/adminpur">Dashboard Purchasing</a></li>
+                            <li><a href="/manager">Dashboard Manager</a></li>
+                            <li><a href="/purchasing">Dashboard Purchasing</a></li>
                         </ul>
                     </li>
 

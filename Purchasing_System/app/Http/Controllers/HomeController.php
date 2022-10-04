@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\location;
-use App\Models\Prefix;
-use App\Models\PurchaseRequest;
-use App\Models\Colour;
-use App\Models\ships;
-use App\Models\Master_Item;
-use App\Models\Satuan;
-use App\Models\Powder;
-use App\Models\Supplier;
-use App\Models\Grade;
 use App\Models\Item;
+use App\Models\Grade;
+use App\Models\Order;
+use App\Models\ships;
+use App\Models\Colour;
+use App\Models\Powder;
+use App\Models\Prefix;
+use App\Models\Satuan;
+use App\Models\location;
+use App\Models\Supplier;
 use App\Models\ItemRequest;
+use App\Models\Master_Item;
+use Illuminate\Http\Request;
+use App\Models\PurchaseRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -24,11 +25,37 @@ class HomeController extends Controller
     {
         return view('home.profile');
     }
-
     public function index()
     {
-        return view('home.dashboard');
+        $divisi= Prefix::count();
+        $orders= Order::count();
+        $tertunda=PurchaseRequest::where('approval_status','pending')->count();
+        $selesai=PurchaseRequest::where('accept_status', 'accept')->count();
+       
+        return view('home.dashboard',compact('divisi','orders','tertunda','selesai'));
     }
+    public function manager()
+    {
+        $divisi= Prefix::count();
+        $orders= Order::count();
+        $prapprove=PurchaseRequest::where('approval_status', 'approve')->count();
+        $pending=PurchaseRequest::where('approval_status', 'pending')->count();
+        return view('home.dashboard_manager',compact('divisi','orders','prapprove','pending'));
+    }
+    public function purchasing()
+    {
+        $divisi= Prefix::count();
+        $orders= Order::count();
+        $prpending=PurchaseRequest::where('accept_status','pending')->count();
+        $poselesai=PurchaseRequest::where('accept_status', 'accept')->count();
+        
+        return view('home.dashboard_purchasing',compact('divisi','prpending','poselesai','orders'));
+    }
+
+    
+
+
+
     public function approval()
     {
         $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->get();
