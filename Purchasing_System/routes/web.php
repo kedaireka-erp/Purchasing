@@ -294,8 +294,8 @@ route::group(['as' => 'order.', 'prefix' => 'order'], function () {
 
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 
-Route::get("/", [LoginController::class, "index"])->name("login");
+Route::get("login", [LoginController::class, "index"])->name("login");
 
-Route::post("/login", [LoginController::class, "login"]);
+Route::post("login", [LoginController::class, "login"]);
 
 Route::post("/logout", [LoginController::class, "logout"])->name("logout");
