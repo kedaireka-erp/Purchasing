@@ -80,14 +80,31 @@
                             @if ($purchase_request->approval_status == 'pending' && $purchase_request->accept_status == 'pending')
                                 <div class="progress-bar bg-danger progress-animated" style="width: 30%; height:10px;"
                                     role="progressbar">
+                                    @elseif($purchase_request->approval_status == 'edit' && $purchase_request->accept_status == 'pending')
+                                    <div class="progress-bar bg-success progress-animated"
+                                        style="width: 60%; height:10px;" role="progressbar">
                                 @elseif($purchase_request->approval_status == 'approve' && $purchase_request->accept_status == 'pending')
-                                    <class="progress-bar bg-warning progress-animated" style="width: 60%; height:10px;"
+                                    <div class="progress-bar bg-warning progress-animated" style="width: 60%; height:10px;"
                                         role="progressbar">
                                     @elseif($purchase_request->approval_status == 'approve' && $purchase_request->accept_status == 'accept')
                                         <div class="progress-bar bg-success progress-animated"
                                             style="width: 100%; height:10px;" role="progressbar">
+                                            @elseif($purchase_request->approval_status == 'edit' && $purchase_request->accept_status == 'accept')
+                                        <div class="progress-bar bg-success progress-animated"
+                                            style="width: 100%; height:10px;" role="progressbar">
+                                            @elseif($purchase_request->approval_status == 'edit' && $purchase_request->accept_status == 'edit')
+                                            <div class="progress-bar bg-success progress-animated"
+                                                style="width: 100%; height:10px;" role="progressbar">
+                                                @elseif($purchase_request->approval_status == 'approve' && $purchase_request->accept_status == 'edit')
+                                                <div class="progress-bar bg-success progress-animated"
+                                                    style="width: 100%; height:10px;" role="progressbar">
+                                                    @elseif($purchase_request->approval_status == 'reject' || $purchase_request->accept_status == 'reject')
+                                    <div class="progress-bar bg-danger progress-animated" style="width: 100%; height:10px;"
+                                        role="progressbar"> REJECT 
                             @endif
-                        </div>
+                                    </div>
+                    
+                </div>
 
                         <div class="d-flex justify-content-between align-items-center kanban-user">
 
