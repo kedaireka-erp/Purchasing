@@ -17,6 +17,7 @@ use App\Http\Controllers\MasterItemController;
 use App\Http\Controllers\TimeshippingController;
 use App\Http\Controllers\PurchaseRequestController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\LoginController;
 
 
 /*
@@ -287,7 +288,14 @@ route::group(['as' => 'order.', 'prefix' => 'order'], function () {
     route::get('/create', [OrderController::class, 'create']);
     route::post('/store', [OrderController::class, 'store_item'])->name('orderstore');
     route::get('/view/{id}', [OrderController::class, 'view'])->name('view');
+    route::get('/print/{id}', [OrderController::class, 'print'])->name('print');
     Route::delete('/destroy{id}', [OrderController::class, "destroy"])->name("destroyApp");
 });
 
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+
+Route::get("/", [LoginController::class, "index"])->name("login");
+
+Route::post("/login", [LoginController::class, "login"]);
+
+Route::post("/logout", [LoginController::class, "logout"])->name("logout");

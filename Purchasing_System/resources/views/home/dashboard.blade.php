@@ -90,4 +90,6 @@
         </div>
     </div>
 
+    <!-- Required vendors -->
+    <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
 @endsection
