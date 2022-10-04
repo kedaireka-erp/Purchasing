@@ -40,13 +40,14 @@
 
                 <table id="example3" class="display" style="width:100%">
                     <thead>
-                        <tr class="content-control-md" align="right">
+                        <tr class="content-control-md" align="center">
 
-                            <td align="left" width="20%">Nomor PO</td>
-                            <td width="20%">Supplier</td>
-                            <td width="20%">Alamat Kirim</td>
+                            <td width="10%">Nomor PO</td>
+                            <td width="15%">Supplier</td>
+                            <td width="15%">Alamat Kirim</td>
                             <td width="10%">Pembayaran</td>
                             <td width="15%">Waktu Pengiriman</td>
+                            <td width="15%">Status</td>
                             <td width="15%">Tanggal Pembuatan</td>
                             <td width="5%"></td>
                         </tr>
@@ -57,7 +58,7 @@
 
 
                         @foreach ($orders as $item)
-                            <tr align="right">
+                            <tr align="center">
 
                                 <td class="content-control-md" align="left">{{ $item->no_po }}</td>
                                 <td class="content-control-md">{{ $item->nama_supplier }}</td>
@@ -68,6 +69,19 @@
                                         {{ \Carbon\Carbon::parse($item->tanggal_kirim)->format('d/m/Y') }}</td>
                                 @else
                                     <td class="content-control-md">{{ $item->timeshipping->name_time }}</td>
+                                @endif
+                                @if ($item->purchases->get(0)->status == 'outstanding')
+                                    <td>
+                                        <a class="pending content-control-sm">
+                                            <i class="fa fa-clock-o"></i> {{ $item->purchases->get(0)->status }}
+                                        </a>
+                                    </td>
+                                @elseif($item->purchases->get(0)->status == 'closed')
+                                    <td>
+                                        <a class="approve content-control-sm">
+                                            <i class="fa fa-check"></i> {{ $item->purchases->get(0)->status }}
+                                        </a>
+                                    </td>
                                 @endif
                                 <td class="content-control-md">
                                     {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}

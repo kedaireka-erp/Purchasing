@@ -88,9 +88,9 @@
                         {{-- Ubah --}}
                         @foreach ($items as $no => $item)
                             <tr align="center">
-                               <td class="content-control-sm" align="left">{{ $item->no_po }}</td>
-                               <td class="content-control-sm" align="left">{{ $item->no_pr }}</td>
-                               <td class="content-control-sm" align="left">{{ $item->deadline_date }}</td>
+                                <td class="content-control-sm" align="left">{{ $item->no_po }}</td>
+                                <td class="content-control-sm" align="left">{{ $item->no_pr }}</td>
+                                <td class="content-control-sm" align="left">{{ $item->deadline_date }}</td>
                                 <td class="content-control-sm" align="left">{{ $item->item_name }}</td>
                                 <td class="content-control-sm" align="center">{{ $item->outstanding }}</td>
                                 <td class="content-control-sm" align="center">{{ $item->sudah_datang }}</td>
@@ -137,26 +137,17 @@
                     </tbody>
                 </table>
 
-              
+
             </div>
         </div>
 
 
         <!-- Required vendors -->
         <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
-        <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
-        <!-- Apex Chart -->
-        <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}"></script>
 
         <!-- Datatable -->
         <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
 
-        <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
-
-        <script src="{{ asset('assets/js/custom.min.js') }}"></script>
-        <script src="{{ asset('assets/js/dlabnav-init.js') }}"></script>
-        {{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
-        {{-- <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script> --}}
 
     @endsection

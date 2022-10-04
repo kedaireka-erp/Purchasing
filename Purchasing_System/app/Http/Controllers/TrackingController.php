@@ -190,7 +190,6 @@ class TrackingController extends Controller
         
         if($item->outstanding >= $request->sudah_datang) {
         $item->update([
-            
             'sudah_datang' => $request->sudah_datang,
             'tanggal_kedatangan_barang' => $request->tanggal_kedatangan_barang
             

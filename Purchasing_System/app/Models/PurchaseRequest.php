@@ -53,7 +53,7 @@ class PurchaseRequest extends Model
     }
 
     public function powder(){
-        return $this->belongsToMany(powder::class, 'item_requests','id_request','powder_id');
+        return $this->belongsToMany(Powder::class, 'item_requests','id_request','powder_id');
     }
 
     public function order(){

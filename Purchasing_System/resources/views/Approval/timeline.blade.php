@@ -37,9 +37,10 @@
     <li>
         <div class="timeline-badge danger"></div>
         <a class="timeline-panel text-muted" href="#">
-            <span>{{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}</span>
-            <h6 class="mb-0"> Purchase Request direject oleh manager divisi, cek catatan dan alasan reject
-            </h6>
+            <span> {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                <span>{{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}</span>
+                <h6 class="mb-0"> Purchase Request direject oleh manager divisi, cek catatan dan alasan reject
+                </h6>
         </a>
     </li>
     <li>
@@ -63,8 +64,9 @@
     <li>
         <div class="timeline-badge warning"></div>
         <a class="timeline-panel text-muted" href="#">
-            <h6 class="mb-0"> Purchase Request telah mendapat persetujuan dari manager divisi
-            </h6>
+            <span> {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                <h6 class="mb-0"> Purchase Request telah mendapat persetujuan dari manager divisi
+                </h6>
         </a>
     </li>
     <li>
@@ -116,8 +118,9 @@
     <li>
         <div class="timeline-badge success"></div>
         <a class="timeline-panel text-muted" href="#">
-            <h6 class="mb-0"> Purchase Request telah mendapat persetujuan dari manager divisi
-            </h6>
+            <span> {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                <h6 class="mb-0"> Purchase Request telah mendapat persetujuan dari manager divisi
+                </h6>
         </a>
     </li>
     <li>
