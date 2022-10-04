@@ -46,10 +46,12 @@ class HomeController extends Controller
     {
         $divisi= Prefix::count();
         $orders= Order::count();
-        $prpending=PurchaseRequest::where('accept_status','pending')->count();
-        $poselesai=PurchaseRequest::where('accept_status', 'accept')->count();
+        $prmasuk=PurchaseRequest::where('accept_status', 'panding')->count();
+        $prmasukaprv=PurchaseRequest::where('approval_status','accept')->count();
+        $poselesai=PurchaseRequest::where('approval_status','approve')->count();
+        $selesai=PurchaseRequest::where('accept_status', 'accept')->count();
         
-        return view('home.dashboard_purchasing',compact('divisi','prpending','poselesai','orders'));
+        return view('home.dashboard_purchasing',compact('divisi','poselesai','selesai','orders','prmasukaprv','prmasuk'));
     }
 
     

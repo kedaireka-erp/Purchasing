@@ -59,7 +59,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:#C7F2A4; font-size: 15px">
                                 PO Selesai </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:#C7F2A4; font-size:30px">{{ $poselesai  }} </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:#C7F2A4; font-size:30px">{{ $poselesai + $selesai }} </div>
                         </div>
                         <div class="col-auto">
                             <i class="bi bi-clipboard2-check-fill fa-2x text-gray-300" style="color:#C7F2A4"></i>
@@ -75,11 +75,11 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:#FFD384  ; font-size: 15px">
-                                PR Pending </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:#FFD384; font-size:30px">{{  $prpending}} </div>
+                                PR Masuk </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:#FFD384; font-size:30px">{{$prmasukaprv + $prmasuk}} </div>
                         </div>
                         <div class="col-auto">
-                            <i class=" bi bi-clock-history fa-2x text-gray-300" style="color: #FFD384"></i>
+                            <i class=" bi bi-arrow-up-left-square-fill fa-2x text-gray-300" style="color: #FFD384"></i>
                         </div>
                     </div>
                 </div>
