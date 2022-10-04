@@ -10,7 +10,7 @@ use App\Models\ships;
 use App\Models\Master_Item;
 use App\Models\Satuan;
 use App\Models\Powder;
-use App\Models\Supplier; 
+use App\Models\Supplier;
 use App\Models\Grade;
 use App\Models\Item;
 use App\Models\ItemRequest;
@@ -20,22 +20,24 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    public function profile()
+    {
+        return view('home.profile');
+    }
+
     public function index()
     {
         return view('home.dashboard');
     }
     public function approval()
     {
-        $purchase_requests_pending = PurchaseRequest::where('approval_status','=','pending')->get();
-        $purchase_requests_approve = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status','=', 'pending')->orwhere('accept_status', '=', 'accept')->get();
+        $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->get();
+        $purchase_requests_approve = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'pending')->orwhere('accept_status', '=', 'accept')->get();
         $purchase_request_reject = PurchaseRequest::where('approval_status', '=', 'reject')->orwhere('accept_status', '=', 'reject')->get();
         return view('Approval.dashboard', compact("purchase_requests_pending", 'purchase_requests_approve', 'purchase_request_reject'));
-
-        
-        
     }
- 
-    
+
+
     public function accept_page()
     {
         $pr_condition1 =  PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', 'pending')->get();
@@ -79,7 +81,7 @@ class HomeController extends Controller
         $master_item = Master_Item::get();
         $Prefixe = Prefix::get();
 
-        return view('Approval.purchasing_edit', compact('satuan','master_item','Supplier','Grade','colour','purchase_requests', 'Location', 'Ship', 'Prefixe'));
+        return view('Approval.purchasing_edit', compact('satuan', 'master_item', 'Supplier', 'Grade', 'colour', 'purchase_requests', 'Location', 'Ship', 'Prefixe'));
     }
 
     public function edit($id)
@@ -94,26 +96,26 @@ class HomeController extends Controller
         $master_item = Master_Item::get();
         $Prefixe = Prefix::get();
 
-        return view('Approval.edit', compact('satuan','master_item','Supplier','Grade','colour','purchase_requests', 'Location', 'Ship', 'Prefixe'));
+        return view('Approval.edit', compact('satuan', 'master_item', 'Supplier', 'Grade', 'colour', 'purchase_requests', 'Location', 'Ship', 'Prefixe'));
     }
 
     public function update_good(Request $request, $id)
     {
         $item = Item::findOrFail($id);
-        
+
         $item->update([
             'id_master_item' => $request->id_master_item,
             'stok' => $request->stok,
             'id_satuan' => $request->id_satuan
         ]);
 
-        return redirect()->back()->with('teredit','Berhasil mengedit data barang');
+        return redirect()->back()->with('teredit', 'Berhasil mengedit data barang');
     }
 
     public function update_powder(Request $request, $id)
     {
         $powder = Powder::findOrFail($id);
-        
+
         $powder->update([
             'warna' => $request->warna,
             'color_id' => $request->color_id,
@@ -129,7 +131,7 @@ class HomeController extends Controller
             'alokasi' => $request->alokasi
         ]);
 
-        return redirect()->back()->with('teredit','Berhasil mengedit data barang');
+        return redirect()->back()->with('teredit', 'Berhasil mengedit data barang');
     }
 
     public function accept($id)
@@ -145,15 +147,13 @@ class HomeController extends Controller
     public function create_reject($id)
     {
         $reject = PurchaseRequest::findOrFail($id);
-        return view('Approval.reject.add',compact('reject'));
-        
+        return view('Approval.reject.add', compact('reject'));
     }
 
     public function create_accept_reject($id)
     {
         $reject = PurchaseRequest::findOrFail($id);
-        return view('Approval.reject_Purchasing.add',compact('reject'));
-        
+        return view('Approval.reject_Purchasing.add', compact('reject'));
     }
 
     public function store_reject(Request $request, $id)
@@ -162,7 +162,7 @@ class HomeController extends Controller
             'feedback_manager' => $request->feedback_manager,
             'approval_status' => 'reject'
         ]);
-        
+
 
         return redirect('/approval');
     }
@@ -173,7 +173,7 @@ class HomeController extends Controller
             'feedback_purchasing' => $request->feedback_purchasing,
             'accept_status' => 'reject'
         ]);
-        
+
 
         return redirect('approval/accept');
     }
@@ -182,7 +182,7 @@ class HomeController extends Controller
     public function update(request $request, $id)
     {
         //perlu diubah
-       
+
 
         DB::table('purchase_requests')->where('id', $id)->update([
             'tanggal_diterima' => $request->tanggal_diterima,
@@ -211,8 +211,8 @@ class HomeController extends Controller
 
     public function delete_item($id)
     {
-        DB::table('items')->where('id',$id)->delete();
-            
-        return redirect()->back()->with('terhapus','Berhasil menghapus data barang');
+        DB::table('items')->where('id', $id)->delete();
+
+        return redirect()->back()->with('terhapus', 'Berhasil menghapus data barang');
     }
 }

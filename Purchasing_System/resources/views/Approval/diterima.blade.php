@@ -89,11 +89,13 @@
                                             <div class="py-2">
 
                                                 <a class="dropdown-item"
-                                                    href="{{ route('approval.purchasing_view', $purchase_request->id) }}"> Change
+                                                    href="{{ route('approval.purchasing_view', $purchase_request->id) }}">
+                                                    Change
                                                     Status
                                                 </a>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('approval.purchasing_edit', $purchase_request->id) }}"> Change and
+                                                    href="{{ route('approval.purchasing_edit', $purchase_request->id) }}">
+                                                    Change and
                                                     Edit
                                                 </a>
                                                 <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
@@ -109,243 +111,245 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
 
 
-
-                <div class="card" style="margin-top: 80px">
-                    <div id="chead">
-                        <div class="row">
-                            <div class="col-9">
-                                <div class="card-header">
-                                    <h4 class="card-title">Data PR Diterima</h4>
-                                </div>
-                            </div>
-
-                        </div>
-                        <hr>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="example3" class="display" style="width:100%">
-                                <thead>
-                                    <tr class="content-control-md" align="right">
-                                        <td width="15%" align="left">Nomor PR</td>
-                                        <td width="10%">Pengajuan</td>
-                                        <td width="10%">Deadline</td>
-                                        <td width="20%">Requester</td>
-                                        <td width="10%">Divisi</td>
-                                        <td width="10%">Type</td>
-                                        <td width="20%" align="center">Status</td>
-                                        <td width="5%" align="center"></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($purchase_requests_approve as $no => $purchase_request)
-                                        <tr align="right">
-                                            <td class="content-control" align="left">{{ $purchase_request->no_pr }}
-                                            </td>
-                                            <td class="content-control">
-                                                {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}
-                                            </td>
-                                            <td class="content-control">
-                                                {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}
-                                            </td>
-                                            <td class="content-control">{{ $purchase_request->requester }}</td>
-                                            <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
-                                            <td class="content-control">{{ $purchase_request->type }}</td>
-
-
-                                            @if ($purchase_request->accept_status == 'edit')
-                                                <td align="center"> <a class="edit content-control">
-                                                        <i class="fa fa-check"></i>
-                                                        accept with {{ $purchase_request->accept_status . 'ed' }}
-                                                    </a></td>
-                                            @elseif ($purchase_request->accept_status == 'accept')
-                                                <td align="center"> <a class="approve content-control">
-                                                        <i class="fa fa-check"></i>
-                                                        {{ $purchase_request->accept_status . 'd' }}
-                                                    </a></td>
-                                            @endif
-
-                                            <td class="py-2 text-end">
-                                                <div class="dropdown text-sans-serif"><button
-                                                        class="btn btn-primary tp-btn-light sharp" type="button"
-                                                        id="order-dropdown-1" data-bs-toggle="dropdown"
-                                                        data-boundary="viewport" aria-haspopup="true"
-                                                        aria-expanded="false"><span><svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="18px"
-                                                                height="18px" viewbox="0 0 24 24" version="1.1">
-                                                                <g stroke="none" stroke-width="1" fill="none"
-                                                                    fill-rule="evenodd">
-                                                                    <rect x="0" y="0" width="24"
-                                                                        height="24">
-                                                                    </rect>
-                                                                    <circle fill="#000000" cx="5" cy="12"
-                                                                        r="2">
-                                                                    </circle>
-                                                                    <circle fill="#000000" cx="12" cy="12"
-                                                                        r="2">
-                                                                    </circle>
-                                                                    <circle fill="#000000" cx="19" cy="12"
-                                                                        r="2">
-                                                                    </circle>
-                                                                </g>
-                                                            </svg></span></button>
-                                                    <div class="dropdown-menu dropdown-menu-end border py-0"
-                                                        aria-labelledby="order-dropdown-1">
-                                                        <div class="py-2">
-
-                                                            <a class="dropdown-item" href="{{ route('approval.purchasing_view', $purchase_request->id) }}">Accept PR</a>
-                                                            <a class="dropdown-item" href="{{ route('approval.purchasing_edit', $purchase_request->id) }}">Accept and Edit PR</a>
-
-                                                            <a data-bs-toggle="modal"
-                                                                data-bs-target="#exampleModalPowderCenter"
-                                                                class="dropdown-item text-danger"
-                                                                onClick="reject_create({{ $purchase_request->id }})">
-                                                                Reject
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+    <div class="card" style="margin-top: 80px">
+        <div id="chead">
+            <div class="row">
+                <div class="col-9">
+                    <div class="card-header">
+                        <h4 class="card-title">Data PR Diterima</h4>
                     </div>
                 </div>
 
+            </div>
+            <hr>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="example3" class="display" style="width:100%">
+                    <thead>
+                        <tr class="content-control-md" align="right">
+                            <td width="15%" align="left">Nomor PR</td>
+                            <td width="10%">Pengajuan</td>
+                            <td width="10%">Deadline</td>
+                            <td width="20%">Requester</td>
+                            <td width="10%">Divisi</td>
+                            <td width="10%">Type</td>
+                            <td width="20%" align="center">Status</td>
+                            <td width="5%" align="center"></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($purchase_requests_approve as $no => $purchase_request)
+                            <tr align="right">
+                                <td class="content-control" align="left">{{ $purchase_request->no_pr }}
+                                </td>
+                                <td class="content-control">
+                                    {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}
+                                </td>
+                                <td class="content-control">
+                                    {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}
+                                </td>
+                                <td class="content-control">{{ $purchase_request->requester }}</td>
+                                <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
+                                <td class="content-control">{{ $purchase_request->type }}</td>
 
-                <div class="card" style="margin-top: 80px">
-                    <div id="chead">
-                        <div class="row">
-                            <div class="col-9">
-                                <div class="card-header">
-                                    <h4 class="card-title">Data PR Ditolak</h4>
-                                </div>
-                            </div>
 
-                        </div>
-                        <hr>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="example3" class="display" style="width:100%">
-                                <thead>
-                                    <tr class="content-control-md" align="right">
-                                        <td width="15%" align="left">Nomor PR</td>
-                                        <td width="10%">Pengajuan</td>
-                                        <td width="10%">Deadline</td>
-                                        <td width="20%">Requester</td>
-                                        <td width="10%">Divisi</td>
-                                        <td width="10%">Type</td>
-                                        <td width="20%" align="center">Status</td>
-                                        <td width="5%" align="center"></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($purchase_request_reject as $no => $purchase_request)
-                                        <tr align="right">
-                                            <td class="content-control" align="left">{{ $purchase_request->no_pr }}
-                                            </td>
-                                            <td class="content-control">
-                                                {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}
-                                            </td>
-                                            <td class="content-control">
-                                                {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}
-                                            </td>
-                                            <td class="content-control">{{ $purchase_request->requester }}</td>
-                                            <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
-                                            <td class="content-control">{{ $purchase_request->type }}</td>
+                                @if ($purchase_request->accept_status == 'edit')
+                                    <td align="center"> <a class="edit content-control">
+                                            <i class="fa fa-check"></i>
+                                            accept with {{ $purchase_request->accept_status . 'ed' }}
+                                        </a></td>
+                                @elseif ($purchase_request->accept_status == 'accept')
+                                    <td align="center"> <a class="approve content-control">
+                                            <i class="fa fa-check"></i>
+                                            {{ $purchase_request->accept_status . 'd' }}
+                                        </a></td>
+                                @endif
 
-                                            <td align="center"> <a class="reject content-control">
-                                                    <i class="fa fa-close"></i>
-                                                    {{ $purchase_request->accept_status . 'ed' }}
-                                                </a></td>
+                                <td class="py-2 text-end">
+                                    <div class="dropdown text-sans-serif"><button
+                                            class="btn btn-primary tp-btn-light sharp" type="button"
+                                            id="order-dropdown-1" data-bs-toggle="dropdown" data-boundary="viewport"
+                                            aria-haspopup="true" aria-expanded="false"><span><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="18px"
+                                                    height="18px" viewbox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none"
+                                                        fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24"
+                                                            height="24">
+                                                        </rect>
+                                                        <circle fill="#000000" cx="5" cy="12"
+                                                            r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="12" cy="12"
+                                                            r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="19" cy="12"
+                                                            r="2">
+                                                        </circle>
+                                                    </g>
+                                                </svg></span></button>
+                                        <div class="dropdown-menu dropdown-menu-end border py-0"
+                                            aria-labelledby="order-dropdown-1">
+                                            <div class="py-2">
 
-                                            <td class="py-2 text-end">
-                                                <div class="dropdown text-sans-serif"><button
-                                                        class="btn btn-primary tp-btn-light sharp" type="button"
-                                                        id="order-dropdown-1" data-bs-toggle="dropdown"
-                                                        data-boundary="viewport" aria-haspopup="true"
-                                                        aria-expanded="false"><span><svg
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                xmlns:xlink="http://www.w3.org/1999/xlink" width="18px"
-                                                                height="18px" viewbox="0 0 24 24" version="1.1">
-                                                                <g stroke="none" stroke-width="1" fill="none"
-                                                                    fill-rule="evenodd">
-                                                                    <rect x="0" y="0" width="24"
-                                                                        height="24">
-                                                                    </rect>
-                                                                    <circle fill="#000000" cx="5" cy="12"
-                                                                        r="2">
-                                                                    </circle>
-                                                                    <circle fill="#000000" cx="12" cy="12"
-                                                                        r="2">
-                                                                    </circle>
-                                                                    <circle fill="#000000" cx="19" cy="12"
-                                                                        r="2">
-                                                                    </circle>
-                                                                </g>
-                                                            </svg></span></button>
-                                                    <div class="dropdown-menu dropdown-menu-end border py-0"
-                                                        aria-labelledby="order-dropdown-1">
-                                                        <div class="py-2">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('approval.purchasing_view', $purchase_request->id) }}">Accept
+                                                    PR</a>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('approval.purchasing_edit', $purchase_request->id) }}">Accept
+                                                    and Edit PR</a>
 
-                                                            <a class="dropdown-item" href="/">Accept PR</a>
-                                                            <a class="dropdown-item" href="/">Accept and Edit PR</a>
+                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
+                                                    class="dropdown-item text-danger"
+                                                    onClick="reject_create({{ $purchase_request->id }})">
+                                                    Reject
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-                                                            <a data-bs-toggle="modal"
-                                                                data-bs-target="#exampleModalPowderCenter"
-                                                                class="dropdown-item text-danger"
-                                                                onClick="reject_create({{ $purchase_request->id }})">
-                                                                Reject
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="modal fade" id="exampleModalPowderCenter">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" align="center" id="PowderModalLabel"></h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal">
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div id="powder_page" class="pd-2"></div>
-                            </div>
-                        </div>
+    <div class="card" style="margin-top: 80px">
+        <div id="chead">
+            <div class="row">
+                <div class="col-9">
+                    <div class="card-header">
+                        <h4 class="card-title">Data PR Ditolak</h4>
                     </div>
                 </div>
 
-                <!-- Required vendors -->
-                <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
+            </div>
+            <hr>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="example3" class="display" style="width:100%">
+                    <thead>
+                        <tr class="content-control-md" align="right">
+                            <td width="15%" align="left">Nomor PR</td>
+                            <td width="10%">Pengajuan</td>
+                            <td width="10%">Deadline</td>
+                            <td width="20%">Requester</td>
+                            <td width="10%">Divisi</td>
+                            <td width="10%">Type</td>
+                            <td width="20%" align="center">Status</td>
+                            <td width="5%" align="center"></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($purchase_request_reject as $no => $purchase_request)
+                            <tr align="right">
+                                <td class="content-control" align="left">{{ $purchase_request->no_pr }}
+                                </td>
+                                <td class="content-control">
+                                    {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}
+                                </td>
+                                <td class="content-control">
+                                    {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}
+                                </td>
+                                <td class="content-control">{{ $purchase_request->requester }}</td>
+                                <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
+                                <td class="content-control">{{ $purchase_request->type }}</td>
 
-                <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+                                <td align="center"> <a class="reject content-control">
+                                        <i class="fa fa-close"></i>
+                                        {{ $purchase_request->accept_status . 'ed' }}
+                                    </a></td>
+
+                                <td class="py-2 text-end">
+                                    <div class="dropdown text-sans-serif"><button
+                                            class="btn btn-primary tp-btn-light sharp" type="button"
+                                            id="order-dropdown-1" data-bs-toggle="dropdown" data-boundary="viewport"
+                                            aria-haspopup="true" aria-expanded="false"><span><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="18px"
+                                                    height="18px" viewbox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none"
+                                                        fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24"
+                                                            height="24">
+                                                        </rect>
+                                                        <circle fill="#000000" cx="5" cy="12"
+                                                            r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="12" cy="12"
+                                                            r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="19" cy="12"
+                                                            r="2">
+                                                        </circle>
+                                                    </g>
+                                                </svg></span></button>
+                                        <div class="dropdown-menu dropdown-menu-end border py-0"
+                                            aria-labelledby="order-dropdown-1">
+                                            <div class="py-2">
+
+                                                <a class="dropdown-item" href="/">Accept PR</a>
+                                                <a class="dropdown-item" href="/">Accept and Edit PR</a>
+
+                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
+                                                    class="dropdown-item text-danger"
+                                                    onClick="reject_create({{ $purchase_request->id }})">
+                                                    Reject
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModalPowderCenter">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" align="center" id="PowderModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="powder_page" class="pd-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Required vendors -->
+    <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
+
+    <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
 
 
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-                <script>
-                    function reject_create(id) {
-                        $.get("{{ url('approval/accept/create/reject') }}/" + id, {}, function(data, status) {
-                            $("#PowderModalLabel").html('Reject Note');
-                            $("#powder_page").html(data);
-                            $("#exampleModalPowderCenter").modal('show');
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function reject_create(id) {
+            $.get("{{ url('approval/accept/create/reject') }}/" + id, {}, function(data, status) {
+                $("#PowderModalLabel").html('Reject Note');
+                $("#powder_page").html(data);
+                $("#exampleModalPowderCenter").modal('show');
 
-                        })
-                    }
-                </script>
+            })
+        }
+    </script>
 
-            @endsection
+@endsection

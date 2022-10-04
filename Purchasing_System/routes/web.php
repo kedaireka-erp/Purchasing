@@ -65,7 +65,6 @@ Route::group(['as' => 'location.', 'prefix' => 'location'], function () {
     Route::delete('/destroy{id}', [LocationController::class, "destroy"])->name("destroy");
     Route::get("/download", [LocationController::class, "excel"])->name("download");
     Route::get('/view/{id}', [LocationController::class, "view"])->name("view");
-
 });
 
 route::resource('ships', ships_controller::class);
@@ -75,7 +74,7 @@ Route::group(['as' => 'master_item.', 'prefix' => 'masteritem'], function () {
     // Route::get('/create', function () {
     //     return view('master_item.create');
     // });
-    
+
     Route::get("/", [MasterItemController::class, "index"]);
     route::get('/create', [MasterItemController::class, 'create'])->name('create');
     Route::get('/edit/{id}', [MasterItemController::class, 'edit'])->name("miupdate");
@@ -153,29 +152,25 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
 });
 
 
-    Route::get('/Othergood', [HomeController::class, 'coba'])->name('coba');
+Route::get('/Othergood', [HomeController::class, 'coba'])->name('coba');
 
-    Route::get('/formPO', [FormPOController::class, 'indexPO'])->name('formPO');
+Route::get('/formPO', [FormPOController::class, 'indexPO'])->name('formPO');
 
-    route::group(['as' => 'tracking.', 'prefix' => 'tracking'], function () {
-        route::get('/good', [TrackingController::class, 'index_good']);
-        route::get('/powder', [TrackingController::class, 'index_powder']);
-        route::get('/create', [TrackingController::class, 'create'])->name('create');
-        route::post('/store', [TrackingController::class, 'store'])->name('store');
-        route::get('/edit/{id}', [TrackingController::class, 'edit'])->name('edit');
-        route::post('/update/{id}', [TrackingController::class, 'update'])->name('update');
-        route::post('/update_good/{id}', [TrackingController::class, 'update_good'])->name('update_good');
-        route::post('/update_Tpowder/{id}', [TrackingController::class, 'update_Tpowder'])->name('update_Tpowder');
-        route::delete('destroy/{id}', [TrackingController::class, 'destroy'])->name('destroy');
-        route::get('/view/{id}', [TrackingController::class, 'view'])->name('view');
-        route::get('/detail/{id}', [TrackingController::class, 'detail'])->name('detail');
-        route::get('/detail_powders/{id}', [TrackingController::class, 'detail_powders'])->name('detail_powders');
-        Route::get('/approval', [PurchaseRequestController::class, 'track']);
-        Route::get('/dl', [TrackingController::class, 'dl'])->name('dl');;
-    });
+route::group(['as' => 'tracking.', 'prefix' => 'tracking'], function () {
+    route::get('/', [TrackingController::class, 'index']);
+    route::get('/create', [TrackingController::class, 'create'])->name('create');
+    route::post('/store', [TrackingController::class, 'store'])->name('store');
+    route::get('/edit/{id}', [TrackingController::class, 'edit'])->name('edit');
+    route::post('/update/{id}', [TrackingController::class, 'update'])->name('update');
+    route::post('/update_good/{id}', [TrackingController::class, 'update_good'])->name('update_good');
+    route::delete('destroy/{id}', [TrackingController::class, 'destroy'])->name('destroy');
+    route::get('/view/{id}', [TrackingController::class, 'view'])->name('view');
+    route::get('/detail/{id}', [TrackingController::class, 'detail'])->name('detail');
+    Route::get('/approval', [PurchaseRequestController::class, 'track']);
+});
 
 
-    route::group(['as'=>'grade.','prefix'=>'grade'], function(){
+route::group(['as' => 'grade.', 'prefix' => 'grade'], function () {
     route::get('/', [GradeController::class, 'index']);
     route::get('/create', [GradeController::class, 'create'])->name('create');
     route::post('/store', [GradeController::class, 'store'])->name('store');
@@ -186,7 +181,7 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
     Route::get("/download", [GradeController::class, "excel"])->name("download");
 });
 
-route::group(['as'=>'supplier.','prefix'=>'supplier'], function(){
+route::group(['as' => 'supplier.', 'prefix' => 'supplier'], function () {
     route::get('/', [SupplierController::class, 'index']);
     route::get('/create', [SupplierController::class, 'create'])->name('create');
     route::post('/store', [SupplierController::class, 'store'])->name('store');
@@ -197,7 +192,7 @@ route::group(['as'=>'supplier.','prefix'=>'supplier'], function(){
     route::get('/view/{id}', [SupplierController::class, 'view'])->name('view');
 });
 
-route::group(['as'=>'powder.','prefix'=>'powder'], function(){
+route::group(['as' => 'powder.', 'prefix' => 'powder'], function () {
     route::get('/', [PowderController::class, 'index']);
     route::get('/create', [PowderController::class, 'create'])->name('create');
     route::post('/store', [PowderController::class, 'store'])->name('store');
@@ -206,7 +201,7 @@ route::group(['as'=>'powder.','prefix'=>'powder'], function(){
     route::delete('destroy/{id}', [PowderController::class, 'destroy'])->name('destroy');
 });
 
-route::group(['as'=>'colour.','prefix'=>'colour'], function(){
+route::group(['as' => 'colour.', 'prefix' => 'colour'], function () {
     route::get('/', [ColourController::class, 'index']);
     route::get('/create', [ColourController::class, 'create'])->name('create');
     route::post('/store', [ColourController::class, 'store'])->name('store');
@@ -218,32 +213,31 @@ route::group(['as'=>'colour.','prefix'=>'colour'], function(){
 });
 
 
-    Route::group(['as' => 'approval.', 'prefix' => 'approval'], function () {
-        Route::get('/', [HomeController::class, 'Approval']);
-        Route::get('/done', [HomeController::class, 'approval_done']);
-        Route::get('/reject', [HomeController::class, 'approval_reject']);
-        Route::get('/accept', [HomeController::class, 'accept_page']);
-        Route::get('/create/reject/{id}', [HomeController::class, 'create_reject']);
-        Route::get('/accept/create/reject/{id}', [HomeController::class, 'create_accept_reject']);
-        Route::post('create/reject/store/{id}', [HomeController::class, 'store_reject'])->name('reject_store');
-        Route::post('accept/reject/store/{id}', [HomeController::class, 'store_accept_reject'])->name('accept_store');
-        // Route::get('/accept/done', [HomeController::class, 'accept_page_done']);
-        // Route::get('/accept/reject', [HomeController::class, 'accept_page_reject']);
-        Route::get('/view/{id}', [HomeController::class, "view"])->name("view");
-        Route::get('/purchase_view/{id}', [HomeController::class, "purchasing_view"])->name("purchasing_view");
-        Route::get('/edit/{id}', [HomeController::class, "edit"])->name("edit");
-        Route::get('/purchasing_edit/{id}', [HomeController::class, "purchasing_edit"])->name("purchasing_edit");
-        Route::post('/updategood/{id}', [HomeController::class, "update_good"])->name("update_good");
-        Route::post('/updatepowder/{id}', [HomeController::class, "update_powder"])->name("update_powder");
-        Route::get('/accept/{id}', [HomeController::class, "accept"])->name("acceptpr");
-        Route::post('/update/{id}', [HomeController::class, "update"])->name("updateApp");
-        Route::post('/accepted/{id}', [HomeController::class, "update_accept"])->name("update_accept");
-        Route::delete('/destroy{id}', [HomeController::class, "delete"])->name("deleteApp");
-        Route::delete('/delete/{id}', [HomeController::class, 'delete_item'])->name("itemdelete");
-
+Route::group(['as' => 'approval.', 'prefix' => 'approval'], function () {
+    Route::get('/', [HomeController::class, 'Approval']);
+    Route::get('/done', [HomeController::class, 'approval_done']);
+    Route::get('/reject', [HomeController::class, 'approval_reject']);
+    Route::get('/accept', [HomeController::class, 'accept_page']);
+    Route::get('/create/reject/{id}', [HomeController::class, 'create_reject']);
+    Route::get('/accept/create/reject/{id}', [HomeController::class, 'create_accept_reject']);
+    Route::post('create/reject/store/{id}', [HomeController::class, 'store_reject'])->name('reject_store');
+    Route::post('accept/reject/store/{id}', [HomeController::class, 'store_accept_reject'])->name('accept_store');
+    // Route::get('/accept/done', [HomeController::class, 'accept_page_done']);
+    // Route::get('/accept/reject', [HomeController::class, 'accept_page_reject']);
+    Route::get('/view/{id}', [HomeController::class, "view"])->name("view");
+    Route::get('/purchase_view/{id}', [HomeController::class, "purchasing_view"])->name("purchasing_view");
+    Route::get('/edit/{id}', [HomeController::class, "edit"])->name("edit");
+    Route::get('/purchasing_edit/{id}', [HomeController::class, "purchasing_edit"])->name("purchasing_edit");
+    Route::post('/updategood/{id}', [HomeController::class, "update_good"])->name("update_good");
+    Route::post('/updatepowder/{id}', [HomeController::class, "update_powder"])->name("update_powder");
+    Route::get('/accept/{id}', [HomeController::class, "accept"])->name("acceptpr");
+    Route::post('/update/{id}', [HomeController::class, "update"])->name("updateApp");
+    Route::post('/accepted/{id}', [HomeController::class, "update_accept"])->name("update_accept");
+    Route::delete('/destroy{id}', [HomeController::class, "delete"])->name("deleteApp");
+    Route::delete('/delete/{id}', [HomeController::class, 'delete_item'])->name("itemdelete");
 });
-    
-    route::group(['as'=>'timeshipping.','prefix'=>'timeshipping'], function(){
+
+route::group(['as' => 'timeshipping.', 'prefix' => 'timeshipping'], function () {
     route::get('/', [TimeshippingController::class, 'index']);
     route::get('/create', [TimeshippingController::class, 'create'])->name('create');
     route::post('/store', [TimeshippingController::class, 'store'])->name('store');
@@ -252,10 +246,9 @@ route::group(['as'=>'colour.','prefix'=>'colour'], function(){
     route::delete('destroy/{id}', [TimeshippingController::class, 'destroy'])->name('destroy');
     Route::get("/download", [TimeshippingController::class, "excel"])->name("download");
     route::get('/view/{id}', [TimeshippingController::class, 'view'])->name('view');
-
 });
 
-route::group(['as'=>'order.','prefix'=>'order'], function(){
+route::group(['as' => 'order.', 'prefix' => 'order'], function () {
     route::get('/', [OrderController::class, 'index']);
     route::get('/read/time', [OrderController::class, 'read_time']);
     route::get('/create/date', [OrderController::class, 'create_date']);
@@ -275,3 +268,5 @@ route::group(['as'=>'order.','prefix'=>'order'], function(){
     route::get('/view/{id}', [OrderController::class, 'view'])->name('view');
     Route::delete('/destroy{id}', [OrderController::class, "destroy"])->name("destroyApp");
 });
+
+Route::get('/profile', [HomeController::class, 'profile'])->name('profile');

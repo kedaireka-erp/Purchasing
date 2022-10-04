@@ -170,6 +170,9 @@
                                                 <a class="dropdown-item"
                                                     href="{{ route('purchase_request.view', $purchase_request->id) }}">Detail</a>
 
+                                                <a class="dropdown-item"
+                                                    href="{{ route('purchase_request.edit', $purchase_request->id) }}">Edit</a>
+
                                                 <form
                                                     action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
                                                     method="POST">
