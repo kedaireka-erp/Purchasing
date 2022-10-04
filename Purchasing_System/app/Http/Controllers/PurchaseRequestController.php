@@ -29,10 +29,12 @@ class PurchaseRequestController extends Controller
         }else{
             $items = Item::get();
             $powders = Powder::get();
-            $purchase_requests = PurchaseRequest::get();
+            $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->get();
+            $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->orwhere('accept_status', '=', 'pending')->get();
+            $purchase_requests_reject = PurchaseRequest::where('approval_status', '=', 'reject')->orwhere('accept_status', '=', 'reject')->get();
         }
 
-        return view('purchases.index', compact('items','powders','purchase_requests'));
+        return view('purchases.index', compact('items','powders','purchase_requests', 'purchase_requests_pending', 'purchase_requests_reject'));
     }
 
     public function track(Request $request){
