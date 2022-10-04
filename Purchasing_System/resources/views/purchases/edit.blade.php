@@ -115,7 +115,7 @@
 
     <div class="d-flex justify-content-between">
         <div class="title-page">
-            Approve Purchasing Request
+            Edit Purchasing Request
         </div>
         <a href="/purchase_request" type="button" class="btn-close" aria-label="Close"></a>
     </div>
@@ -125,7 +125,7 @@
 @section('wrap_title')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Approval Manager</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Purchase Request</a></li>
             <li class="breadcrumb-item"><a href="javascript:void(0)">Edit PR</a></li>
         </ol>
     </div>
@@ -138,7 +138,7 @@
         <div class="col-md-5">
             <div class="card" style="height: 550px">
                 <div class="card-header border-0 pb-0">
-                    <h4 class="card-title"> Approval Tracking </h4>
+                    <h4 class="card-title"> Purchase Request </h4>
                 </div>
                 <div class="card-body">
                     <div id="DZ_W_TimeLine" class="widget-timeline dlab-scroll height370">
@@ -243,7 +243,7 @@
                                                         <div class="col-lg-9">
                                                             <div class="mb-50">
                                                                 <input type="date" class="form-control input-rounded"
-                                                                    placeholder="dd/mm/yyyy" name="deadline_date">
+                                                                    placeholder="dd/mm/yyyy" name="deadline_date" value="{{$purchase_requests->deadline_date}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -291,7 +291,7 @@
                                                             @foreach ($Ship as $ship)
                                                                 <option value="{{ $ship->id }}"
                                                                     {{ $ship->id == $purchase_requests->ships_id ? 'selected' : '' }}>
-                                                                    {{ $ship->type }}
+                                                                    {{ $ship->tipe }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -322,11 +322,13 @@
                                 <div id="about-me" class="tab-pane fade">
                                     <div class="profile-about-me">
 
+                                        
+
                                         {{-- ini tabel item di tracking --}}
 
-                                        {{-- @if ($purchase_requests->type == 'othergood')
+                                         @if ($purchase_requests->type == 'othergood')
                                             @foreach ($purchase_requests->item as $index => $good)
-                                                <form action="{{ route('approval.update_good', $good->id) }}"
+                                                <form action="{{ route('purchase_request.update_good', $good->id) }}"
                                                     method="post">
                                                     @csrf
                                                     <div class="head" style="margin-top:50px"></div>
@@ -347,12 +349,12 @@
                                                                     name="id_master_item"
                                                                     value="{{ old('id_master_item') }}">
                                                                     <option selected disabled>-- Pilih Item --</option>
-                                                                    @foreach ($master_item as $items)
-                                                                        <option value="{{ $items->id }}"
-                                                                            {{ $items->id == $good->id_master_item ? 'selected' : '' }}>
-                                                                            {{ ucfirst($items->item_name) }}
+                                                                    @foreach ($master_item as $itemss)
+                                                                        <option value="{{ $itemss->id }}"
+                                                                            {{ $itemss->id == $good->id_master_item ? 'selected' : '' }}>
+                                                                            {{ ucfirst($itemss->item_name) }}
                                                                         </option>
-                                                                    @endforeach
+                                                                    @endforeach 
                                                                 </select>
                                                                 @error('id_master_item')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -429,7 +431,7 @@
                                     @endforeach
                                 @elseif ($purchase_requests->type == 'powder')
                                     @foreach ($purchase_requests->powder as $yes)
-                                        <form action="{{ route('approval.update_powder', $yes->id) }}" method="post">
+                                        <form action="{{ route('purchase_request.update_powder', $yes->id) }}" method="post">
                                             @csrf
                                             <div class="head" style="margin-top:50px"></div>
                                             <div class="row">

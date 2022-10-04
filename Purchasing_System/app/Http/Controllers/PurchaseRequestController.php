@@ -211,14 +211,52 @@ class PurchaseRequestController extends Controller
     }
 
     public function edit($id){
-        $purchase_requests = PurchaseRequest::findOrFail($id);
-        $Location=location::get();
-        $Ship=ships::get();
-        $Prefixe=Prefix::get();
-        $Grade = Grade::get();
         $Supplier = Supplier::get();
+        $Grade = Grade::get();
+        $purchase_requests = PurchaseRequest::findOrFail($id);
+        $colour = Colour::get();
+        $Location = location::get();
+        $Ship = ships::get();
+        $satuan = Satuan::get();
+        $master_item = Master_Item::get();
+        $Prefixe = Prefix::get();
 
-        return view('purchases.edit', compact('purchase_requests', 'Location', 'Ship', 'Prefixe', 'Grade', 'Supplier'));
+        return view('purchases.edit', compact('satuan', 'master_item', 'Supplier', 'Grade', 'colour', 'purchase_requests', 'Location', 'Ship', 'Prefixe'));
+    }
+
+    public function update_good(Request $request, $id)
+    {
+        $item = Item::findOrFail($id);
+
+        $item->update([
+            'id_master_item' => $request->id_master_item,
+            'stok' => $request->stok,
+            'id_satuan' => $request->id_satuan
+        ]);
+
+        return redirect()->back()->with('teredit', 'Berhasil mengedit data barang');
+    }
+
+    public function update_powder(Request $request, $id)
+    {
+        $powder = Powder::findOrFail($id);
+
+        $powder->update([
+            'warna' => $request->warna,
+            'color_id' => $request->color_id,
+            'grades_id' => $request->grades_id,
+            'suppliers_id' => $request->suppliers_id,
+            'finish' => $request->finish,
+            'finishing' => $request->finishing,
+            'quantity' => $request->quantity,
+            'm2' => $request->m2,
+            'estimasi' => $request->estimasi,
+            'fresh' => $request->fresh,
+            'recycle' => $request->recycle,
+            'alokasi' => $request->alokasi
+        ]);
+
+        return redirect()->back()->with('teredit', 'Berhasil mengedit data barang');
     }
 
     public function view($id){

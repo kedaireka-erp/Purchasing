@@ -501,5 +501,5 @@ $(document).on('click', '.remove-input-field', function () {
                 $("#read_ships").html(data);
             });
         }
-    </script>
+    </script>   
 @endsection

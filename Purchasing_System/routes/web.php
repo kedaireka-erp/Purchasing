@@ -150,6 +150,8 @@ Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], func
     Route::post('/storeitem/{id}', [PurchaseRequestController::class, 'storeplus'])->name("storeplus");
     Route::get('/edit/{id}', [PurchaseRequestController::class, "edit"])->name("edit");
     Route::post('/update{id}', [PurchaseRequestController::class, "update"])->name("update");
+    Route::post('/updategood/{id}', [HomeController::class, "update_good"])->name("update_good");
+    Route::post('/updatepowder/{id}', [HomeController::class, "update_powder"])->name("update_powder");
     Route::delete('/destroy/{id}', [PurchaseRequestController::class, "destroy"])->name("destroy");
 });
 
