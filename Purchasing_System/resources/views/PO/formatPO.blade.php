@@ -58,7 +58,7 @@
         <div class="col-1"></div>
         <div class="col-5" style="margin-top: 15px">
  
-                    <p>{{ 'Jakarta, '.\Carbon\Carbon::parse($orders->created_at)->format('d F Y') }}</p>
+                   {{-- <p>{{ 'Jakarta, '.\Carbon\Carbon::parse($orders->created_at)->format('d F Y') }}</p> --}}
         </div>
 
         <div class="col-6" style="margin-top:-65px" >
