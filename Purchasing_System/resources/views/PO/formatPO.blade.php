@@ -70,7 +70,7 @@
                 <br>
                 <tr>
                     <td>Nomor PO</td>
-                    <td>{{ ': '.$orders->no_po }}</td>
+                    {{-- <td>{{ ': '.$orders->no_po }}</td> --}}
                 </tr>
                 <br>
                 <tr>@foreach($tracking as $value)
@@ -88,7 +88,7 @@
                 <br>
                 <tr>
                     <td width="80px">Pembayaran</td>
-                    <td>{{ ': '.$orders->payment->name_payment}}</td>
+                    {{-- <td>{{ ': '.$orders->payment->name_payment}}</td> --}}
                 </tr>
             </table>
             
@@ -116,7 +116,7 @@
         <div class="col-5">
                     <table>
                         <tr>
-                            <p style="font-weight: bold">{{ $orders->supplier->vendor}} </p>
+                            {{-- <p style="font-weight: bold">{{ $orders->supplier->vendor}} </p> --}}
                         </tr>
                         <tr>
                            {{-- <p> Jl. Galuh Mas Raya, Sukaharja,telukjambe Timur, Karawang,Jawa Barat 41361 </p>  --}}
@@ -130,10 +130,10 @@
         <div class="col-5">
             <table>
                 <tr>
-                    <p style="font-weight: bold">{{  $orders->location->location_name .'PT Allure Aluminio'}}</p>
+                    {{-- <p style="font-weight: bold">{{  $orders->location->location_name .'PT Allure Aluminio'}}</p> --}}
                 </tr>
                 <tr>
-                    <p> {{ $orders->alamat_penagihan }}</p>
+                    {{-- <p> {{ $orders->alamat_penagihan }}</p> --}}
                 </tr>
             </table>
         </div>
@@ -158,7 +158,7 @@
             <table>
                 <tr>
                    <p>Kepada Yth. <br>
-                    {{ $orders->nama_supplier}} Di tempat</p>
+                    {{-- {{ $orders->nama_supplier}} Di tempat</p> --}}
                    <br>
                    <p>Dengan Hormat, <br>
                     Bersama ini kami order material sebagai berikut:</p>
@@ -169,10 +169,10 @@
         <div class="col-5">
             <table>
                 <tr>
-                    <p style="font-weight: bold">{{  $orders->location->location_name .'PT Allure Aluminio'}}</p>
+                    {{-- <p style="font-weight: bold">{{  $orders->location->location_name .'PT Allure Aluminio'}}</p> --}}
                 </tr>
                 <tr>
-                   <p> {{ $orders->alamat_penagihan }}</p>
+                   {{-- <p> {{ $orders->alamat_penagihan }}</p> --}}
                 </tr>
             </table>
         </div>
@@ -261,7 +261,7 @@
                     <th  scope="col" class="th">Comments or Special Intructions</th>
                   </tr>
                   <tr>
-                            <td scope="row" class="td">{{  $orders->note}}
+                            {{-- <td scope="row" class="td">{{  $orders->note}} --}}
                         <br><br><br><br>
                     </td>
                   </tr>
@@ -272,8 +272,8 @@
         <div class="col-2"></div>
         <div class="col-4" style="margin-top: 50px">
             <p>Mengetahui,</p>
-            <img src="{{ asset('images/'.$orders->signature) }}" style="width:80px; height:80px">
-            <p>{{  $orders->nama}}</p>
+            {{-- <img src="{{ asset('images/'.$orders->signature) }}" style="width:80px; height:80px"> --}}
+            {{-- <p>{{  $orders->nama}}</p> --}}
         </div>
     </div>
     
