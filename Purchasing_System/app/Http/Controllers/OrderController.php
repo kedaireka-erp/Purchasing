@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 // use App\Models\Order;
-use App\Models\ItemRequest;
-use App\Models\Item;
-use App\Models\Order;
-use App\Models\Supplier;
-use App\Models\Grade;
-use App\Models\location;
-use App\Models\ships;
-use App\Models\Prefix;
-use App\Models\Powder;
-use App\Models\PurchaseRequest;
-use App\Models\Timeshipping;
-use App\Models\Payment;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\Item;
+use App\Models\Grade;
+use App\Models\Order;
+use App\Models\ships;
+use App\Models\Powder;
+use App\Models\Prefix;
+use App\Models\Payment;
+use App\Models\location;
+use App\Models\Supplier;
+use App\Models\ItemRequest;
+use App\Models\Timeshipping;
+use Illuminate\Http\Request;
+use App\Models\PurchaseRequest;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\OrderRequest;
 
 use PDF;
 
@@ -151,7 +152,7 @@ class OrderController extends Controller
         return redirect('/order/create');
     }
 
-    public function store_item(Request $request)
+    public function store_item(OrderRequest $request)
     {
         $purchase_requests = PurchaseRequest::with('Prefixe')->get();
         

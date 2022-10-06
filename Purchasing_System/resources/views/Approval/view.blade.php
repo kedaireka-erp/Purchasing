@@ -212,12 +212,24 @@
                                                     <select class="default-select input-rounded form-control wide mb-3"
                                                         style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
                                                         id="approval_status" name="approval_status">
-                                                        <option value="{{ $purchase_requests->approval_status }}" selected
-                                                            disabled>
-                                                            {{ $purchase_requests->approval_status }}</option>
-                                                        <option value="pending">pending</option>
+                                                        <option disabled value="" selected>{{ $purchase_requests->approval_status }}</option>
+                                                        @if ($purchase_requests->approval_status == 'pending')
                                                         <option value="approve">approve</option>
                                                         <option value="reject">reject</option>
+                                                        <option value="edit">edit</option>
+                                                        @elseif ($purchase_requests->approval_status == 'approve')
+                                                        <option value="pending">pending</option>
+                                                        <option value="reject">reject</option>
+                                                        <option value="edit">edit</option>
+                                                        @elseif ($purchase_requests->approval_status == 'reject')
+                                                        <option value="approve">approve</option>
+                                                        <option value="pending">pending</option>
+                                                        <option value="edit">edit</option>
+                                                        @elseif ($purchase_requests->approval_status == 'edit')
+                                                        <option value="approve">approve</option>
+                                                        <option value="pending">pending</option>
+                                                        <option value="reject">reject</option>
+                                                        @endif
                                                     </select>
                                                 </div>
                                             </div>
