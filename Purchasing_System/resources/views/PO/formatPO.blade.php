@@ -1,17 +1,4 @@
-@extends('layout.sidebar')
-
-@section('judul-laman', 'View Purchasing Request')
-
-@section('Judul-content')
-
-    <div class="d-flex justify-content-between">
-        <div class="title-page">
-            View Purchasing Request
-        </div>
-        <a href="/approval" type="button" class="btn-close" aria-label="Close"></a>
-    </div>
-
-@endsection
+<x-style></x-style>
 
 <style>
     .cardpo{
@@ -53,6 +40,7 @@
 @section('content')
 
 <div class="cardpo">
+    <a class="btn btn-danger" onclick="window.print();">Export PDF</a>
     <div class="d-flex justify-content-center" style="margin-top: 20px">
       <div class="d-flex">
         <div>
@@ -70,7 +58,7 @@
         <div class="col-1"></div>
         <div class="col-5" style="margin-top: 15px">
  
-                    <p>Jakarta,07/05/2022</p>
+                    <p>{{ 'Jakarta, '.\Carbon\Carbon::parse($orders->created_at)->format('d F Y') }}</p>
         </div>
 
         <div class="col-6" style="margin-top:-65px" >
@@ -82,24 +70,28 @@
                 <br>
                 <tr>
                     <td>Nomor PO</td>
-                    <td>: PO-SLS-000</td>
+                    <td>{{ ': '.$orders->no_po }}</td>
                 </tr>
                 <br>
-                <tr>
+                <tr>@foreach($tracking as $value)
+                    @if ($loop->first)
                     <td width="80px">Nomor PR</td>
-                    <td>: PR-000</td>
+                    <td>{{ ': '.$value->no_pr }}</td>
                 </tr>
                 <br>
                 <tr>
                     <td width="80px">Waktu Pengiriman</td>
-                    <td>: 01/05/2021</td>
-                </tr>
+                    <td>{{ ': '.$value->deadline_date}}</td>
+                    @endif
+                    
+                </tr>@endforeach
                 <br>
                 <tr>
                     <td width="80px">Pembayaran</td>
-                    <td>: COD</td>
+                    <td>{{ ': '.$orders->payment->name_payment}}</td>
                 </tr>
             </table>
+            
 
         </div>
     </div>
@@ -109,7 +101,7 @@
     <div class="row" >
         <div class="col-1"></div>
         <div class="col-5 txt" >
-            <strong>Purchasing Form : </strong>
+            <strong>Purchasing From : </strong>
         </div>
         <div class="col-1"></div>
         <div class="col-5 txt">
@@ -124,21 +116,24 @@
         <div class="col-5">
                     <table>
                         <tr>
-                            <p style="font-weight: bold"> PT CANON </p>
+                            <p style="font-weight: bold">{{ $orders->supplier->vendor}} </p>
                         </tr>
                         <tr>
-                           <p> Jl. Galuh Mas Raya, Sukaharja,telukjambe Timur, Karawang,Jawa Barat 41361 </p> 
+                           {{-- <p> Jl. Galuh Mas Raya, Sukaharja,telukjambe Timur, Karawang,Jawa Barat 41361 </p>  --}}
                         </tr>
                     </table>
         </div>
         <div class="col-1"></div>
         <div class="col-5">
+            
+        <div class="col-1"></div>
+        <div class="col-5">
             <table>
                 <tr>
-                    <p style="font-weight: bold">Head Office PT Allure Aluminio</p>
+                    <p style="font-weight: bold">{{  $orders->location->location_name .'PT Allure Aluminio'}}</p>
                 </tr>
                 <tr>
-                   <p> Artha Gading Niaga B17, RT.18/RW.8,Klp. Gading Bar., Kec. Klp. Gading, Jakarta,Daerah Khusus Ibukota Jakarta 14239</p>
+                    <p> {{ $orders->alamat_penagihan }}</p>
                 </tr>
             </table>
         </div>
@@ -163,7 +158,7 @@
             <table>
                 <tr>
                    <p>Kepada Yth. <br>
-                    Hadi Sudrajat Di tempat</p>
+                    {{ $orders->nama_supplier}} Di tempat</p>
                    <br>
                    <p>Dengan Hormat, <br>
                     Bersama ini kami order material sebagai berikut:</p>
@@ -174,17 +169,22 @@
         <div class="col-5">
             <table>
                 <tr>
-                    <p style="font-weight: bold"> PT Allure Aluminio</p>
+                    <p style="font-weight: bold">{{  $orders->location->location_name .'PT Allure Aluminio'}}</p>
                 </tr>
                 <tr>
-                   <p> Artha Gading Niaga B17, RT.18/RW.8,Klp. Gading Bar., Kec. Klp. Gading, Jakarta,Daerah Khusus Ibukota Jakarta 14239 </p> 
+                   <p> {{ $orders->alamat_penagihan }}</p>
                 </tr>
             </table>
         </div>
     </div>
   <br>
-    <table class="table table-bordered" style="box-shadow: none">
+  @foreach($purchase as $tipe)
+  @if ($loop->first)
+  @if ($tipe->type == 'othergood' )
+    <table class="table" style="box-shadow: none">
+        
         <thead>
+            
           <tr style="background-color:#cab9e7;  text-align:center; font-weight:bold">
             <td>No.</td>
             <td>Deskripsi</td>
@@ -192,22 +192,61 @@
             <td>Satuan Barang</td>
           </tr>
         </thead>
+        @php
+        $nomor = 1;
+        @endphp
         <tbody>
+            @foreach ($tracking as $purchase_requests)
           <tr scope="row" style="text-align: center">
-            <th  scope="col">1</th>
-            <td  scope="col">Kamera DSLR</td>
-            <td  scope="col">1</td>
-            <td  scope="col">Unit</td>
-          </tr>
-          <tr>
-            <th scope="row" style="text-align: center" >2</th>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>v
+            <th  scope="col">{{ $nomor++ }}</th>
+            <td  scope="col">{{ $purchase_requests->item_name }}</td>
+            <td  scope="col">{{ $purchase_requests->outstanding }}</td>
+            <td  scope="col">{{ $purchase_requests->unit }}</td>
+            
+          
+          @endforeach
         </tbody>
+        
       </table>
-
+      @elseif ($tipe->type == 'powder' )
+    <table class="table table-bordered" style="box-shadow: none">
+        
+        <thead>
+            
+          <tr style="background-color:#cab9e7;  text-align:center; font-weight:bold">
+            <td>Suppllier</td>
+            <td>Grade</td>
+            <td>Warna</td>
+            <td>Kode Warna</td>
+            <td>Quantity</td>
+            <td>m2</td>							
+          </tr>
+        </thead>
+        @php
+        $nomor = 1;
+        @endphp
+        <tbody>
+            @foreach ($powders as $purchase_requests)
+            
+          <tr scope="row" style="text-align: center">
+            
+            <td scope="col">{{ $purchase_requests->vendor }}</td>
+            <td scope="col">{{ $purchase_requests->tipe }}</td>
+            <td scope="col">{{ $purchase_requests->warna }}</td>
+            <td scope="col">{{ $purchase_requests->name }}</td>
+            <td scope="col">{{ $purchase_requests->quantity }}</td>
+            <td scope="col">{{ $purchase_requests->m2 }}</td>
+            
+            	
+            
+          
+          @endforeach
+        </tbody>
+        
+      </table>
+      @endif
+      @endif
+      @endforeach
       <div class="row" style="margin-top: 60px">
         {{-- <div class="col-1"></div> --}}
         <div class="col-6 border-dark">
@@ -222,8 +261,7 @@
                     <th  scope="col" class="th">Comments or Special Intructions</th>
                   </tr>
                   <tr>
-                    <td scope="row" class="td">Harap menyertakan invoice, kwitansi, faktur pajak,
-                        dan surat jalan atas nama PT ALLURE ALLUMINIO dengan alamat sesuai NPWP.
+                            <td scope="row" class="td">{{  $orders->note}}
                         <br><br><br><br>
                     </td>
                   </tr>
@@ -234,8 +272,8 @@
         <div class="col-2"></div>
         <div class="col-4" style="margin-top: 50px">
             <p>Mengetahui,</p>
-            <img src="{{ asset('images/ttd.png') }}" style="width:40%; height:40%">
-            <p>Hadi sudrajat</p>
+            <img src="{{ asset('images/'.$orders->signature) }}" style="width:80px; height:80px">
+            <p>{{  $orders->nama}}</p>
         </div>
     </div>
     
@@ -244,4 +282,4 @@
 
 </div>
 <br>
-@endsection
+<x-script></x-script>

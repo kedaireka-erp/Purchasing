@@ -89,7 +89,8 @@
                                             <div class="py-2">
                                                 <a class="dropdown-item"
                                                     href="{{ route('order.view', $item->id) }}">Detail</a>
-                                                <a class="dropdown-item" href="#">Print</a>
+                                                <a class="dropdown-item" 
+                                                href="{{ route('order.exportPDF', $item->id) }}">Print</a>
                                                 <form action="{{ route('order.destroyApp', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')

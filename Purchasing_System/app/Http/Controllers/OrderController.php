@@ -19,6 +19,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
+use PDF;
+
 class OrderController extends Controller
 {
     public function index(){
@@ -223,4 +225,51 @@ class OrderController extends Controller
 
         return redirect("/order");
      }
+
+     public function exportPDF($id) {
+       
+        // $items = Item::all();
+       
+
+    $orders = Order::has('purchases')
+         ->with('payment','timeshipping','location')
+         ->find($id);
+         $tracking = DB::table('item_requests')
+            
+         ->where('item_requests.order_id',$id)
+         ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+         ->join('items', 'items.id', '=', 'item_requests.id_item')
+         ->join('orders', 'orders.id', '=', 'item_requests.order_id')
+         ->join('satuans', 'satuans.id', '=', 'items.id_satuan')
+         ->join('locations', 'locations.id', '=', 'purchase_requests.locations_id')
+         ->join('ships', 'ships.id', '=', 'purchase_requests.ships_id')
+         ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+         ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
+         ->select('item_requests.id_item','locations.location_name','purchase_requests.note','purchase_requests.approval_status','ships.tipe','satuans.unit','item_requests.id','orders.no_po','purchase_requests.project','purchase_requests.type','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.accept_status',
+         'purchase_requests.deadline_date','purchase_requests.requester','items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
+         ->get();
+
+         $powders = DB::table('item_requests')
+            ->where('item_requests.order_id',$id)
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+            ->join('orders', 'orders.id', '=', 'item_requests.order_id')
+            ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
+            ->join('grades', 'grades.id', '=', 'powders.grades_id')
+            ->join('colours', 'colours.id', '=', 'powders.color_id')
+            ->join('suppliers', 'suppliers.id', '=', 'powders.suppliers_id')
+            ->select('item_requests.id','colours.name','orders.no_po','purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.quantity','powders.warna','powders.m2','powders.sudah_datang' ,'purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
+            ->get();
+
+         $purchase = DB::table('purchase_requests')
+         ->join('item_requests','item_requests.id_request', '=', 'purchase_requests.id')->where('item_requests.order_id',$id)->get('purchase_requests.type');
+    
+  
+        // $pdf = PDF::loadView('PO.notaPO', compact('orders','tracking','purchase'))->setOptions(['defaultFont' => 'times-new-roman']);
+
+        return view('PO.formatPO', compact('orders','tracking','powders','purchase'));
+        
+        // return $pdf->stream('Item.pdf');
+        
+      }
 }
