@@ -17,7 +17,8 @@ class Order extends Model
 
     protected $fillable = ['tanggal_kirim',
         'no_po', 'supplier' ,'id_supplier', 'id_waktu', 'id_alamat_kirim', 'id_pembayaran', 'alamat_penagihan', 
-        'lain_lain', 'note', 'signature','nama'
+        'lain_lain', 'note', 'signature','nama','created_at',
+        'updated_at'
     ];
 
     public function item(){
