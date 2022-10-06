@@ -76,7 +76,7 @@ class PurchaseRequestController extends Controller
         $validateData = $request->validate([
             'deadline_date'=>'required',
             'requester'=>'required|max:100',
-            'project'=>'max:100',
+            'project'=>'required|max:100',
             'attachment' => 'mimes:jpeg,img,jpg,png|max:20000',
             'locations_id' => 'required',
             'prefixes_id' => 'required',
@@ -86,6 +86,9 @@ class PurchaseRequestController extends Controller
             'deadline_date.required'=>"Deadline Date field is required ",
             'requester.required'=>"Requester field is required ",
             'project.required'=>"Project field is required ",
+            'locations_id.required' => "Lokasi field is required",
+            'prefixes_id.required' => "Divisi field is required",
+            'ships_id.required' => "Kebutuhan/pengiriman field is required",
             'attachment.required'=>"Attachment field is required ",
         ]);
         if($request->hasFile('attachment'))
@@ -140,11 +143,23 @@ class PurchaseRequestController extends Controller
         $validateData = $request->validate([
             'deadline_date'=>'required',
             'requester'=>'required|max:100',
-            'project'=>'max:100',
+            'project'=>'required|max:100',
             'attachment' => 'mimes:jpeg,img,jpg,png|max:20000',
             'locations_id' => 'required',
             'prefixes_id' => 'required',
-            'ships_id' => 'required'
+            'ships_id' => 'required',
+            'grades_id' => 'required',
+            'suppliers_id' => 'required',
+            'warna' => 'required',
+            'color_id' => 'required',
+            'finish' => 'required',
+            'finishing' => 'required',
+            'quantity' => 'required',
+            'm2' => 'required',
+            'estimasi' => 'required',
+            'fresh' => 'required',
+            'recycle' => 'required',
+            'alokasi' => 'required'
 
         ], [
             'deadline_date.required'=>"Deadline Date field is required ",
