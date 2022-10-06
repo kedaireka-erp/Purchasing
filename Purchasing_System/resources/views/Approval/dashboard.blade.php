@@ -40,12 +40,12 @@
                         <tr class="content-control-md" align="right">
                             <td width="15%" align="left">Nomor PR</td>
                             <td width="10%">Pengajuan</td>
-                            <td width="10%">Deadline</td>
-                            <td width="20%">Requester</td>
-                            <td width="10%">Divisi</td>
-                            <td width="10%">Type</td>
-                            <td width="20%" align="center">Status</td>
-                            <td width="5%" align="center"></td>
+                            <td width="15%">Deadline</td>
+                            <td width="15%">Requester</td>
+                            <td width="12%">Divisi</td>
+                            <td width="13%">Type</td>
+                            <td width="15%">Status</td>
+                            <td width="5%"></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,7 +60,7 @@
                                 <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
                                 <td class="content-control">{{ $purchase_request->type }}</td>
 
-                                <td align="center"> <a class="pending content-control">
+                                <td align="right"> <a class="pending content-control">
                                         <i class="fa fa-clock-o"></i> {{ $purchase_request->approval_status }}
                                     </a></td>
 
@@ -91,8 +91,7 @@
                                                     Status
                                                 </a>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('approval.edit', $purchase_request->id) }}"> Change and
-                                                    Edit
+                                                    href="{{ route('approval.edit', $purchase_request->id) }}"> Edit
                                                 </a>
                                                 <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
                                                     class="dropdown-item text-danger"
@@ -131,13 +130,13 @@
                     <thead>
                         <tr class="content-control-md" align="right">
                             <td width="15%" align="left">Nomor PR</td>
-                            <td width="10%">Pengajuan</td>
-                            <td width="10%">Deadline</td>
-                            <td width="20%">Requester</td>
-                            <td width="10%">Divisi</td>
-                            <td width="10%">Type</td>
-                            <td width="20%" align="center">Status</td>
-                            <td width="5%" align="center"></td>
+                            <td width="12%">Pengajuan</td>
+                            <td width="16%">Tanggal Diterima</td>
+                            <td width="15%">Requester</td>
+                            <td width="13%">Divisi</td>
+                            <td width="12%">Type</td>
+                            <td width="12%">Status</td>
+                            <td width="5%"></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -145,7 +144,7 @@
                             <tr align="right">
                                 <td class="content-control" align="left">{{ $purchase_request->no_pr }}</td>
                                 <td class="content-control">
-                                    {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}</td>
+                                    {{ \Carbon\Carbon::parse($purchase_request->tanggal_diterima)->format('d/m/Y') }}</td>
                                 <td class="content-control">
                                     {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}</td>
                                 <td class="content-control">{{ $purchase_request->requester }}</td>
@@ -153,12 +152,12 @@
                                 <td class="content-control">{{ $purchase_request->type }}</td>
 
                                 @if ($purchase_request->approval_status == 'edit')
-                                    <td align="left"> <a class="edit content-control">
+                                    <td align="right"> <a class="edit content-control">
                                             <i class="fa fa-check"></i>
                                             approve with {{ $purchase_request->approval_status . 'ed' }}
                                         </a></td>
                                 @elseif ($purchase_request->approval_status == 'approve')
-                                    <td align="left"> <a class="approve content-control">
+                                    <td align="right"> <a class="approve content-control">
                                             <i class="fa fa-check"></i> {{ $purchase_request->approval_status . 'd' }}
                                         </a></td>
                                 @endif
@@ -196,8 +195,7 @@
                                                     Status
                                                 </a>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('approval.edit', $purchase_request->id) }}"> Change and
-                                                    Edit
+                                                    href="{{ route('approval.edit', $purchase_request->id) }}"> Edit
                                                 </a>
                                                 <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
                                                     class="dropdown-item text-danger"
@@ -222,7 +220,7 @@
             <div class="row">
                 <div class="col-9">
                     <div class="card-header">
-                        <h4 class="card-title">Data PR Ditolak Oleh Tim Purchasing</h4>
+                        <h4 class="card-title">Data PR Ditolak</h4>
                     </div>
                 </div>
 
@@ -235,13 +233,13 @@
                     <thead>
                         <tr class="content-control-md" align="right">
                             <td width="15%" align="left">Nomor PR</td>
-                            <td width="10%">Pengajuan</td>
-                            <td width="10%">Deadline</td>
-                            <td width="20%">Requester</td>
-                            <td width="10%">Divisi</td>
-                            <td width="10%">Type</td>
-                            <td width="20%" align="center">Status</td>
-                            <td width="5%" align="center"></td>
+                            <td width="12%">Pengajuan</td>
+                            <td width="16%">Tanggal Ditolak</td>
+                            <td width="15%">Requester</td>
+                            <td width="13%">Divisi</td>
+                            <td width="12%">Type</td>
+                            <td width="12%">Status</td>
+                            <td width="5%"></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -251,13 +249,13 @@
                                 <td class="content-control">
                                     {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}</td>
                                 <td class="content-control">
-                                    {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}</td>
+                                    {{ \Carbon\Carbon::parse($purchase_request->tanggal_diterima)->format('d/m/Y') }}</td>
                                 <td class="content-control">{{ $purchase_request->requester }}</td>
                                 <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
                                 <td class="content-control">{{ $purchase_request->type }}</td>
 
 
-                                <td align="center"> <a class="reject content-control">
+                                <td align="right"> <a class="reject content-control">
                                         <i class="fa fa-close"></i> {{ $purchase_request->approval_status . 'ed' }}
                                     </a></td>
 
@@ -295,8 +293,7 @@
                                                     Status
                                                 </a>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('approval.edit', $purchase_request->id) }}"> Change and
-                                                    Edit
+                                                    href="{{ route('approval.edit', $purchase_request->id) }}"> Edit
                                                 </a>
                                                 <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
                                                     class="dropdown-item text-danger"

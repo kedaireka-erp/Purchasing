@@ -63,6 +63,10 @@
                                         <div class="post-input">
                                             <table style="margin-top: -150px">
                                                 <tr class="tr">
+                                                    <td width="200px">No. Purchase Request</td>
+                                                    <td>: {{ $purchase_requests->no_pr }}</td>
+                                                </tr>
+                                                <tr class="tr">
                                                     <td width="220px">Tanggal Pengajuan</td>
                                                     <td>:
                                                         {{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}
@@ -70,10 +74,22 @@
                                                 </tr>
                                                 <br>
                                                 <tr class="tr">
-                                                    <td width="200px">Tanggal Deadline</td>
-                                                    <td>:
-                                                        {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}
-                                                    </td>
+                                                    @if ($purchase_requests->approval_status == 'pending')
+                                                        <td width="200px">Tanggal Deadline</td>
+                                                        <td>:
+                                                            {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}
+                                                        </td>
+                                                    @elseif ($purchase_requests->approval_status == 'approve')
+                                                        <td width="200px">Tanggal Diterima</td>
+                                                        <td>:
+                                                            {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                                                        </td>
+                                                    @elseif ($purchase_requests->approval_status == 'reject')
+                                                        <td width="200px">Tanggal Ditolak</td>
+                                                        <td>:
+                                                            {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                                                        </td>
+                                                    @endif
                                                 </tr>
                                                 <br>
                                                 <tr class="tr">
@@ -93,26 +109,30 @@
                                                 <br>
                                                 <tr class="tr">
                                                     <td width="200px">Kebutuhan/Pengiriman</td>
-                                                    <td>: {{ $purchase_requests->requester }} </td>
+                                                    <td>: {{ $purchase_requests->ship->tipe }} </td>
                                                 </tr>
                                                 <br>
 
                                                 <tr class="tr">
                                                     <td width="200px">Alamat</td>
-                                                    <td>: {{ $purchase_requests->location->location_name }}</< /td>
-                                                </tr>
-                                                <br>
-                                                <tr class="tr">
-                                                    <td width="200px">Note</td>
-                                                    <td>: {{ $purchase_requests->note }}</td>
+                                                    <td>: {{ $purchase_requests->location->location_name }}</td>
                                                 </tr>
                                                 <br>
                                                 <tr class="tr">
                                                     <td width="200px">Approval PR</td>
                                                     <td>: {{ $purchase_requests->approval_status }}</td>
                                                 </tr>
+                                                <br>
+                                                <tr class="tr">
+                                                    <td width="200px">Note</td>
+
+                                                    <td>: </td>
+                                                </tr>
+
+
 
                                             </table>
+                                            <p> {!! $purchase_requests->note !!} </p>
                                         </div>
                                     </div>
                                 </div>

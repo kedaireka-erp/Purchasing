@@ -17,7 +17,7 @@
     <div class="row page-titles">
         <ol class="breadcrumb">
             <li class="breadcrumb-item active"><a href="javascript:void(0)">Approval Manager</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Tinjau PR</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Change Status</a></li>
         </ol>
     </div>
 @endsection
@@ -62,6 +62,10 @@
                                         <div class="post-input">
                                             <table style="margin-top: -150px">
                                                 <tr class="tr">
+                                                    <td width="200px">No. Purchase Request</td>
+                                                    <td>: {{ $purchase_requests->no_pr }}</td>
+                                                </tr>
+                                                <tr class="tr">
                                                     <td width="220px">Tanggal Pengajuan</td>
                                                     <td>:
                                                         {{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}
@@ -69,10 +73,22 @@
                                                 </tr>
                                                 <br>
                                                 <tr class="tr">
-                                                    <td width="200px">Tanggal Deadline</td>
-                                                    <td>:
-                                                        {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}
-                                                    </td>
+                                                    @if ($purchase_requests->approval_status == 'pending')
+                                                        <td width="200px">Tanggal Deadline</td>
+                                                        <td>:
+                                                            {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}
+                                                        </td>
+                                                    @elseif ($purchase_requests->approval_status == 'approve')
+                                                        <td width="200px">Tanggal Diterima</td>
+                                                        <td>:
+                                                            {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                                                        </td>
+                                                    @elseif ($purchase_requests->approval_status == 'reject')
+                                                        <td width="200px">Tanggal Ditolak</td>
+                                                        <td>:
+                                                            {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                                                        </td>
+                                                    @endif
                                                 </tr>
                                                 <br>
                                                 <tr class="tr">
@@ -154,7 +170,7 @@
                                         @elseif ($purchase_requests->type == 'powder')
                                             <table class="table table-striped" id="body">
                                                 <thead>
-                                                    <tr style="text-align: center">
+                                                    <tr style="text-align: center; font-weight: bold">
                                                         <td scope="col">No.</td>
                                                         <td scope="col">Suppllier</td>
                                                         <td scope="col">Grade</td>
@@ -257,7 +273,7 @@
 
     </div>
     <!--**********************************
-                                                                                                                                                                                        Content body end
-                                                                                                                                                                                    ***********************************-->
+                                                                                                                                                                                                                                Content body end
+                                                                                                                                                                                                                            ***********************************-->
 
 @endsection

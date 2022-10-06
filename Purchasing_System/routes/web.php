@@ -30,7 +30,8 @@ use App\Http\Controllers\LoginController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware("auth")->group(function () {
+
+// Route::middleware("auth")->group(function () {
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 Route::get('/manager', [HomeController::class, 'manager'])->name('manager');
 Route::get('/purchasing', [HomeController::class, 'purchasing'])->name('purchasing');
@@ -292,8 +293,8 @@ route::group(['as' => 'order.', 'prefix' => 'order'], function () {
     Route::delete('/destroy{id}', [OrderController::class, "destroy"])->name("destroyApp");
 });
 
-Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
-});
+// Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+// });
 
 Route::get("login", [LoginController::class, "index"])->name("login");
 
