@@ -64,25 +64,7 @@
                                 <td class="content-control-md">{{ $item->nama_supplier }}</td>
                                 <td class="content-control-md">{{ $item->location->location_name }}</td>
                                 <td class="content-control-md">{{ $item->payment->name_payment }}</td>
-                                @if ($item->timeshipping == null)
-                                    <td class="content-control-md">
-                                        {{ \Carbon\Carbon::parse($item->tanggal_kirim)->format('d/m/Y') }}</td>
-                                @else
-                                    <td class="content-control-md">{{ $item->timeshipping->name_time }}</td>
-                                @endif
-                                @if ($item->purchases->get(0)->status == 'outstanding')
-                                    <td>
-                                        <a class="pending content-control-sm">
-                                            <i class="fa fa-clock-o"></i> {{ $item->purchases->get(0)->status }}
-                                        </a>
-                                    </td>
-                                @elseif($item->purchases->get(0)->status == 'closed')
-                                    <td>
-                                        <a class="approve content-control-sm">
-                                            <i class="fa fa-check"></i> {{ $item->purchases->get(0)->status }}
-                                        </a>
-                                    </td>
-                                @endif
+                                
                                 <td class="content-control-md">
                                     {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}
                                 </td>
