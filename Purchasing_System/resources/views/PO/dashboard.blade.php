@@ -46,7 +46,6 @@
                             <td width="15%">Supplier</td>
                             <td width="15%">Alamat Kirim</td>
                             <td width="10%">Pembayaran</td>
-                            <td width="15%">Waktu Pengiriman</td>
                             <td width="15%">Tanggal Pembuatan</td>
                             <td width="5%"></td>
                         </tr>
