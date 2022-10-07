@@ -162,9 +162,7 @@
                                         Edit Item
                                     </a>
                                 </li>
-                                <li class="nav-item"><a href="#approval" data-bs-toggle="tab" class="nav-link">
-                                        Approval </a>
-                                </li>
+
                             </ul>
                             <div class="tab-content">
                                 <div id="my-posts" class="tab-pane fade active show">
@@ -235,7 +233,7 @@
                                                             value="{{ $purchase_requests->no_pr }}">
                                                         <label for="no_pr" class="form-label">Nomor PR</label>
                                                     </div> --}}
-                                                    <div class="row">
+                                                    {{-- <div class="row">
                                                         <div class="col-lg-3">
                                                             <label for="deadline_date" class="form-label">Deadline
                                                                 Date</label>
@@ -246,6 +244,13 @@
                                                                     placeholder="dd/mm/yyyy" name="deadline_date" value="{{$purchase_requests->deadline_date}}">
                                                             </div>
                                                         </div>
+                                                    </div> --}}
+
+                                                    <div class="form-floating mb-3">
+                                                        <input type="date" class="form-control" id="deadline_date"
+                                                            placeholder="dd/mm/yy" name="deadline_date"
+                                                            value="{{ $purchase_requests->deadline_date }}">
+                                                        <label for="deadline_date" class="form-label">Deadline Date</label>
                                                     </div>
 
 
@@ -302,13 +307,31 @@
                                                             value="{{ $purchase_requests->note }}">
                                                         <label for="note" class="form-label">Note</label>
                                                     </div>
-                                                    <div class="form-floating mb-3">
-                                                        <input type="text" class="form-control" id="attachment"
-                                                            placeholder="Attachment" name="attachment"
-                                                            value="{{ $purchase_requests->attachment }}">
-                                                        <label for="attachment" class="form-label">Attachment</label>
+                                                    
+                                                    <div class="mb-3">
 
+                                                        <div class="basic-form custom_file_input">
+        
+                                                            <label for="attachment" class="form-label">Attachment</label>
+                                                            <div class="input-group input-group-lg">
+                                                                <span class="input-group-text">Upload</span>
+                                                                <div class="form-file">
+                                                                    <input type="file"
+                                                                        class="form-file-input form-control input-rounded @error('attachment') is-invalid @enderror"
+                                                                        id="attachment" placeholder="Attachment"
+                                                                        name="attachment" value="{{ old('attachment', $purchase_requests->attachment) }}">
+                                                                </div>
+                                                            </div>
+        
+        
+                                                        </div>
+        
+        
+                                                        @error('attachment')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
+                                                    
                                                     <div class="col-12">
                                                         <button class="btn btn-primary" type="submit">Save</button>
                                                     </div>
@@ -322,11 +345,11 @@
                                 <div id="about-me" class="tab-pane fade">
                                     <div class="profile-about-me">
 
-                                        
+
 
                                         {{-- ini tabel item di tracking --}}
 
-                                         @if ($purchase_requests->type == 'othergood')
+                                        @if ($purchase_requests->type == 'othergood')
                                             @foreach ($purchase_requests->item as $index => $good)
                                                 <form action="{{ route('purchase_request.update_good', $good->id) }}"
                                                     method="post">
@@ -345,8 +368,8 @@
                                                             <div class="mb-3">
                                                                 <select
                                                                     class="default-select input-rounded form-control wide mb-3"
-                                                                    aria-label="Default select example" id="id_master_item"
-                                                                    name="id_master_item"
+                                                                    aria-label="Default select example"
+                                                                    id="id_master_item" name="id_master_item"
                                                                     value="{{ old('id_master_item') }}">
                                                                     <option selected disabled>-- Pilih Item --</option>
                                                                     @foreach ($master_item as $itemss)
@@ -354,7 +377,7 @@
                                                                             {{ $itemss->id == $good->id_master_item ? 'selected' : '' }}>
                                                                             {{ ucfirst($itemss->item_name) }}
                                                                         </option>
-                                                                    @endforeach 
+                                                                    @endforeach
                                                                 </select>
                                                                 @error('id_master_item')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -365,7 +388,8 @@
 
                                                     <div class="row">
                                                         <div class="col-lg-3">
-                                                            <label for="quantity" class="form-label font pt-3">Quantity Item
+                                                            <label for="quantity" class="form-label font pt-3">Quantity
+                                                                Item
                                                                 {{ $index + 1 }} </label>
                                                         </div>
                                                         <div class="col-lg-9">
@@ -431,7 +455,8 @@
                                     @endforeach
                                 @elseif ($purchase_requests->type == 'powder')
                                     @foreach ($purchase_requests->powder as $yes)
-                                        <form action="{{ route('purchase_request.update_powder', $yes->id) }}" method="post">
+                                        <form action="{{ route('purchase_request.update_powder', $yes->id) }}"
+                                            method="post">
                                             @csrf
                                             <div class="head" style="margin-top:50px"></div>
                                             <div class="row">
@@ -639,54 +664,20 @@
                                             </div>
                                         </form>
                                     @endforeach
-                                    @endif --}}
-                                    </div>
-                                </div>
-
-
-                                <div id="approval" class="tab-pane fade">
-
-                                    <form action="{{ route('approval.updateApp', $purchase_requests->id) }}"
-                                        method="post">
-
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col-12" style="margin-top: 30px">
-                                                <div class="mb-3">
-                                                    <label class="form-label"> Tanggal Penerimaan </label>
-                                                    <input name="tanggal_diterima" class="input-rounded form-control wide"
-                                                        type="date">
-                                                </div>
-                                                <div class="status" style="margin-top:20px">
-                                                    <label class="form-label"> Ubah Status </label>
-                                                    <select class="default-select input-rounded form-control wide mb-3"
-                                                        style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
-                                                        id="approval_status" name="approval_status">
-                                                        <option value="{{ $purchase_requests->approval_status }}" selected
-                                                            disabled>
-                                                            {{ $purchase_requests->approval_status }}</option>
-                                                        <option value="pending">pending</option>
-                                                        <option value="edit">approve</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <button style="margin-top:10px" class="btn btn-primary"> Simpan
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-
-
+                                    @endif
                                 </div>
                             </div>
-                            <!-- Modal -->
+
+
 
                         </div>
+                        <!-- Modal -->
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
 

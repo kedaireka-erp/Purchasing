@@ -13,7 +13,8 @@
         "laravel/sanctum": "^3.0",
         "laravel/scout": "^9.4",
         "laravel/tinker": "^2.7",
-        "phpoffice/phpspreadsheet": "dev-NumberFormatMask-Helpers"
+        "phpoffice/phpspreadsheet": "dev-NumberFormatMask-Helpers",
+        "realrashid/sweet-alert": "^5.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

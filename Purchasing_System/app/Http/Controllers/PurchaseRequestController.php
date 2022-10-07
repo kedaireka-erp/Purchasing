@@ -14,6 +14,7 @@ use App\Models\Item;
 use App\Models\ItemRequest;
 use App\Models\Powder;
 use App\Models\Supplier;
+use Illuminate\Console\View\Components\Alert;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -350,7 +351,8 @@ class PurchaseRequestController extends Controller
         $purchase_requests = PurchaseRequest::findOrFail($id);
         $purchase_requests->delete();
 
-        return redirect("/purchase_request");
+        // alert()->question('Are you sure?','You won\'t be able to revert this!')->showCancelButton();
+        return redirect("/purchase_request")->with('status', 'Purchase Request berhasil dihapus!');
      }
 
     public function show($id){

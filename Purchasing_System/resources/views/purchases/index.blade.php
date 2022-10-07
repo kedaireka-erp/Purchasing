@@ -20,6 +20,8 @@
 @endsection
 
 @section('content')
+{{-- @include('sweetalert::alert') --}}
+
     <div class="card">
         <div id="chead">
             <div class="row">
@@ -58,6 +60,7 @@
                     <tbody>
                         @foreach ($purchase_requests_pending as $no => $purchase_request)
                             <tr align="right">
+                                <input type="hidden" class="delete_id" value="{{ $purchase_request->id }}">
                                 <td class="content-control" align="left">{{ $purchase_request->no_pr }}</td>
                                 <td class="content-control">
                                     {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}</td>
@@ -100,7 +103,7 @@
 
                                                 <form
                                                     action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
-                                                    method="POST">
+                                                    method="POST" onsubmit="return confirm('Yakin hapus data?')">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="dropdown-item text-danger">Delete</button>
@@ -184,7 +187,7 @@
 
                                                 <form
                                                     action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
-                                                    method="POST">
+                                                    method="POST" onsubmit="return confirm('Yakin hapus data?')">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
@@ -270,7 +273,7 @@
 
                                                 <form
                                                     action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
-                                                    method="POST">
+                                                    method="POST" onsubmit="return confirm('Yakin hapus data?')">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
@@ -296,6 +299,60 @@
         <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
 
+        {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" type="text/javascript"></script>
+
+        <script>
+            $(document).ready(function () {
+    
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+    
+                $('.btndelete').click(function (e) {
+                    e.preventDefault();
+    
+                    var deleteid = $(this).closest("tr").find('.delete_id').val();
+    
+                    swal({
+                            title: "Apakah anda yakin?",
+                            text: "Setelah dihapus, Anda tidak dapat memulihkan Data ini lagi!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                        })
+                        .then((willDelete) => {
+                            if (willDelete) {
+    
+                                var data = {
+                                    "_token": $('input[name=_token]').val(),
+                                    'id': deleteid,
+                                };
+                                $.ajax({
+                                    type: "DELETE",
+                                    url: 'purchase_request/destroy/' + deleteid,
+                                    data: data,
+                                    success: function (response) {
+                                        swal(response.status, {
+                                                icon: "success",
+                                            })
+                                            .then((result) => {
+                                                location.reload();
+                                            });
+                                    }
+                                });
+                            }
+                        });
+                });
+    
+            });
+    
+        </script> --}}
+
+
 
 
     @endsection
+    
+    
