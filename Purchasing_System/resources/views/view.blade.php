@@ -150,7 +150,7 @@
                                                     @foreach ($purchase_requests->item as $yes)
                                                         <tr style="text-align: center">
                                                             <td>{{ $nomor++ }}</td>
-                                                            <td>{{ $yes->master_item->item_name }}</td>
+                                                            <td>{{ $yes->master_item }}</td>
                                                             <td>{{ $yes->stok }}</td>
                                                             <td>{{ $yes->satuan->unit }}</td>
                                                         </tr>
