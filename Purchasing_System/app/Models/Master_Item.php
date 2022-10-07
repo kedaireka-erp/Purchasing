@@ -16,6 +16,6 @@ class Master_Item extends Model
     //Satu id master item bisa dipakai dalam banyak item PR
     public function item()
     {
-        return $this->hasMany(Item::class,'id_master_item','id');
+        return $this->hasMany(Item::class);
     }
 }
