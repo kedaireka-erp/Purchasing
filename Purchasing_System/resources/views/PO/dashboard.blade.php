@@ -47,6 +47,7 @@
                             <td width="15%">Alamat Kirim</td>
                             <td width="10%">Pembayaran</td>
                             <td width="15%">Tanggal Pembuatan</td>
+                            <td width="10%">Status</td>
                             <td width="5%"></td>
                         </tr>
                     </thead>
@@ -62,10 +63,24 @@
                                 <td class="content-control-md">{{ $item->nama_supplier }}</td>
                                 <td class="content-control-md">{{ $item->location->location_name }}</td>
                                 <td class="content-control-md">{{ $item->payment->name_payment }}</td>
-                                
                                 <td class="content-control-md">
                                     {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}
                                 </td>
+                                @foreach ($item->purchases as $value)
+                                    @if ($value->status == 'outstanding')
+                                        <td>
+                                            <a class="pending content-control-sm">
+                                                <i class="fa fa-clock-o"></i> {{ $value->status }}
+                                            </a>
+                                        </td>
+                                    @elseif($value->status == 'closed')
+                                        <td>
+                                            <a class="approve content-control-sm">
+                                                <i class="fa fa-check"></i> {{ $value->status }}
+                                            </a>
+                                        </td>
+                                    @endif
+                                @endforeach
                                 <td class="py-2 text-end">
                                     <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
                                             type="button" id="order-dropdown-1" data-bs-toggle="dropdown"

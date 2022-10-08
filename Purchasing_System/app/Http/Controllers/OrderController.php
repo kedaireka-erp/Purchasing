@@ -27,7 +27,7 @@ class OrderController extends Controller
     public function index(){
     
     
-        $orders = Order::with('location','payment','timeshipping','supplier')->get();
+        $orders = Order::with('location','payment','timeshipping','supplier','purchases')->get();
 
         return view('PO.dashboard', compact('orders'));
     }
