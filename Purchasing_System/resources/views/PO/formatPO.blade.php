@@ -15,10 +15,10 @@
         width: 100%;
         height: 40px;
         background-color: #cab9e7;
-    
+     
     }
     .txt{
-        padding: 10px;
+        padding-top: 10px;
     }
     .card-comment{
         width: 90%;
@@ -33,13 +33,28 @@
     .table, .th, .td {
   border: 1px solid black;
   border-collapse: collapse;
+
 }
+@media print {
+    .btn {
+    display :none;
+  }
+  .box1{
+        width: 100%;
+        height: 40px;
+        background-color: #cab9e7 !important;
+        -webkit-print-color-adjust: exact
+        
+    
+    }
   
+
+}
     </style>
 
 @section('content')
 
-<div class="cardpo">
+<div class="cardpo" style="width: 75%">
     <a class="btn btn-danger" onclick="window.print();">Export PDF</a>
     <div class="d-flex justify-content-center" style="margin-top: 20px">
       <div class="d-flex">
@@ -52,20 +67,20 @@
       </div>
     </div>
 
-    <hr>
+    {{-- <hr style="color: black; height:2p; margin-top: 20px"> --}}
 
     <div class="row">
         <div class="col-1"></div>
         <div class="col-5" style="margin-top: 15px">
  
-                   <p>{{ 'Jakarta, '.\Carbon\Carbon::parse($orders->created_at)->format('d F Y') }}</p>
+                   <p style="font-size: 12px">{{ 'Jakarta, '.\Carbon\Carbon::parse($orders->created_at)->format('d F Y') }}</p>
         </div>
-
-        <div class="col-6" style="margin-top:-65px" >
+        <div class="col-1"></div>
+        <div class="col-5" style="margin-top:-65px" >
 
             <table class="subhead_pr">
                 <tr>
-                    <td><h3 style="white-space: nowrap">PURCHASE REQUEST</h3></td>
+                    <td><p style="white-space: nowrap; font-size:12px; font-weight:bold; margin-top:15px;">PURCHASE REQUEST</p></td>
                 </tr>
                 <br>
                 <tr>
@@ -80,7 +95,7 @@
                 </tr>
                 <br>
                 <tr>
-                    <td width="80px">Waktu Pengiriman</td>
+                    <td width="80px" >Waktu Pengiriman</td>
                     <td>{{ ': '.$value->deadline_date}}</td>
                     @endif
                     
@@ -97,15 +112,15 @@
     </div>
 
 
-<div class="box1" style="margin-top: 40px">
-    <div class="row" >
+<div class="box1" style="margin-top: 40px;">
+    <div class="row" style="background-color: #cab9e7;">
         <div class="col-1"></div>
         <div class="col-5 txt" >
-            <strong>Purchasing From : </strong>
+            <p style="font-size: 12px; font-weight:bold;">Purchasing From : </p>
         </div>
         <div class="col-1"></div>
         <div class="col-5 txt">
-            <strong >Ship To :</strong>
+            <p style="font-size: 12px; font-weight:bold">Ship To :</p>
         </div>
     </div>
 
@@ -116,37 +131,41 @@
         <div class="col-5">
                     <table>
                         <tr>
-                            <p style="font-weight: bold">{{ $orders->supplier->vendor}} </p>
+                            <p style="font-weight: bold; font-size:12px">{{ $orders->supplier->vendor}} </p>
                         </tr>
                         <tr>
                            {{-- <p> Jl. Galuh Mas Raya, Sukaharja,telukjambe Timur, Karawang,Jawa Barat 41361 </p>  --}}
                         </tr>
                     </table>
         </div>
-        <div class="col-1"></div>
-        <div class="col-5">
             
         <div class="col-1"></div>
-        <div class="col-5">
+        <div class="col-4">
+        
+            
+
+            
             <table>
                 <tr>
-                    <p style="font-weight: bold">{{  $orders->location->location_name .' PT Allure Aluminio'}}</p>
+                    <p style="font-weight: bold; font-size:12px">{{  $orders->location->location_name }}</p>
                 </tr>
                 <tr>
-                    <p> {{ $orders->alamat_penagihan }}</p>
+                    <p style="font-size:10px; width:100%; text-align:justify"> {{ $orders->location->address }}</p>
                 </tr>
             </table>
+
         </div>
+        <div class="col-1">
     </div>
 
-    <div class="box1" style="margin-top: 40px">
+    <div class="box1" style="margin-top: 35px">
         <div class="row" >
             <div class="col-1"></div>
             <div class="col-5 txt" >
             </div>
             <div class="col-1"></div>
             <div class="col-5 txt">
-                <strong >Billing Address :</strong>
+                <p style="font-size:12px; font-weight:bold">Billing Address :</p>
             </div>
         </div>
     
@@ -157,35 +176,38 @@
         <div class="col-5">
             <table>
                 <tr>
-                   <p>Kepada Yth. <br>
+                   <p style="font-size:10px">Kepada Yth. <br>
                     {{ $orders->nama_supplier}} Di tempat</p>
-                   <br>
-                   <p>Dengan Hormat, <br>
+                   
+                   <p style="font-size:10px">Dengan Hormat, <br>
                     Bersama ini kami order material sebagai berikut:</p>
                 </tr>
             </table>      
         </div>
         <div class="col-1"></div>
-        <div class="col-5">
+        <div class="col-4">
+           
             <table>
                 <tr>
-                    <p style="font-weight: bold">{{  $orders->location->location_name .'PT Allure Aluminio'}}</p>
+                    <p style="font-weight: bold; font-size:12px; margin-left:20px">  PT Allure Aluminio</p>
                 </tr>
                 <tr>
-                   <p> {{ $orders->alamat_penagihan }}</p>
+                   <p style="font-size: 10px; margin-left:20px"> {{ $orders->alamat_penagihan }}</p>
                 </tr>
             </table>
         </div>
+        <div class="col-1"></div>
     </div>
   <br>
+  
   @foreach($purchase as $tipe)
   @if ($loop->first)
   @if ($tipe->type == 'othergood' )
     <table class="table" style="box-shadow: none">
         
         <thead>
-            
-          <tr style="background-color:#cab9e7;  text-align:center; font-weight:bold">
+           
+          <tr style="background-color:#cab9e7;  text-align:center; font-weight:bold; font-size:12px">
             <td>No.</td>
             <td>Deskripsi</td>
             <td>Quantity</td>
@@ -197,7 +219,7 @@
         @endphp
         <tbody>
             @foreach ($tracking as $purchase_requests)
-          <tr scope="row" style="text-align: center">
+          <tr scope="row" style="text-align: center; font-size:12px">
             <th  scope="col">{{ $nomor++ }}</th>
             <td  scope="col">{{ $purchase_requests->item_name }}</td>
             <td  scope="col">{{ $purchase_requests->outstanding }}</td>
@@ -209,11 +231,13 @@
         
       </table>
       @elseif ($tipe->type == 'powder' )
+      <br>
+      <br>
     <table class="table table-bordered" style="box-shadow: none">
         
         <thead>
             
-          <tr style="background-color:#cab9e7;  text-align:center; font-weight:bold">
+          <tr style="background-color:#cab9e7;  text-align:center; font-weight:bold;font-size:12px">
             <td>Suppllier</td>
             <td>Grade</td>
             <td>Warna</td>
@@ -228,7 +252,7 @@
         <tbody>
             @foreach ($powders as $purchase_requests)
             
-          <tr scope="row" style="text-align: center">
+          <tr scope="row" style="text-align: center;font-size:12px">
             
             <td scope="col">{{ $purchase_requests->vendor }}</td>
             <td scope="col">{{ $purchase_requests->tipe }}</td>
@@ -258,10 +282,10 @@
             <table class="table  table-bordered border-dark" style="border-radius: none; box-shadow:none; border:1px solid black">
                 
                   <tr scope="row">
-                    <th  scope="col" class="th">Comments or Special Intructions</th>
+                    <th style="font-size: 12px" scope="col" class="th">Comments or Special Intructions</th>
                   </tr>
                   <tr>
-                            <td scope="row" class="td">{{  $orders->note}}
+                            <td style="font-size: 12px" scope="row" class="td">{{  $orders->note}}
                         <br><br><br><br>
                     </td>
                   </tr>
@@ -278,7 +302,7 @@
     </div>
     
 <hr style="color: black; height:2p; margin-top: 20px">
-<p><span style="color: red">*</span>Note : melampirkan salinan Purchase Order (PO), surat jalan (asli), Invoice (asli), dan materai pada saat penagihan  - Materai Rp. 10,000 untuk transaksi diatas Rp. 5 juta</p>
+<p><span style="font-size: 10px; color: red">*</span>Note : melampirkan salinan Purchase Order (PO), surat jalan (asli), Invoice (asli), dan materai pada saat penagihan  - Materai Rp. 10,000 untuk transaksi diatas Rp. 5 juta</p>
 
 </div>
 <br>

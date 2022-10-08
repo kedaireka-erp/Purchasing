@@ -26,7 +26,7 @@ class OrderRequest extends FormRequest
         return [
             'id_supplier' => 'required',
             'id_waktu' => 'required',
-            'id_pebayaran' => 'required',
+            'id_pembayaran' => 'required',
             'alamat_penagihan' => 'required',
             'signature' => 'required',
             'nama' => 'required',
