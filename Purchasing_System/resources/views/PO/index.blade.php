@@ -72,13 +72,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
+            supplier_reader();
             supplier_read();
             time_read();
             payment_read();
             location_read();
             location_reader();
             payment_reader();
-            supplier_reader();
+            
             time_reader();
         });
 
