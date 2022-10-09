@@ -174,7 +174,7 @@
                                             <br>
                                             <tr class="tr">
                                                 <td width="200px">Waktu Pengiriman</td>
-                                                <td>: {{ $orders->timeshipping}}</td>
+                                                <td>: {{ $orders->timeshipping->name_time}}</td>
                                             </tr>
                                             <br>
                                             <tr class="tr">
