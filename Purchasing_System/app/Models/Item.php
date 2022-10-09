@@ -61,13 +61,13 @@ class Item extends Model
         parent::boot();
 
         static::creating(function($powder){
-            $powder->outstanding = $powder->stok - $powder->sudah_datang;
+            $powder->outstanding = $powder->stok ;
         });
-        static::updating(function ($powder) {
-            $powder->outstanding = $powder->outstanding - $powder->sudah_datang;
-            $powder->sudah_datang = $powder->stok-$powder->outstanding;
+        // static::updating(function ($powder) {
+        //     $powder->outstanding = $powder->outstanding - $powder->sudah_datang;
+        //     $powder->sudah_datang = $powder->stok-$powder->outstanding;
 
-        });
+        // });
     }
     
 }

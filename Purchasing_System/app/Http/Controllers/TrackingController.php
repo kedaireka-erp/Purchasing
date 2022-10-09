@@ -186,11 +186,16 @@ class TrackingController extends Controller
 
     public function update_good(Request $request, $id)
     {
-        $item = Item::findOrFail($id);
+        $item =  Item::findOrFail($id);
         
         if($item->outstanding >= $request->sudah_datang) {
+
+        $sudah_datang=$item->sudah_datang;
+        $outstanding=$item->outstanding;
+
         $item->update([
-            'sudah_datang' => $request->sudah_datang,
+            'sudah_datang' =>  $sudah_datang + $request->sudah_datang,
+            'outstanding' =>  $outstanding - $request->sudah_datang,
             'tanggal_kedatangan_barang' => $request->tanggal_kedatangan_barang
             
         ]);
@@ -209,9 +214,14 @@ class TrackingController extends Controller
         
         $powder = Powder::findOrFail($id);
         if($powder->outstanding >= $request->sudah_datang) {
+
+        $sudah_datang=$powder->sudah_datang;
+        $outstanding=$powder->outstanding;
+
         $powder->update([
             
-            'sudah_datang' => $request->sudah_datang,
+            'sudah_datang' =>  $sudah_datang + $request->sudah_datang,
+            'outstanding' =>  $outstanding - $request->sudah_datang,
             'tanggal_kedatangan_barang' => $request->tanggal_kedatangan_barang
             
         ]);
