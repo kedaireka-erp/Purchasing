@@ -74,13 +74,12 @@
         $(document).ready(function() {
             supplier_reader();
             supplier_read();
-            time_read();
+            payment_reader();
             payment_read();
+            time_reader();
+            time_read();
             location_read();
             location_reader();
-            payment_reader();
-            
-            time_reader();
         });
 
         function time_read() {
