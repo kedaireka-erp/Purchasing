@@ -72,7 +72,7 @@
 
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="/profile" class="dropdown-item ai-iconml-1s">
+                                    {{-- <a href="/profile" class="dropdown-item ai-iconml-1s">
                                         <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg"
                                             class="text-primary ml-2" width="18" height="18" viewbox="0 0 24 24"
                                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -81,7 +81,7 @@
                                             <circle cx="12" cy="7" r="4"></circle>
                                         </svg>
                                         <span>Profile </span>
-                                    </a>
+                                    </a> --}}
 
 
                                     {{-- <span class="ms-2"> --}}

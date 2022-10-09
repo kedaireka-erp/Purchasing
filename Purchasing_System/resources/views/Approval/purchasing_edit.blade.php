@@ -60,60 +60,6 @@
                             <div class="tab-content">
                                 <div id="my-posts" class="tab-pane fade">
                                     <div class="my-post-content pt-3">
-                                        {{-- <div class="post-input">
-                                            <table style="margin-top: -150px">
-                                                <tr class="tr">
-                                                    <td width="220px">Tanggal Pengajuan</td>
-                                                    <td>:
-                                                        {{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}
-                                                    </td>
-                                                </tr>
-                                                <br>
-                                                <tr class="tr">
-                                                    <td width="200px">Tanggal Deadline</td>
-                                                    <td>:
-                                                        {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}
-                                                    </td>
-                                                </tr>
-                                                <br>
-                                                <tr class="tr">
-                                                    <td width="200px">Requester</td>
-                                                    <td>: {{ $purchase_requests->requester }}</td>
-                                                </tr>
-                                                <br>
-                                                <tr class="tr">
-                                                    <td width="200px">Devisi</td>
-                                                    <td>: {{ $purchase_requests->Prefixe->divisi }}</td>
-                                                </tr>
-                                                <br>
-                                                <tr class="tr">
-                                                    <td width="200px">Project/Customer</td>
-                                                    <td>: {{ $purchase_requests->project }} </td>
-                                                </tr>
-                                                <br>
-                                                <tr class="tr">
-                                                    <td width="200px">Kebutuhan/Pengiriman</td>
-                                                    <td>: {{ $purchase_requests->requester }} </td>
-                                                </tr>
-                                                <br>
-
-                                                <tr class="tr">
-                                                    <td width="200px">Alamat</td>
-                                                    <td>: {{ $purchase_requests->location->location_name }}</< /td>
-                                                </tr>
-                                                <br>
-                                                <tr class="tr">
-                                                    <td width="200px">Note</td>
-                                                    <td>: {{ $purchase_requests->note }}</td>
-                                                </tr>
-                                                <br>
-                                                <tr class="tr">
-                                                    <td width="200px">Approval PR</td>
-                                                    <td>: {{ $purchase_requests->approval_status }}</td>
-                                                </tr>
-
-                                            </table>
-                                        </div> --}}
                                         <div class="post-input">
                                             <table style="margin-top: -150px">
                                                 <tr class="tr">
@@ -484,54 +430,30 @@
                                 </div>
                             </div>
                             <div id="approval" class="tab-pane fade">
-
-                                {{-- <form action="{{ route('approval.updateApp', $purchase_requests->id) }}" method="post">
-
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-12" style="margin-top: 30px">
-                                            <div class="mb-3">
-                                                <label class="form-label"> Tanggal Penerimaan </label>
-                                                <input name="tanggal_diterima" class="input-rounded form-control wide"
-                                                    type="date">
-                                            </div>
-                                            <div class="status" style="margin-top:20px">
-                                                <label class="form-label"> Ubah Status </label>
-                                                <select class="default-select input-rounded form-control wide mb-3"
-                                                    style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
-                                                    id="approval_status" name="approval_status">
-                                                    <option value="{{ $purchase_requests->approval_status }}" selected
-                                                        disabled>
-                                                        {{ $purchase_requests->approval_status }}</option>
-                                                    <option value="pending">pending</option>
-                                                    <option value="edit">approve</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <button style="margin-top:10px" class="btn btn-primary"> Simpan
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form> --}}
-
                                 <form action="{{ route('approval.update_accept', $purchase_requests->id) }}"
                                     method="post">
-
                                     @csrf
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="status" style="margin-top:30px">
+                                                @if($purchase_requests->accept_status == 'pending')
                                                 <select class="default-select input-rounded form-control wide mb-3"
                                                     style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
                                                     id="approval_status" name="accept_status">
                                                     <option value="{{ $purchase_requests->accept_status }}" selected
                                                         disabled>
                                                         {{ $purchase_requests->accept_status }}</option>
-                                                    <option value="pending">pending</option>
                                                     <option value="accept">accept</option>
-                                                    <option value="reject">reject</option>
                                                 </select>
+                                                @elseif($purchase_requests->accept_status == 'edit' || $purchase_requests->accept_status == 'accept')
+                                                <select class="default-select input-rounded form-control wide mb-3"
+                                                    style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
+                                                    id="approval_status" name="accept_status">
+                                                    <option value="accept" selected
+                                                        disabled> accept</option>
+                                                    <option value="pending">pending</option>
+                                                </select>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -543,12 +465,12 @@
 
                             </div>
                         </div>
-                        <!-- Modal -->
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+</div>
+<!-- Required vendors -->
+<script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
 @endsection

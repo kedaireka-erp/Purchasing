@@ -1,6 +1,6 @@
 @extends('layout.sidebar')
 
-@section('judul-laman', 'Dashboard Approval Tim Purchasing')
+@section('judul-laman', 'Approval Tim Purchasing')
 
 @section('datatable')
     {{-- Style Datatable --}}
@@ -88,16 +88,21 @@
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
 
-                                                <a class="dropdown-item"
-                                                    href="{{ route('approval.purchasing_view', $purchase_request->id) }}">
-                                                    Change
-                                                    Status
-                                                </a>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('approval.purchasing_edit', $purchase_request->id) }}">
-                                                    Change and
-                                                    Edit
-                                                </a>
+                                                <form
+                                                    action="{{ route('approval.purchasing_view', $purchase_request->id) }}"
+                                                    method="GET">
+                                                    @csrf
+                                                    @method('GET')
+                                                    <input type="submit" class="dropdown-item" value="Accept PR">
+                                                </form>
+                                                <form
+                                                    action="{{ route('approval.purchasing_edit', $purchase_request->id) }}"
+                                                    method="GET">
+                                                    @csrf
+                                                    @method('GET')
+                                                    <input type="submit" class="dropdown-item" value="Accept
+                                                    and Edit PR">
+                                                </form>
                                                 <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
                                                     class="dropdown-item text-danger"
                                                     onClick="reject_create({{ $purchase_request->id }})"> Reject
@@ -198,14 +203,20 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
-
-                                                <a class="dropdown-item"
-                                                    href="{{ route('approval.purchasing_view', $purchase_request->id) }}">Accept
-                                                    PR</a>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('approval.purchasing_edit', $purchase_request->id) }}">Accept
-                                                    and Edit PR</a>
-
+                                                <form
+                                                    action="{{ route('approval.purchasing_view', $purchase_request->id) }}"
+                                                    method="GET">
+                                                    @csrf
+                                                    @method('GET')
+                                                    <input type="submit" class="dropdown-item" value="Ubah Status">
+                                                </form>
+                                                <form
+                                                    action="{{ route('approval.purchasing_edit', $purchase_request->id) }}"
+                                                    method="GET">
+                                                    @csrf
+                                                    @method('GET')
+                                                    <input type="submit" class="dropdown-item" value="Edit PR">
+                                                </form>
                                                 <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
                                                     class="dropdown-item text-danger"
                                                     onClick="reject_create({{ $purchase_request->id }})">
@@ -299,9 +310,20 @@
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
 
-                                                <a class="dropdown-item" href="/">Accept PR</a>
-                                                <a class="dropdown-item" href="/">Accept and Edit PR</a>
-
+                                                <form
+                                                    action="{{ route('approval.purchasing_view', $purchase_request->id) }}"
+                                                    method="GET">
+                                                    @csrf
+                                                    @method('GET')
+                                                    <input type="submit" class="dropdown-item" value="Ubah Status">
+                                                </form>
+                                                <form
+                                                    action="{{ route('approval.purchasing_edit', $purchase_request->id) }}"
+                                                    method="GET">
+                                                    @csrf
+                                                    @method('GET')
+                                                    <input type="submit" class="dropdown-item" value="Edit PR">
+                                                </form>
                                                 <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
                                                     class="dropdown-item text-danger"
                                                     onClick="reject_create({{ $purchase_request->id }})">
@@ -337,7 +359,10 @@
     <!-- Required vendors -->
     <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
 
+    
+    <!-- Datatable -->
     <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
