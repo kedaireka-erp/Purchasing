@@ -150,6 +150,7 @@ Route::middleware("auth")->group(function () {
         Route::get('/view/{id}', [PurchaseRequestController::class, "view"])->name("view");
         Route::get('/additem/{id}', [PurchaseRequestController::class, "plus"])->name("plus");
         Route::post('/storeitem/{id}', [PurchaseRequestController::class, 'storeplus'])->name("storeplus");
+         Route::get('/view/reject/{id}', [PurchaseRequestController::class, "view_reject"])->name("view_reject");
         Route::get('/edit/{id}', [PurchaseRequestController::class, "edit"])->name("edit");
         Route::post('/update{id}', [PurchaseRequestController::class, "update"])->name("update");
         Route::post('/updategood/{id}', [HomeController::class, "update_good"])->name("update_good");
