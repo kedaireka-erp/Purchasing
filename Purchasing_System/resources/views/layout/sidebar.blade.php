@@ -144,6 +144,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/purchase_request">Purchase Request</a></li>
+                            <li><a href="/purchase_request/create">Buat PR</a></li>
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master Request</a>
                                 <ul aria-expanded="false">
                                     <li><a href="/masteritem">Master Item</a></li>

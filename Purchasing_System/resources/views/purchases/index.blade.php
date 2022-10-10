@@ -27,14 +27,14 @@
             <div class="row">
                 <div class="col-9">
                     <div class="card-header">
-                        <h4 class="card-title">Data Purchase Request</h4>
+                        <h4 class="card-title">PR Pending</h4>
                     </div>
                 </div>
                 <div class="col-3">
-                    <div id="button_add">
+                    {{-- <div id="button_add">
                         <a href="{{ url('purchase_request/create') }}" class="btn btn-success" id="add"> +Add Data
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <hr>
@@ -42,11 +42,10 @@
 
 
         <div class="card-body">
-            <h3>PR Pending</h3>
             <div class="table-responsive">
                 <table id="example3" class="display" style="width:100%">
                     <thead>
-                        <tr class="content-control-md" align="right">
+                        <tr class="content-control-md" align="center">
                             <td width="15%" align="left">Nomor PR</td>
                             <td width="10%">Pengajuan</td>
                             <td width="10%">Deadline</td>
@@ -59,7 +58,7 @@
                     </thead>
                     <tbody>
                         @foreach ($purchase_requests_pending as $no => $purchase_request)
-                            <tr align="right">
+                            <tr align="center">
                                 <input type="hidden" class="delete_id" value="{{ $purchase_request->id }}">
                                 <td class="content-control" align="left">{{ $purchase_request->no_pr }}</td>
                                 <td class="content-control">
@@ -118,10 +117,23 @@
                 </table>
             </div>
         </div>
+    </div>
 
-
+    <div class="card">
+        <div id="chead">
+            <div class="row">
+                <div class="col-9">
+                    <div class="card-header">
+                        <h4 class="card-title">PR Done</h4>
+                    </div>
+                </div>
+                <div class="col-3">
+                    
+                </div>
+            </div>
+            <hr>
+        </div>
         <div class="card-body">
-            <h3>PR Done</h3>
             <div class="table-responsive">
                 <table id="example3" class="display" style="width:100%">
                     <thead>
@@ -203,9 +215,23 @@
                 </table>
             </div>
         </div>
+    </div>
 
 
-
+        <div class="card">
+            <div id="chead">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="card-header">
+                            <h4 class="card-title">PR Reject</h4>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        
+                    </div>
+                </div>
+                <hr>
+            </div>
         <div class="card-body">
             <h3>PR Ditolak</h3>
             <div class="table-responsive">
@@ -266,10 +292,10 @@
                                             <div class="py-2">
 
                                                 <a class="dropdown-item"
-                                                    href="{{ route('purchase_request.view', $purchase_request->id) }}">Detail</a>
+                                                    href="{{ route('purchase_request.view_reject', $purchase_request->id) }}">Detail Reject</a>
 
-                                                <a class="dropdown-item"
-                                                    href="{{ route('purchase_request.edit', $purchase_request->id) }}">Edit</a>
+                                                {{-- <a class="dropdown-item"
+                                                    href="{{ route('purchase_request.edit', $purchase_request->id) }}">Edit</a> --}}
 
                                                 <form
                                                     action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
@@ -277,7 +303,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
-                                                        class="dropdown-item text-danger">Delete</button>
+                                                        class="dropdown-item text-danger">Delete PR</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -288,6 +314,7 @@
                     </tbody>
                 </table>
             </div>
+        </div>
         </div>
 
 

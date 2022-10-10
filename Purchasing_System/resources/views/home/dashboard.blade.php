@@ -25,9 +25,9 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:#ABD9FF; font-size: 15px; font-weight:500">
-                                Jumlah Divisi</div>
+                                PR Diajukan</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:#ABD9FF; font-size: 30px; font-weight:bold">
-                            {{ $divisi }} </div>
+                            {{ $purchase }} </div>
                         </div>
                         <div class="col-auto">
                             <i class="bi bi-person-badge fa-2x text-gray-300" style="color:#ABD9FF"></i>
@@ -44,7 +44,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-1" style="color:plum; font-size: 15px; font-weight:500">
-                                Jumlah Pesanan</div>
+                                PO Keluar </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:plum; font-size:30px; font-weight:bold">{{ $orders }} </div>
                         </div>
                         <div class="col-auto">
@@ -61,7 +61,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:#C7F2A4; font-size: 15px; font-weight:500">
-                                Jumlah Powder</div>
+                                Powder</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:#C7F2A4; font-size:30px; font-weight:bold">{{ $jmlpowder }} </div>
                         </div>
                         <div class="col-auto">
@@ -78,7 +78,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold  text-uppercase mb-1" style="color:#FFD384; font-size: 15px; font-weight:500">
-                                Jumlah Other Good</div>
+                                Other Good</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800" style="color:#FFD384; font-size: 30px; font-weight:bold">{{$jmlother}}</div>
                         </div>
                         <div class="col-auto">
@@ -140,11 +140,12 @@
                         <table  class="table" style="box-shadow: none; border:none">
                             <thead>
                                 <tr class="content-control-md" align="center">
-                                    <td class="content-control" width="10%">No</td>
+                                    <td class="content-control" width="5%">No</td>
                                     <td class="content-control" width="20%">Pengajuan</td>
                                     <td class="content-control" width="20%">Requester</td>
-                                    <td class="content-control" width="20%">Divisi</td>
-                                    <td class="content-control" width="30%">Status</td>
+                                    <td class="content-control" width="15%">Divisi</td>
+                                    <td class="content-control" width="15%">Type</td>
+                                    <td class="content-control" width="25%">Status</td>
                                     
                                 </tr>
                             </thead>
@@ -156,6 +157,7 @@
                                         {{ \Carbon\Carbon::parse($purchase_request ->created_at)->format('d/m/Y') }}</td>
                                     <td class="content-control-sm">{{ $purchase_request ->requester }}</td>
                                     <td class="content-control-sm">{{ $purchase_request ->Prefixe->divisi }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->type }}</td>
                                     <td class="content-control-sm">
                                         @include('purchases.status')
                                     </td>

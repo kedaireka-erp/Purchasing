@@ -27,7 +27,7 @@ class HomeController extends Controller
     }
     public function index()
     {
-        $divisi= Prefix::count();
+        $purchase= PurchaseRequest::count();
         $orders= Order::count();
         $pending=PurchaseRequest::where('approval_status','pending')->orWhere('approval_status','reject')->orWhere('accept_status','reject')->count();
         $done=PurchaseRequest::where('accept_status', 'accept')->count();
@@ -35,7 +35,7 @@ class HomeController extends Controller
         $jmlother = Item::count();
         $purchase_tabel = PurchaseRequest::latest()->paginate(3);
         $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->get();
-        return view('home.dashboard',compact('divisi','orders','pending','done','jmlpowder','jmlother','purchase_tabel','purchase_requests'));
+        return view('home.dashboard',compact('purchase','orders','pending','done','jmlpowder','jmlother','purchase_tabel','purchase_requests'));
     }
     public function manager()
     {

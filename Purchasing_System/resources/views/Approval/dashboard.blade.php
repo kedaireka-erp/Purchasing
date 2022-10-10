@@ -330,9 +330,9 @@
     <!-- Required vendors -->
     <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
 
-    <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-
-
+    <!-- Datatable -->
+        <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         function reject_create(id) {

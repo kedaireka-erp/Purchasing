@@ -288,6 +288,19 @@ class PurchaseRequestController extends Controller
 
         return view('view', compact('purchase_requests', 'Location', 'Ship', 'Prefixe','item', 'Grade', 'Supplier'));
     }
+    public function view_reject($id){
+        $purchase_requests = PurchaseRequest::find($id);
+        $item = Item::with('master_item','satuan')->get();
+
+
+        $Location=location::get();
+        $Ship=ships::get();
+        $Prefixe=Prefix::get();
+        $Grade = Grade::get();
+        $Supplier = Supplier::get();
+
+        return view('purchases.reject', compact('purchase_requests', 'Location', 'Ship', 'Prefixe','item', 'Grade', 'Supplier'));
+    }
 
     public function detail($id){
         $purchase_requests = PurchaseRequest::find($id);
