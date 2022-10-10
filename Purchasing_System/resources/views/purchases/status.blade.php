@@ -44,6 +44,28 @@
                 accept with {{ $purchase_request->accept_status . 'ed' }}
             </a>
         </div>
+        @elseif($purchase_request->approval_status == 'edit' && $purchase_request->accept_status == 'accept')
+        <div><a class="edit content-control">
+            <i class="fa fa-check"></i>
+            approve with {{ $purchase_request->approval_status . 'ed' }}
+        </a></div>
+    <div>
+        
+            <a class="approve content-control-sm">
+                <i class="fa fa-check"></i>
+                {{ $purchase_request->accept_status . 'ed' }}
+            </a>
+        </div>
+        @elseif($purchase_request->approval_status == 'edit' && $purchase_request->accept_status == 'edit')
+        <div><a class="edit content-control">
+                <i class="fa fa-check"></i>
+                approve with {{ $purchase_request->approval_status . 'ed' }}
+            </a></div>
+        <div>
+            <div><a class="edit content-control">
+                <i class="fa fa-check"></i>
+                accept with {{ $purchase_request->accept_status . 'ed' }}
+            </a></div>
         {{-- End 100% --}}
 
 
