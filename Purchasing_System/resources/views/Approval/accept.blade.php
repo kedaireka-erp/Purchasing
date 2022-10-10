@@ -79,8 +79,15 @@
                                             </tr>
 
                                             <tr class="tr">
+                                                <td width="200px">Tanggal Disetujui Manager</td>
+                                                <td>:
+                                                    {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                                                </td>
+                                            </tr>
+
+                                            <tr class="tr">
                                                 @if($purchase_requests->accept_status == 'accept')
-                                                <td width="200px">Tanggal Disetujui</td>
+                                                <td width="200px">Tanggal Disetujui Manager</td>
                                                     <td>:
                                                         {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
                                                     </td>
@@ -97,26 +104,21 @@
                                                         {{ $purchase_requests->approval_status . ' and '.  $purchase_requests->accept_status }}
                                                     </td>
                                                     </tr>
-                                                @elseif ($purchase_requests->approval_status == 'approve')
-                                                    <td width="200px">Tanggal Disetujui</td>
+                                                @elseif ($purchase_requests->accept_status == 'reject')
+                                                <td width="200px">Tanggal Disetujui Manager</td>
                                                     <td>:
                                                         {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
                                                     </td>
                                                     <tr class="tr">
-                                                    <td width="200px">Status</td>
-                                                    <td>:
-                                                        {{ $purchase_requests->approval_status . 'd by Manager' }}
-                                                    </td>
-                                                    </tr>
-                                                @elseif ($purchase_requests->approval_status == 'reject')
                                                     <td width="200px">Tanggal Ditolak</td>
                                                     <td>:
                                                         {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
                                                     </td>
-                                                    <td width="200px">Status</td>
+                                                    </tr>
                                                     <tr class="tr">
+                                                    <td width="200px">Status</td>
                                                     <td>:
-                                                        {{ $purchase_requests->approval_status . 'ed by Manager' }}
+                                                        {{ $purchase_requests->accept_status . 'ed by Tim Purchasing' }}
                                                     </td>
                                                     </tr>
                                                 @endif
@@ -148,10 +150,12 @@
                                                 <td>: {{ $purchase_requests->location->location_name }}</td>
                                             </tr>
                                             <br>
+                                            @if($purchase_requests->accept_status == 'reject')
                                             <tr class="tr">
-                                                <td width="200px">Approval PR</td>
-                                                <td>: {{ $purchase_requests->approval_status }}</td>
+                                                <td width="200px">Pesan Reject</td>
+                                                <td style="font-weight: 600">: {{ $purchase_requests->feedback_purchasing }}</td>
                                             </tr>
+                                            @endif
                                             <br>
                                             <tr class="tr">
                                                 <td width="200px">Note</td>
@@ -262,7 +266,7 @@
                                                         <select class="default-select input-rounded form-control wide mb-3"
                                                             style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
                                                             id="approval_status" name="accept_status">
-                                                            <option value="accept" selected
+                                                            <option value="" selected
                                                                 disabled> reject</option>
                                                             <option value="pending">pending</option>
                                                             <option value="accept">accept</option>
