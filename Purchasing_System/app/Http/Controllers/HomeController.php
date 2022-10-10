@@ -29,10 +29,13 @@ class HomeController extends Controller
     {
         $divisi= Prefix::count();
         $orders= Order::count();
-        $tertunda=PurchaseRequest::where('approval_status','pending')->count();
-        $selesai=PurchaseRequest::where('accept_status', 'accept')->count();
-       
-        return view('home.dashboard',compact('divisi','orders','tertunda','selesai'));
+        $pending=PurchaseRequest::where('approval_status','pending')->count();
+        $done=PurchaseRequest::where('accept_status', 'accept')->count();
+        $jmlpowder = Powder::count();
+        $jmlother = Item::count();
+        $purchase_tabel = PurchaseRequest::latest()->paginate(3);
+        $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->get();
+        return view('home.dashboard',compact('divisi','orders','pending','done','jmlpowder','jmlother','purchase_tabel','purchase_requests'));
     }
     public function manager()
     {
