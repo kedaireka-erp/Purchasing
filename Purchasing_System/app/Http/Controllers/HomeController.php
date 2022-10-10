@@ -60,16 +60,16 @@ class HomeController extends Controller
     
 
 
-
+    // Dashboard manager
     public function approval()
     {
         $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->get();
-        $purchase_requests_approve = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'pending')->orwhere('accept_status', '=', 'accept')->get();
-        $purchase_request_reject = PurchaseRequest::where('approval_status', '=', 'reject')->orwhere('accept_status', '=', 'reject')->get();
+        $purchase_requests_approve = PurchaseRequest::where('approval_status', '=', 'approve')->get();
+        $purchase_request_reject = PurchaseRequest::where('approval_status', '=', 'reject')->get();
         return view('Approval.dashboard', compact("purchase_requests_pending", 'purchase_requests_approve', 'purchase_request_reject'));
     }
 
-
+    // Dashboard Purchasing
     public function accept_page()
     {
         $pr_condition1 =  PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', 'pending')->get();
@@ -196,7 +196,7 @@ class HomeController extends Controller
         ]);
 
 
-        return redirect('/approval');
+        return redirect('/approval')->with('terhapus', 'Reject Terkirim');
     }
 
     public function store_accept_reject(Request $request, $id)
@@ -207,7 +207,7 @@ class HomeController extends Controller
         ]);
 
 
-        return redirect('approval/accept');
+        return redirect('approval/accept')->with('terhapus', 'Reject Terkirim');
     }
 
 
@@ -222,8 +222,8 @@ class HomeController extends Controller
 
         ]);
 
-        $purchase_requests = PurchaseRequest::paginate(5);
-        return redirect('approval');
+        // $purchase_requests = PurchaseRequest::paginate(5);
+        return redirect('approval')->with('success', 'Berhasil mengubah status');
     }
 
     public function update_accept(request $request, $id)
@@ -232,7 +232,7 @@ class HomeController extends Controller
             'accept_status' => $request->accept_status,
 
         ]);
-        return redirect('approval/accept');
+        return redirect('approval/accept')->with('success', 'Berhasil mengubah status');
     }
     public function delete($id)
     {

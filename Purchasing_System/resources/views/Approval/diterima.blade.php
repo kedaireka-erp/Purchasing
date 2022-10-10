@@ -7,7 +7,7 @@
     <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
 @endsection
 
-@section('title_content', 'Approval')
+@section('title_content', 'Approval Tim Purchasing')
 
 @section('wrap_title')
     <div class="row page-titles">
@@ -19,6 +19,7 @@
 @endsection
 
 @section('content')
+<x-alert></x-alert>
     <div class="card">
         <div id="chead">
             <div class="row">
@@ -40,12 +41,12 @@
                         <tr class="content-control-md" align="right">
                             <td width="15%" align="left">Nomor PR</td>
                             <td width="10%">Pengajuan</td>
-                            <td width="10%">Deadline</td>
-                            <td width="20%">Requester</td>
-                            <td width="10%">Divisi</td>
-                            <td width="10%">Type</td>
-                            <td width="20%" align="center">Status</td>
-                            <td width="5%" align="center"></td>
+                            <td width="15%">Deadline</td>
+                            <td width="15%">Requester</td>
+                            <td width="12%">Divisi</td>
+                            <td width="13%">Type</td>
+                            <td width="15%" align="center">Status</td>
+                            <td width="5%"></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -93,21 +94,15 @@
                                                     method="GET">
                                                     @csrf
                                                     @method('GET')
-                                                    <input type="submit" class="dropdown-item" value="Accept PR">
+                                                    <input type="submit" class="dropdown-item" value="Ubah Status">
                                                 </form>
                                                 <form
                                                     action="{{ route('approval.purchasing_edit', $purchase_request->id) }}"
                                                     method="GET">
                                                     @csrf
                                                     @method('GET')
-                                                    <input type="submit" class="dropdown-item" value="Accept
-                                                    and Edit PR">
+                                                    <input type="submit" class="dropdown-item" value="Edit PR">
                                                 </form>
-                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
-                                                    class="dropdown-item text-danger"
-                                                    onClick="reject_create({{ $purchase_request->id }})"> Reject
-                                                </a>
-
                                             </div>
                                         </div>
                                     </div>
@@ -139,13 +134,13 @@
                     <thead>
                         <tr class="content-control-md" align="right">
                             <td width="15%" align="left">Nomor PR</td>
-                            <td width="10%">Pengajuan</td>
+                            <td width="15%">Diterima</td>
                             <td width="10%">Deadline</td>
-                            <td width="20%">Requester</td>
-                            <td width="10%">Divisi</td>
-                            <td width="10%">Type</td>
-                            <td width="20%" align="center">Status</td>
-                            <td width="5%" align="center"></td>
+                            <td width="15%">Requester</td>
+                            <td width="12%">Divisi</td>
+                            <td width="13%">Type</td>
+                            <td width="15%" align="center">Status</td>
+                            <td width="5%"></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -208,20 +203,8 @@
                                                     method="GET">
                                                     @csrf
                                                     @method('GET')
-                                                    <input type="submit" class="dropdown-item" value="Ubah Status">
+                                                    <input type="submit" class="dropdown-item" value="View Detail">
                                                 </form>
-                                                <form
-                                                    action="{{ route('approval.purchasing_edit', $purchase_request->id) }}"
-                                                    method="GET">
-                                                    @csrf
-                                                    @method('GET')
-                                                    <input type="submit" class="dropdown-item" value="Edit PR">
-                                                </form>
-                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
-                                                    class="dropdown-item text-danger"
-                                                    onClick="reject_create({{ $purchase_request->id }})">
-                                                    Reject
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -240,7 +223,7 @@
             <div class="row">
                 <div class="col-9">
                     <div class="card-header">
-                        <h4 class="card-title">Data PR Ditolak</h4>
+                        <h4 class="card-title">Data PR Reject</h4>
                     </div>
                 </div>
 
@@ -253,13 +236,13 @@
                     <thead>
                         <tr class="content-control-md" align="right">
                             <td width="15%" align="left">Nomor PR</td>
-                            <td width="10%">Pengajuan</td>
+                            <td width="15%">Tanggal Reject</td>
                             <td width="10%">Deadline</td>
-                            <td width="20%">Requester</td>
-                            <td width="10%">Divisi</td>
-                            <td width="10%">Type</td>
-                            <td width="20%" align="center">Status</td>
-                            <td width="5%" align="center"></td>
+                            <td width="15%">Requester</td>
+                            <td width="12%">Divisi</td>
+                            <td width="13%">Type</td>
+                            <td width="15%" align="center">Status</td>
+                            <td width="5%"></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -309,7 +292,6 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
-
                                                 <form
                                                     action="{{ route('approval.purchasing_view', $purchase_request->id) }}"
                                                     method="GET">
@@ -324,11 +306,6 @@
                                                     @method('GET')
                                                     <input type="submit" class="dropdown-item" value="Edit PR">
                                                 </form>
-                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
-                                                    class="dropdown-item text-danger"
-                                                    onClick="reject_create({{ $purchase_request->id }})">
-                                                    Reject
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -341,20 +318,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModalPowderCenter">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" align="center" id="PowderModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div id="powder_page" class="pd-2"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <!-- Required vendors -->
     <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
@@ -365,16 +329,6 @@
     <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        function reject_create(id) {
-            $.get("{{ url('approval/accept/create/reject') }}/" + id, {}, function(data, status) {
-                $("#PowderModalLabel").html('Reject Note');
-                $("#powder_page").html(data);
-                $("#exampleModalPowderCenter").modal('show');
-
-            })
-        }
-    </script>
+    
 
 @endsection

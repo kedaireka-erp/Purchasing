@@ -24,7 +24,7 @@
 
 @section('content')
 
-
+<x-alert></x-alert>
     <div class="row">
         <div class="col-md-5">
             <div class="card" style="height: 550px">
@@ -98,7 +98,7 @@
                                                 </tr>
                                                 <br>
                                                 <tr class="tr">
-                                                    <td width="200px">Devisi</td>
+                                                    <td width="200px">Divisi</td>
                                                     <td>: {{ $purchase_requests->Prefixe->divisi }}</td>
                                                 </tr>
                                                 <br>
@@ -128,7 +128,7 @@
 
                                                     <td>: </td>
                                                 </tr>
-
+                                                <br>
 
 
                                             </table>
@@ -476,11 +476,18 @@
                                                 <select class="default-select input-rounded form-control wide mb-3"
                                                     style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
                                                     id="approval_status" name="approval_status">
-                                                    <option value="{{ $purchase_requests->approval_status }}" selected
-                                                        disabled>
-                                                        {{ $purchase_requests->approval_status }}</option>
+                                                    <option disabled value="" selected>{{ $purchase_requests->approval_status }}</option>
+                                                    @if ($purchase_requests->approval_status == 'pending')
+                                                    <option value="approve">approve</option>
+                                                    @elseif ($purchase_requests->approval_status == 'approve')
                                                     <option value="pending">pending</option>
-                                                    <option value="edit">approve</option>
+                                                    @elseif ($purchase_requests->approval_status == 'reject')
+                                                    <option value="approve">approve</option>
+                                                    <option value="pending">pending</option>
+                                                    @elseif ($purchase_requests->approval_status == 'edit')
+                                                    <option value="approve">approve</option>
+                                                    <option value="pending">pending</option>
+                                                    @endif
                                                 </select>
                                             </div>
                                         </div>

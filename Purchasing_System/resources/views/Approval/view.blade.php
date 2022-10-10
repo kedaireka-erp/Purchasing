@@ -1,12 +1,12 @@
 @extends('layout.sidebar')
 
-@section('judul-laman', 'Approval Purchasing Request')
+@section('judul-laman', 'Approval PR')
 
 @section('Judul-content')
 
     <div class="d-flex justify-content-between">
         <div class="title-page">
-            Approve Purchasing Request
+            Approve PR
         </div>
         <a href="/purchase_request" type="button" class="btn-close" aria-label="Close"></a>
     </div>
@@ -52,9 +52,11 @@
                                 </li>
                                 <li class="nav-item"><a href="#about-me" data-bs-toggle="tab" class="nav-link"> Item </a>
                                 </li>
+                                @if($purchase_requests->approval_status == 'pending' || $purchase_requests->approval_status == 'reject' || $purchase_requests->approval_status == 'edit')
                                 <li class="nav-item"><a href="#approval" data-bs-toggle="tab" class="nav-link">
                                         Approval </a>
                                 </li>
+                                @endif
                             </ul>
                             <div class="tab-content">
                                 <div id="my-posts" class="tab-pane fade active show">
@@ -73,21 +75,35 @@
                                                 </tr>
                                                 <br>
                                                 <tr class="tr">
-                                                    @if ($purchase_requests->approval_status == 'pending')
-                                                        <td width="200px">Tanggal Deadline</td>
-                                                        <td>:
-                                                            {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}
-                                                        </td>
-                                                    @elseif ($purchase_requests->approval_status == 'approve')
-                                                        <td width="200px">Tanggal Diterima</td>
+                                                <td width="200px">Tanggal Deadline</td>
+                                                <td>:
+                                                    {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}
+                                                </td>
+                                                </tr>
+
+                                                <tr class="tr">
+                                                    @if ($purchase_requests->approval_status == 'approve')
+                                                        <td width="200px">Tanggal Disetujui</td>
                                                         <td>:
                                                             {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
                                                         </td>
+                                                        <tr class="tr">
+                                                        <td width="200px">Status</td>
+                                                        <td>:
+                                                            {{ $purchase_requests->approval_status . 'd by Manager' }}
+                                                        </td>
+                                                        </tr>
                                                     @elseif ($purchase_requests->approval_status == 'reject')
                                                         <td width="200px">Tanggal Ditolak</td>
                                                         <td>:
                                                             {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
                                                         </td>
+                                                        <tr class="tr">
+                                                        <td width="200px">Status</td>
+                                                        <td>:
+                                                            {{ $purchase_requests->approval_status . 'ed by Manager' }}
+                                                        </td>
+                                                        </tr>
                                                     @endif
                                                 </tr>
                                                 <br>
@@ -97,7 +113,7 @@
                                                 </tr>
                                                 <br>
                                                 <tr class="tr">
-                                                    <td width="200px">Devisi</td>
+                                                    <td width="200px">Divisi</td>
                                                     <td>: {{ $purchase_requests->Prefixe->divisi }}</td>
                                                 </tr>
                                                 <br>
@@ -171,14 +187,14 @@
                                             <table class="table table-striped" id="body">
                                                 <thead>
                                                     <tr style="text-align: center; font-weight: bold">
-                                                        <td scope="col">No.</td>
-                                                        <td scope="col">Suppllier</td>
-                                                        <td scope="col">Grade</td>
-                                                        <td scope="col">Warna</td>
-                                                        <td scope="col">Kode Warna</td>
-                                                        <td scope="col">Finish</td>
-                                                        <td scope="col">Quantity</td>
-                                                        <td scope="col">m2</td>
+                                                        <td class="content-control-md">No.</td>
+                                                        <td class="content-control-md">Suppllier</td>
+                                                        <td class="content-control-md">Grade</td>
+                                                        <td class="content-control-md">Warna</td>
+                                                        <td class="content-control-md">Kode Warna</td>
+                                                        <td class="content-control-md">Finish</td>
+                                                        <td class="content-control-md">Quantity</td>
+                                                        <td class="content-control-md">m2</td>
 
                                                     </tr>
                                                 </thead>
@@ -191,14 +207,14 @@
 
                                                     @foreach ($purchase_requests->powder as $yes)
                                                         <tr style="text-align: center">
-                                                            <td>{{ $nomor++ }}</td>
-                                                            <td>{{ $yes->supplier->vendor }}</td>
-                                                            <td>{{ $yes->grade->type }}</td>
-                                                            <td>{{ $yes->warna }}</td>
-                                                            <td>{{ $yes->kode_warna }}</td>
-                                                            <td>{{ $yes->finish }}</td>
-                                                            <td>{{ $yes->quantity }}</td>
-                                                            <td>{{ $yes->m2 }}</td>
+                                                            <td class="content-control-sm">{{ $nomor++ }}</td>
+                                                            <td class="content-control-sm">{{ $yes->supplier->vendor }}</td>
+                                                            <td class="content-control-sm">{{ $yes->grade->tipe }}</td>
+                                                            <td class="content-control-sm">{{ $yes->warna }}</td>
+                                                            <td class="content-control-sm">{{ $yes->colour->name }}</td>
+                                                            <td class="content-control-sm">{{ $yes->finish }}</td>
+                                                            <td class="content-control-sm">{{ $yes->quantity }}</td>
+                                                            <td class="content-control-sm">{{ $yes->m2 }}</td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -211,7 +227,7 @@
 
 
                                 <div id="approval" class="tab-pane fade">
-
+                                    <div class="mb-3">
                                     <form action="{{ route('approval.updateApp', $purchase_requests->id) }}"
                                         method="post">
 
@@ -231,20 +247,14 @@
                                                         <option disabled value="" selected>{{ $purchase_requests->approval_status }}</option>
                                                         @if ($purchase_requests->approval_status == 'pending')
                                                         <option value="approve">approve</option>
-                                                        <option value="reject">reject</option>
-                                                        <option value="edit">edit</option>
                                                         @elseif ($purchase_requests->approval_status == 'approve')
                                                         <option value="pending">pending</option>
-                                                        <option value="reject">reject</option>
-                                                        <option value="edit">edit</option>
                                                         @elseif ($purchase_requests->approval_status == 'reject')
                                                         <option value="approve">approve</option>
                                                         <option value="pending">pending</option>
-                                                        <option value="edit">edit</option>
                                                         @elseif ($purchase_requests->approval_status == 'edit')
                                                         <option value="approve">approve</option>
                                                         <option value="pending">pending</option>
-                                                        <option value="reject">reject</option>
                                                         @endif
                                                     </select>
                                                 </div>
@@ -253,27 +263,61 @@
                                                 <button style="margin-top:10px" class="btn btn-primary"> Simpan
                                                 </button>
                                             </div>
+
                                         </div>
                                     </form>
-
+                                    </div>
+                                    @if($purchase_requests->approval_status != 'reject')
+                                    <div class="mb-3">
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
+                                        onClick="reject_create({{ $purchase_requests->id }})"> Reject PR
+                                    </button>
+                                    @else
+                                    <div class="mb-3">
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
+                                        onClick="reject_create({{ $purchase_requests->id }})"> Ubah Pesan Reject
+                                    </button>
+                                    @endif
+                                    </div>
+                                    
 
                                 </div>
                             </div>
                             <!-- Modal -->
-
+                            <div class="modal fade" id="exampleModalPowderCenter">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" align="center" id="PowderModalLabel"></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="powder_page" class="pd-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
-
-
-
-
-
     </div>
-    <!--**********************************
-                                                                                                                                                                                                                                Content body end
-                                                                                                                                                                                                                            ***********************************-->
+   <!-- Required vendors -->
+   <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
 
+   
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script>
+       function reject_create(id) {
+           $.get("{{ url('approval/create/reject') }}/" + id, {}, function(data, status) {
+               $("#PowderModalLabel").html('Reject Note');
+               $("#powder_page").html(data);
+               $("#exampleModalPowderCenter").modal('show');
+
+           })
+       }
+   </script>
 @endsection

@@ -7,7 +7,7 @@
     <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
 @endsection
 
-@section('title_content', 'Approval')
+@section('title_content', 'Approval Manager')
 
 @section('wrap_title')
     <div class="row page-titles">
@@ -19,6 +19,7 @@
 @endsection
 
 @section('content')
+<x-alert></x-alert>
     <div class="card">
         <div id="chead">
             <div class="row">
@@ -39,12 +40,12 @@
                     <thead>
                         <tr class="content-control-md" align="right">
                             <td width="15%" align="left">Nomor PR</td>
-                            <td width="10%">Pengajuan</td>
-                            <td width="15%">Deadline</td>
+                            <td width="15%">Pengajuan</td>
+                            <td width="10%">Deadline</td>
                             <td width="15%">Requester</td>
                             <td width="12%">Divisi</td>
                             <td width="13%">Type</td>
-                            <td width="15%">Status</td>
+                            <td width="15%" align="center">Status</td>
                             <td width="5%"></td>
                         </tr>
                     </thead>
@@ -60,7 +61,7 @@
                                 <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
                                 <td class="content-control">{{ $purchase_request->type }}</td>
 
-                                <td align="right"> <a class="pending content-control">
+                                <td align="center"> <a class="pending content-control">
                                         <i class="fa fa-clock-o"></i> {{ $purchase_request->approval_status }}
                                     </a></td>
 
@@ -85,19 +86,21 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
-
-                                                <a class="dropdown-item"
-                                                    href="{{ route('approval.view', $purchase_request->id) }}"> Change
-                                                    Status
-                                                </a>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('approval.edit', $purchase_request->id) }}"> Edit
-                                                </a>
-                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
-                                                    class="dropdown-item text-danger"
-                                                    onClick="reject_create({{ $purchase_request->id }})"> Reject
-                                                </a>
-
+                                                <form
+                                                        action="{{ route('approval.view', $purchase_request->id) }}"
+                                                        method="GET">
+                                                        @csrf
+                                                        @method('GET')
+                                                        <input type="submit" class="dropdown-item" value="Change
+                                                        Status">
+                                                    </form>
+                                                    <form
+                                                        action="{{ route('approval.edit', $purchase_request->id) }}"
+                                                        method="GET">
+                                                        @csrf
+                                                        @method('GET')
+                                                        <input type="submit" class="dropdown-item" value="Edit PR">
+                                                    </form>
                                             </div>
                                         </div>
                                     </div>
@@ -130,12 +133,12 @@
                     <thead>
                         <tr class="content-control-md" align="right">
                             <td width="15%" align="left">Nomor PR</td>
-                            <td width="12%">Pengajuan</td>
-                            <td width="16%">Tanggal Diterima</td>
+                            <td width="15%">Diterima</td>
+                            <td width="10%">Deadline</td>
                             <td width="15%">Requester</td>
-                            <td width="13%">Divisi</td>
-                            <td width="12%">Type</td>
-                            <td width="12%">Status</td>
+                            <td width="12%">Divisi</td>
+                            <td width="13%">Type</td>
+                            <td width="15%" align="center">Status</td>
                             <td width="5%"></td>
                         </tr>
                     </thead>
@@ -152,12 +155,12 @@
                                 <td class="content-control">{{ $purchase_request->type }}</td>
 
                                 @if ($purchase_request->approval_status == 'edit')
-                                    <td align="right"> <a class="edit content-control">
+                                    <td align="center"> <a class="edit content-control">
                                             <i class="fa fa-check"></i>
                                             approve with {{ $purchase_request->approval_status . 'ed' }}
                                         </a></td>
                                 @elseif ($purchase_request->approval_status == 'approve')
-                                    <td align="right"> <a class="approve content-control">
+                                    <td align="center"> <a class="approve content-control">
                                             <i class="fa fa-check"></i> {{ $purchase_request->approval_status . 'd' }}
                                         </a></td>
                                 @endif
@@ -189,19 +192,13 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
-
-                                                <a class="dropdown-item"
-                                                    href="{{ route('approval.view', $purchase_request->id) }}"> Change
-                                                    Status
-                                                </a>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('approval.edit', $purchase_request->id) }}"> Edit
-                                                </a>
-                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
-                                                    class="dropdown-item text-danger"
-                                                    onClick="reject_create({{ $purchase_request->id }})"> Reject
-                                                </a>
-
+                                                <form
+                                                        action="{{ route('approval.view', $purchase_request->id) }}"
+                                                        method="GET">
+                                                        @csrf
+                                                        @method('GET')
+                                                        <input type="submit" class="dropdown-item" value="View Detail">
+                                                    </form>
                                             </div>
                                         </div>
                                     </div>
@@ -233,12 +230,12 @@
                     <thead>
                         <tr class="content-control-md" align="right">
                             <td width="15%" align="left">Nomor PR</td>
-                            <td width="12%">Pengajuan</td>
-                            <td width="16%">Tanggal Ditolak</td>
+                            <td width="15%">Tanggal Reject</td>
+                            <td width="10%">Deadline</td>
                             <td width="15%">Requester</td>
-                            <td width="13%">Divisi</td>
-                            <td width="12%">Type</td>
-                            <td width="12%">Status</td>
+                            <td width="12%">Divisi</td>
+                            <td width="13%">Type</td>
+                            <td width="15%" align="center">Status</td>
                             <td width="5%"></td>
                         </tr>
                     </thead>
@@ -255,7 +252,7 @@
                                 <td class="content-control">{{ $purchase_request->type }}</td>
 
 
-                                <td align="right"> <a class="reject content-control">
+                                <td align="center"> <a class="reject content-control">
                                         <i class="fa fa-close"></i> {{ $purchase_request->approval_status . 'ed' }}
                                     </a></td>
 
@@ -287,19 +284,21 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
-
-                                                <a class="dropdown-item"
-                                                    href="{{ route('approval.view', $purchase_request->id) }}"> Change
-                                                    Status
-                                                </a>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('approval.edit', $purchase_request->id) }}"> Edit
-                                                </a>
-                                                <a data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
-                                                    class="dropdown-item text-danger"
-                                                    onClick="reject_create({{ $purchase_request->id }})"> Reject
-                                                </a>
-
+                                                <form
+                                                        action="{{ route('approval.view', $purchase_request->id) }}"
+                                                        method="GET">
+                                                        @csrf
+                                                        @method('GET')
+                                                        <input type="submit" class="dropdown-item" value="Change
+                                                        Status">
+                                                    </form>
+                                                    <form
+                                                        action="{{ route('approval.edit', $purchase_request->id) }}"
+                                                        method="GET">
+                                                        @csrf
+                                                        @method('GET')
+                                                        <input type="submit" class="dropdown-item" value="Edit PR">
+                                                    </form>
                                             </div>
                                         </div>
                                     </div>
@@ -312,20 +311,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModalPowderCenter">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" align="center" id="PowderModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div id="powder_page" class="pd-2"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <!-- Required vendors -->
     <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
@@ -333,16 +319,6 @@
     <!-- Datatable -->
         <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        function reject_create(id) {
-            $.get("{{ url('approval/create/reject') }}/" + id, {}, function(data, status) {
-                $("#PowderModalLabel").html('Reject Note');
-                $("#powder_page").html(data);
-                $("#exampleModalPowderCenter").modal('show');
-
-            })
-        }
-    </script>
+    
 
 @endsection
