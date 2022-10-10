@@ -140,24 +140,23 @@
                         <table  class="table" style="box-shadow: none; border:none">
                             <thead>
                                 <tr class="content-control-md" align="center">
-                                    <td class="content-control" width="5%">No</td>
-                                    <td class="content-control" width="15%">Pengajuan</td>
-                                    <td class="content-control" width="15%">Requester</td>
-                                    <td class="content-control" width="15%">Divisi</td>
-                                    <td class="content-control" width="5%"  align="left">Status</td>
+                                    <td class="content-control" width="10%">No</td>
+                                    <td class="content-control" width="20%">Pengajuan</td>
+                                    <td class="content-control" width="20%">Requester</td>
+                                    <td class="content-control" width="20%">Divisi</td>
+                                    <td class="content-control" width="30%">Status</td>
                                     
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ( $purchase_tabel as $no => $purchase_request)
                                 <tr align="center">
-                                    <td>{{ $no + 1}}</td>
-                                    <td>
+                                    <td class="content-control-sm">{{ $no + 1}}</td>
+                                    <td class="content-control-sm">
                                         {{ \Carbon\Carbon::parse($purchase_request ->created_at)->format('d/m/Y') }}</td>
-                                    <td>{{ $purchase_request ->requester }}</td>
-                                    <td>{{ $purchase_request ->Prefixe->divisi }}</td>
-                                    <td align="left">
-                                        {{-- {{ $purchase_request ->approval_status }} --}}
+                                    <td class="content-control-sm">{{ $purchase_request ->requester }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request ->Prefixe->divisi }}</td>
+                                    <td class="content-control-sm">
                                         @include('purchases.status')
                                     </td>
                                 </tr>
@@ -165,41 +164,13 @@
                             </tbody>
                           </table>
                           {{ $purchase_tabel ->links()}}
-
-{{-- 
-                        <div class="table-responsive">
-                            <table id="example3">
-                                <thead>
-                                    <tr class="content-control-md" align="center">
-                                        <td width="5%">No</td>
-                                        <td width="15%">Pengajuan</td>
-                                        <td width="15%">Requester</td>
-                                        <td width="15%">Divisi</td>
-                                        <td width="5%"  align="center">Status</td>
-                                        
-                                    </tr>
-                                </thead> 
-                                <tbody>
-                                    @foreach ( $purchase_tabel as $no => $purchase)
-                                        <tr align="center">
-                                            <td class="content-control">{{ $no + 1}}</td>
-                                            <td class="content-control">
-                                                {{ \Carbon\Carbon::parse($purchase ->created_at)->format('d/m/Y') }}</td>
-                                            <td class="content-control">{{ $purchase ->requester }}</td>
-                                            <td class="content-control">{{ $purchase ->Prefixe->divisi }}</td>
-                                            <td class="content-control" align="center">
-                                                {{ $purchase ->approval_status }}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div> --}}
-                     
                     </div>
                 </div>
             </div>	
     </div>
+<div class="footeh" style="margin-top:100px">
+
+</div>
     <!-- Required vendors -->
 
     <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>

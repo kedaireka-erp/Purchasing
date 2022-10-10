@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $divisi= Prefix::count();
         $orders= Order::count();
-        $pending=PurchaseRequest::where('approval_status','pending')->count();
+        $pending=PurchaseRequest::where('approval_status','pending')->orWhere('approval_status','reject')->orWhere('accept_status','reject')->count();
         $done=PurchaseRequest::where('accept_status', 'accept')->count();
         $jmlpowder = Powder::count();
         $jmlother = Item::count();
