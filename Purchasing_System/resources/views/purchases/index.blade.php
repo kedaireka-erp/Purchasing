@@ -193,7 +193,7 @@
 
                                                 <a class="dropdown-item"
                                                     href="{{ route('purchase_request.view', $purchase_request->id) }}">Detail</a>
-
+                                                @if($purchase_request->approval_status != 'approve' && $purchase_request->accept_status != 'accept')
                                                 <a class="dropdown-item"
                                                     href="{{ route('purchase_request.edit', $purchase_request->id) }}">Edit</a>
 
@@ -205,6 +205,7 @@
                                                     <button type="submit"
                                                         class="dropdown-item text-danger">Delete</button>
                                                 </form>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
