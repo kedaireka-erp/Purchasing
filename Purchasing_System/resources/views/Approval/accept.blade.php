@@ -87,10 +87,6 @@
 
                                             <tr class="tr">
                                                 @if($purchase_requests->accept_status == 'accept')
-                                                <td width="200px">Tanggal Disetujui Manager</td>
-                                                    <td>:
-                                                        {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
-                                                    </td>
 
                                                     <tr class="tr">
                                                         <td width="200px">Tanggal Diterima PR</td>
@@ -105,10 +101,6 @@
                                                     </td>
                                                     </tr>
                                                 @elseif ($purchase_requests->accept_status == 'reject')
-                                                <td width="200px">Tanggal Disetujui Manager</td>
-                                                    <td>:
-                                                        {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
-                                                    </td>
                                                     <tr class="tr">
                                                     <td width="200px">Tanggal Ditolak</td>
                                                     <td>:
@@ -155,8 +147,8 @@
                                                 <td width="200px">Pesan Reject</td>
                                                 <td style="font-weight: 600">: {{ $purchase_requests->feedback_purchasing }}</td>
                                             </tr>
-                                            @endif
                                             <br>
+                                            @endif
                                             <tr class="tr">
                                                 <td width="200px">Note</td>
 

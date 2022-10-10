@@ -138,6 +138,14 @@
                                                     <td>: {{ $purchase_requests->approval_status }}</td>
                                                 </tr>
                                                 <br>
+                                                @if($purchase_requests->approval_status == 'reject')
+                                            <tr class="tr">
+                                                <td width="200px">Pesan Reject</td>
+                                                <td style="font-weight: 600">: {{ $purchase_requests->feedback_manager }}</td>
+                                            </tr>
+                                            <br>
+                                            @endif
+                                            
                                                 <tr class="tr">
                                                     <td width="200px">Note</td>
 
