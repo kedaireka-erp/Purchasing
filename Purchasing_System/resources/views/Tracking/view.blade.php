@@ -185,6 +185,20 @@
 
                                                         </div>
                                                         <div class="col-12">
+                                                            <div class="status" style="margin-top:30px">
+                                                                <label class="form-label"> Status PR </label>
+                                                                <select class="default-select input-rounded form-control wide mb-3"
+                                                                    style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
+                                                                    id="status" name="status">
+                                                                    <option value="{{ $purchase_requests->status }}" selected
+                                                                        disabled>
+                                                                        {{ $purchase_requests->status }}</option>
+                                                                    <option value="outstanding">outstanding</option>
+                                                                    <option value="closed">closed</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
                                                             <button style="margin-top:10px" class="btn btn-primary"> Simpan
                                                             </button>
                                                         </div>

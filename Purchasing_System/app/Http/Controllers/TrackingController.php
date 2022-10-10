@@ -136,7 +136,7 @@ class TrackingController extends Controller
             ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
             ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
             
-            ->select('item_requests.id_item','locations.location_name','purchase_requests.note','purchase_requests.approval_status','ships.tipe','satuans.unit','item_requests.id','orders.no_po','purchase_requests.project','purchase_requests.type','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.accept_status',
+            ->select('purchase_requests.status','item_requests.id_item','locations.location_name','purchase_requests.note','purchase_requests.approval_status','ships.tipe','satuans.unit','item_requests.id','orders.no_po','purchase_requests.project','purchase_requests.type','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.accept_status',
             'purchase_requests.deadline_date','purchase_requests.requester','items.outstanding','items.sudah_datang','prefixes.divisi', 'master_items.item_name')
             ->get();
 
@@ -178,7 +178,7 @@ class TrackingController extends Controller
             ->join('ships', 'ships.id', '=', 'purchase_requests.ships_id')
             ->join('locations', 'locations.id', '=', 'purchase_requests.locations_id')
             ->join('suppliers', 'suppliers.id', '=', 'powders.suppliers_id')
-            ->select('item_requests.powder_id','powders.finishing','powders.m2','purchase_requests.type','purchase_requests.approval_status','ships.tipe','locations.location_name','purchase_requests.note','item_requests.id','purchase_requests.project','purchase_requests.created_at','powders.sudah_datang' ,'powders.outstanding','colours.name','orders.no_po','purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
+            ->select('purchase_requests.status','item_requests.powder_id','powders.finishing','powders.m2','purchase_requests.type','purchase_requests.approval_status','ships.tipe','locations.location_name','purchase_requests.note','item_requests.id','purchase_requests.project','purchase_requests.created_at','powders.sudah_datang' ,'powders.outstanding','colours.name','orders.no_po','purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
             ->get();
         return view('Tracking.view_powder',compact('powders'));
     }
@@ -198,6 +198,11 @@ class TrackingController extends Controller
             'outstanding' =>  $outstanding - $request->sudah_datang,
             'tanggal_kedatangan_barang' => $request->tanggal_kedatangan_barang
             
+        ]);
+        DB::table('purchase_requests')
+        ->join('item_requests', 'item_requests.id_request', '=', 'purchase_requests.id')
+        ->where('id_item', $id)->update([
+            'status' => $request->status,
         ]);
 
 
@@ -226,6 +231,11 @@ class TrackingController extends Controller
             
         ]);
 
+        DB::table('purchase_requests')
+        ->join('item_requests', 'item_requests.id_request', '=', 'purchase_requests.id')
+        ->where('powder_id', $id)->update([
+            'status' => $request->status,
+        ]);
 
         return redirect('/tracking/powder');
         }
