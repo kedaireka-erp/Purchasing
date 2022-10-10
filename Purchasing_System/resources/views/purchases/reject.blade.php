@@ -219,7 +219,7 @@
                                                     </div>
                                           </div>
                                             <div class="mb-3">
-                                            <a href="{{ route('purchase_request.edit', $purchase_requests->id) }}" class="btn btn-info"> Revisi PR </a>
+                                            <a href="{{ route('purchase_request.edit', $purchase_requests->id) }}" style="width: 100%" class="btn btn-info"> Revisi PR </a>
                                                 </div>
                                             <div class="mb-3">
                                                 <div class="mb-3">
