@@ -468,7 +468,7 @@
 
                             <div id="approval" class="tab-pane fade">
 
-                                <form action="{{ route('approval.updateApp', $purchase_requests->id) }}" method="post">
+                                <form action="{{ route('approval.updateEditApp', $purchase_requests->id) }}" method="post">
 
                                     @csrf
                                     <div class="row">

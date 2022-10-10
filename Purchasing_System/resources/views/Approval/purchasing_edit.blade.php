@@ -482,7 +482,7 @@
                                 </div>
                             </div>
                             <div id="approval" class="tab-pane fade">
-                                <form action="{{ route('approval.update_accept', $purchase_requests->id) }}"
+                                <form action="{{ route('approval.update_accept_edit', $purchase_requests->id) }}"
                                     method="post">
                                     @csrf
                                     <div class="row">

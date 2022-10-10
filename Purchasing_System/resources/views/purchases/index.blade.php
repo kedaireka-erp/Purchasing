@@ -234,7 +234,6 @@
                 <hr>
             </div>
         <div class="card-body">
-            <h3>PR Ditolak</h3>
             <div class="table-responsive">
                 <table id="example3" class="display" style="width:100%">
                     <thead>

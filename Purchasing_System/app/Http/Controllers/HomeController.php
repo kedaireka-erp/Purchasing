@@ -226,10 +226,33 @@ class HomeController extends Controller
         return redirect('approval')->with('success', 'Berhasil mengubah status');
     }
 
+    public function update_edit(request $request, $id)
+    {
+        //perlu diubah
+
+
+        DB::table('purchase_requests')->where('id', $id)->update([
+            'tanggal_diterima' => $request->tanggal_diterima,
+            'approval_status' => 'edit'
+
+        ]);
+
+        // $purchase_requests = PurchaseRequest::paginate(5);
+        return redirect('approval')->with('success', 'Berhasil mengubah status');
+    }
+
     public function update_accept(request $request, $id)
     {
         DB::table('purchase_requests')->where('id', $id)->update([
             'accept_status' => $request->accept_status,
+
+        ]);
+        return redirect('approval/accept')->with('success', 'Berhasil mengubah status');
+    }
+    public function update_accept_edit(request $request, $id)
+    {
+        DB::table('purchase_requests')->where('id', $id)->update([
+            'accept_status' => 'edit',
 
         ]);
         return redirect('approval/accept')->with('success', 'Berhasil mengubah status');
