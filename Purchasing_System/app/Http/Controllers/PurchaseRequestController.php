@@ -83,7 +83,7 @@ class PurchaseRequestController extends Controller
         $validateData = $request->validate([
             'deadline_date'=>'required',
             'requester'=>'required|max:100',
-            'project'=>'required|max:100',
+            // 'project'=>'required|max:100',
             'attachment' => 'mimes:jpeg,img,jpg,png|max:20000',
             'locations_id' => 'required',
             'prefixes_id' => 'required',

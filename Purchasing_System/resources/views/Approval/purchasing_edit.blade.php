@@ -419,7 +419,7 @@
                                                 <div class="col-6">
                                                     <div class="mb-3">
                                                         <label for="tanggal_pengajuan" class="form-label font">m2</label>
-                                                        <input type="number" class="form-control input-rounded"
+                                                        <input type="text" class="form-control input-rounded"
                                                             name="m2" value="{{ $yes->m2 }}">
                                                     </div>
                                                 </div>

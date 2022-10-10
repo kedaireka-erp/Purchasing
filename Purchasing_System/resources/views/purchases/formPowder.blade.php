@@ -248,7 +248,7 @@
                     </div>
                     <div class="col-4">
                         <label for="tanggal_pengajuan" class="form-label font">m2</label>
-                        <input type="number" class="form-control input-rounded" name="m2"
+                        <input type="text" class="form-control input-rounded" name="m2"
                             placeholder="--INPUT--">
                     </div>
                     <div class="col-4">

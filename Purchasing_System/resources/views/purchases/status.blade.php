@@ -39,7 +39,7 @@
                 <i class="fa fa-check"></i> approved manager
             </a></div>
         <div>
-            <a class="pending content-control-sm">
+            <a class="edit content-control-sm">
                 <i class="fa fa-check"></i>
                 accept with {{ $purchase_request->accept_status . 'ed' }}
             </a>
@@ -82,6 +82,16 @@
                 <i class="fa fa-check"></i> approved manager
             </a>
         </div>
+        <div>
+            <a class="reject content-control-sm">
+                <i class="fa fa-close"></i> reject purchasing
+            </a>
+        </div>
+        @elseif($purchase_request->approval_status == 'edit' && $purchase_request->accept_status == 'reject')
+        <div><a class="edit content-control">
+            <i class="fa fa-check"></i>
+            approve with {{ $purchase_request->approval_status . 'ed' }}
+        </a></div>
         <div>
             <a class="reject content-control-sm">
                 <i class="fa fa-close"></i> reject purchasing
