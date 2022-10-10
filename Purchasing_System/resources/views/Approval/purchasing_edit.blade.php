@@ -61,7 +61,7 @@
                                 <div id="my-posts" class="tab-pane fade">
                                     <div class="my-post-content pt-3">
                                         <div class="post-input">
-                                            <table style="margin-top: -150px">
+                                            <table style="margin-top: -100px">
                                                 <tr class="tr">
                                                     <td width="200px">No. Purchase Request</td>
                                                     <td>: {{ $purchase_requests->no_pr }}</td>
