@@ -219,10 +219,19 @@
                                                     </div>
                                           </div>
                                             <div class="mb-3">
-                                            <a href="{{ route('purchase_request.edit', $purchase_request->id) }}" class="btn btn-info"> Revisi PR </a>
+                                            <a href="{{ route('purchase_request.edit', $purchase_requests->id) }}" class="btn btn-info"> Revisi PR </a>
                                                 </div>
                                             <div class="mb-3">
-                                            <button class="btn btn-danger"> Hapus PR </button>
+                                                <div class="mb-3">
+                                                      <form
+                                                          action="{{ route('purchase_request.destroy', $purchase_requests->id) }}"
+                                                          method="POST" onsubmit="return confirm('Yakin hapus data?')">
+                                                          @csrf
+                                                          @method('DELETE')
+                                                          <button type="submit"
+                                                              class="btn btn-danger">Hapus PR</button>
+                                                      </form>
+                                            </div>
                                       </div>
                                     </div>
                                 </div>

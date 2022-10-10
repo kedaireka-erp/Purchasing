@@ -31,7 +31,7 @@ class PurchaseRequestController extends Controller
             $items = Item::get();
             $powders = Powder::get();
             $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->get();
-            $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->orwhere('accept_status', '=', 'pending')->get();
+            $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->get();
             $purchase_requests_reject = PurchaseRequest::where('approval_status', '=', 'reject')->orwhere('accept_status', '=', 'reject')->get();
         }
 
