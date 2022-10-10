@@ -163,7 +163,7 @@
                                                                     name="id_master_item"
                                                                     value="{{ old('id_master_item') }}">
                                                                     <option selected disabled>-- Pilih Item --</option>
-                                                                    @foreach ($master_item as $itemss)
+                                                                    @foreach ($master_item as $items)
                                                                         <option value="{{ $items->id }}"
                                                                             {{ $items->id == $good->id_master_item ? 'selected' : '' }}>
                                                                             {{ ucfirst($items->item_name) }}
