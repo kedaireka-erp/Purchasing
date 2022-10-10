@@ -148,6 +148,7 @@ Route::middleware("auth")->group(function () {
         Route::post('/storegood', [PurchaseRequestController::class, "item_store"])->name("storegood");
         Route::post('/storepowder', [PurchaseRequestController::class, "powder_store"])->name("storepowder");
         Route::get('/view/{id}', [PurchaseRequestController::class, "view"])->name("view");
+        Route::get('/view/reject/{id}', [PurchaseRequestController::class, "view_reject"])->name("view_reject");
         Route::get('/additem/{id}', [PurchaseRequestController::class, "plus"])->name("plus");
         Route::post('/storeitem/{id}', [PurchaseRequestController::class, 'storeplus'])->name("storeplus");
          Route::get('/view/reject/{id}', [PurchaseRequestController::class, "view_reject"])->name("view_reject");
@@ -256,7 +257,9 @@ Route::middleware("auth")->group(function () {
         Route::post('/updatepowder/{id}', [HomeController::class, "update_powder"])->name("update_powder");
         Route::get('/accept/{id}', [HomeController::class, "accept"])->name("acceptpr");
         Route::post('/update/{id}', [HomeController::class, "update"])->name("updateApp");
+        Route::post('/update/edit/{id}', [HomeController::class, "update_edit"])->name("updateEditApp");
         Route::post('/accepted/{id}', [HomeController::class, "update_accept"])->name("update_accept");
+        Route::post('/accepted/edit/{id}', [HomeController::class, "update_accept_edit"])->name("update_accept_edit");
         Route::delete('/destroy{id}', [HomeController::class, "delete"])->name("deleteApp");
         Route::delete('/delete/{id}', [HomeController::class, 'delete_item'])->name("itemdelete");
     });
