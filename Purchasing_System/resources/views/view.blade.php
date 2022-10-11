@@ -92,7 +92,7 @@
                                                         <tr class="tr">
                                                         <td width="200px">Status</td>
                                                         <td>:
-                                                            {{ $purchase_requests->approval_status . 'd and' . $purchase_requests->accept_status  }}
+                                                            {{ $purchase_requests->approval_status . 'd and ' . $purchase_requests->accept_status  }}
                                                         </td>
                                                         </tr>
                                                         @elseif ($purchase_requests->approval_status == 'approve')
