@@ -29,8 +29,8 @@
 
 
     <!--**********************************
-                                                                                                                                    Content body start
-                                                                                                                                ***********************************-->
+                                                                                                                                        Content body start
+                                                                                                                                    ***********************************-->
 
     <div class="row">
         <div class="col-md-5">
@@ -209,142 +209,145 @@
                                         <p> {!! $purchase_requests->note !!} </p>
                                     </div>
                                 </div>
-                            </div>
-                            <div id="about-me" class="tab-pane fade">
-                                <div class="profile-about-me">
 
-                                    {{-- ini tabel item di tracking --}}
-                                    @if ($purchase_requests->type == 'othergood')
-                                        <table class="table table-striped" id="body">
-                                            <thead>
-                                                <tr style="text-align: center">
-                                                    <td scope="col">No.</td>
-                                                    <td scope="col">Description of Goods</td>
-                                                    <td scope="col">Quantity</td>
-                                                    <td scope="col">Unit</td>
-                                                </tr>
-                                            </thead>
+                                <div id="about-me" class="tab-pane fade">
+                                    <div class="profile-about-me">
 
-                                            @php
-                                                $nomor = 1;
-                                            @endphp
-
-
-                                            <tbody>
-
-                                                @foreach ($purchase_requests->item as $yes)
-                                                    <tr style="text-align: center">
-                                                        <td>{{ $nomor++ }}</td>
-                                                        <td>{{ $yes->master_item->item_name }}</td>
-                                                        <td>{{ $yes->stok }}</td>
-                                                        <td>{{ $yes->satuan->unit }}</td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    @elseif ($purchase_requests->type == 'powder')
-                                        <table class="table table-striped" id="body">
-                                            <thead>
+                                        {{-- ini tabel item di tracking --}}
+                                        @if ($purchase_requests->type == 'othergood')
+                                            <table class="table table-striped" id="body">
                                                 <thead>
-                                                    <td class="content-control-md">No.</td>
-                                                    <td class="content-control-md">Suppllier</td>
-                                                    <td class="content-control-md">Grade</td>
-                                                    <td class="content-control-md">Warna</td>
-                                                    <td class="content-control-md">Kode Warna</td>
-                                                    <td class="content-control-md">Finish</td>
-                                                    <td class="content-control-md">Quantity</td>
-                                                    <td class="content-control-md">m2</td>
-                                                </thead>
-                                            </thead>
-                                            @php
-                                                $nomor = 1;
-                                            @endphp
-
-                                            {{-- @if ($item->id_request == $purchase_requests->id) --}}
-                                            <tbody>
-
-                                                @foreach ($purchase_requests->powder as $yes)
                                                     <tr style="text-align: center">
-                                                        <td class="content-control-sm">{{ $nomor++ }}</td>
-                                                        <td class="content-control-sm">{{ $yes->supplier->vendor }}</td>
-                                                        <td class="content-control-sm">{{ $yes->grade->tipe }}</td>
-                                                        <td class="content-control-sm">{{ $yes->warna }}</td>
-                                                        <td class="content-control-sm">{{ $yes->colour->name }}</td>
-                                                        <td class="content-control-sm">{{ $yes->finish }}</td>
-                                                        <td class="content-control-sm">{{ $yes->quantity }}</td>
-                                                        <td class="content-control-sm">{{ $yes->m2 }}</td>
+                                                        <td scope="col">No.</td>
+                                                        <td scope="col">Description of Goods</td>
+                                                        <td scope="col">Quantity</td>
+                                                        <td scope="col">Unit</td>
                                                     </tr>
-                                                @endforeach
-                                            </tbody>
-                                            {{-- @endif --}}
-                                        </table>
-                                    @endif
+                                                </thead>
 
+                                                @php
+                                                    $nomor = 1;
+                                                @endphp
+
+
+                                                <tbody>
+
+                                                    @foreach ($purchase_requests->item as $yes)
+                                                        <tr style="text-align: center">
+                                                            <td>{{ $nomor++ }}</td>
+                                                            <td>{{ $yes->master_item->item_name }}</td>
+                                                            <td>{{ $yes->stok }}</td>
+                                                            <td>{{ $yes->satuan->unit }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        @elseif ($purchase_requests->type == 'powder')
+                                            <table class="table table-striped" id="body">
+                                                <thead>
+                                                    <thead>
+                                                        <td class="content-control-md">No.</td>
+                                                        <td class="content-control-md">Suppllier</td>
+                                                        <td class="content-control-md">Grade</td>
+                                                        <td class="content-control-md">Warna</td>
+                                                        <td class="content-control-md">Kode Warna</td>
+                                                        <td class="content-control-md">Finish</td>
+                                                        <td class="content-control-md">Quantity</td>
+                                                        <td class="content-control-md">m2</td>
+                                                    </thead>
+                                                </thead>
+                                                @php
+                                                    $nomor = 1;
+                                                @endphp
+
+                                                {{-- @if ($item->id_request == $purchase_requests->id) --}}
+                                                <tbody>
+
+                                                    @foreach ($purchase_requests->powder as $yes)
+                                                        <tr style="text-align: center">
+                                                            <td class="content-control-sm">{{ $nomor++ }}</td>
+                                                            <td class="content-control-sm">{{ $yes->supplier->vendor }}
+                                                            </td>
+                                                            <td class="content-control-sm">{{ $yes->grade->tipe }}</td>
+                                                            <td class="content-control-sm">{{ $yes->warna }}</td>
+                                                            <td class="content-control-sm">{{ $yes->colour->name }}</td>
+                                                            <td class="content-control-sm">{{ $yes->finish }}</td>
+                                                            <td class="content-control-sm">{{ $yes->quantity }}</td>
+                                                            <td class="content-control-sm">{{ $yes->m2 }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                                {{-- @endif --}}
+                                            </table>
+                                        @endif
+
+                                    </div>
+                                </div>
+                                @if ($purchase_requests->approval_status == 'reject')
+                                    <div id="reject_manager" class="tab-pane fade active show">
+                                        <div class="profile-reject_manager">
+                                            <div class="mb-3">
+                                                <p style="font-weight: bold" class="form-label"> Alasan Reject Manager
+                                                </p>
+                                                <textarea name="tanggal_diterima" class="form-control wide" disabled>{{ $purchase_requests->feedback_manager }}  </textarea>
+                                            </div>
+                                            <div class="mb-3">
+                                                <a href="{{ route('purchase_request.create') }}" style="width: 100%"
+                                                    class="btn btn-primary"> Buat PR Baru </a>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <a href="{{ route('purchase_request.edit', $purchase_requests->id) }}"
+                                                style="width: 100%" class="btn btn-info"> Revisi PR </a>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="mb-3">
+                                                <form
+                                                    action="{{ route('purchase_request.destroy', $purchase_requests->id) }}"
+                                                    method="POST" onsubmit="return confirm('Yakin hapus data?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Hapus PR</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        @elseif($purchase_requests->accept_status == 'reject')
+                            <div id="reject_purchasing" class="tab-pane fade active show">
+                                <div class="profile-reject_purchasing">
+                                    <div class="mb-3">
+                                        <p style="font-weight: bold" class="form-label"> Alasan Reject Tim Purchasing </p>
+                                        <textarea name="tanggal_diterima" class="form-control wide" disabled>{{ $purchase_requests->feedback_purchasing }}  </textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="mb-3">
+                                            <a href="{{ route('purchase_request.edit', $purchase_requests->id) }}"
+                                                style="width: 100%" class="btn btn-primary"> Revisi PR </a>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <a href="{{ route('purchase_request.create') }}" style="width: 100%"
+                                            class="btn btn-info"> Buat PR Baru </a>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <form action="{{ route('purchase_request.destroy', $purchase_requests->id) }}"
+                                        method="POST" onsubmit="return confirm('Yakin hapus data?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Hapus PR</button>
+                                    </form>
                                 </div>
                             </div>
-                            @if ($purchase_requests->approval_status == 'reject')
-                                <div id="reject_manager" class="tab-pane fade active show">
-                                    <div class="profile-reject_manager">
-                                        <div class="mb-3">
-                                            <p style="font-weight: bold" class="form-label"> Alasan Reject Manager </p>
-                                            <textarea name="tanggal_diterima" class="form-control wide" disabled>{{ $purchase_requests->feedback_manager }}  </textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                            <a href="{{ route('purchase_request.create') }}" style="width: 100%"
-                                                class="btn btn-primary"> Buat PR Baru </a>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <a href="{{ route('purchase_request.edit', $purchase_requests->id) }}"
-                                            style="width: 100%" class="btn btn-info"> Revisi PR </a>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="mb-3">
-                                            <form action="{{ route('purchase_request.destroy', $purchase_requests->id) }}"
-                                                method="POST" onsubmit="return confirm('Yakin hapus data?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Hapus PR</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
                         </div>
-                    @elseif($purchase_requests->accept_status == 'reject')
-                        <div id="reject_purchasing" class="tab-pane fade active show">
-                            <div class="profile-reject_purchasing">
-                                <div class="mb-3">
-                                    <p style="font-weight: bold" class="form-label"> Alasan Reject Tim Purchasing </p>
-                                    <textarea name="tanggal_diterima" class="form-control wide" disabled>{{ $purchase_requests->feedback_purchasing }}  </textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="mb-3">
-                                        <a href="{{ route('purchase_request.edit', $purchase_requests->id) }}"
-                                            style="width: 100%" class="btn btn-primary"> Revisi PR </a>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <a href="{{ route('purchase_request.create') }}" style="width: 100%"
-                                        class="btn btn-info"> Buat PR Baru </a>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <form action="{{ route('purchase_request.destroy', $purchase_requests->id) }}"
-                                    method="POST" onsubmit="return confirm('Yakin hapus data?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">Hapus PR</button>
-                                </form>
-                            </div>
-                        </div>
+                        @endif
                     </div>
-                    @endif
                 </div>
-            </div>
-            <!-- Modal -->
+                <!-- Modal -->
 
+            </div>
         </div>
-    </div>
     </div>
     </div>
     </div>
