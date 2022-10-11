@@ -29,8 +29,8 @@
 
 
     <!--**********************************
-                                                                                                                                        Content body start
-                                                                                                                                    ***********************************-->
+                                                                                                                                            Content body start
+                                                                                                                                        ***********************************-->
 
     <div class="row">
         <div class="col-md-5">
@@ -287,7 +287,8 @@
                                     <div id="reject_manager" class="tab-pane fade active show">
                                         <div class="profile-reject_manager">
                                             <div class="mb-3">
-                                                <p style="font-weight: bold" class="form-label"> Alasan Reject Manager
+                                                <p style="font-weight: bold;margin-top:50px" class="form-label"> Alasan
+                                                    Reject Manager
                                                 </p>
                                                 <textarea name="tanggal_diterima" class="form-control wide" disabled>{{ $purchase_requests->feedback_manager }}  </textarea>
                                             </div>
