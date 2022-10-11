@@ -78,7 +78,7 @@
                                                 </tr>
 
                                                 <tr class="tr">
-                                                    @if ($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'accept' || $purchase_requests->approval_status == 'edit' && $purchase_requests->accept_status == 'accept' || $purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'edit' || $purchase_requests->approval_status == 'edit' && $purchase_requests->accept_status == 'edit')
+                                                    @if ($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'accept'||$purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'edit' || $purchase_requests->approval_status == 'edit' && $purchase_requests->accept_status == 'accept' || $purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'edit' || $purchase_requests->approval_status == 'edit' && $purchase_requests->accept_status == 'edit')
                                                         <td width="200px">Tanggal Disetujui Manager</td>
                                                         <td>:
                                                             {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
