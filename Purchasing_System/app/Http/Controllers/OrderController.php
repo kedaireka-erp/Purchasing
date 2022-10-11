@@ -170,14 +170,14 @@ class OrderController extends Controller
         $order->nama = $request->nama;
         $order->save();
 
-        // $ids = $request->ids;
+        $ids = $request->ids;
 
         
 
-        // ItemRequest::WhereIn('id', $ids)->update([
-        //     'order_id' => $order->id
+        ItemRequest::Where('id', $ids)->update([
+            'order_id' => $order->id
 
-        // ]);
+        ]);
 
         
 
