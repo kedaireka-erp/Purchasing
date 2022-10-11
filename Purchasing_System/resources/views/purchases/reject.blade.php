@@ -29,8 +29,8 @@
 
 
     <!--**********************************
-                                                                                                                        Content body start
-                                                                                                                    ***********************************-->
+                                                                                                                                Content body start
+                                                                                                                            ***********************************-->
 
     <div class="row">
         <div class="col-md-5">
@@ -212,7 +212,7 @@
                                     </div>
                                 </div>
                             </div>
-                            < id="about-me" class="tab-pane fade">
+                            <div id="about-me" class="tab-pane fade">
                                 <div class="profile-about-me">
 
                                     {{-- ini tabel item di tracking --}}
@@ -282,37 +282,36 @@
                                             {{-- @endif --}}
                                         </table>
                                     @endif
-
                                 </div>
-                                @if ($purchase_requests->approval_status == 'reject')
-                                    <div id="reject_manager" class="tab-pane fade active show">
-                                        <div class="profile-reject_manager">
-                                            <div class="mb-3">
-                                                <p style="font-weight: bold" class="form-label"> Alasan Reject Manager
-                                                </p>
-                                                <textarea name="tanggal_diterima" class="form-control wide" disabled>{{ $purchase_requests->feedback_manager }}  </textarea>
-                                            </div>
-                                            <div class="mb-3">
-                                                <a href="{{ route('purchase_request.create') }}" style="width: 100%"
-                                                    class="btn btn-primary"> Buat PR Baru </a>
-                                            </div>
+                            </div>
+                            @if ($purchase_requests->approval_status == 'reject')
+                                <div id="reject_manager" class="tab-pane fade active show">
+                                    <div class="profile-reject_manager">
+                                        <div class="mb-3">
+                                            <p style="font-weight: bold" class="form-label"> Alasan Reject Manager
+                                            </p>
+                                            <textarea name="tanggal_diterima" class="form-control wide" disabled>{{ $purchase_requests->feedback_manager }}  </textarea>
                                         </div>
                                         <div class="mb-3">
-                                            <a href="{{ route('purchase_request.edit', $purchase_requests->id) }}"
-                                                style="width: 100%" class="btn btn-info"> Revisi PR </a>
-                                        </div>
-                                        <div class="mb-3">
-                                            <div class="mb-3">
-                                                <form
-                                                    action="{{ route('purchase_request.destroy', $purchase_requests->id) }}"
-                                                    method="POST" onsubmit="return confirm('Yakin hapus data?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Hapus PR</button>
-                                                </form>
-                                            </div>
+                                            <a href="{{ route('purchase_request.create') }}" style="width: 100%"
+                                                class="btn btn-primary"> Buat PR Baru </a>
                                         </div>
                                     </div>
+                                    <div class="mb-3">
+                                        <a href="{{ route('purchase_request.edit', $purchase_requests->id) }}"
+                                            style="width: 100%" class="btn btn-info"> Revisi PR </a>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="mb-3">
+                                            <form action="{{ route('purchase_request.destroy', $purchase_requests->id) }}"
+                                                method="POST" onsubmit="return confirm('Yakin hapus data?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Hapus PR</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                     @elseif($purchase_requests->accept_status == 'reject')
                         <div id="reject_purchasing" class="tab-pane fade active show">
