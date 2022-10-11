@@ -23,6 +23,8 @@
 @endsection
 
 @section('content')
+
+
     <div class="row">
         <div class="col-md-5">
             <div class="card" style="height: 550px">
@@ -270,6 +272,7 @@
                                             {{-- @endif --}}
                                         </table>
                                     @endif
+
                                 </div>
                             </div>
                             @if ($purchase_requests->approval_status == 'reject')
@@ -329,11 +332,22 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
-            @endif
         </div>
+        <!-- Modal -->
+
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
 
+
+
+
+
+    </div>
     <!-- Required vendors -->
     <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
 
