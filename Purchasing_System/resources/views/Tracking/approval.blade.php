@@ -71,6 +71,24 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="dropdown-item text-danger">Delete</button>
                                             </form>
+                                        @elseif($purchase_request->approval_status == 'reject' || $purchase_request->accept_status == 'reject')
+                                            <div class="py-2">
+                                                <form
+                                                    action="{{ route('purchase_request.view_reject', $purchase_request->id) }}"
+                                                    method="GET">
+                                                    @csrf
+                                                    @method('GET')
+                                                    <input type="submit" class="dropdown-item" value="Detail Reject">
+                                                </form>
+                                                <form
+                                                    action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
+                                                    method="POST" onsubmit="return confirm('Yakin hapus data?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="dropdown-item text-danger">Delete
+                                                        PR</button>
+                                                </form>
+                                            </div>
                                         @endif
                                     </div>
                                 </div>
