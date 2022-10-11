@@ -29,8 +29,8 @@
 
 
     <!--**********************************
-                                                                                                                                                                        Content body start
-                                                                                                                                                                    ***********************************-->
+                                                                                                                                                                            Content body start
+                                                                                                                                                                        ***********************************-->
 
     <div class="row">
         <div class="col-md-5">
@@ -298,7 +298,8 @@
                                                     <a href="{{ route('purchase_request.create') }}" style="width: 100%"
                                                         class="btn btn-primary"> Buat PR Baru </a>
                                                 </div>
-                                                <form action="{{ route('purchase_request.edit', $purchase_request->id) }}"
+                                                <form
+                                                    action="{{ route('purchase_request.edit', $purchase_requests->id) }}"
                                                     method="GET">
                                                     @csrf
                                                     @method('GET')
@@ -331,7 +332,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <form action="{{ route('purchase_request.edit', $purchase_request->id) }}"
+                                        <form action="{{ route('purchase_request.edit', $purchase_requests->id) }}"
                                             method="GET">
                                             @csrf
                                             @method('GET')
