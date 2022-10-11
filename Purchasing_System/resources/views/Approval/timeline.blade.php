@@ -115,7 +115,7 @@
     </li>
 
 
-
+{{-- PR manager Pending, tidak memungkinkan accept reject --}}
 @elseif ($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'reject')
     <li>
         <div class="timeline-badge danger"></div>
@@ -199,7 +199,34 @@
         </a>
     </li>
 
-    @elseif($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'accept')
+    @elseif($purchase_requests->approval_status == 'edit' && $purchase_requests->accept_status == 'accept')
+    <li>
+        <div class="timeline-badge success"></div>
+        <a class="timeline-panel text-muted" href="#">
+            <span> {{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }}
+            </span>
+            <h6 class="mb-0"> Purchase Request telah diterima oleh tim Purchasing </strong>.
+            </h6>
+        </a>
+    </li>
+    <li>
+        <div class="timeline-badge success"></div>
+        <a class="timeline-panel text-muted" href="#">
+            <span>{{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}</span>
+            <h6 class="mb-0"> Purchase Request telah mendapat persetujuan dari manager divisi
+            </h6>
+        </a>
+    </li>
+    <li>
+        <div class="timeline-badge success">
+        </div>
+        <a class="timeline-panel text-muted" href="#">
+            <span>{{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}</span>
+            <h6 class="mb-0"> Purchase Request telah diajukan</h6>
+            <p align="justify"> Pengajuan Puchase Request telah disetujui semua pihak</p>
+        </a>
+    </li>
+    @elseif($purchase_requests->approval_status == 'edit' && $purchase_requests->accept_status == 'edit')
     <li>
         <div class="timeline-badge success"></div>
         <a class="timeline-panel text-muted" href="#">

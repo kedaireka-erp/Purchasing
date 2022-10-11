@@ -78,7 +78,24 @@
                                                 </tr>
 
                                                 <tr class="tr">
-                                                    @if ($purchase_requests->approval_status == 'approve')
+                                                    @if ($purchase_requests->approval_status == 'approve' && $purchase_requests->approval_status == 'accept' || $purchase_requests->approval_status == 'edit' && $purchase_requests->approval_status == 'accept' || $purchase_requests->approval_status == 'approve' && $purchase_requests->approval_status == 'edit' || $purchase_requests->approval_status == 'edit' && $purchase_requests->approval_status == 'edit')
+                                                        <td width="200px">Tanggal Disetujui Manager</td>
+                                                        <td>:
+                                                            {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                                                        </td>
+                                                        <tr class="tr">
+                                                            <td width="200px">Tanggal Disetujui Manager</td>
+                                                            <td>:
+                                                                {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="tr">
+                                                        <td width="200px">Status</td>
+                                                        <td>:
+                                                            {{ $purchase_requests->approval_status . 'd by Manager' }}
+                                                        </td>
+                                                        </tr>
+                                                        @elseif ($purchase_requests->approval_status == 'approve')
                                                         <td width="200px">Tanggal Disetujui</td>
                                                         <td>:
                                                             {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
@@ -86,7 +103,18 @@
                                                         <tr class="tr">
                                                         <td width="200px">Status</td>
                                                         <td>:
-                                                            {{ $purchase_requests->approval_status . 'd by Manager' }}
+                                                            {{ $purchase_requests->approval_status . 'ed by Manager' }}
+                                                        </td>
+                                                        </tr>
+                                                        @elseif ($purchase_requests->approval_status == 'edit')
+                                                        <td width="200px">Tanggal Disetujui</td>
+                                                        <td>:
+                                                            {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                                                        </td>
+                                                        <tr class="tr">
+                                                        <td width="200px">Status</td>
+                                                        <td>:
+                                                            {{ $purchase_requests->approval_status . 'ed by Manager' }}
                                                         </td>
                                                         </tr>
                                                     @elseif ($purchase_requests->approval_status == 'reject')
@@ -98,6 +126,17 @@
                                                         <td width="200px">Status</td>
                                                         <td>:
                                                             {{ $purchase_requests->approval_status . 'ed by Manager' }}
+                                                        </td>
+                                                        </tr>
+                                                        @elseif ($purchase_requests->accept_status == 'reject')
+                                                        <td width="200px">Tanggal Ditolak</td>
+                                                        <td>:
+                                                            {{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }}
+                                                        </td>
+                                                        <tr class="tr">
+                                                        <td width="200px">Status</td>
+                                                        <td>:
+                                                            {{ $purchase_requests->accpet_status . 'ed by Tim Purchasing' }}
                                                         </td>
                                                         </tr>
                                                     @endif
@@ -127,11 +166,6 @@
                                                 <tr class="tr">
                                                     <td width="200px">Alamat</td>
                                                     <td>: {{ $purchase_requests->location->location_name }}</td>
-                                                </tr>
-                                                <br>
-                                                <tr class="tr">
-                                                    <td width="200px">Approval PR</td>
-                                                    <td>: {{ $purchase_requests->approval_status }}</td>
                                                 </tr>
                                                 <br>
                                                 @if($purchase_requests->approval_status == 'reject')
