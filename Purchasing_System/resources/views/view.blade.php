@@ -1,12 +1,12 @@
 @extends('layout.sidebar')
 
-@section('judul-laman', 'View Purchasing Request')
+@section('judul-laman', 'View PR')
 
 @section('Judul-content')
 
     <div class="d-flex justify-content-between">
         <div class="title-page">
-            View Purchasing Request
+            View PR
         </div>
         <a href="/purchase_request" type="button" class="btn-close" aria-label="Close"></a>
     </div>
@@ -23,14 +23,6 @@
 @endsection
 
 @section('content')
-
-
-
-
-
-    <!--**********************************
-                                                                                                                Content body start
-                                                                                                            ***********************************-->
 
     <div class="row">
         <div class="col-md-5">
@@ -66,7 +58,11 @@
                                 <div id="my-posts" class="tab-pane fade active show">
                                     <div class="my-post-content pt-3">
                                         <div class="post-input">
-                                            <table style="margin-top: -150px">
+                                            <table style="margin-top: -120px">
+                                                <tr class="tr">
+                                                    <td width="200px">No. Purchase Request</td>
+                                                    <td>: {{ $purchase_requests->no_pr }}</td>
+                                                </tr>
                                                 <tr class="tr">
                                                     <td width="220px">Tanggal Pengajuan</td>
                                                     <td>:
@@ -75,10 +71,36 @@
                                                 </tr>
                                                 <br>
                                                 <tr class="tr">
-                                                    <td width="200px">Tanggal Deadline</td>
-                                                    <td>:
-                                                        {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}
-                                                    </td>
+                                                <td width="200px">Tanggal Deadline</td>
+                                                <td>:
+                                                    {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}
+                                                </td>
+                                                </tr>
+
+                                                <tr class="tr">
+                                                    @if ($purchase_requests->approval_status == 'approve')
+                                                        <td width="200px">Tanggal Disetujui</td>
+                                                        <td>:
+                                                            {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                                                        </td>
+                                                        <tr class="tr">
+                                                        <td width="200px">Status</td>
+                                                        <td>:
+                                                            {{ $purchase_requests->approval_status . 'd by Manager' }}
+                                                        </td>
+                                                        </tr>
+                                                    @elseif ($purchase_requests->approval_status == 'reject')
+                                                        <td width="200px">Tanggal Ditolak</td>
+                                                        <td>:
+                                                            {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                                                        </td>
+                                                        <tr class="tr">
+                                                        <td width="200px">Status</td>
+                                                        <td>:
+                                                            {{ $purchase_requests->approval_status . 'ed by Manager' }}
+                                                        </td>
+                                                        </tr>
+                                                    @endif
                                                 </tr>
                                                 <br>
                                                 <tr class="tr">
@@ -87,7 +109,7 @@
                                                 </tr>
                                                 <br>
                                                 <tr class="tr">
-                                                    <td width="200px">Devisi</td>
+                                                    <td width="200px">Divisi</td>
                                                     <td>: {{ $purchase_requests->Prefixe->divisi }}</td>
                                                 </tr>
                                                 <br>
@@ -112,6 +134,14 @@
                                                     <td>: {{ $purchase_requests->approval_status }}</td>
                                                 </tr>
                                                 <br>
+                                                @if($purchase_requests->approval_status == 'reject')
+                                            <tr class="tr">
+                                                <td width="200px">Pesan Reject</td>
+                                                <td style="font-weight: 600">: {{ $purchase_requests->feedback_manager }}</td>
+                                            </tr>
+                                            <br>
+                                            @endif
+                                            
                                                 <tr class="tr">
                                                     <td width="200px">Note</td>
 
@@ -160,17 +190,14 @@
                                         @elseif ($purchase_requests->type == 'powder')
                                             <table class="table table-striped" id="body">
                                                 <thead>
-                                                    <tr style="text-align: center">
-                                                        <td scope="col">No.</td>
-                                                        <td scope="col">Suppllier</td>
-                                                        <td scope="col">Grade</td>
-                                                        <td scope="col">Warna</td>
-                                                        <td scope="col">Kode Warna</td>
-                                                        <td scope="col">Finish</td>
-                                                        <td scope="col">Quantity</td>
-                                                        <td scope="col">m2</td>
-
-                                                    </tr>
+                                                    <td class="content-control-md">No.</td>
+                                                    <td class="content-control-md">Suppllier</td>
+                                                    <td class="content-control-md">Grade</td>
+                                                    <td class="content-control-md">Warna</td>
+                                                    <td class="content-control-md">Kode Warna</td>
+                                                    <td class="content-control-md">Finish</td>
+                                                    <td class="content-control-md">Quantity</td>
+                                                    <td class="content-control-md">m2</td>
                                                 </thead>
                                                 @php
                                                     $nomor = 1;
@@ -180,16 +207,16 @@
                                                 <tbody>
 
                                                     @foreach ($purchase_requests->powder as $yes)
-                                                        <tr style="text-align: center">
-                                                            <td>{{ $nomor++ }}</td>
-                                                            <td>{{ $yes->supplier->vendor }}</td>
-                                                            <td>{{ $yes->grade->type }}</td>
-                                                            <td>{{ $yes->warna }}</td>
-                                                            <td>{{ $yes->kode_warna }}</td>
-                                                            <td>{{ $yes->finish }}</td>
-                                                            <td>{{ $yes->quantity }}</td>
-                                                            <td>{{ $yes->m2 }}</td>
-                                                        </tr>
+                                                    <tr style="text-align: center">
+                                                        <td class="content-control-sm">{{ $nomor++ }}</td>
+                                                        <td class="content-control-sm">{{ $yes->supplier->vendor }}</td>
+                                                        <td class="content-control-sm">{{ $yes->grade->tipe }}</td>
+                                                        <td class="content-control-sm">{{ $yes->warna }}</td>
+                                                        <td class="content-control-sm">{{ $yes->colour->name }}</td>
+                                                        <td class="content-control-sm">{{ $yes->finish }}</td>
+                                                        <td class="content-control-sm">{{ $yes->quantity }}</td>
+                                                        <td class="content-control-sm">{{ $yes->m2 }}</td>
+                                                    </tr>
                                                     @endforeach
                                                 </tbody>
                                                 {{-- @endif --}}
@@ -198,12 +225,7 @@
 
                                     </div>
                                 </div>
-                                {{-- <div id="profile-settings" class="tab-pane fade">
-                                        <div class="pt-3">
-                                            <div class="settings-form">
-                                                
-                                        </div>
-                                    </div> --}}
+                                
                             </div>
                         </div>
                         <!-- Modal -->
@@ -219,8 +241,7 @@
 
 
     </div>
-    <!--**********************************
-                                                                                                                Content body end
-                                                                                                            ***********************************-->
+    <!-- Required vendors -->
+   <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
 
 @endsection
