@@ -43,18 +43,24 @@ class HomeController extends Controller
         $orders= Order::count();
         $prapprove=PurchaseRequest::where('approval_status', 'approve')->count();
         $pending=PurchaseRequest::where('approval_status', 'pending')->count();
-        return view('home.dashboard_manager',compact('divisi','orders','prapprove','pending'));
+        $reject=PurchaseRequest::where('approval_status', 'reject')->count();
+        $purchase_tabel = PurchaseRequest::latest()->paginate(3);
+        $jmlpowder = Powder::count();
+        $jmlother = Item::count();
+        return view('home.dashboard_manager',compact('divisi','orders','prapprove','pending','reject','jmlpowder','jmlother','purchase_tabel'));
     }
     public function purchasing()
     {
         $divisi= Prefix::count();
         $orders= Order::count();
-        $prmasuk=PurchaseRequest::where('accept_status', 'panding')->count();
-        $prmasukaprv=PurchaseRequest::where('approval_status','accept')->count();
+        $prmasuk=PurchaseRequest::where('approval_status', 'edit')->count();
         $poselesai=PurchaseRequest::where('approval_status','approve')->count();
         $selesai=PurchaseRequest::where('accept_status', 'accept')->count();
-        
-        return view('home.dashboard_purchasing',compact('divisi','poselesai','selesai','orders','prmasukaprv','prmasuk'));
+        $reject=PurchaseRequest::where('accept_status', 'reject')->count();
+        $jmlpowder = Powder::count();
+        $jmlother = Item::count();
+        $purchase_requests_pending = PurchaseRequest::latest()->paginate(3);
+        return view('home.dashboard_purchasing',compact('divisi','poselesai','selesai','orders','prmasuk','jmlpowder','jmlother','reject','purchase_requests_pending'));
     }
 
     
