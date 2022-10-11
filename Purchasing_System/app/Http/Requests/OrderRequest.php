@@ -25,7 +25,7 @@ class OrderRequest extends FormRequest
     {
         return [
             'id_supplier' => 'required',
-            'id_waktu' => 'required',
+            // 'id_waktu' => 'required',
             'id_pembayaran' => 'required',
             'alamat_penagihan' => 'required',
             'signature' => 'required',
@@ -38,7 +38,7 @@ class OrderRequest extends FormRequest
     {
         return [
             'id_supplier.required' => 'supplier field is required',
-            'id_waktu.required' => 'waktu pengiriman field is required',
+            // 'id_waktu.required' => 'waktu pengiriman field is required',
             'id_pembayaran.required' => 'pembayaran field is required',
             'alamat_penagihan.required' => 'alamat penagihan field is required',
             'signature.required' => 'signature is required',
