@@ -20,7 +20,7 @@
 @endsection
 
 @section('content')
-{{-- @include('sweetalert::alert') --}}
+    {{-- @include('sweetalert::alert') --}}
 
     <div class="card">
         <div id="chead">
@@ -93,20 +93,29 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
-
-                                                <a class="dropdown-item"
-                                                    href="{{ route('purchase_request.view', $purchase_request->id) }}">Detail</a>
-
-                                                <a class="dropdown-item"
-                                                    href="{{ route('purchase_request.edit', $purchase_request->id) }}">Edit</a>
-
-                                                <form
-                                                    action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
-                                                    method="POST" onsubmit="return confirm('Yakin hapus data?')">
+                                                <form action="{{ route('purchase_request.view', $purchase_request->id) }}"
+                                                    method="GET">
                                                     @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="dropdown-item text-danger">Delete</button>
+                                                    @method('GET')
+                                                    <input type="submit" class="dropdown-item" value="Detail">
                                                 </form>
+                                                @if ($purchase_request->approval_status == 'pending' && $purchase_request->accept_status == 'pending')
+                                                    <form
+                                                        action="{{ route('purchase_request.edit', $purchase_request->id) }}"
+                                                        method="GET">
+                                                        @csrf
+                                                        @method('GET')
+                                                        <input type="submit" class="dropdown-item" value="Edit PR">
+                                                    </form>
+                                                    <form
+                                                        action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
+                                                        method="POST" onsubmit="return confirm('Yakin hapus data?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="dropdown-item text-danger">Delete</button>
+                                                    </form>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -128,7 +137,7 @@
                     </div>
                 </div>
                 <div class="col-3">
-                    
+
                 </div>
             </div>
             <hr>
@@ -191,21 +200,12 @@
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
 
-                                                <a class="dropdown-item"
-                                                    href="{{ route('purchase_request.view', $purchase_request->id) }}">Detail</a>
-                                                @if($purchase_request->approval_status != 'approve' && $purchase_request->accept_status != 'accept')
-                                                <a class="dropdown-item"
-                                                    href="{{ route('purchase_request.edit', $purchase_request->id) }}">Edit</a>
-
-                                                <form
-                                                    action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
-                                                    method="POST" onsubmit="return confirm('Yakin hapus data?')">
+                                                <form action="{{ route('purchase_request.view', $purchase_request->id) }}"
+                                                    method="GET">
                                                     @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                        class="dropdown-item text-danger">Delete</button>
+                                                    @method('GET')
+                                                    <input type="submit" class="dropdown-item" value="Detail">
                                                 </form>
-                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -219,20 +219,20 @@
     </div>
 
 
-        <div class="card">
-            <div id="chead">
-                <div class="row">
-                    <div class="col-9">
-                        <div class="card-header">
-                            <h4 class="card-title">PR Reject</h4>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        
+    <div class="card">
+        <div id="chead">
+            <div class="row">
+                <div class="col-9">
+                    <div class="card-header">
+                        <h4 class="card-title">PR Reject</h4>
                     </div>
                 </div>
-                <hr>
+                <div class="col-3">
+
+                </div>
             </div>
+            <hr>
+        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table id="example3" class="display" style="width:100%">
@@ -290,20 +290,20 @@
                                         <div class="dropdown-menu dropdown-menu-end border py-0"
                                             aria-labelledby="order-dropdown-1">
                                             <div class="py-2">
-
-                                                <a class="dropdown-item"
-                                                    href="{{ route('purchase_request.view_reject', $purchase_request->id) }}">Detail Reject</a>
-
-                                                {{-- <a class="dropdown-item"
-                                                    href="{{ route('purchase_request.edit', $purchase_request->id) }}">Edit</a> --}}
-
+                                                <form
+                                                    action="{{ route('purchase_request.view_reject', $purchase_request->id) }}"
+                                                    method="GET">
+                                                    @csrf
+                                                    @method('GET')
+                                                    <input type="submit" class="dropdown-item" value="Detail Reject">
+                                                </form>
                                                 <form
                                                     action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
                                                     method="POST" onsubmit="return confirm('Yakin hapus data?')">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit"
-                                                        class="dropdown-item text-danger">Delete PR</button>
+                                                    <button type="submit" class="dropdown-item text-danger">Delete
+                                                        PR</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -315,18 +315,18 @@
                 </table>
             </div>
         </div>
-        </div>
+    </div>
 
 
 
-        <!-- Required vendors -->
-        <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
+    <!-- Required vendors -->
+    <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
 
-        <!-- Datatable -->
-        <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
+    <!-- Datatable -->
+    <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
 
-        {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" type="text/javascript"></script>
+    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" type="text/javascript"></script>
 
         <script>
             $(document).ready(function () {
@@ -380,6 +380,4 @@
 
 
 
-    @endsection
-    
-    
+@endsection

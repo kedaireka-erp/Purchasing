@@ -61,10 +61,12 @@
 
                                         <a class="dropdown-item"
                                             href="{{ route('purchase_request.view', $purchase_request->id) }}">Detail</a>
-                                        <a class="dropdown-item"
-                                            href="{{ route('tracking.view', $purchase_request->id) }}">Edit</a>
+
                                         @if ($purchase_request->approval_status == 'pending' && $purchase_request->accept_status == 'pending')
-                                            <form action="/" method="POST">
+                                            <a class="dropdown-item"
+                                                href="{{ route('purchase_request.edit', $purchase_request->id) }}">Edit</a>
+                                            <form action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
+                                                method="POST" onsubmit="return confirm('Yakin hapus data?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="dropdown-item text-danger">Delete</button>
@@ -80,66 +82,52 @@
                             @if ($purchase_request->approval_status == 'pending' && $purchase_request->accept_status == 'pending')
                                 <div class="progress-bar bg-danger progress-animated" style="width: 30%; height:10px;"
                                     role="progressbar">
-                                    @elseif($purchase_request->approval_status == 'edit' && $purchase_request->accept_status == 'pending')
-                                    <div class="progress-bar bg-success progress-animated"
-                                        style="width: 60%; height:10px;" role="progressbar">
-                                @elseif($purchase_request->approval_status == 'approve' && $purchase_request->accept_status == 'pending')
+                                @elseif($purchase_request->approval_status == 'edit' && $purchase_request->accept_status == 'pending')
                                     <div class="progress-bar bg-warning progress-animated" style="width: 60%; height:10px;"
                                         role="progressbar">
-                                    @elseif($purchase_request->approval_status == 'approve' && $purchase_request->accept_status == 'accept')
-                                        <div class="progress-bar bg-success progress-animated"
-                                            style="width: 100%; height:10px;" role="progressbar">
-                                            @elseif($purchase_request->approval_status == 'edit' && $purchase_request->accept_status == 'accept')
-                                        <div class="progress-bar bg-success progress-animated"
-                                            style="width: 100%; height:10px;" role="progressbar">
-                                            @elseif($purchase_request->approval_status == 'edit' && $purchase_request->accept_status == 'edit')
+                                    @elseif($purchase_request->approval_status == 'approve' && $purchase_request->accept_status == 'pending')
+                                        <div class="progress-bar bg-warning progress-animated"
+                                            style="width: 60%; height:10px;" role="progressbar">
+                                        @elseif($purchase_request->approval_status == 'approve' && $purchase_request->accept_status == 'accept')
                                             <div class="progress-bar bg-success progress-animated"
                                                 style="width: 100%; height:10px;" role="progressbar">
-                                                @elseif($purchase_request->approval_status == 'approve' && $purchase_request->accept_status == 'edit')
+                                            @elseif($purchase_request->approval_status == 'edit' && $purchase_request->accept_status == 'accept')
                                                 <div class="progress-bar bg-success progress-animated"
                                                     style="width: 100%; height:10px;" role="progressbar">
-                                                    @elseif($purchase_request->approval_status == 'reject' || $purchase_request->accept_status == 'reject')
-                                    <div class="progress-bar bg-danger progress-animated" style="width: 100%; height:10px;"
-                                        role="progressbar"> REJECT 
+                                                @elseif($purchase_request->approval_status == 'edit' && $purchase_request->accept_status == 'edit')
+                                                    <div class="progress-bar bg-success progress-animated"
+                                                        style="width: 100%; height:10px;" role="progressbar">
+                                                    @elseif($purchase_request->approval_status == 'approve' && $purchase_request->accept_status == 'edit')
+                                                        <div class="progress-bar bg-success progress-animated"
+                                                            style="width: 100%; height:10px;" role="progressbar">
+                                                        @elseif($purchase_request->approval_status == 'reject' || $purchase_request->accept_status == 'reject')
+                                                            <div class="progress-bar bg-danger progress-animated"
+                                                                style="width: 100%; height:10px;" role="progressbar">
+                                                                REJECT
                             @endif
-                                    </div>
-                    
-                </div>
-
-                        <div class="d-flex justify-content-between align-items-center kanban-user">
-
-                            <div class="text">
-                                <p>{{ $purchase_request->requester }}</p>
-                                <p style="margin-top:-15px">{{ $purchase_request->Prefixe->divisi }}</p>
-                            </div>
-
-
-                            <span><i
-                                    class="far fa-clock me-2"></i>{{ Carbon\Carbon::parse($purchase_request->deadline_date)->diffForHumans() }}
-                            </span>
-
                         </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center kanban-user">
+
+                        <div class="text">
+                            <p>{{ $purchase_request->requester }}</p>
+                            <p style="margin-top:-15px">{{ $purchase_request->Prefixe->divisi }}</p>
+                        </div>
+
+
+                        <span><i
+                                class="far fa-clock me-2"></i>{{ Carbon\Carbon::parse($purchase_request->deadline_date)->diffForHumans() }}
+                        </span>
+
                     </div>
                 </div>
             </div>
-        @endforeach
+    </div>
+    @endforeach
     </div>
 
     <!-- Required vendors -->
     <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
-    <!-- Apex Chart -->
-    <script src="{{ asset('assets/vendor/apexchart/apexchart.js') }}"></script>
-
-    <!-- Datatable -->
-    <script src="{{ asset('assets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins-init/datatables.init.js') }}"></script>
-
-    <script src="{{ asset('assets/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
-
-    <script src="{{ asset('assets/js/custom.min.js') }}"></script>
-    <script src="{{ asset('assets/js/dlabnav-init.js') }}"></script>
-    {{-- <script src="{{ asset('assets/js/demo.js') }}"></script> --}}
-    {{-- <script src="{{ asset('assets/js/styleSwitcher.js') }}"></script> --}}
-
 @endsection
