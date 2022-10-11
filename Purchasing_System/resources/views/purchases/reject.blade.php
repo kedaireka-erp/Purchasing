@@ -29,8 +29,8 @@
 
 
     <!--**********************************
-                                                                                                                                                        Content body start
-                                                                                                                                                    ***********************************-->
+                                                                                                                                                            Content body start
+                                                                                                                                                        ***********************************-->
 
     <div class="row">
         <div class="col-md-5">
@@ -294,19 +294,19 @@
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <div class="mb-3">
                                                         <a href="{{ route('purchase_request.create') }}"
                                                             style="width: 100%" class="btn btn-primary"> Buat PR Baru </a>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <div class="mb-3">
                                                         <a href="{{ route('purchase_request.edit', $purchase_requests->id) }}"
                                                             style="width: 100%" class="btn btn-info"> Revisi PR </a>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <div class="mb-3">
                                                         <div class="mb-3">
                                                             <form
@@ -338,7 +338,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <div class="mb-3">
                                                     <a href="{{ route('purchase_request.edit', $purchase_requests->id) }}"
@@ -346,14 +346,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <div class="mb-3">
                                                 <a href="{{ route('purchase_request.create') }}" style="width: 100%"
                                                     class="btn btn-info"> Buat PR Baru </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <div class="mb-3">
                                             <form action="{{ route('purchase_request.destroy', $purchase_requests->id) }}"
                                                 method="POST" onsubmit="return confirm('Yakin hapus data?')">
