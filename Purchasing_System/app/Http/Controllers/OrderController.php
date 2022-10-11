@@ -174,7 +174,7 @@ class OrderController extends Controller
 
         
 
-        ItemRequest::Where('id', $ids)->update([
+        ItemRequest::WhereIn('id', $ids)->update([
             'order_id' => $order->id
 
         ]);
