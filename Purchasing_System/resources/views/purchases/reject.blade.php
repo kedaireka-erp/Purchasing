@@ -270,7 +270,6 @@
                                             {{-- @endif --}}
                                         </table>
                                     @endif
-
                                 </div>
                             </div>
                             @if ($purchase_requests->approval_status == 'reject')
@@ -334,5 +333,8 @@
             @endif
         </div>
     </div>
+
+    <!-- Required vendors -->
+    <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
 
 @endsection
