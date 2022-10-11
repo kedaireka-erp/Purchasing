@@ -138,7 +138,7 @@
         </div>
 
 
-        <div class="card-body">
+        {{-- <div class="card-body">
             <div class="table-responsive">
                 <table id="example3" class="display" style="width:100%">
                     <thead>
@@ -156,7 +156,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- Ubah --}}
+                       
                         @foreach ($powders as $no => $item)
                             <tr align="center">
                                 <td></td>
@@ -226,7 +226,7 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div> --}}
     </div>
 
 
