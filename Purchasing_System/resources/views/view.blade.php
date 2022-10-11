@@ -84,15 +84,15 @@
                                                             {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
                                                         </td>
                                                         <tr class="tr">
-                                                            <td width="200px">Tanggal Disetujui Manager</td>
+                                                            <td width="200px">Tanggal Diterima PR</td>
                                                             <td>:
-                                                                {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                                                                {{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }}
                                                             </td>
                                                         </tr>
                                                         <tr class="tr">
                                                         <td width="200px">Status</td>
                                                         <td>:
-                                                            {{ $purchase_requests->approval_status . 'd by Manager' }}
+                                                            {{ $purchase_requests->approval_status . 'd and' . $purchase_requests->accept_status  }}
                                                         </td>
                                                         </tr>
                                                         @elseif ($purchase_requests->approval_status == 'approve')
