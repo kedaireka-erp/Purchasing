@@ -25,6 +25,13 @@
 @section('content')
 
 
+
+
+
+    <!--**********************************
+                                                                                                                    Content body start
+                                                                                                                ***********************************-->
+
     <div class="row">
         <div class="col-md-5">
             <div class="card" style="height: 550px">
@@ -60,16 +67,15 @@
                                             class="nav-link active show"> Feedback Purchasing </a>
                                     </li>
                                 @endif
+                                {{-- <li class="nav-item"><a href="#profile-settings" data-bs-toggle="tab"
+                                            class="nav-link"> Update Form </a>
+                                    </li> --}}
                             </ul>
                             <div class="tab-content">
                                 <div id="my-posts" class="tab-pane fade">
                                     <div class="my-post-content pt-3">
                                         <div class="post-input">
-                                            <table style="margin-top: -120px">
-                                                <tr class="tr">
-                                                    <td width="200px">No. Purchase Request</td>
-                                                    <td>: {{ $purchase_requests->no_pr }}</td>
-                                                </tr>
+                                            <table style="margin-top: -150px">
                                                 <tr class="tr">
                                                     <td width="220px">Tanggal Pengajuan</td>
                                                     <td>:
@@ -83,75 +89,6 @@
                                                         {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}
                                                     </td>
                                                 </tr>
-
-                                                <tr class="tr">
-                                                    @if (($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'accept') ||
-                                                        ($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'edit') ||
-                                                        ($purchase_requests->approval_status == 'edit' && $purchase_requests->accept_status == 'accept') ||
-                                                        ($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'edit') ||
-                                                        ($purchase_requests->approval_status == 'edit' && $purchase_requests->accept_status == 'edit'))
-                                                        <td width="200px">Tanggal Disetujui Manager</td>
-                                                        <td>:
-                                                            {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
-                                                        </td>
-                                                <tr class="tr">
-                                                    <td width="200px">Tanggal Diterima PR</td>
-                                                    <td>:
-                                                        {{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }}
-                                                    </td>
-                                                </tr>
-                                                <tr class="tr">
-                                                    <td width="200px">Status</td>
-                                                    <td>:
-                                                        {{ $purchase_requests->approval_status . ' and ' . $purchase_requests->accept_status }}
-                                                    </td>
-                                                </tr>
-                                            @elseif ($purchase_requests->approval_status == 'approve')
-                                                <td width="200px">Tanggal Disetujui</td>
-                                                <td>:
-                                                    {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
-                                                </td>
-                                                <tr class="tr">
-                                                    <td width="200px">Status</td>
-                                                    <td>:
-                                                        {{ $purchase_requests->approval_status . 'ed by Manager' }}
-                                                    </td>
-                                                </tr>
-                                            @elseif ($purchase_requests->approval_status == 'edit')
-                                                <td width="200px">Tanggal Disetujui</td>
-                                                <td>:
-                                                    {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
-                                                </td>
-                                                <tr class="tr">
-                                                    <td width="200px">Status</td>
-                                                    <td>:
-                                                        {{ $purchase_requests->approval_status . 'ed by Manager' }}
-                                                    </td>
-                                                </tr>
-                                            @elseif ($purchase_requests->approval_status == 'reject')
-                                                <td width="200px">Tanggal Ditolak</td>
-                                                <td>:
-                                                    {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
-                                                </td>
-                                                <tr class="tr">
-                                                    <td width="200px">Status</td>
-                                                    <td>:
-                                                        {{ $purchase_requests->approval_status . 'ed by Manager' }}
-                                                    </td>
-                                                </tr>
-                                            @elseif ($purchase_requests->accept_status == 'reject')
-                                                <td width="200px">Tanggal Ditolak</td>
-                                                <td>:
-                                                    {{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }}
-                                                </td>
-                                                <tr class="tr">
-                                                    <td width="200px">Status</td>
-                                                    <td>:
-                                                        {{ $purchase_requests->accpet_status . 'ed by Tim Purchasing' }}
-                                                    </td>
-                                                </tr>
-                                                @endif
-                                                </tr>
                                                 <br>
                                                 <tr class="tr">
                                                     <td width="200px">Requester</td>
@@ -159,7 +96,7 @@
                                                 </tr>
                                                 <br>
                                                 <tr class="tr">
-                                                    <td width="200px">Divisi</td>
+                                                    <td width="200px">Devisi</td>
                                                     <td>: {{ $purchase_requests->Prefixe->divisi }}</td>
                                                 </tr>
                                                 <br>
@@ -179,15 +116,11 @@
                                                     <td>: {{ $purchase_requests->location->location_name }}</td>
                                                 </tr>
                                                 <br>
-                                                @if ($purchase_requests->approval_status == 'reject')
-                                                    <tr class="tr">
-                                                        <td width="200px">Pesan Reject</td>
-                                                        <td style="font-weight: 600">:
-                                                            {{ $purchase_requests->feedback_manager }}</td>
-                                                    </tr>
-                                                    <br>
-                                                @endif
-
+                                                <tr class="tr">
+                                                    <td width="200px">Approval PR</td>
+                                                    <td>: {{ $purchase_requests->approval_status }}</td>
+                                                </tr>
+                                                <br>
                                                 <tr class="tr">
                                                     <td width="200px">Note</td>
 
@@ -303,41 +236,40 @@
                                     </div>
                                 </div>
                         </div>
-                    </div>
-                @elseif($purchase_requests->accept_status == 'reject')
-                    <div id="reject_purchasing" class="tab-pane fade active show">
-                        <div class="profile-reject_purchasing">
-                            <div class="mb-3">
-                                <p style="font-weight: bold" class="form-label"> Alasan Reject Tim Purchasing </p>
-                                <textarea name="tanggal_diterima" class="form-control wide" disabled>{{ $purchase_requests->feedback_purchasing }}  </textarea>
-                            </div>
-                            <div class="mb-3">
+                    @elseif($purchase_requests->accept_status == 'reject')
+                        <div id="reject_purchasing" class="tab-pane fade active show">
+                            <div class="profile-reject_purchasing">
                                 <div class="mb-3">
-                                    <a href="{{ route('purchase_request.edit', $purchase_requests->id) }}"
-                                        style="width: 100%" class="btn btn-primary"> Revisi PR </a>
+                                    <p style="font-weight: bold" class="form-label"> Alasan Reject Tim Purchasing </p>
+                                    <textarea name="tanggal_diterima" class="form-control wide" disabled>{{ $purchase_requests->feedback_purchasing }}  </textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="mb-3">
+                                        <a href="{{ route('purchase_request.edit', $purchase_requests->id) }}"
+                                            style="width: 100%" class="btn btn-primary"> Revisi PR </a>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <a href="{{ route('purchase_request.create') }}" style="width: 100%"
+                                        class="btn btn-info"> Buat PR Baru </a>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <a href="{{ route('purchase_request.create') }}" style="width: 100%"
-                                    class="btn btn-info"> Buat PR Baru </a>
+                                <form action="{{ route('purchase_request.destroy', $purchase_requests->id) }}"
+                                    method="POST" onsubmit="return confirm('Yakin hapus data?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Hapus PR</button>
+                                </form>
                             </div>
                         </div>
-                        <div class="mb-3">
-                            <form action="{{ route('purchase_request.destroy', $purchase_requests->id) }}" method="POST"
-                                onsubmit="return confirm('Yakin hapus data?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Hapus PR</button>
-                            </form>
-                        </div>
                     </div>
+                    @endif
                 </div>
-                @endif
             </div>
+            <!-- Modal -->
+
         </div>
-        <!-- Modal -->
-
-    </div>
     </div>
     </div>
     </div>
@@ -348,7 +280,8 @@
 
 
     </div>
-    <!-- Required vendors -->
-    <script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
+    <!--**********************************
+                                                                                                                    Content body end
+                                                                                                                ***********************************-->
 
 @endsection
