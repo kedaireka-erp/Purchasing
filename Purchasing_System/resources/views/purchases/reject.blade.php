@@ -29,8 +29,8 @@
 
 
     <!--**********************************
-                                                                                                                                                            Content body start
-                                                                                                                                                        ***********************************-->
+                                                                                                                                                                        Content body start
+                                                                                                                                                                    ***********************************-->
 
     <div class="row">
         <div class="col-md-5">
@@ -295,31 +295,24 @@
 
                                             <div class="row">
                                                 <div class="col-lg-4">
-                                                    <div class="mb-3">
-                                                        <a href="{{ route('purchase_request.create') }}"
-                                                            style="width: 100%" class="btn btn-primary"> Buat PR Baru </a>
-                                                    </div>
+                                                    <a href="{{ route('purchase_request.create') }}" style="width: 100%"
+                                                        class="btn btn-primary"> Buat PR Baru </a>
                                                 </div>
+                                                <form action="{{ route('purchase_request.edit', $purchase_request->id) }}"
+                                                    method="GET">
+                                                    @csrf
+                                                    @method('GET')
+                                                    <input type="submit" class="dropdown-item" value="Revisi PR">
+                                                </form>
                                                 <div class="col-lg-4">
-                                                    <div class="mb-3">
-                                                        <a href="{{ route('purchase_request.edit', $purchase_requests->id) }}"
-                                                            style="width: 100%" class="btn btn-info"> Revisi PR </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <div class="mb-3">
-                                                        <div class="mb-3">
-                                                            <form
-                                                                action="{{ route('purchase_request.destroy', $purchase_requests->id) }}"
-                                                                method="POST"
-                                                                onsubmit="return confirm('Yakin hapus data?')">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger">Hapus
-                                                                    PR</button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
+                                                    <form
+                                                        action="{{ route('purchase_request.destroy', $purchase_requests->id) }}"
+                                                        method="POST" onsubmit="return confirm('Yakin hapus data?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Hapus
+                                                            PR</button>
+                                                    </form>
                                                 </div>
                                             </div>
 
@@ -338,30 +331,24 @@
                                     </div>
 
                                     <div class="row">
+                                        <form action="{{ route('purchase_request.edit', $purchase_request->id) }}"
+                                            method="GET">
+                                            @csrf
+                                            @method('GET')
+                                            <input type="submit" class="dropdown-item" value="Revisi PR">
+                                        </form>
                                         <div class="col-lg-4">
-                                            <div class="mb-3">
-                                                <div class="mb-3">
-                                                    <a href="{{ route('purchase_request.edit', $purchase_requests->id) }}"
-                                                        style="width: 100%" class="btn btn-primary"> Revisi PR </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="mb-3">
-                                                <a href="{{ route('purchase_request.create') }}" style="width: 100%"
-                                                    class="btn btn-info"> Buat PR Baru </a>
-                                            </div>
+                                            <a href="{{ route('purchase_request.create') }}" style="width: 100%"
+                                                class="btn btn-info"> Buat PR Baru </a>
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <form action="{{ route('purchase_request.destroy', $purchase_requests->id) }}"
-                                                method="POST" onsubmit="return confirm('Yakin hapus data?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Hapus PR</button>
-                                            </form>
-                                        </div>
+                                        <form action="{{ route('purchase_request.destroy', $purchase_requests->id) }}"
+                                            method="POST" onsubmit="return confirm('Yakin hapus data?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Hapus PR</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
