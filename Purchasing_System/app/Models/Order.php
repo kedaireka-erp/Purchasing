@@ -25,7 +25,7 @@ class Order extends Model
         return $this->belongsToMany(Item::class, 'item_requests','id_item','order_id');
     }
     public function purchases(){
-        return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id_request','order_id');
+        return $this->belongsToMany(PurchaseRequest::class, 'item_requests','order_id','id_request');
     }
 
     public function payment()
