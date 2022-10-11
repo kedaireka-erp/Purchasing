@@ -122,7 +122,7 @@
     </div>
 
 
-    <div class="card">
+    {{-- <div class="card">
         <div id="chead">
             <div class="row">
                 <div class="col-9">
@@ -135,10 +135,10 @@
 
             </div>
             <hr>
-        </div>
+        </div> --}}
 
 
-        {{-- <div class="card-body">
+    {{-- <div class="card-body">
             <div class="table-responsive">
                 <table id="example3" class="display" style="width:100%">
                     <thead>
@@ -227,7 +227,7 @@
                 </table>
             </div>
         </div> --}}
-    </div>
+    {{-- </div> --}}
 
 
 
