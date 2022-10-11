@@ -177,7 +177,7 @@
                                             <div class="row">
                                                 <div class="col-12" style="margin-top: 30px">
                                                     <div class="mb-3">
-                                                        <label class="form-label"> Sudah Datang </label>
+                                                        <label class="form-label"> Barang Datang </label>
                                                         <input name="sudah_datang" class="input-rounded form-control wide"
                                                             type="number">
                                                     </div>
