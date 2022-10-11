@@ -29,8 +29,8 @@
 
 
     <!--**********************************
-                                                                                                                                                                                                Content body start
-                                                                                                                                                                                            ***********************************-->
+                                                                                                                                                                                                    Content body start
+                                                                                                                                                                                                ***********************************-->
 
     <div class="row">
         <div class="col-md-5">
@@ -304,7 +304,8 @@
                                                         method="GET">
                                                         @csrf
                                                         @method('GET')
-                                                        <input type="submit" class="btn btn-primary" value="Revisi PR">
+                                                        <input type="submit" class="btn btn-primary" style="width: 100%"
+                                                            value="Revisi PR">
                                                     </form>
                                                 </div>
                                                 <div class="col-lg-4">
@@ -336,7 +337,8 @@
                                                 method="GET">
                                                 @csrf
                                                 @method('GET')
-                                                <input type="submit" class="btn btn-primary" value="Revisi PR">
+                                                <input type="submit" class="btn btn-primary" style="width: 100%"
+                                                    value="Revisi PR">
                                             </form>
                                         </div>
                                         <div class="col-lg-4">
