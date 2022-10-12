@@ -1,309 +1,377 @@
-<x-style></x-style>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+{{-- <<========= Title ========>> --}}
 
 <style>
-    .cardpo{
-      width: 100%;
-      margin: auto;
-      background-color: white;
-      padding: 15px;
+    .cardpo {
+        margin : auto;
+        width: 70%;
+        background-color: white;
+        border:0.2px solid black;
     }
-    img{
-        width: 70px;
-        height: 70px;
+
+    .compagnie_logo {
+        width: 50px;
+        height: 50px;
     }
-    .box1{
+
+    .note_title {
+        font-size: 13px;
+        font-weight: bold;
+        padding: 10px;
+    }
+
+    .note_title_text {
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .note_text {
+        font-size: 10px;
+        padding: 5px;
+    }
+    .note_text_bold {
+        font-size: 10px;
+        padding-top: 5px;
+        font-weight: bold;
+    }
+    .note_text_normal {
+        font-size: 10px;
+        padding-top: 5px;
+    }
+
+    .box1 {
         width: 100%;
-        height: 40px;
+        height: 20px;
+        margin-top: 10px;
         background-color: #cab9e7;
-     
+
     }
-    .txt{
+
+    /* .txt {
         padding-top: 10px;
-    }
-    .card-comment{
+    } */
+
+    .card-comment {
         width: 90%;
         /* height: 40%; */
-        border: 2px solid black;
+        border: 0.2px solid black;
         background-color: white;
         padding: 10px;
     }
-    hr{
-        background-color: black;
-    }
-    .table, .th, .td {
-  border: 1px solid black;
-  border-collapse: collapse;
 
-}
-@media print {
-    .btn {
-    display :none;
-  }
-  .box1{
-        width: 100%;
-        height: 40px;
-        background-color: #cab9e7 !important;
-        -webkit-print-color-adjust: exact
-        
     
+    .table,
+    .th{
+        border: 0.2px solid black;
+
     }
-  
 
-}
-    </style>
+    @media print {
+        .btn {
+            display: none;
+        }
 
-@section('content')
+        .box1 {
+            width: 100%;
+            height: 20px;
+            margin-top: 10px;
+            background-color: #cab9e7 !important;
+            -webkit-print-color-adjust: exact;
+        }
 
-<div class="cardpo" style="width: 75%">
-    <a class="btn btn-danger" onclick="window.print();">Export PDF</a>
-    <div class="d-flex justify-content-center" style="margin-top: 20px">
-      <div class="d-flex">
-        <div>
-          <img src="{{ asset('images/logo_compagnie.png') }}">
+
+    }
+</style>
+
+
+
+<div class="cardpo" style="margin-top: 20px">
+    <div class="d-flex justify-content-center" style="padding-top: 20px">
+        <div id="compagnie_logo">
+            <img class="compagnie_logo" src="{{ asset('images/logo_compagnie.png') }}">
         </div>
-        <div class="d-flex align-items-center">
-          <h3>PT ALLURE ALUMINIO</h3>
-        </div>
-      </div>
+        <p class="note_title">PT ALLURE ALUMINIO</p>
     </div>
 
-    {{-- <hr style="color: black; height:2p; margin-top: 20px"> --}}
+    <hr>
 
     <div class="row">
         <div class="col-1"></div>
-        <div class="col-5" style="margin-top: 15px">
- 
-                   <p style="font-size: 12px">{{ 'Jakarta, '.\Carbon\Carbon::parse($orders->created_at)->format('d F Y') }}</p>
-        </div>
-        <div class="col-1"></div>
-        <div class="col-5" style="margin-top:-65px" >
-
-            <table class="subhead_pr">
-                <tr>
-                    <td><p style="white-space: nowrap; font-size:12px; font-weight:bold; margin-top:15px;">PURCHASE REQUEST</p></td>
-                </tr>
-                <br>
-                <tr>
-                    <td>Nomor PO</td>
-                    <td>{{ ': '.$orders->no_po }}</td>
-                </tr>
-                <br>
-                <tr>@foreach($tracking as $value)
-                    @if ($loop->first)
-                    <td width="80px">Nomor PR</td>
-                    <td>{{ ': '.$value->no_pr }}</td>
-                </tr>
-                <br>
-                <tr>
-                    <td width="80px" >Waktu Pengiriman</td>
-                    <td>{{ ': '.$value->deadline_date}}</td>
-                    @endif
-                    
-                </tr>@endforeach
-                <br>
-                <tr>
-                    <td width="80px">Pembayaran</td>
-                    <td>{{ ': '.$orders->payment->name_payment}}</td>
-                </tr>
-            </table>
-            
-
-        </div>
-    </div>
-
-
-<div class="box1" style="margin-top: 40px;">
-    <div class="row" style="background-color: #cab9e7;">
-        <div class="col-1"></div>
-        <div class="col-5 txt" >
-            <p style="font-size: 12px; font-weight:bold;">Purchasing From : </p>
-        </div>
-        <div class="col-1"></div>
-        <div class="col-5 txt">
-            <p style="font-size: 12px; font-weight:bold">Ship To :</p>
-        </div>
-    </div>
-
-</div>
-
-    <div class="row" style="margin-top: 15px">
+        <div class="col-5"></div>
         <div class="col-1"></div>
         <div class="col-5">
-                    <table>
-                        <tr>
-                            <p style="font-weight: bold; font-size:12px">{{ $orders->supplier->vendor}} </p>
-                        </tr>
-                        <tr>
-                           {{-- <p> Jl. Galuh Mas Raya, Sukaharja,telukjambe Timur, Karawang,Jawa Barat 41361 </p>  --}}
-                        </tr>
-                    </table>
+            <p class="note_title_text">PURCHASE ORDER</p>
         </div>
-            
-        <div class="col-1"></div>
-        <div class="col-4">
-        
-            
+    </div>
+    
 
-            
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-5">
             <table>
-                <tr>
-                    <p style="font-weight: bold; font-size:12px">{{  $orders->location->location_name }}</p>
-                </tr>
-                <tr>
-                    <p style="font-size:10px; width:100%; text-align:justify"> {{ $orders->location->address }}</p>
+                <tr class="note_text">
+                    <td>{{ 'Jakarta, ' . \Carbon\Carbon::parse($orders->created_at)->format('d F Y') }}</td>
                 </tr>
             </table>
-
         </div>
-        <div class="col-1">
+        <div class="col-1"></div>
+        <div class="col-5">
+            <table>
+                <tr class="note_text">
+                    <td>PO</td>
+                    <td>{{ ': ' . $orders->no_po }}</td>
+                </tr>
+                @foreach ($orders->purchases as $value)
+                <tr class="note_text">
+                    <td>PR</td>
+                    <td style="font-size:9px">{{ ': ' . $value->no_pr }}</td>
+                </tr>
+                @endforeach
+                @if($orders->tanggal_kirim != NULL)
+                <tr class="note_text">
+                    <td>Tanggal Kirim</td>
+                    <td>{{ ': ' . $orders->tanggal_kirim }}</td>
+                </tr>
+                @else
+                <tr class="note_text">
+                    <td>Dikirim</td>
+                    <td>{{ ': ' . $orders->timeshipping->name_time }}</td>
+                </tr>
+                @endif
+                <tr class="note_text">
+                    <td width="50px">Payment</td>
+                    <td>{{ ': ' . $orders->payment->name_payment }}</td>
+                </tr>
+            </table>
+                
+            </div>
     </div>
 
-    <div class="box1" style="margin-top: 35px">
-        <div class="row" >
-            <div class="col-1"></div>
-            <div class="col-5 txt" >
-            </div>
+
+    <div class="box1">
+        <div class="row">
             <div class="col-1"></div>
             <div class="col-5 txt">
-                <p style="font-size:12px; font-weight:bold">Billing Address :</p>
+                <table>
+                    <tr class="note_text_bold">
+                        <td>Purchasing For : </td>
+                    </tr>
+                </table>
             </div>
+            <div class="col-1"></div>
+            <div class="col-4 txt">
+                <table>
+                    <tr class="note_text_bold">
+                        <td>Ship to :</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-1"></div>
         </div>
-    
     </div>
 
-    <div class="row" style="margin-top: 15px">
+    <div class="row">
+        <div class="col-1"></div>
+            <div class="col-5">
+                <p class="note_text_bold">{{ $orders->supplier->vendor }}</p>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-4">
+                <table>
+                    <tr>
+                        <td class="note_text_bold">{{ $orders->location->location_name }}</td>
+                    </tr>
+                    <tr>
+                        <td class="note_text_normal" style="text-align: justify">{{ $orders->location->address }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-1"></div>
+    </div>
+
+    <div class="box1">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-5 txt">
+            </div>
+            <div class="col-1"></div>
+            <div class="col-4 txt">
+                <table>
+                    <tr class="note_text_bold">
+                        <td>Billing Address :</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+
+        <div class="row">
         <div class="col-1"></div>
         <div class="col-5">
             <table>
                 <tr>
-                   <p style="font-size:10px">Kepada Yth. <br>
-                    {{ $orders->nama_supplier}} Di tempat</p>
-                   
-                   <p style="font-size:10px">Dengan Hormat, <br>
-                    Bersama ini kami order material sebagai berikut:</p>
+                    <td class="note_text_normal"> Yth. Bapak/ Ibu {{ $orders->nama_supplier }} </td>
                 </tr>
-            </table>      
+                <tr>
+                    <td style="font-size:10px">Di tempat</td>
+                </tr>
+                <tr>
+                    <td style="font-size:10px"> <br>Dengan Hormat,</td>
+                </tr>
+                <tr>
+                    <td style="font-size:10px">Bersama ini kami order material sebagai berikut:</td>
+                </tr>
+            </table>
         </div>
         <div class="col-1"></div>
         <div class="col-4">
-           
             <table>
                 <tr>
-                    <p style="font-weight: bold; font-size:12px; margin-left:20px">  PT Allure Aluminio</p>
+                    <td class="note_text_bold">PT Allure Aluminio</td>
                 </tr>
                 <tr>
-                   <p style="font-size: 10px; margin-left:20px"> {{ $orders->alamat_penagihan }}</p>
+                    <td class="note_text_normal" style="text-align: justify">{{ $orders->alamat_penagihan }}</td>
                 </tr>
             </table>
         </div>
         <div class="col-1"></div>
     </div>
-  <br>
-  
-  @foreach($purchase as $tipe)
-  @if ($loop->first)
-  @if ($tipe->type == 'othergood' )
-    <table class="table" style="box-shadow: none">
-        
-        <thead>
-           
-          <tr style="background-color:#cab9e7;  text-align:center; font-weight:bold; font-size:12px">
-            <td>No.</td>
-            <td>Deskripsi</td>
-            <td>Quantity</td>
-            <td>Satuan Barang</td>
-          </tr>
-        </thead>
-        @php
-        $nomor = 1;
-        @endphp
-        <tbody>
-            @foreach ($tracking as $purchase_requests)
-          <tr scope="row" style="text-align: center; font-size:12px">
-            <th  scope="col">{{ $nomor++ }}</th>
-            <td  scope="col">{{ $purchase_requests->item_name }}</td>
-            <td  scope="col">{{ $purchase_requests->outstanding }}</td>
-            <td  scope="col">{{ $purchase_requests->unit }}</td>
-            
-          
-          @endforeach
-        </tbody>
-        
-      </table>
-      @elseif ($tipe->type == 'powder' )
-      <br>
-      <br>
-    <table class="table table-bordered" style="box-shadow: none">
-        
-        <thead>
-            
-          <tr style="background-color:#cab9e7;  text-align:center; font-weight:bold;font-size:12px">
-            <td>Suppllier</td>
-            <td>Grade</td>
-            <td>Warna</td>
-            <td>Kode Warna</td>
-            <td>Quantity</td>
-            <td>m2</td>							
-          </tr>
-        </thead>
-        @php
-        $nomor = 1;
-        @endphp
-        <tbody>
-            @foreach ($powders as $purchase_requests)
-            
-          <tr scope="row" style="text-align: center;font-size:12px">
-            
-            <td scope="col">{{ $purchase_requests->vendor }}</td>
-            <td scope="col">{{ $purchase_requests->tipe }}</td>
-            <td scope="col">{{ $purchase_requests->warna }}</td>
-            <td scope="col">{{ $purchase_requests->name }}</td>
-            <td scope="col">{{ $purchase_requests->quantity }}</td>
-            <td scope="col">{{ $purchase_requests->m2 }}</td>
-            
-            	
-            
-          
-          @endforeach
-        </tbody>
-        
-      </table>
-      @endif
-      @endif
-      @endforeach
-      <div class="row" style="margin-top: 60px">
-        {{-- <div class="col-1"></div> --}}
-        <div class="col-6 border-dark">
-            {{-- <div class="card-comment">
-                <strong>Comments or Special Intructions</strong>
-                <hr style="color: black">
-                <p>Harap menyertakan invoice, kwitansi, faktur pajak,dan surat jalan atas nama PT ALLURE ALLUMINIO dengan alamat sesuai NPWP.</p>
-            </div> --}}
-            <table class="table  table-bordered border-dark" style="border-radius: none; box-shadow:none; border:1px solid black">
-                
-                  <tr scope="row">
-                    <th style="font-size: 12px" scope="col" class="th">Comments or Special Intructions</th>
-                  </tr>
-                  <tr>
-                            <td style="font-size: 12px" scope="row" class="td">{{  $orders->note}}
-                        <br><br><br><br>
-                    </td>
-                  </tr>
-        
-              </table>
+
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            @foreach ($purchase as $tipe)
+                @if ($tipe->type == 'othergood')
+                <br>
+                    <table class="table" style="box-shadow: none">
+
+                        <thead>
+
+                            <tr style="background-color:#cab9e7;  text-align:center; font-weight:bold; font-size:10px">
+                                <td>No.</td>
+                                <td>Deskripsi</td>
+                                <td>Quantity</td>
+                                <td>Satuan Barang</td>
+                            </tr>
+                        </thead>
+                        @php
+                            $nomor = 1;
+                        @endphp
+                        <tbody>
+                            @foreach ($tracking as $purchase_requests)
+                                <tr scope="row" style="text-align: center; font-size:10px">
+                                    <th scope="col">{{ $nomor++ }}</th>
+                                    <td scope="col">{{ $purchase_requests->item_name }}</td>
+                                    <td scope="col">{{ $purchase_requests->outstanding }}</td>
+                                    <td scope="col">{{ $purchase_requests->unit }}</td>
+                            @endforeach
+                        </tbody>
+
+                    </table>
+                @elseif ($tipe->type == 'powder')
+                <br>
+                    <table class="table table-bordered" style="box-shadow: none">
+
+                        <thead>
+
+                            <tr style="background-color:#cab9e7;  text-align:center; font-weight:bold;font-size:10px">
+                            
+                                <td>Grade</td>
+                                <td>Warna</td>
+                                <td>Kode</td>
+                                <td>Qty</td>
+                                <td>m2</td>
+                            </tr>
+                        </thead>
+                        @php
+                            $nomor = 1;
+                        @endphp
+                        <tbody>
+                            @foreach ($powders as $purchase_requests)
+                                <tr scope="row" style="text-align: center;font-size:10px">
+                                    <td scope="col">{{ $purchase_requests->tipe }}</td>
+                                    <td scope="col">{{ $purchase_requests->warna }}</td>
+                                    <td scope="col">{{ $purchase_requests->name }}</td>
+                                    <td scope="col">{{ $purchase_requests->quantity }}</td>
+                                    <td scope="col">{{ $purchase_requests->m2 }}</td>
+                            @endforeach
+                        </tbody>
+
+                    </table>
+                @endif
+        @endforeach
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-5">
+                <table class="table  table-bordered border-dark" 
+                    style="border-radius: none; box-shadow:none; border:0.2px solid black">
+
+                    <tr scope="row">
+                        <th class="note_text_bold">Comments or Special Intructions</th>
+                    </tr>
+                    <tr>
+                        <td class="note_text_normal">{{ $orders->lain_lain }}
+                            <br><br>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-4">
+                <div class="d-flex justify-content-center">
+                    <div class="signature">
+                        <p class="note_text_normal">Mengetahui,</p>
+                        <img src="{{ asset('images/' . $orders->signature) }}" style="width:60px; height:60px">
+                        <p class="note_text_normal">{{ $orders->nama }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1"></div>
 
         </div>
-        <div class="col-2"></div>
-        <div class="col-4" style="margin-top: 50px">
-            <p>Mengetahui,</p>
-            <img src="{{ asset('images/'.$orders->signature) }}" style="width:80px; height:80px">
-            <p>{{  $orders->nama}}</p>
+        {{-- <div class="row" style="margin-top: 60px">
+
+            <div class="col-6 border-dark">
+                
+                
+
+            </div>
+            <div class="col-2"></div>
+            <div class="col-4" style="margin-top: 50px">
+                
+            </div>
+        </div> --}}
+
+        <hr>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <table style="margin-bottom: 20px">
+                <tr class="note_text_bold">
+                    <td>{{ $orders->note }}</td>
+                </tr>
+            </table>
+            </div>
+            <div class="col-1"></div>
         </div>
     </div>
-    
-<hr style="color: black; height:2p; margin-top: 20px">
-<p><span style="font-size: 10px; color: red">*</span>Note : melampirkan salinan Purchase Order (PO), surat jalan (asli), Invoice (asli), dan materai pada saat penagihan  - Materai Rp. 10,000 untuk transaksi diatas Rp. 5 juta</p>
 
-</div>
-<br>
-<x-script></x-script>
+
+    <br>
+    <div class="d-flex justify-content-center">
+        <a style="width:70%; margin-bottom:30px" class="btn btn-danger" onclick="window.print();">Export PDF</a>
+    </div>
+    
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
+    </script>
