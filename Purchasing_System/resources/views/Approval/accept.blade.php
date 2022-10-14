@@ -50,6 +50,9 @@
                                 </li>
                                 <li class="nav-item"><a href="#about-me" data-bs-toggle="tab" class="nav-link"> Item </a>
                                 </li>
+                                <li class="nav-item"><a href="#setting" data-bs-toggle="tab"
+                                    class="nav-link"> Attachment </a>
+                                </li>
                                 @if($purchase_requests->accept_status != 'accept')
                                 <li class="nav-item"><a href="#approval" data-bs-toggle="tab" class="nav-link">
                                         Approval </a>
@@ -58,10 +61,11 @@
                             </ul>
                             <div class="tab-content">
                                 <div id="my-posts" class="tab-pane fade active show">
+                                    <div class="my-post-content pt-3">
                                     <div class="post-input">
-                                        <table style="margin-top: -120px">
+                                        <table>
                                             <tr class="tr">
-                                                <td width="200px">No. Purchase Request</td>
+                                                <td width="200px">Nomor PR</td>
                                                 <td>: {{ $purchase_requests->no_pr }}</td>
                                             </tr>
                                             <tr class="tr">
@@ -70,26 +74,22 @@
                                                     {{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}
                                                 </td>
                                             </tr>
-                                            <br>
+                                            
                                             <tr class="tr">
-                                            <td width="200px">Tanggal Deadline</td>
+                                            <td width="200px">Tanggal Kebutuhan Barang Tiba</td>
                                             <td>:
                                                 {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}
                                             </td>
                                             </tr>
 
                                             <tr class="tr">
-                                                <td width="200px">Tanggal Disetujui Manager</td>
-                                                <td>:
-                                                    {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
-                                                </td>
-                                            </tr>
-
-                                            <tr class="tr">
-                                                @if($purchase_requests->accept_status == 'accept')
-
+                                                @if ($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'accept'||$purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'edit' || $purchase_requests->approval_status == 'edit' && $purchase_requests->accept_status == 'accept' || $purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'edit' || $purchase_requests->approval_status == 'edit' && $purchase_requests->accept_status == 'edit')
+                                                    <td width="200px">Tanggal Disetujui Manager</td>
+                                                    <td>:
+                                                        {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                                                    </td>
                                                     <tr class="tr">
-                                                        <td width="200px">Tanggal Diterima PR</td>
+                                                        <td width="200px">Tanggal Diterima Purchasing</td>
                                                         <td>:
                                                             {{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }}
                                                         </td>
@@ -97,144 +97,239 @@
                                                     <tr class="tr">
                                                     <td width="200px">Status</td>
                                                     <td>:
-                                                        {{ $purchase_requests->approval_status . ' and '.  $purchase_requests->accept_status }}
+                                                        {{ $purchase_requests->approval_status . ' and ' . $purchase_requests->accept_status  }}
                                                     </td>
                                                     </tr>
-                                                @elseif ($purchase_requests->accept_status == 'reject')
-                                                    <tr class="tr">
-                                                    <td width="200px">Tanggal Ditolak</td>
+                                                @elseif ($purchase_requests->approval_status == 'approve')
+                                                    <td width="200px">Tanggal Disetujui</td>
                                                     <td>:
                                                         {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
                                                     </td>
+                                                    <tr class="tr">
+                                                    <td width="200px">Status</td>
+                                                    <td>:
+                                                        {{ $purchase_requests->approval_status . 'd by Manager' }}
+                                                    </td>
                                                     </tr>
+                                                    @if ($purchase_requests->accept_status == 'reject')
+                                                    <tr class="tr">
+                                                    <td width="200px">Tanggal Ditolak</td>
+                                                    <td>:
+                                                        {{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }}
+                                                    </td>
+                                                </tr>
                                                     <tr class="tr">
                                                     <td width="200px">Status</td>
                                                     <td>:
                                                         {{ $purchase_requests->accept_status . 'ed by Tim Purchasing' }}
                                                     </td>
                                                     </tr>
+                                                    @endif
+                                                @elseif ($purchase_requests->approval_status == 'edit')
+                                                    <td width="200px">Tanggal Disetujui</td>
+                                                    <td>:
+                                                        {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                                                    </td>
+                                                    <tr class="tr">
+                                                    <td width="200px">Status</td>
+                                                    <td>:
+                                                        {{ $purchase_requests->approval_status . 'ed by Manager' }}
+                                                    </td>
+                                                    </tr>
+                                                    @if ($purchase_requests->accept_status == 'reject')
+                                                    <td width="200px">Tanggal Ditolak</td>
+                                                    <td>:
+                                                        {{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }}
+                                                    </td>
+                                                    <tr class="tr">
+                                                    <td width="200px">Status</td>
+                                                    <td>:
+                                                        {{ $purchase_requests->accept_status . 'ed by Tim Purchasing' }}
+                                                    </td>
+                                                    </tr>
+                                                    @endif
+                                                @elseif ($purchase_requests->approval_status == 'reject')
+                                                    <td width="200px">Tanggal Ditolak</td>
+                                                    <td>:
+                                                        {{ \Carbon\Carbon::parse($purchase_requests->tanggal_diterima)->format('d F Y') }}
+                                                    </td>
+                                                    <tr class="tr">
+                                                    <td width="200px">Status</td>
+                                                    <td>:
+                                                        {{ $purchase_requests->approval_status . 'ed by Manager' }}
+                                                    </td>
+                                                    </tr>
+                                                @elseif ($purchase_requests->accept_status == 'reject')
+                                                    <td width="200px">Tanggal Ditolak</td>
+                                                    <td>:
+                                                        {{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }}
+                                                    </td>
+                                                    <tr class="tr">
+                                                    <td width="200px">Status</td>
+                                                    <td>:
+                                                        {{ $purchase_requests->accpet_status . 'ed by Tim Purchasing' }}
+                                                    </td>
+                                                    </tr>
                                                 @endif
                                             </tr>
-                                            <br>
+                                            
                                             <tr class="tr">
                                                 <td width="200px">Requester</td>
                                                 <td>: {{ $purchase_requests->requester }}</td>
                                             </tr>
-                                            <br>
+                                            
                                             <tr class="tr">
                                                 <td width="200px">Divisi</td>
                                                 <td>: {{ $purchase_requests->Prefixe->divisi }}</td>
                                             </tr>
-                                            <br>
+                                            
                                             <tr class="tr">
                                                 <td width="200px">Project/Customer</td>
                                                 <td>: {{ $purchase_requests->project }} </td>
                                             </tr>
-                                            <br>
+                                            
                                             <tr class="tr">
                                                 <td width="200px">Kebutuhan/Pengiriman</td>
                                                 <td>: {{ $purchase_requests->ship->tipe }} </td>
                                             </tr>
-                                            <br>
+                                            
 
                                             <tr class="tr">
-                                                <td width="200px">Alamat</td>
+                                                <td width="200px">Alamat Kirim</td>
                                                 <td>: {{ $purchase_requests->location->location_name }}</td>
                                             </tr>
-                                            <br>
-                                            @if($purchase_requests->accept_status == 'reject')
+                                            <tr class="tr">
+                                                <td width="200px">Status PR</td>
+                                                <td>: {{ $purchase_requests->status }} </td>
+                                            </tr>
+                                            
+                                            @if($purchase_requests->approval_status == 'reject')
                                             <tr class="tr">
                                                 <td width="200px">Pesan Reject</td>
-                                                <td style="font-weight: 600">: {{ $purchase_requests->feedback_purchasing }}</td>
+                                                <td style="font-weight: 600">: {{ $purchase_requests->feedback_manager }}</td>
                                             </tr>
-                                            <br>
                                             @endif
                                             <tr class="tr">
                                                 <td width="200px">Note</td>
-
-                                                <td>: </td>
+                                                <td>: {!! $purchase_requests->note !!}</td>
                                             </tr>
-                                            <br>
-
-
                                         </table>
-                                        <p> {!! $purchase_requests->note !!} </p>
                                     </div>
+                                    </div>  
                                 </div>
                                 <div id="about-me" class="tab-pane fade">
-                                    <div class="profile-about-me">
+                                    <div class="profile-about-me pt-3">
 
-                                        {{-- ini tabel item di tracking --}}
                                         @if ($purchase_requests->type == 'othergood')
-                                            <table class="table table-striped" id="body">
-                                                <thead>
-                                                    <tr style="text-align: center">
-                                                        <td scope="col">No.</td>
-                                                        <td scope="col">Description of Goods</td>
-                                                        <td scope="col">Quantity</td>
-                                                        <td scope="col">Unit</td>
-                                                    </tr>
-                                                </thead>
-
-                                                @php
-                                                    $nomor = 1;
-                                                @endphp
-
-
-                                                <tbody>
-
-                                                    @foreach ($purchase_requests->item as $yes)
-                                                        <tr style="text-align: center">
-                                                            <td>{{ $nomor++ }}</td>
-                                                            <td>{{ $yes->master_item->item_name }}</td>
-                                                            <td>{{ $yes->stok }}</td>
-                                                            <td>{{ $yes->satuan->unit }}</td>
-                                                        </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        @elseif ($purchase_requests->type == 'powder')
-                                            <table class="table table-striped" id="body">
-                                                <thead>
-                                                    <tr style="text-align: center; font-weight: bold">
-                                                        <td class="content-control-md">No.</td>
-                                                        <td class="content-control-md">Suppllier</td>
-                                                        <td class="content-control-md">Grade</td>
-                                                        <td class="content-control-md">Warna</td>
-                                                        <td class="content-control-md">Kode Warna</td>
-                                                        <td class="content-control-md">Finish</td>
-                                                        <td class="content-control-md">Quantity</td>
-                                                        <td class="content-control-md">m2</td>
-
-                                                    </tr>
-                                                </thead>
-                                                @php
-                                                    $nomor = 1;
-                                                @endphp
-
-                                                {{-- @if ($item->id_request == $purchase_requests->id) --}}
-                                                <tbody>
-
-                                                    @foreach ($purchase_requests->powder as $yes)
+                                        <table class="table table-striped" id="body">
+                                            <thead>
+                                                <tr style="text-align: center">
+                                                    <td class="content-control-md" align="center">No.</td>
+                                                    <td class="content-control-md" align="center">Description of Goods</td>
+                                                    <td class="content-control-md" align="center">Quantity</td>
+                                                    <td class="content-control-md" align="center">Unit</td>
+                                                </tr>
+                                            </thead>
+                                            @php
+                                                $nomor = 1;
+                                            @endphp
+                                            <tbody>
+                                                @foreach ($purchase_requests->item as $yes)
                                                     <tr style="text-align: center">
                                                         <td class="content-control-sm">{{ $nomor++ }}</td>
-                                                        <td class="content-control-sm">{{ $yes->supplier->vendor }}</td>
-                                                        <td class="content-control-sm">{{ $yes->grade->tipe }}</td>
-                                                        <td class="content-control-sm">{{ $yes->warna }}</td>
-                                                        <td class="content-control-sm">{{ $yes->colour->name }}</td>
-                                                        <td class="content-control-sm">{{ $yes->finish }}</td>
-                                                        <td class="content-control-sm">{{ $yes->quantity }}</td>
-                                                        <td class="content-control-sm">{{ $yes->m2 }}</td>
+                                                        <td class="content-control-sm">{{ $yes->master_item->item_name }}</td>
+                                                        <td class="content-control-sm">{{ $yes->stok }}</td>
+                                                        <td class="content-control-sm">{{ $yes->satuan->unit }}</td>
                                                     </tr>
-                                                    @endforeach
-                                                </tbody>
-                                                {{-- @endif --}}
-                                            </table>
-                                        @endif
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    @elseif ($purchase_requests->type == 'powder')
+                                        @foreach ($purchase_requests->powder as $yes)
+                                        <table>
+                                            <tr class="tr">
+                                                <td width="200px">Warna</td>
+                                                <td>: {{ $yes->warna }}</td>
+                                            </tr>
+                                            <tr class="tr">
+                                                <td width="220px">Kode Warna</td>
+                                                <td>:
+                                                    {{ $yes->colour->name }}
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr class="tr">
+                                            <td width="200px">Finish</td>
+                                            <td>:
+                                                {{ $yes->finish }}
+                                            </td>
+                                            </tr>
+
+                                            <tr class="tr">
+                                                <td width="200px">Finishing</td>
+                                                <td>:
+                                                    {{ $yes->finishing }}
+                                                </td>
+                                            </tr>
+                                            
+                                            <tr class="tr">
+                                                <td width="200px">Grade</td>
+                                                <td>: {{ $yes->grade->tipe }}</td>
+                                            </tr>
+                                            
+                                            <tr class="tr">
+                                                <td width="200px">Supplier</td>
+                                                <td>: {{ $yes->supplier->vendor }}</td>
+                                            </tr>
+                                            
+                                            <tr class="tr">
+                                                <td width="200px">Quantity</td>
+                                                <td>: {{ $yes->quantity }} </td>
+                                            </tr>
+                                            
+                                            <tr class="tr">
+                                                <td width="200px">m2</td>
+                                                <td>: {{ $yes->m2 }} </td>
+                                            </tr>
+                                            
+                                            <tr class="tr">
+                                                <td width="200px">Estimasi m2/Kg</td>
+                                                <td>: {{ $yes->estimasi }} </td>
+                                            </tr>
+                                            
+                                            <tr class="tr">
+                                                <td width="200px">Stock Powder Fresh (Kgs)</td>
+                                                <td>: {{ $yes->fresh }} </td>
+                                            </tr>
+                                            
+                                            <tr class="tr">
+                                                <td width="200px">Alokasi powder Fresh</td>
+                                                <td>: {{ $yes->alokasi }} </td>
+                                            </tr>
+                                            
+                                            <tr class="tr">
+                                                <td width="200px">Stock Powder Recycle (Kgs)</td>
+                                                <td>: {{ $yes->recycle }} </td>
+                                            </tr>
+                                            
+                                            <tr class="tr">
+                                                <td width="200px">Alokasi outstanding (KGs)</td>
+                                                <td>: {{ $yes->alokasi }} </td>
+                                            </tr>
+                                        </table>
+                                        @endforeach
+                                    @endif
 
                                     </div>
                                 </div>
 
+                                <div id="setting" class="tab-pane fade">
+                                    <div class="setting-content pt-3">
+                                        <div class="post-input">
+                                        
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div id="approval" class="tab-pane fade">
                                     <div class="mb-3">

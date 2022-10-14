@@ -76,7 +76,7 @@
                                                     {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}
                                                 </td>
                                                 </tr>
-
+    
                                                 <tr class="tr">
                                                     @if ($purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'accept'||$purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'edit' || $purchase_requests->approval_status == 'edit' && $purchase_requests->accept_status == 'accept' || $purchase_requests->approval_status == 'approve' && $purchase_requests->accept_status == 'edit' || $purchase_requests->approval_status == 'edit' && $purchase_requests->accept_status == 'edit')
                                                         <td width="200px">Tanggal Disetujui Manager</td>
@@ -106,6 +106,20 @@
                                                             {{ $purchase_requests->approval_status . 'd by Manager' }}
                                                         </td>
                                                         </tr>
+                                                        @if ($purchase_requests->accept_status == 'reject')
+                                                        <tr class="tr">
+                                                        <td width="200px">Tanggal Ditolak</td>
+                                                        <td>:
+                                                            {{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }}
+                                                        </td>
+                                                    </tr>
+                                                        <tr class="tr">
+                                                        <td width="200px">Status</td>
+                                                        <td>:
+                                                            {{ $purchase_requests->accept_status . 'ed by Tim Purchasing' }}
+                                                        </td>
+                                                        </tr>
+                                                        @endif
                                                     @elseif ($purchase_requests->approval_status == 'edit')
                                                         <td width="200px">Tanggal Disetujui</td>
                                                         <td>:
@@ -117,6 +131,18 @@
                                                             {{ $purchase_requests->approval_status . 'ed by Manager' }}
                                                         </td>
                                                         </tr>
+                                                        @if ($purchase_requests->accept_status == 'reject')
+                                                        <td width="200px">Tanggal Ditolak</td>
+                                                        <td>:
+                                                            {{ \Carbon\Carbon::parse($purchase_requests->updated_at)->format('d F Y') }}
+                                                        </td>
+                                                        <tr class="tr">
+                                                        <td width="200px">Status</td>
+                                                        <td>:
+                                                            {{ $purchase_requests->accept_status . 'ed by Tim Purchasing' }}
+                                                        </td>
+                                                        </tr>
+                                                        @endif
                                                     @elseif ($purchase_requests->approval_status == 'reject')
                                                         <td width="200px">Tanggal Ditolak</td>
                                                         <td>:
@@ -162,22 +188,22 @@
                                                     <td>: {{ $purchase_requests->ship->tipe }} </td>
                                                 </tr>
                                                 
-
+    
                                                 <tr class="tr">
                                                     <td width="200px">Alamat Kirim</td>
                                                     <td>: {{ $purchase_requests->location->location_name }}</td>
                                                 </tr>
                                                 <tr class="tr">
-                                                    <td width="200px">Status</td>
+                                                    <td width="200px">Status PR</td>
                                                     <td>: {{ $purchase_requests->status }} </td>
                                                 </tr>
                                                 
                                                 @if($purchase_requests->approval_status == 'reject')
-                                            <tr class="tr">
-                                                <td width="200px">Pesan Reject</td>
-                                                <td style="font-weight: 600">: {{ $purchase_requests->feedback_manager }}</td>
-                                            </tr>
-                                            @endif
+                                                <tr class="tr">
+                                                    <td width="200px">Pesan Reject</td>
+                                                    <td style="font-weight: 600">: {{ $purchase_requests->feedback_manager }}</td>
+                                                </tr>
+                                                @endif
                                                 <tr class="tr">
                                                     <td width="200px">Note</td>
                                                     <td>: {!! $purchase_requests->note !!}</td>
