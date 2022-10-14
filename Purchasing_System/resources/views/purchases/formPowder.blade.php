@@ -41,13 +41,13 @@
             <div class="mb-3">
                 <label for="prefixes_id" class="form-label">Divisi<span style="color:red">*</span></label>
                 <div class="row">
-                    <div class="col-lg-10 col-md-9 col-sm-2">
+                    <div class="col-lg-10 col-md-9">
                         <div id="reader_prefix"></div>
                         @error('prefixes_id')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-2">
+                    <div class="col-lg-2 col-md-3">
                         <a onClick="prefix_create()" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
                             style="width: 100%" class="input-rounded btn btn-primary"> <i class="fa fa-plus"
                                 style="font-size:14px"></i>
@@ -74,13 +74,13 @@
             <div class="mb-3">
                 <label for="Location">Lokasi<span style="color:red">*</span></label>
                 <div class="row">
-                    <div class="col-lg-10 col-md-9 col-sm-2">
+                    <div class="col-lg-10 col-md-9">
                         <div id="reader_location"></div>
                         @error('locations_id')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-2">
+                    <div class="col-lg-2 col-md-3">
                         <a onClick="location_create()" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
                             style="width: 100%" class="input-rounded btn btn-primary"> <i class="fa fa-plus"
                                 style="font-size:14px"></i>
@@ -98,13 +98,13 @@
             <div class="mb-3">
                 <label for="Ship">Kebutuhan/ Pengiriman<span style="color:red">*</span></label>
                 <div class="row">
-                    <div class="col-lg-10 col-md-9 col-sm-2">
+                    <div class="col-lg-10 col-md-9">
                         <div id="reader_ships"></div>
                         @error('ships_id')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-2">
+                    <div class="col-lg-2 col-md-3">
                         <a onClick="ships_create()" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
                             style="width: 100%" class="input-rounded btn btn-primary"> <i class="fa fa-plus"
                                 style="font-size:14px"></i>
@@ -158,13 +158,13 @@
                 <label for="Grade">Kode Warna<span style="color:red">*</span></label>
 
                 <div class="row">
-                    <div class="col-lg-10 col-md-9 col-sm-2">
+                    <div class="col-lg-10 col-md-9">
                         <div id="reader_color" class=" @error('color_id') is-invalid @enderror"></div>
                         @error('color_id')
     <span class="text-danger">{{ $message }}</span>
 @enderror
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-2">
+                    <div class="col-lg-2 col-md-3">
                         <a onClick="color_create()" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
                             style="width: 100%" class="input-rounded btn btn-primary"> <i class="fa fa-plus"
                                 style="font-size:14px"></i>
@@ -183,13 +183,13 @@
                 <label for="Grade">Grade<span style="color:red">*</span></label>
 
                 <div class="row">
-                    <div class="col-lg-10 col-md-9 col-sm-2">
+                    <div class="col-lg-10 col-md-9">
                         <div id="reader_grade"></div>
                         @error('grades_id')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-2">
+                    <div class="col-lg-2 col-md-3">
                         <a onClick="grade_create()" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
                             style="width: 100%" class="input-rounded btn btn-primary"> <i class="fa fa-plus"
                                 style="font-size:14px"></i>
@@ -202,13 +202,13 @@
             <div class="mb-3">
                 <label for="Supplier">Supplier<span style="color:red">*</span></label>
                 <div class="row">
-                    <div class="col-lg-10 col-md-9 col-sm-2">
+                    <div class="col-lg-10 col-md-9">
                         <div id="reader_supplier"></div>
                         @error('suppliers_id')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-2">
+                    <div class="col-lg-2 col-md-3">
                         <a onClick="supplier_create()" data-bs-toggle="modal"
                             data-bs-target="#exampleModalPowderCenter" style="width: 100%"
                             class="input-rounded btn btn-primary"> <i class="fa fa-plus" style="font-size:14px"></i>

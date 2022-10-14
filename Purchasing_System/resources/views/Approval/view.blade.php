@@ -62,9 +62,9 @@
                                 <div id="my-posts" class="tab-pane fade active show">
                                     <div class="my-post-content pt-3">
                                         <div class="post-input">
-                                            <table style="margin-top: -120px">
+                                            <table>
                                                 <tr class="tr">
-                                                    <td width="200px">No. Purchase Request</td>
+                                                    <td width="200px">Nomor PR</td>
                                                     <td>: {{ $purchase_requests->no_pr }}</td>
                                                 </tr>
                                                 <tr class="tr">
@@ -73,7 +73,6 @@
                                                         {{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}
                                                     </td>
                                                 </tr>
-                                                <br>
                                                 <tr class="tr">
                                                 <td width="200px">Tanggal Deadline</td>
                                                 <td>:
@@ -106,44 +105,36 @@
                                                         </tr>
                                                     @endif
                                                 </tr>
-                                                <br>
                                                 <tr class="tr">
                                                     <td width="200px">Requester</td>
                                                     <td>: {{ $purchase_requests->requester }}</td>
                                                 </tr>
-                                                <br>
                                                 <tr class="tr">
                                                     <td width="200px">Divisi</td>
                                                     <td>: {{ $purchase_requests->Prefixe->divisi }}</td>
                                                 </tr>
-                                                <br>
                                                 <tr class="tr">
                                                     <td width="200px">Project/Customer</td>
                                                     <td>: {{ $purchase_requests->project }} </td>
                                                 </tr>
-                                                <br>
                                                 <tr class="tr">
                                                     <td width="200px">Kebutuhan/Pengiriman</td>
                                                     <td>: {{ $purchase_requests->ship->tipe }} </td>
                                                 </tr>
-                                                <br>
 
                                                 <tr class="tr">
                                                     <td width="200px">Alamat</td>
                                                     <td>: {{ $purchase_requests->location->location_name }}</td>
                                                 </tr>
-                                                <br>
                                                 <tr class="tr">
                                                     <td width="200px">Approval PR</td>
                                                     <td>: {{ $purchase_requests->approval_status }}</td>
                                                 </tr>
-                                                <br>
                                                 @if($purchase_requests->approval_status == 'reject')
                                             <tr class="tr">
                                                 <td width="200px">Pesan Reject</td>
                                                 <td style="font-weight: 600">: {{ $purchase_requests->feedback_manager }}</td>
                                             </tr>
-                                            <br>
                                             @endif
                                             
                                                 <tr class="tr">
@@ -151,7 +142,6 @@
 
                                                     <td>: </td>
                                                 </tr>
-                                                <br>
 
 
                                             </table>

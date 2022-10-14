@@ -111,13 +111,13 @@
                                                 <label for="prefixes_id" class="form-label">Divisi<span
                                                         style="color:red">*</span></label>
                                                 <div class="row">
-                                                    <div class="col-lg-10 col-md-9 col-sm-2">
+                                                    <div class="col-lg-10 col-md-9">
                                                         <div id="read_prefix"></div>
                                                         @error('prefixes_id')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                     </div>
-                                                    <div class="col-lg-2 col-md-3 col-sm-2">
+                                                    <div class="col-lg-2 col-md-3">
                                                         <a onClick="prefix_create()" data-bs-toggle="modal"
                                                             data-bs-target="#exampleModalPowderCenter" style="width: 100%"
                                                             class="input-rounded btn btn-primary"> <i class="fa fa-plus"
@@ -147,13 +147,13 @@
                                             <div class="mb-3">
                                                 <label for="Location">Lokasi<span style="color:red">*</span></label>
                                                 <div class="row">
-                                                    <div class="col-lg-10 col-md-9 col-sm-2">
+                                                    <div class="col-lg-10 col-md-9">
                                                         <div id="read_location"></div>
                                                         @error('locations_id')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>
-                                                    <div class="col-lg-2 col-md-3 col-sm-2">
+                                                    <div class="col-lg-2 col-md-3">
                                                         <a onClick="location_create()" data-bs-toggle="modal"
                                                             data-bs-target="#exampleModalPowderCenter" style="width: 100%"
                                                             class="input-rounded btn btn-primary"> <i class="fa fa-plus"
@@ -173,13 +173,13 @@
                                                 <label for="Ship">Kebutuhan/ Pengiriman<span
                                                         style="color:red">*</span></label>
                                                 <div class="row">
-                                                    <div class="col-lg-10 col-md-9 col-sm-2">
+                                                    <div class="col-lg-10 col-md-9">
                                                         <div id="read_ships"></div>
                                                         @error('ships_id')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                     </div>
-                                                    <div class="col-lg-2 col-md-3 col-sm-2">
+                                                    <div class="col-lg-2 col-md-3">
                                                         <a onClick="ships_create()" data-bs-toggle="modal"
                                                             data-bs-target="#exampleModalPowderCenter" style="width: 100%"
                                                             class="input-rounded btn btn-primary"> <i class="fa fa-plus"
@@ -232,13 +232,13 @@
                                                             style="color:red">*</span></label>
 
                                                         <div class="row">
-                                                            <div class="col-lg-9 col-md-8 col-sm-2">
+                                                            <div class="col-lg-9 col-md-8">
                                                                 <div id="reader_item"></div>
                                                                 @error('id_master_item')
                                                                         <span class="text-danger">{{ $message }}</span>
                                                                  @enderror
                                                             </div>
-                                                            <div class="col-lg-3 col-md-4 col-sm-2">
+                                                            <div class="col-lg-3 col-md-4">
                                                                 <a onClick="item_create()" data-bs-toggle="modal"
                                                                     data-bs-target="#exampleModalPowderCenter"
                                                                     style="width: 100%"
@@ -262,13 +262,13 @@
                                                             style="color:red">*</span></label>
 
                                                         <div class="row">
-                                                            <div class="col-lg-8 col-md-8 col-sm-2">
+                                                            <div class="col-lg-8 col-md-8">
                                                                 <div id="reader_unit"></div>
                                                                 @error('id_satuan')
                                                                         <span class="text-danger">{{ $message }}</span>
                                                                  @enderror
                                                             </div>
-                                                            <div class="col-lg-4 col-md-4 col-sm-2">
+                                                            <div class="col-lg-4 col-md-4">
                                                                 <a onClick="unit_create()" data-bs-toggle="modal"
                                                                     data-bs-target="#exampleModalPowderCenter"
                                                                     style="width: 100%"
