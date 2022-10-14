@@ -159,6 +159,10 @@ select:focus {
     text-align: center;
 }
 
+.title-form:hover {
+    transform: translateY(0px);
+    transition-duration: 0.5s;
+}
 .tabs .tab-2 {
     width: 50%;
 }
