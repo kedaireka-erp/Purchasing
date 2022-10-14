@@ -252,7 +252,7 @@
                                                     <select class="default-select input-rounded form-control wide mb-3"
                                                         style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
                                                         id="approval_status" name="approval_status">
-                                                        <option disabled value="{{ $purchase_requests->approval_status }}" selected>{{ $purchase_requests->approval_status }}</option>
+                                                        <option value="{{ $purchase_requests->approval_status }}" selected>{{ $purchase_requests->approval_status }}</option>
                                                         @if ($purchase_requests->approval_status == 'pending')
                                                         <option value="approve">approve</option>
                                                         @elseif ($purchase_requests->approval_status == 'approve')
