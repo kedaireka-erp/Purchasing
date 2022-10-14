@@ -249,8 +249,7 @@
                                                         <select class="default-select input-rounded form-control wide mb-3"
                                                             style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
                                                             id="approval_status" name="accept_status">
-                                                            <option value="{{ $purchase_requests->accept_status }}" selected
-                                                                disabled>
+                                                            <option value="{{ $purchase_requests->accept_status }}" selected>
                                                                 {{ $purchase_requests->accept_status }}</option>
                                                             <option value="accept">accept</option>
                                                         </select>
@@ -258,8 +257,8 @@
                                                         <select class="default-select input-rounded form-control wide mb-3"
                                                             style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
                                                             id="approval_status" name="accept_status">
-                                                            <option value="" selected
-                                                                disabled> reject</option>
+                                                            <option value="{{ $purchase_requests->accept_status }}" selected>
+                                                                {{ $purchase_requests->accept_status }}</option>
                                                             <option value="pending">pending</option>
                                                             <option value="accept">accept</option>
                                                         </select>
@@ -267,8 +266,8 @@
                                                         <select class="default-select input-rounded form-control wide mb-3"
                                                             style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
                                                             id="approval_status" name="accept_status">
-                                                            <option value="accept" selected
-                                                                disabled> accept</option>
+                                                            <option value="{{ $purchase_requests->accept_status }}" selected>
+                                                                {{ $purchase_requests->accept_status }}</option>
                                                             <option value="pending">pending</option>
                                                         </select>
                                                         @endif
