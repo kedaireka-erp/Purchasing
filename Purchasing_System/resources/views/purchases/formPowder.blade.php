@@ -12,9 +12,9 @@
             <div class="mb-3">
                 <label for="deadline_date" class="form-label">Tanggal
                     Kebutuhan Barang<span style="color:red">*</span></label>
-                <input type="date" class="form-control input-rounded @error('deadline_date') is-invalid @enderror"
+                <input id="inputdate_powder" type="date" class="form-control input-rounded @error('deadline_date') is-invalid @enderror"
                     id="deadline_date" placeholder="-- INPUT --" name="deadline_date"
-                    value="{{ old('deadline_date') }}">
+                    value="{{ old('deadline_date') }}" required>
 
                 @error('deadline_date')
                     <span class="text-danger">{{ $message }}</span>
@@ -29,7 +29,7 @@
             <div class="mb-3">
                 <label for="requester" class="form-label">Requester<span style="color:red">*</span></label>
                 <input type="text" class="form-control input-rounded @error('requester') is-invalid @enderror"
-                    id="requester" placeholder="-- INPUT --" name="requester" value="{{ old('requester') }}" autofocus>
+                    id="requester" placeholder="-- INPUT --" name="requester" value="{{ old('requester') }}" autofocus required>
 
                 @error('requester')
                     <span class="text-danger">{{ $message }}</span>
@@ -43,6 +43,9 @@
                 <div class="row">
                     <div class="col-lg-10 col-md-9 col-sm-2">
                         <div id="reader_prefix"></div>
+                        @error('prefixes_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-2">
                         <a onClick="prefix_create()" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
@@ -73,6 +76,9 @@
                 <div class="row">
                     <div class="col-lg-10 col-md-9 col-sm-2">
                         <div id="reader_location"></div>
+                        @error('locations_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-2">
                         <a onClick="location_create()" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
@@ -94,6 +100,9 @@
                 <div class="row">
                     <div class="col-lg-10 col-md-9 col-sm-2">
                         <div id="reader_ships"></div>
+                        @error('ships_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-2">
                         <a onClick="ships_create()" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
@@ -136,9 +145,13 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="mb-3">
-                <label for="warna" class="form-label font">warna</label>
-                <input type="text" class="form-control input-rounded" placeholder="--INPUT--" name="warna">
+                <label for="warna" class="form-label font">warna<span style="color:red">*</span></label></label>
+                <input type="text" class="form-control input-rounded @error('warna') is-invalid @enderror" placeholder="--INPUT--" name="warna" required>
+                @error('warna')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
+
         </div>
         <div class="col-lg-6">
             <div class="mb-3">
@@ -146,7 +159,10 @@
 
                 <div class="row">
                     <div class="col-lg-10 col-md-9 col-sm-2">
-                        <div id="reader_color"></div>
+                        <div id="reader_color" class=" @error('color_id') is-invalid @enderror"></div>
+                        @error('color_id')
+    <span class="text-danger">{{ $message }}</span>
+@enderror
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-2">
                         <a onClick="color_create()" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
@@ -169,6 +185,9 @@
                 <div class="row">
                     <div class="col-lg-10 col-md-9 col-sm-2">
                         <div id="reader_grade"></div>
+                        @error('grades_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-2">
                         <a onClick="grade_create()" data-bs-toggle="modal" data-bs-target="#exampleModalPowderCenter"
@@ -185,6 +204,9 @@
                 <div class="row">
                     <div class="col-lg-10 col-md-9 col-sm-2">
                         <div id="reader_supplier"></div>
+                        @error('suppliers_id')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="col-lg-2 col-md-3 col-sm-2">
                         <a onClick="supplier_create()" data-bs-toggle="modal"
@@ -202,13 +224,16 @@
             <div class="mb-3">
 
 
-                <label for="finish" class="form-label font">Finish</label>
-                <select class="default-select input-rounded form-control wide mb-3"
-                    aria-label="Default select example" name="finish">
+                <label for="finish" class="form-label font">Finish<span style="color:red">*</span></label></label>
+                <select class="default-select input-rounded form-control wide mb-3 @error('finish') is-invalid @enderror"
+                    aria-label="Default select example" name="finish" required>
                     <option selected disabled> -- PILIH OPSI -- </option>
                     <option value="interior"> Interior </option>
                     <option value="eksterior"> Eksterior </option>
                 </select>
+                @error('finish')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
 
 
             </div>
@@ -217,9 +242,9 @@
             <div class="mb-3">
 
 
-                <label for="finishing" class="form-label font">Finishing</label>
-                <select class="default-select input-rounded form-control wide mb-3"
-                    aria-label="Default select example" name="finishing">
+                <label for="finishing" class="form-label font">Finishing<span style="color:red">*</span></label></label>
+                <select class="default-select input-rounded form-control wide mb-3 @error('finishing') is-invalid @enderror"
+                    aria-label="Default select example" name="finishing" required>
                     <option selected disabled> -- PILIH OPSI-- </option>
                     <option value="SG"> SG </option>
                     <option value="MATT"> MATT </option>
@@ -229,6 +254,9 @@
                     <option value="SAND TEXTURE"> SAND TEXTURE </option>
                     <option value="SUBLIMASI"> SUBLIMASI </option>
                 </select>
+                @error('finishing')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
 
 
             </div>
@@ -242,19 +270,28 @@
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-4">
-                        <label for="quantity" class="form-label font">Quantity</label>
-                        <input type="number" name="quantity" class="form-control input-rounded"
-                            placeholder="--INPUT--">
+                        <label for="quantity" class="form-label font">Quantity<span style="color:red">*</span></label></label>
+                        <input type="number" name="quantity" class="form-control input-rounded @error('quantity') is-invalid @enderror"
+                            placeholder="--INPUT--" required>
+                            @error('quantity')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                     </div>
                     <div class="col-4">
-                        <label for="tanggal_pengajuan" class="form-label font">m2</label>
-                        <input type="text" class="form-control input-rounded" name="m2"
-                            placeholder="--INPUT--">
+                        <label for="tanggal_pengajuan" class="form-label font">m2<span style="color:red">*</span></label></label>
+                        <input type="text" class="form-control input-rounded @error('m2') is-invalid @enderror" name="m2"
+                            placeholder="--INPUT--" required>
+                            @error('m2')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                     </div>
                     <div class="col-4">
-                        <label for="tanggal_pengajuan" class="form-label font">Estimasi m2/Kg</label>
-                        <input type="number" class="form-control input-rounded" name="estimasi"
-                            placeholder="--INPUT--">
+                        <label for="tanggal_pengajuan" class="form-label font">Estimasi m2/Kg<span style="color:red">*</span></label></label>
+                        <input type="number" class="form-control input-rounded @error('estimasi') is-invalid @enderror" name="estimasi"
+                            placeholder="--INPUT--" required>
+                            @error('estimasi')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                     </div>
                 </div>
             </div>
@@ -267,21 +304,30 @@
                 <div class="row">
 
                     <div class="col-4">
-                        <label for="tanggal_pengajuan" class="form-label font">Stock Powder Fresh (Kgs)</label>
-                        <input type="number" class="form-control input-rounded" placeholder="--INPUT--"
-                            name="fresh">
+                        <label for="tanggal_pengajuan" class="form-label font">Stock Powder Fresh (Kgs)<span style="color:red">*</span></label></label>
+                        <input type="number" class="form-control input-rounded @error('fresh') is-invalid @enderror" placeholder="--INPUT--"
+                            name="fresh" required>
+                            @error('fresh')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                     </div>
 
                     <div class="col-4">
-                        <label for="tanggal_pengajuan" class="form-label font">Stock Powder Recycle (Kgs)</label>
-                        <input type="number" class="form-control input-rounded" placeholder="--INPUT--"
-                            name="recycle">
+                        <label for="tanggal_pengajuan" class="form-label font">Stock Powder Recycle (Kgs)<span style="color:red">*</span></label></label>
+                        <input type="number" class="form-control input-rounded @error('recycle') is-invalid @enderror" placeholder="--INPUT--"
+                            name="recycle" required>
+                            @error('recycle')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                     </div>
 
                     <div class="col-4">
-                        <label for="tanggal_pengajuan" class="form-label font">Alokasi powder Fresh</label>
-                        <input type="number" class="form-control input-rounded" placeholder="--INPUT--"
-                            name="alokasi">
+                        <label for="tanggal_pengajuan" class="form-label font">Alokasi powder Fresh<span style="color:red">*</span></label></label>
+                        <input type="number" class="form-control input-rounded @error('alokasi') is-invalid @enderror" placeholder="--INPUT--"
+                            name="alokasi" required>
+                            @error('alokasi')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                     </div>
                 </div>
             </div>

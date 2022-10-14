@@ -70,7 +70,7 @@ class PurchaseRequestController extends Controller
         $color = Supplier::get();
         $Powder = powder::get();
         
-        return view('purchases.create', compact('colour','Location','Ship', "Prefixe",'master_item','satuan', 'Grade'));
+        return view('purchases.create', compact('purchase_requests','colour','Location','Ship', "Prefixe",'master_item','satuan', 'Grade'));
     }
 
 
@@ -87,7 +87,9 @@ class PurchaseRequestController extends Controller
             'attachment' => 'mimes:jpeg,img,jpg,png|max:20000',
             'locations_id' => 'required',
             'prefixes_id' => 'required',
-            'ships_id' => 'required'
+            'ships_id' => 'required',
+            'id_master_item' => 'required',
+            'id_satuan' =>'required'
 
         ], [
             'deadline_date.required'=>"Deadline Date field is required ",
@@ -96,7 +98,8 @@ class PurchaseRequestController extends Controller
             'locations_id.required' => "Lokasi field is required",
             'prefixes_id.required' => "Divisi field is required",
             'ships_id.required' => "Kebutuhan/pengiriman field is required",
-            'attachment.required'=>"Attachment field is required ",
+            'id_master_item.required'=>"Item field is required ",
+            'id_satuan.required'=>"Satuan field is required "
         ]);
         if($request->hasFile('attachment'))
         {
@@ -150,7 +153,7 @@ class PurchaseRequestController extends Controller
         $validateData = $request->validate([
             'deadline_date'=>'required',
             'requester'=>'required|max:100',
-            'project'=>'required|max:100',
+            // 'project'=>'required|max:100',
             'attachment' => 'mimes:jpeg,img,jpg,png|max:20000',
             'locations_id' => 'required',
             'prefixes_id' => 'required',
@@ -169,7 +172,7 @@ class PurchaseRequestController extends Controller
             'alokasi' => 'required'
 
         ], [
-            'deadline_date.required'=>"Deadline Date field is required ",
+            'deadline_date.required'=>"Tanggal Kebutuhan Barang Tiba field is required ",
             'requester.required'=>"Requester field is required ",
             'project.required'=>"Project field is required ",
             'attachment.required'=>"Attachment field is required ",

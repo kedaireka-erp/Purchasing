@@ -7,6 +7,4 @@
         </option>
     @endforeach
 </select>
-@error('locations_id')
-    <span class="text-danger">{{ $message }}</span>
-@enderror
+

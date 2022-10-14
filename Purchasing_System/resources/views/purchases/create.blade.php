@@ -28,34 +28,39 @@
 @endsection
 
 @section('content')
-
-    @if($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $message)
-                <li>{{ $message }}</li>
-            @endforeach
-        </ul>
+<div class="card">
+    <div class="card-header">
+        {{-- <h4 class="card-title">Nav Pills Tabs</h4> --}}
     </div>
-    @endif
-
-    <div class="card">
-        <div id="chead">
-            <div class="card-body">
-                <div class="container">
-                    <div class="tabs">
-                        <div class="tab-2">
-                            <label for="tab2-1" class="title-form">Powder</label>
-                            <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
-                            <div>
-                                @include('purchases.formPowder')
-                            </div>
-                        </div>
-                        <div class="tab-2">
-                            <label for="tab2-2" class="title-form">Other Good</label>
-                            <input id="tab2-2" name="tabs-two" type="radio">
-                            <div disabled="disabled">
-                                <form action="{{ route('purchase_request.storegood') }}" method="post"
+    <div class="card-body">
+        <ul class="nav nav-pills justify-content-around mb-4 light">
+            <li class=" nav-item">
+                <a href="#navpills-1" class="title-form nav-link active" data-bs-toggle="tab" aria-expanded="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-square mr-3" viewBox="0 0 16 16">
+                        <path d="M0 6a6 6 0 1 1 12 0A6 6 0 0 1 0 6z"/>
+                        <path d="M12.93 5h1.57a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1.57a6.953 6.953 0 0 1-1-.22v1.79A1.5 1.5 0 0 0 5.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 4h-1.79c.097.324.17.658.22 1z"/>
+                      </svg>
+                      Powder</a>
+            </li>
+            <li class="nav-item">
+                <a href="#navpills-2" class="title-form nav-link" data-bs-toggle="tab" aria-expanded="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket2 mr-3" viewBox="0 0 16 16">
+                        <path d="M4 10a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0v-2zm3 0a1 1 0 1 1 2 0v2a1 1 0 0 1-2 0v-2z"/>
+                        <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-.623l-1.844 6.456a.75.75 0 0 1-.722.544H3.69a.75.75 0 0 1-.722-.544L1.123 8H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.163 8l1.714 6h8.246l1.714-6H2.163z"/>
+                      </svg>
+                    Other Good</a>
+            </li>
+        </ul>
+        <div class="tab-content" style="margin-top:70px">
+            <div id="navpills-1" class="tab-pane active">
+                <div class="row">
+                    <div>
+                        @include('purchases.formPowder')
+                    </div>
+                </div>
+            </div>
+            <div id="navpills-2" class="tab-pane">
+                <form action="{{ route('purchase_request.storegood') }}" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
@@ -72,10 +77,10 @@
                                             <div class="mb-3">
                                                 <label for="deadline_date" class="form-label">Tanggal
                                                     Kebutuhan Barang<span style="color:red">*</span></label>
-                                                <input type="date"
+                                                <input type="date" id="inputdate_good"
                                                     class="form-control input-rounded @error('deadline_date') is-invalid @enderror"
                                                     id="deadline_date" placeholder="-- INPUT --" name="deadline_date"
-                                                    value="{{ old('deadline_date') }}">
+                                                    value="{{ old('deadline_date') }}" required>
 
                                                 @error('deadline_date')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -93,7 +98,7 @@
                                                 <input type="text"
                                                     class="form-control input-rounded @error('requester') is-invalid @enderror"
                                                     id="requester" placeholder="-- INPUT --" name="requester"
-                                                    value="{{ old('requester') }}" autofocus>
+                                                    value="{{ old('requester') }}" autofocus required>
 
                                                 @error('requester')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -108,6 +113,9 @@
                                                 <div class="row">
                                                     <div class="col-lg-10 col-md-9 col-sm-2">
                                                         <div id="read_prefix"></div>
+                                                        @error('prefixes_id')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                     </div>
                                                     <div class="col-lg-2 col-md-3 col-sm-2">
                                                         <a onClick="prefix_create()" data-bs-toggle="modal"
@@ -141,6 +149,9 @@
                                                 <div class="row">
                                                     <div class="col-lg-10 col-md-9 col-sm-2">
                                                         <div id="read_location"></div>
+                                                        @error('locations_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="col-lg-2 col-md-3 col-sm-2">
                                                         <a onClick="location_create()" data-bs-toggle="modal"
@@ -164,6 +175,9 @@
                                                 <div class="row">
                                                     <div class="col-lg-10 col-md-9 col-sm-2">
                                                         <div id="read_ships"></div>
+                                                        @error('ships_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                     <div class="col-lg-2 col-md-3 col-sm-2">
                                                         <a onClick="ships_create()" data-bs-toggle="modal"
@@ -214,11 +228,15 @@
                                                 <div class="row">
 
                                                     <div class="col-lg-5">
-                                                        <label for="nama_barang" class="form-label">Nama Barang</label>
+                                                        <label for="nama_barang" class="form-label">Nama Barang<span
+                                                            style="color:red">*</span></label>
 
                                                         <div class="row">
                                                             <div class="col-lg-9 col-md-8 col-sm-2">
                                                                 <div id="reader_item"></div>
+                                                                @error('id_master_item')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                 @enderror
                                                             </div>
                                                             <div class="col-lg-3 col-md-4 col-sm-2">
                                                                 <a onClick="item_create()" data-bs-toggle="modal"
@@ -232,18 +250,23 @@
                                                     </div>
 
                                                     <div class="col-lg-2">
-                                                        <label for="quantity" class="form-label">Quantity</label>
-                                                        <input type="number" name="addMoreInputFields[0][stok]"
-                                                            placeholder="qty"
+                                                        <label for="quantity" class="form-label">Quantity<span
+                                                            style="color:red">*</span></label>
+                                                        <input type="number" value="{{ old('stok') }}" name="addMoreInputFields[0][stok]"
+                                                            placeholder="qty" required
                                                             class="form-control input-rounded form-control-lg" />
                                                     </div>
 
                                                     <div class="col-lg-4">
-                                                        <label for="satuan" class="form-label">Satuan</label>
+                                                        <label for="satuan" class="form-label">Satuan<span
+                                                            style="color:red">*</span></label>
 
                                                         <div class="row">
                                                             <div class="col-lg-8 col-md-8 col-sm-2">
                                                                 <div id="reader_unit"></div>
+                                                                @error('id_satuan')
+                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                 @enderror
                                                             </div>
                                                             <div class="col-lg-4 col-md-4 col-sm-2">
                                                                 <a onClick="unit_create()" data-bs-toggle="modal"
@@ -282,18 +305,13 @@
 
                                     <button class="btn btn-primary" type="submit"
                                         style="margin-top:20px">Submit</button>
-
-
                                 </form>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            </div>
             </div>
         </div>
+    </div>
+</div>
+   
         <div class="modal fade" id="exampleModalPowderCenter">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -511,4 +529,24 @@ $(document).on('click', '.remove-input-field', function () {
             });
         }
     </script>   
+
+<script>
+    $(function(){
+        var dtToday = new Date();
+     
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+        
+        var maxDate = year + '-' + month + '-' + day;
+        // alert(maxDate);
+        $('#inputdate_good').attr('min', maxDate);
+        $('#inputdate_powder').attr('min', maxDate);
+    });
+    
+    </script>
 @endsection

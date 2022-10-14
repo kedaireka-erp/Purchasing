@@ -6,6 +6,4 @@
         </option>
     @endforeach
 </select>
-@error('grades_id')
-    <span class="text-danger">{{ $message }}</span>
-@enderror
+

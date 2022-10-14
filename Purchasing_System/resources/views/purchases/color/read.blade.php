@@ -1,4 +1,4 @@
-<select class="default-select input-rounded form-control wide mb-3" aria-label="Default select example" id="Grade"
+<select class="default-select input-rounded form-control wide mb-3 @error('color_id') is-invalid @enderror" aria-label="Default select example" id="Grade"
     name="color_id" value="{{ old('color_id') }}">
     <option selected disabled>-- Pilih Kode Warna --</option>
     @foreach ($colour as $gra)

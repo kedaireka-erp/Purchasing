@@ -5,6 +5,4 @@
         <option value="{{ $prefixe->id }}">{{ $prefixe->divisi }}</option>
     @endforeach
 </select>
-@error('prefixes_id')
-    <span class="text-danger">{{ $message }}</span>
-@enderror
+
