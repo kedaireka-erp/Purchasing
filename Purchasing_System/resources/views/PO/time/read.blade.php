@@ -13,11 +13,11 @@
                 </option>
             @endforeach
         </select>
-        <script>
+        {{-- <script>
             $(document).ready(function(){
                 $("#id_waktu").select2();
             });
-        </script>
+        </script> --}}
 
     </div>
     <div class="col-lg-3">
