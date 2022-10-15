@@ -88,8 +88,8 @@ class PurchaseRequestController extends Controller
             'locations_id' => 'required',
             'prefixes_id' => 'required',
             'ships_id' => 'required',
-            'id_master_item' => 'required',
-            'id_satuan' =>'required'
+            // 'id_master_item' => 'required',
+            // 'id_satuan' =>'required'
 
         ], [
             'deadline_date.required'=>"Deadline Date field is required ",
