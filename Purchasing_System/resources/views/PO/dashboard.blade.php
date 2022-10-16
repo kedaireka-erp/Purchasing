@@ -19,7 +19,7 @@
     </div>
 @endsection
 @section('content')
-
+<x-alert></x-alert>
     <div class="card">
         <div id="chead">
             <div class="row">
@@ -42,13 +42,14 @@
                     <thead>
                         <tr class="content-control-md" align="center">
 
-                            <td width="10%">Nomor PO</td>
-                            <td width="15%">Supplier</td>
-                            <td width="15%">Alamat Kirim</td>
-                            <td width="10%">Pembayaran</td>
-                            <td width="15%">Tanggal Pembuatan</td>
-                            <td width="10%">Status</td>
-                            <td width="5%"></td>
+                            <td class="content-control-md" width="10%">Nomor PO</td>
+                            <td class="content-control-md" width="13%">Supplier</td>
+                            <td class="content-control-md" width="15%">Alamat Kirim</td>
+                            <td class="content-control-md" width="10%">Pembayaran</td>
+                            <td class="content-control-md" width="15%">Nama Pembuat</td>
+                            <td class="content-control-md" width="17%">Tanggal Pembuatan</td>
+                            <td class="content-control-md" width="15%">Status</td>
+                            <td class="content-control-md" width="5%"></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,11 +60,12 @@
                         @foreach ($orders as $item)
                             <tr align="center">
 
-                                <td class="content-control-md" align="left">{{ $item->no_po }}</td>
-                                <td class="content-control-md">{{ $item->nama_supplier }}</td>
-                                <td class="content-control-md">{{ $item->location->location_name }}</td>
-                                <td class="content-control-md">{{ $item->payment->name_payment }}</td>
-                                <td class="content-control-md">
+                                <td class="content-control-sm">{{ $item->no_po }}</td>
+                                <td class="content-control-sm">{{ $item->nama_supplier }}</td>
+                                <td class="content-control-sm">{{ $item->location->location_name }}</td>
+                                <td class="content-control-sm">{{ $item->payment->name_payment }}</td>
+                                <td class="content-control-sm">{{ $item->nama_supplier }}</td>
+                                <td class="content-control-sm">
                                     {{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}
                                 </td>
                                 @foreach ($item->purchases as $value)

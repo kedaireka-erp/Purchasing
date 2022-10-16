@@ -143,7 +143,7 @@ class PurchaseRequestController extends Controller
                 $purchase_requests->item()->attach($request_now);
             }
            
-        return redirect('/purchase_request');
+        return redirect('/purchase_request')->with('success', 'Berhasil menambah data');
     }
 
     // *******************
@@ -231,7 +231,7 @@ class PurchaseRequestController extends Controller
         $request_now = powder::find($request_id);
         $purchase_requests->powder()->attach($request_now);
 
-        return redirect('/purchase_request');
+        return redirect('/purchase_request')->with('success', 'Berhasil menambah data status');
 
     }
 
@@ -364,7 +364,7 @@ class PurchaseRequestController extends Controller
             'attachment'=>$request->attachment ?? $purchase_requests->attachment,
             
         ]);
-        return redirect('/purchase_request');
+        return redirect('/purchase_request')->with('teredit', 'Berhasil mengedit data barang');
 
     }
 
@@ -374,7 +374,7 @@ class PurchaseRequestController extends Controller
         $purchase_requests->delete();
 
         // alert()->question('Are you sure?','You won\'t be able to revert this!')->showCancelButton();
-        return redirect("/purchase_request")->with('status', 'Purchase Request berhasil dihapus!');
+        return redirect("/purchase_request")->with('terhapus', 'Purchase Request berhasil dihapus!');
      }
 
     public function show($id){

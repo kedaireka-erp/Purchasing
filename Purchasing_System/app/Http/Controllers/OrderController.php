@@ -181,7 +181,7 @@ class OrderController extends Controller
 
         
 
-        return redirect('/order');
+        return redirect('/order')->with('success', 'Berhasil menambah data order');
     }
 
      public function item(){
@@ -224,7 +224,7 @@ class OrderController extends Controller
         $orders = Order::findOrFail($id);
         $orders->delete();
 
-        return redirect("/order");
+        return redirect("/order")->with('terhapus', 'Berhasil menghapus data order');
      }
 
      public function exportPDF($id) {

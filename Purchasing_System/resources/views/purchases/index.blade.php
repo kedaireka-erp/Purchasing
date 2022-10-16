@@ -22,6 +22,7 @@
 
 @section('content')
     {{-- @include('sweetalert::alert') --}}
+    <x-alert></x-alert>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <figure class="tabBlock">
   <ul class="tabBlock-tabs">
