@@ -13,8 +13,8 @@ class Supplier extends Model
     protected $fillable = [
         "vendor"
     ];
-    public function supplier(){
-        return $this->hasMany(powder::class, 'suppliers_id', 'id');
+    public function powder(){
+        return $this->hasMany(Powder::class, 'suppliers_id', 'id');
     }
 
     public function orders()

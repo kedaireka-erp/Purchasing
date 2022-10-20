@@ -24,6 +24,11 @@ class powder extends Model
         return $this->belongsTo(Colour::class, 'color_id');
     }
 
+    public function item_request()
+    {
+        return $this->hasMany(ItemRequest::class,'id');
+    }
+    
     public function purchase(){
         return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id_request', 'powder_id');
     }

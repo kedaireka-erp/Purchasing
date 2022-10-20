@@ -18,6 +18,7 @@ class ItemRequest extends Model
         // return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id_request');
         return $this->belongsTo(PurchaseRequest::class, 'id_request');
     }
+
     public function purchase1()
     {
         // return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id_request');
@@ -26,6 +27,10 @@ class ItemRequest extends Model
 
     public function item(){
         return $this->belongsTo(Item::class, 'id_item');
+        
+    }
+    public function powder(){
+        return $this->belongsTo(Powder::class, 'powder_id');
         
     }
     public function powder1(){
