@@ -28,8 +28,10 @@ class OrderController extends Controller
     
     
         $orders = Order::with('location','payment','timeshipping','supplier','purchases')->get();
+        $orders_pending = Order::with('location','payment','timeshipping','supplier','purchases')->where('status','outstanding')->get();
+        $orders_success = Order::with('location','payment','timeshipping','supplier','purchases')->where('status','closed')->get();
 
-        return view('PO.dashboard', compact('orders'));
+        return view('PO.dashboard', compact('orders','orders_pending','orders_success'));
     }
 
    
@@ -43,13 +45,14 @@ class OrderController extends Controller
         $items = DB::table('item_requests')
             ->where('order_id',NULL)
             ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
-            ->where('purchase_requests.approval_status','approve')
-            ->where('purchase_requests.accept_status','accept')
+            // ->where('purchase_requests.approval_status','approve')
+            // ->where('purchase_requests.accept_status','accept')
             ->join('items', 'items.id', '=', 'item_requests.id_item')
             ->join('satuans', 'satuans.id', '=', 'items.id_satuan')
             ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+            ->join('locations', 'locations.id', '=', 'purchase_requests.locations_id')
             ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
-            ->select('item_requests.id','purchase_requests.approval_status','purchase_requests.accept_status' ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','items.stok','purchase_requests.requester','prefixes.divisi','satuans.name','master_items.item_name')
+            ->select('item_requests.id','purchase_requests.approval_status','purchase_requests.accept_status' ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','items.stok','purchase_requests.requester','prefixes.divisi','satuans.name','master_items.item_name','locations.location_name')
             ->get();
 
         $powders = DB::table('item_requests')
@@ -58,8 +61,9 @@ class OrderController extends Controller
             ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
             ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
             ->join('grades', 'grades.id', '=', 'powders.grades_id')
+            ->join('locations', 'locations.id', '=', 'purchase_requests.locations_id')
             ->join('suppliers', 'suppliers.id', '=', 'powders.suppliers_id')
-            ->select('item_requests.id','purchase_requests.approval_status','purchase_requests.accept_status'  ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
+            ->select('item_requests.id','locations.location_name','purchase_requests.approval_status','purchase_requests.accept_status'  ,'purchase_requests.no_pr', 'purchase_requests.deadline_date','powders.warna','purchase_requests.requester','prefixes.divisi','grades.tipe','suppliers.vendor')
             ->get();
 
             $Prefixe = Prefix::get();
@@ -230,6 +234,8 @@ class OrderController extends Controller
      public function exportPDF($id) {
        
         // $items = Item::all();
+
+        $nota = Order::has('purchases')->find($id);
        
 
     $orders = Order::has('purchases')
@@ -268,7 +274,7 @@ class OrderController extends Controller
   
         // $pdf = PDF::loadView('PO.notaPO', compact('orders','tracking','purchase'))->setOptions(['defaultFont' => 'times-new-roman']);
 
-        return view('PO.formatPO', compact('orders','tracking','powders','purchase'));
+        return view('PO.formatPO', compact('nota','orders','tracking','powders','purchase'));
         
         // return $pdf->stream('Item.pdf');
         

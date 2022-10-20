@@ -344,7 +344,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label"> Tanggal Penerimaan </label>
                                                     <input name="tanggal_diterima" class="input-rounded form-control wide"
-                                                        type="date">
+                                                        type="date" id="inputdate">
                                                 </div>
                                                 <div class="status" style="margin-top:20px">
                                                     <label class="form-label"> Ubah Status </label>
@@ -427,4 +427,23 @@
            })
        }
    </script>
+
+<script>
+    $(function(){
+        var dtToday = new Date();
+     
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if(month < 10)
+            month = '0' + month.toString();
+        if(day < 10)
+            day = '0' + day.toString();
+        
+        var maxDate = year + '-' + month + '-' + day;
+        // alert(maxDate);
+        $('#inputdate').attr('min', maxDate);
+    });
+    
+    </script>
 @endsection

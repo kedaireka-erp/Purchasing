@@ -1,12 +1,12 @@
 @extends('layout.sidebar')
 
-@section('judul-laman', 'View Purchasing Request')
+@section('judul-laman', 'Ubah Tracking')
 
 @section('Judul-content')
 
     <div class="d-flex justify-content-between">
         <div class="title-page">
-            View Purchasing Request
+            Tracking
         </div>
         <a href="/purchase_request" type="button" class="btn-close" aria-label="Close"></a>
     </div>
@@ -16,196 +16,133 @@
 @section('wrap_title')
     <div class="row page-titles">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a href="javascript:void(0)">Purchase Request</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Request Detail</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Request Tracking</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Other Good</a></li>
         </ol>
     </div>
 @endsection
 
 @section('content')
 
-
-
-
-
-    <!--**********************************
-                                                                                                                                Content body start
-                                                                                                                            ***********************************-->
-
     <div class="row">
-        <div class="col-md-5">
-            <div class="card" style="height: 550px">
-                <div class="card-header border-0 pb-0">
-                    <h4 class="card-title"> Approval Tracking </h4>
-                </div>
-                <div class="card-body">
-                    <div id="DZ_W_TimeLine" class="widget-timeline dlab-scroll height370">
-                        <ul class="timeline">
-                            {{-- @include('Tracking.timeline') --}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-7">
+        <div class="col-12">
             <div class="card">
                 <div class="card-body">
                     <div class="profile-tab">
                         <div class="custom-tab-1">
                             <ul class="nav nav-tabs">
                                 <li class="nav-item"><a href="#my-posts" data-bs-toggle="tab"
-                                        class="nav-link active show">Detail Request</a>
+                                        class="nav-link">Detail Request</a>
                                 </li>
-                                <li class="nav-item"><a href="#about-me" data-bs-toggle="tab" class="nav-link"> Item </a>
+                                <li class="nav-item"><a href="#about-me" data-bs-toggle="tab" class="nav-link active show"> Update Outstanding </a>
                                 </li>
-                                {{-- <li class="nav-item"><a href="#profile-settings" data-bs-toggle="tab"
-                                            class="nav-link"> Update Form </a>
-                                    </li> --}}
                             </ul>
-                            @foreach ($tracking as $purchase_requests)
+                            
                                 <div class="tab-content">
-                                    <div id="my-posts" class="tab-pane fade active show">
+                                    <div id="my-posts" class="tab-pane fade">
                                         <div class="my-post-content pt-3">
                                             <div class="post-input">
-                                                <table style="margin-top: -150px">
+                                                <table>
+                                                   
                                                     <tr class="tr">
-                                                        <td width="220px">Tanggal Pengajuan</td>
+                                                        <td width="220px">Nomor PO</td>
                                                         <td>:
-                                                            {{ \Carbon\Carbon::parse($purchase_requests->created_at)->format('d F Y') }}
+                                                            {{ $tracking->order->no_po }}
                                                         </td>
                                                     </tr>
-                                                    <br>
-                                                    <tr class="tr">
-                                                        <td width="200px">Tanggal Deadline</td>
-                                                        <td>:
-                                                            {{ \Carbon\Carbon::parse($purchase_requests->deadline_date)->format('d F Y') }}
-                                                        </td>
-                                                    </tr>
-                                                    <br>
                                                     <tr class="tr">
                                                         <td width="200px">Requester</td>
-                                                        <td>: {{ $purchase_requests->requester }}</td>
+                                                        <td>:
+                                                            {{ $tracking->purchase->requester }}
+                                                        </td>
                                                     </tr>
-                                                    <br>
                                                     <tr class="tr">
-                                                        <td width="200px">Devisi</td>
-                                                        <td>: {{ $purchase_requests->divisi }}</td>
+                                                        <td width="200px">Divisi</td>
+                                                        <td>:
+                                                            {{ $tracking->purchase->Prefixe->divisi }}
+                                                        </td>
                                                     </tr>
-                                                    <br>
                                                     <tr class="tr">
-                                                        <td width="200px">Project/Customer</td>
-                                                        <td>: {{ $purchase_requests->project }} </td>
+                                                        <td width="200px">Supplier</td>
+                                                        <td>:
+                                                            {{ $tracking->order->supplier->vendor }}
+                                                        </td>
                                                     </tr>
-                                                    <br>
                                                     <tr class="tr">
-                                                        <td width="200px">Kebutuhan/Pengiriman</td>
-                                                        <td>: {{ $purchase_requests->tipe }} </td>
+                                                        <td width="200px">Atas Nama Supplier</td>
+                                                        <td>: {{ $tracking->order->nama_supplier }}</td>
                                                     </tr>
-                                                    <br>
-
                                                     <tr class="tr">
-                                                        <td width="200px">Alamat</td>
-                                                        <td>: {{ $purchase_requests->location_name }}</td>
+                                                        <td width="200px">Pembayaran</td>
+                                                        <td>: {{ $tracking->order->payment->name_payment }}</td>
                                                     </tr>
-                                                    <br>
                                                     <tr class="tr">
-                                                        <td width="200px">Approval PR</td>
-                                                        <td>: {{ $purchase_requests->approval_status }}</td>
+                                                        <td width="200px">Dibuat Pada</td>
+                                                        <td>: {{ \Carbon\Carbon::parse($tracking->order->created_at)->format('d F Y') }}
+                                                        </td>
                                                     </tr>
-                                                    <br>
+                                                    <tr class="tr">
+                                                        <td width="200px">Nama Pembuat</td>
+                                                        <td>: {{ $tracking->order->nama }} 
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                    <tr class="tr">
+                                                        <td width="200px">Alamat Penagihan</td>
+                                                        <td>: {{ $tracking->order->alamat_penagihan }} </td>
+                                                    </tr>
+                                                    <tr class="tr">
+                                                        <td width="200px">Lain-lain</td>
+                                                        <td>: {{ $tracking->order->lain_lain }}</td>
+                                                    </tr>
                                                     <tr class="tr">
                                                         <td width="200px">Note</td>
-
-                                                        <td>: </td>
+                                                        <td>: {{ $tracking->order->note }}</td>
                                                     </tr>
-                                                    <br>
-
-
+                                                    
+                                                
                                                 </table>
-                                                <p> {!! $purchase_requests->note !!} </p>
                                             </div>
                                         </div>
                                     </div>
-                            @endforeach
-                            <div id="about-me" class="tab-pane fade">
+
+
+
+                            <div id="about-me" class="tab-pane fade active show">
                                 <div class="profile-about-me">
-                                    @foreach ($tracking as $purchase_requests)
-                                        {{-- ini tabel item di tracking --}}
-                                        {{-- @if ($purchase_requests->type == 'othergood') --}}
-                                        @if ($purchase_requests->type == 'othergood')
-                                            <table class="table table-striped" id="body">
-                                                <thead>
-                                                    <tr style="text-align: center">
-                                                        <td scope="col">No.</td>
-                                                        <td scope="col">Description of Goods</td>
-                                                        <td scope="col">Outstanding</td>
-                                                        <td scope="col">Sudah Datang</td>
-                                                        <td scope="col">Unit</td>
-                                                    </tr>
-                                                </thead>
+                                    <div class="container col-8">
+                                        <table class="table table-striped" id="body">
+                                            <thead>
+                                                <tr style="text-align: center">
+                                                    <td scope="col">No.</td>
+                                                    <td scope="col">Description of Goods</td>
+                                                    <td scope="col">Outstanding</td>
+                                                    <td scope="col">Sudah Datang</td>
+                                                </tr>
+                                            </thead>
 
-                                                @php
-                                                    $nomor = 1;
-                                                @endphp
+                                            @php
+                                                $nomor = 1;
+                                            @endphp
 
 
-                                                <tbody>
+                                            <tbody>
+                                               
+                                                {{-- @foreach ($purchase_requests->item as $yes) --}}
+                                                <tr style="text-align: center">
+                                                    <td>{{ $nomor++ }}</td>
+                                                    <td>{{ $tracking->item->master_item->item_name }}</td>
+                                                    <td>{{ $tracking->item->outstanding }}</td>
+                                                    <td>{{ $tracking->item->sudah_datang }}</td>
+                                                </tr>
+                                               
+                                                {{-- @endforeach --}}
+                                            </tbody>
+                                        </table>
+                                    
+                                            
 
-                                                    {{-- @foreach ($purchase_requests->item as $yes) --}}
-                                                    <tr style="text-align: center">
-                                                        <td>{{ $nomor++ }}</td>
-                                                        <td>{{ $purchase_requests->item_name }}</td>
-                                                        <td>{{ $purchase_requests->outstanding }}</td>
-                                                        <td>{{ $purchase_requests->sudah_datang }}</td>
-                                                        <td>{{ $purchase_requests->unit }}</td>
-                                                    </tr>
-                                                    {{-- @endforeach --}}
-                                                </tbody>
-                                            </table>
-
-                                            @foreach ($tracking as $item)
-                                                <form action="{{ route('tracking.update_good', $item->id_item) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    <div class="row">
-                                                        <div class="col-12" style="margin-top: 30px">
-                                                            <div class="mb-3">
-                                                                <label class="form-label"> Barang Datang </label>
-                                                                <input name="sudah_datang"
-                                                                    class="input-rounded form-control wide" type="number">
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="col-12" style="margin-top: 30px">
-                                                            <div class="mb-3">
-                                                                <label class="form-label"> Tanggal Penerimaan </label>
-                                                                <input name="tanggal_kedatangan_barang"
-                                                                    class="input-rounded form-control wide" type="date">
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <div class="status" style="margin-top:30px">
-                                                                <label class="form-label"> Status PR </label>
-                                                                <select class="default-select input-rounded form-control wide mb-3"
-                                                                    style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
-                                                                    id="status" name="status">
-                                                                    <option value="{{ $purchase_requests->status }}" selected
-                                                                        disabled>
-                                                                        {{ $purchase_requests->status }}</option>
-                                                                    <option value="outstanding">outstanding</option>
-                                                                    <option value="closed">closed</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-12">
-                                                            <button style="margin-top:10px" class="btn btn-primary"> Simpan
-                                                            </button>
-                                                        </div>
-                                                    </div>
-
-                                                </form>
-                                            @endforeach
+                                          
                                             {{-- @elseif ($purchase_requests->type == 'powder')
                                             <table class="table table-striped" id="body">
                                                 <thead>
@@ -246,26 +183,30 @@
                                                 </tbody>
                                                 {{-- @endif --}}
 
-                                            {{-- </table>
-                                            @foreach ($tracking->powder1 as $powder)
+                                            {{-- </table> --}}
+                                            {{-- @foreach ($tracking->powder1 as $powder) --}}
+
+                                    @if($tracking->item->outstanding != 0 )
+
                                             <form 
-                                            action="{{ route('tracking.update_good', $powder->id) }}"
+                                            action="{{ route('tracking.update_good', $tracking->item->id) }}"
                                                 method="post">
                                                 @csrf
                                                 <div class="row">
+                                                    
                                                     <div class="col-12" style="margin-top: 30px">
                                                         <div class="mb-3">
-                                                            <label class="form-label"> Sudah Datang </label>
+                                                            <label class="form-label"> Barang Datang </label>
                                                             <input name="sudah_datang" class="input-rounded form-control wide"
-                                                                type="number">
+                                                                type="number" required>
                                                         </div>
                                                         
                                                     </div>
                                                     <div class="col-12" style="margin-top: 30px">
-                                                        <div class="mb-3">
+                                                        <div class="mb-3" >
                                                             <label class="form-label"> Tanggal Penerimaan </label>
                                                             <input name="tanggal_kedatangan_barang" class="input-rounded form-control wide"
-                                                                type="date">
+                                                                type="date" required>
                                                         </div>
                                                         
                                                     </div>
@@ -276,9 +217,37 @@
                                                 </div>
 
                                             </form>
-                                            @endforeach --}}
+                                        @else
+                                        <form action="{{ route('tracking.update_good_status', $tracking->order->id) }}" method="POST">
+                                            @csrf
+                                            <div class="col-12" style="margin-top: 30px">
+                                                <div class="mb-3">
+                                                    <label class="form-label"> Nomor Surat Jalan </label>
+                                                    <input name="nomor_jalan" class="input-rounded form-control wide"
+                                                        type="text" required>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="status" style="margin-top:30px">
+                                                <label class="form-label"> Status PR </label>
+                                                <select class="default-select input-rounded form-control wide mb-3"
+                                                    style="font-weight: bold; text-transform:uppercase;font-size:15px;text-align: center"
+                                                    id="status" name="status">
+                                                    <option value="{{ $tracking->order->status }}" selected>
+                                                        {{ $tracking->order->status }}</option>
+                                                    <option value="outstanding">outstanding</option>
+                                                    <option value="closed">closed</option>
+                                                </select>
+                                               
+                                                    <button type="submit" style="margin-top:10px" class="btn btn-primary"> Simpan
+                                                    </button>
+                                                
+                                            </div>
+                                        </form>
                                         @endif
-
+                                            {{-- @endforeach
+                                        --}}
+                                    </div>
                                 </div>
                             </div>
 
@@ -295,7 +264,7 @@
 
 
                 </div>
-                @endforeach
+                {{-- @endforeach --}}
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 @extends('layout.sidebar')
 
-@section('judul-laman', 'Dashboard Purchase Order')
+@section('judul-laman', 'Buat PO')
 
 @section('datatable')
     <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
@@ -14,7 +14,7 @@
     <div class="row page-titles">
         <ol class="breadcrumb">
             <li class="breadcrumb-item active"><a href="javascript:void(0)">Order</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Buat Purchase Order</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Buat PO</a></li>
         </ol>
     </div>
 @endsection

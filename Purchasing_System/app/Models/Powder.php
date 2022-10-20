@@ -34,11 +34,10 @@ class powder extends Model
         static::creating(function($powder){
             $powder->outstanding = $powder->quantity;
         });
-        // static::updating(function ($powder) {
-        //     $powder->outstanding = $powder->outstanding - $powder->sudah_datang;
-        //     $powder->sudah_datang = $powder->quantity-$powder->outstanding;
+        static::updating(function ($powder) {
+            $powder->outstanding = $powder->quantity - $powder->sudah_datang;
 
-        // });
+        });
         
     }
   

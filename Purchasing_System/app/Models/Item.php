@@ -44,6 +44,11 @@ class Item extends Model
         return $this->belongsTo(Satuan::class, 'id_satuan');
     }
 
+    public function item_request()
+    {
+        return $this->hasMany(ItemRequest::class,'id');
+    }
+
     public static function boot()
     {
         // parent::boot();
@@ -60,14 +65,12 @@ class Item extends Model
         // });
         parent::boot();
 
-        static::creating(function($powder){
-            $powder->outstanding = $powder->stok ;
+        static::creating(function($item){
+            $item->outstanding = $item->stok ;
         });
-        // static::updating(function ($powder) {
-        //     $powder->outstanding = $powder->outstanding - $powder->sudah_datang;
-        //     $powder->sudah_datang = $powder->stok-$powder->outstanding;
-
-        // });
+        static::updating(function ($item) {
+            $item->outstanding = $item->stok - $item->sudah_datang;
+        });
     }
     
 }

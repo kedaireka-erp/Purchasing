@@ -16,7 +16,7 @@ class ItemRequest extends Model
     public function purchase()
     {
         // return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id_request');
-        return $this->belongsToMany(PurchaseRequest::class, 'item_requests','id_request');
+        return $this->belongsTo(PurchaseRequest::class, 'id_request');
     }
     public function purchase1()
     {
@@ -25,7 +25,7 @@ class ItemRequest extends Model
     }
 
     public function item(){
-        return $this->belongsToMany(Item::class, 'item_requests','id_request','id_item');
+        return $this->belongsTo(Item::class, 'id_item');
         
     }
     public function powder1(){
@@ -34,7 +34,7 @@ class ItemRequest extends Model
     }
     
     public function order(){
-        return $this->belongsToMany(Order::class, 'item_requests','id_request', 'order_id');
+        return $this->belongsTo(Order::class, 'order_id');
     }
     public function Timeshipping()
     {

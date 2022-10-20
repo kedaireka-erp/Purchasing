@@ -15,10 +15,10 @@ class Order extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['tanggal_kirim',
+    protected $fillable = ['tanggal_kirim', 'status',
         'no_po', 'supplier' ,'id_supplier', 'id_waktu', 'id_alamat_kirim', 'id_pembayaran', 'alamat_penagihan', 
         'lain_lain', 'note', 'signature','nama','created_at',
-        'updated_at'
+        'updated_at','nomor_jalan'
     ];
 
     public function item(){
@@ -44,6 +44,11 @@ class Order extends Model
     public function supplier()
     {
         return $this->belongsTo(Supplier::class, 'id_supplier');
+    }
+
+     public function item_request()
+    {
+        return $this->hasMany(ItemRequest::class,'id');
     }
 
     

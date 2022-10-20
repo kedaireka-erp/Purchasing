@@ -120,15 +120,15 @@
         <div class="col-5">
             <table>
                 <tr class="note_text">
-                    <td>PO</td>
+                    <td>Nomor PO</td>
                     <td>{{ ': ' . $orders->no_po }}</td>
                 </tr>
-                @foreach ($orders->purchases as $value)
+                {{-- @foreach ($orders->purchases as $value) --}}
                 <tr class="note_text">
-                    <td>PR</td>
-                    <td style="font-size:9px">{{ ': ' . $value->no_pr }}</td>
+                    <td>Nomor PR</td>
+                    <td style="font-size:9px">{{ ': ' . $orders->purchases->get(0)->no_pr }}</td>
                 </tr>
-                @endforeach
+                {{-- @endforeach --}}
                 @if($orders->tanggal_kirim != NULL)
                 <tr class="note_text">
                     <td>Tanggal Kirim</td>
@@ -243,8 +243,9 @@
     <div class="row">
         <div class="col-1"></div>
         <div class="col-10">
-            @foreach ($purchase as $tipe)
-                @if ($tipe->type == 'othergood')
+            {{-- @foreach ($tracking as $tipe) --}}
+            {{-- @foreach ($purchase as $value) --}}
+                @if ($purchase->get(0)->type == 'othergood')
                 <br>
                     <table class="table" style="box-shadow: none">
 
@@ -271,7 +272,8 @@
                         </tbody>
 
                     </table>
-                @elseif ($tipe->type == 'powder')
+                    
+                @elseif ($purchase->get(0)->type == 'powder')
                 <br>
                     <table class="table table-bordered" style="box-shadow: none">
 
@@ -289,7 +291,7 @@
                         @php
                             $nomor = 1;
                         @endphp
-                        <tbody>
+                        <tbody> 
                             @foreach ($powders as $purchase_requests)
                                 <tr scope="row" style="text-align: center;font-size:10px">
                                     <td scope="col">{{ $purchase_requests->tipe }}</td>
@@ -302,7 +304,7 @@
 
                     </table>
                 @endif
-        @endforeach
+       {{-- @endforeach --}}
         </div>
         <div class="col-1"></div>
     </div>
@@ -330,7 +332,7 @@
                     <div class="signature">
                         <p class="note_text_normal">Mengetahui,</p>
                         <img src="{{ asset('images/' . $orders->signature) }}" style="width:60px; height:60px">
-                        <p class="note_text_normal">{{ $orders->nama }}</p>
+                        <p align="center" class="note_text_normal">{{ $orders->nama }}</p>
                     </div>
                 </div>
             </div>

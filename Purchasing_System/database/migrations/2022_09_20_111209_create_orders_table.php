@@ -27,7 +27,8 @@ return new class extends Migration
             $table->string("note")->nullable();
             $table->string("signature")->nullable();
             $table->string("nama")->nullable();
-           
+            $table->string("nomor_jalan")->nullable();
+            $table->enum('status', ['closed', 'outstanding'])->default('outstanding');
             $table->timestamps();
 
             $table->foreign("id_waktu")->references("id")->on("timeshippings")->onDelete("restrict")->onUpdate("cascade")->nullable();

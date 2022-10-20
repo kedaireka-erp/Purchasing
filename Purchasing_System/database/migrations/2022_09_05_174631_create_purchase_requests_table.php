@@ -28,7 +28,6 @@ return new class extends Migration
             $table->timestamp('tanggal_diterima')->nullable();
             $table->enum('approval_status', ['pending', 'edit','approve', 'reject'])->default('pending');
             $table->enum('accept_status', ['pending', 'edit', 'accept','reject'])->default('pending');
-            $table->enum('status', ['closed', 'outstanding'])->default('outstanding');
             $table->softDeletes();
             $table->timestamps();
         });

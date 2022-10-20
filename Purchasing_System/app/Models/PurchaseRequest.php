@@ -65,6 +65,11 @@ class PurchaseRequest extends Model
         return $this->belongsTo(Colour::class, 'color_id');
     }
 
+    public function item_request()
+    {
+        return $this->hasMany(ItemRequest::class,'id');
+    }
+
 
     public static function boot()
     {
