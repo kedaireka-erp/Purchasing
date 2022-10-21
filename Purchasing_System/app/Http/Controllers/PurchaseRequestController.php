@@ -179,7 +179,7 @@ class PurchaseRequestController extends Controller
         ]);
         if($request->hasFile('attachment'))
         {
-            $destination_path = 'public/assets/images';
+            $destination_path = 'public/storage/assets/images';
             $image = $request->file('attachment');
             $image_name = $image->getClientOriginalName();
             $path = $request -> file('attachment')->move($destination_path,$image_name);
