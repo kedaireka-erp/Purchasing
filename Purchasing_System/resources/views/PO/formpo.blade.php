@@ -14,7 +14,7 @@
     <div class="box">
      <div class="navForm"></div>
     <div class="content">
-    <form action="{{ route('order.orderstore') }}" method="post">
+    <form action="{{ route('order.orderstore') }}" method="post" enctype="multipart/form-data">
       @csrf
         <div class="row">
           <div class="col-lg-6">
@@ -78,10 +78,17 @@
         <div class="row">
             <div class="col-lg-6">
             <div class="mb-3">
-              <label for="tanggal_pengajuan" class="form-label font">TTD</label>
-              <input type="file" class="form-control input-powder" name="signature">
-            </div>      
-          </div>
+                <label for="tanggal_pengajuan" class="form-label font">TTD</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text">Upload</span>
+                    <div class="form-file">
+                        <input type="file"
+                            class="form-file-input form-control @error('ttd') is-invalid @enderror"
+                            id="attachment" name="signature">
+                    </div>
+                </div>
+            </div>
+        </div>
           <div class="col-lg-6">
             <div class="mb-3">
               <label for="tanggal_pengajuan" class="form-label font">Nama Terang</label>

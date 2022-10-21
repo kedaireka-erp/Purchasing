@@ -84,7 +84,7 @@ class PurchaseRequestController extends Controller
             'deadline_date'=>'required',
             'requester'=>'required|max:100',
             // 'project'=>'required|max:100',
-            'attachment' => 'mimes:jpeg,img,jpg,png|max:20000',
+            'attachment' => 'mimes:jpeg,img,jpg,png,pdf|max:20000',
             'locations_id' => 'required',
             'prefixes_id' => 'required',
             'ships_id' => 'required',
@@ -103,7 +103,7 @@ class PurchaseRequestController extends Controller
         ]);
         if($request->hasFile('attachment'))
         {
-            $destination_path = 'public/assets/images/products';
+            $destination_path = 'public/assets/images';
             $image = $request->file('attachment');
             $image_name = $image->getClientOriginalName();
             $path = $request -> file('attachment')->storeAs($destination_path,$image_name);
@@ -154,7 +154,7 @@ class PurchaseRequestController extends Controller
             'deadline_date'=>'required',
             'requester'=>'required|max:100',
             // 'project'=>'required|max:100',
-            'attachment' => 'mimes:jpeg,img,jpg,png|max:20000',
+            'attachment' => 'mimes:jpeg,img,jpg,png,pdf|max:20000',
             'locations_id' => 'required',
             'prefixes_id' => 'required',
             'ships_id' => 'required',
@@ -179,7 +179,7 @@ class PurchaseRequestController extends Controller
         ]);
         if($request->hasFile('attachment'))
         {
-            $destination_path = 'images/products';
+            $destination_path = 'public/assets/images';
             $image = $request->file('attachment');
             $image_name = $image->getClientOriginalName();
             $path = $request -> file('attachment')->move($destination_path,$image_name);

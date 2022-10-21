@@ -243,9 +243,9 @@
     <div class="row">
         <div class="col-1"></div>
         <div class="col-10">
-            {{-- @foreach ($tracking as $tipe) --}}
-            {{-- @foreach ($purchase as $value) --}}
-                @if ($purchase->get(0)->type == 'othergood')
+            @foreach ($purchase as $tipe)
+            @if ($loop->first)
+                @if ($tipe->type == 'othergood')
                 <br>
                     <table class="table" style="box-shadow: none">
 
@@ -304,7 +304,8 @@
 
                     </table>
                 @endif
-       {{-- @endforeach --}}
+                @endif
+        @endforeach
         </div>
         <div class="col-1"></div>
     </div>
@@ -330,9 +331,10 @@
             <div class="col-4">
                 <div class="d-flex justify-content-center">
                     <div class="signature">
+
                         <p class="note_text_normal">Mengetahui,</p>
-                        <img src="{{ asset('images/' . $orders->signature) }}" style="width:60px; height:60px">
-                        <p align="center" class="note_text_normal">{{ $orders->nama }}</p>
+                        <img src="{{ asset('storage/assets\images/' . $orders->signature) }}" style="width:60px; height:60px">
+                        <p class="note_text_normal">{{ $orders->nama }}</p>
                     </div>
                 </div>
             </div>
