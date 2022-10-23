@@ -1,4 +1,4 @@
-<form action="{{ route('order.orderstore') }}" method="post">
+<form action="{{ route('order.orderstore') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="row">
         <div class="col-lg-3">
