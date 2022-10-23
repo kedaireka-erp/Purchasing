@@ -333,7 +333,7 @@
                     <div class="signature">
 
                         <p class="note_text_normal">Mengetahui,</p>
-                        <img src="{{ asset('storage/assets\images/' . $orders->signature) }}" style="width:60px; height:60px">
+                        <img src="{{ asset('storage/' . $orders->signature) }}" style="width:60px; height:60px">
                         <p class="note_text_normal">{{ $orders->nama }}</p>
                     </div>
                 </div>

@@ -162,7 +162,7 @@ class OrderController extends Controller
         // if($request->hasFile('signature'))
         // {
             
-            $destination_path = 'public/storage/assets/images';
+            $destination_path = 'public';
             $image = $request->signature;
             $image_name = $image->getClientOriginalName();
             $path = $request->signature->storeAs($destination_path,$image_name);

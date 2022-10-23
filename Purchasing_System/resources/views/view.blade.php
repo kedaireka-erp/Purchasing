@@ -323,7 +323,7 @@
                                                     <div class="signature">
                                                         
 
-                                                        <embed src="{{ asset('storage/assets\images/' . $purchase_requests->attachment) }}" style=" margin-left:520px; width:750px; height:400px">
+                                                        <embed src="{{ asset('storage/' . $purchase_requests->attachment) }}" style=" margin-left:520px; width:750px; height:400px" >
                                                         
                                                     </div>
                                                 </div>
