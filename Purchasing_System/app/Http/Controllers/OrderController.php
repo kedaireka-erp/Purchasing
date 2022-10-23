@@ -159,13 +159,12 @@ class OrderController extends Controller
     public function store_item(OrderRequest $request)
     {
         
-        // if($request->hasFile('signature'))
-        // {
+        
             
             $destination_path = 'public';
-            $image = $request->signature;
+            $image = $request->file('signature');
             $image_name = $image->getClientOriginalName();
-            $path = $request->signature->storeAs($destination_path,$image_name);
+            $path = $request->file('signature')->move($destination_path,$image_name);
             
 
         $order = New Order;
@@ -191,42 +190,8 @@ class OrderController extends Controller
 
         ]);
 
-            
-        // }
-        // else{
-        // // $order = New Order;
-        // // $order->tanggal_kirim = $request->tanggal_kirim;
-        // // $order->nama_supplier = $request->nama_supplier;
-        // // $order->id_supplier = $request->id_supplier;
-        // // $order->id_waktu = $request->id_waktu;
-        // // $order->id_pembayaran = $request->id_pembayaran;
-        // // $order->id_alamat_kirim = $request->id_alamat_kirim;
-        // // $order->alamat_penagihan = $request->alamat_penagihan;
-        // // $order->lain_lain = $request->lain_lain;
-        // // $order->note = $request->note;
-        // // $order->signature = $request->signature;
-        // // $order->nama = $request->nama;
-        // // $order->save();
-
-
-        // // $ids = $request->ids;
-
-        
-
-        // // ItemRequest::Where('id', $ids)->update([
-        // //     'order_id' => $order->id
-
-        // // ]);
-
-        // }
-
-        
-
-        
-
         return redirect('/order')->with('success', 'Berhasil menambah data order');
     }
-
      public function item(){
         $purchase_requests = PurchaseRequest::with('Prefixe')->get();
         $time = Timeshipping::get();
