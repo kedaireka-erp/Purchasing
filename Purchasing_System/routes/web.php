@@ -435,7 +435,7 @@ Route::middleware("auth")->group(function () {
         route::get('/view/{id}', [TimeshippingController::class, 'view'])->name('view');
     });
 
-    Route::group(['middleware' => ['permission:role_purchasing']], function () {
+    Route::group(['middleware' => ['role:Purchasing']], function () {
         Route::get('/admin_divisi', [HomeController::class, 'index'])->name('dashboard');
         Route::get('/manager', [HomeController::class, 'manager'])->name('manager');
         Route::get('/', [HomeController::class, 'purchasing'])->name('purchasing');
