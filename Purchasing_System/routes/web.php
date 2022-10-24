@@ -34,12 +34,11 @@ use App\Http\Controllers\LoginController;
 Route::middleware("auth")->group(function () {
    
     Route::group(['middleware' => ['permission:sales_role_purchasing']], function () {
-        Route::get('/', [PurchaseRequestController::class, 'index_pr_sales']);
         Route::get('/index', [HomeController::class, 'index_sales'])->name('dashboard_sales');
         
         Route::group(['as' => 'sales.', 'prefix' => 'sales'], function () {
             Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], function () {
-                
+                Route::get('/', [PurchaseRequestController::class, 'index_pr_sales']);
                 Route::get('/detail/{id}', [PurchaseRequestController::class, 'detail'])->name('detail');
                 Route::get('/create', [PurchaseRequestController::class, "create_sales"])->name('create_sales');
                 Route::post('/storegood', [PurchaseRequestController::class, "item_store_sales"])->name("storegood_sales");
