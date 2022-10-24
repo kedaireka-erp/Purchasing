@@ -217,9 +217,10 @@ Route::middleware("auth")->group(function () {
         });
     });
 
-    Route::group(['middleware' => ['permission:manager_wirehouse_role_purchasing',]], function () {
-        Route::get('/', [HomeController::class, 'manager_wirehouse'])->name('manager_wirehouse');
+    Route::group(['middleware' => ['role:Manager Wirehouse',]], function () {
         Route::group(['as' => 'manager_wirehouse.', 'prefix' => 'manager_wirehouse'], function () {
+            Route::get('/', [HomeController::class, 'manager_wirehouse'])->name('manager_wirehouse');
+            Route::get('/admin/wirehouse', [HomeController::class, 'index_wirehouse'])->name('dashboard_wirehouse');
             Route::get('approval/', [HomeController::class, 'wirehouse_approval']);
         });
     });

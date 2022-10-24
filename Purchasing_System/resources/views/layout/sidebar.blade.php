@@ -205,7 +205,7 @@
                                 <span class="nav-text">Dashboard</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="{{ url('/wirehouse') }}">Admin Divisi WO</a></li>
+                                <li><a href="{{ url('/manager_wirehouse/admin/wirehouse') }}">Admin Divisi WO</a></li>
                                 <li><a href="{{ url('/manager_wirehouse') }}">Manager WO</a></li>
                             </ul>
                         </li>
