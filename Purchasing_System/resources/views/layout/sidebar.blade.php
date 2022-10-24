@@ -128,7 +128,7 @@
             <div class="dlabnav-scroll">
                 <ul class="metismenu" id="menu">
 
-                    @can('role_purchasing')
+                    @role('Purchasing Team')
                         <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                                 <i class="fas fa-home"></i>
                                 <span class="nav-text">Dashboard</span>
@@ -163,7 +163,7 @@
                                 </li>
                             </ul>
                         </li>
-                    @endcan
+                    @endrole
 
 
                     @role('Manager Sales')

@@ -440,27 +440,27 @@ Route::middleware("auth")->group(function () {
         Route::get('/manager', [HomeController::class, 'manager'])->name('manager');
         Route::get('/', [HomeController::class, 'purchasing'])->name('purchasing');
 
-    route::group(['as' => 'order.', 'prefix' => 'order'], function () {
-        route::get('/', [OrderController::class, 'index']);
-        route::get('/read/time', [OrderController::class, 'read_time']);
-        route::get('/create/date', [OrderController::class, 'create_date']);
-        route::get('/create/time', [OrderController::class, 'create_time']);
-        route::get('/read/supplier', [OrderController::class, 'read_supplier']);
-        route::get('/create/supplier', [OrderController::class, 'create_supplier']);
-        route::get('/read/location', [OrderController::class, 'read_location']);
-        route::get('/create/location', [OrderController::class, 'create_location']);
-        route::get('/read/payment', [OrderController::class, 'read_payment']);
-        route::get('/create/payment', [OrderController::class, 'create_payment']);
-        route::post('order/create/supplier/store', [OrderController::class, 'store_supplier'])->name('supplierstore');
-        route::post('order/create/location/store', [OrderController::class, 'store_location'])->name('locationstore');
-        route::post('order/create/payment/store', [OrderController::class, 'store_payment'])->name('paymentstore');
-        route::post('order/create/time/store', [OrderController::class, 'store_time'])->name('timestore');
-        route::get('/create', [OrderController::class, 'create']);
-        route::post('/store', [OrderController::class, 'store_item'])->name('orderstore');
-        route::get('/view/{id}', [OrderController::class, 'view'])->name('view');
-        route::get('/exportPDF/{id}', [OrderController::class, 'exportPDF'])->name('exportPDF');
-        Route::delete('/destroy{id}', [OrderController::class, "destroy"])->name("destroyApp");
-    });
+        route::group(['as' => 'order.', 'prefix' => 'order'], function () {
+            route::get('/', [OrderController::class, 'index']);
+            route::get('/read/time', [OrderController::class, 'read_time']);
+            route::get('/create/date', [OrderController::class, 'create_date']);
+            route::get('/create/time', [OrderController::class, 'create_time']);
+            route::get('/read/supplier', [OrderController::class, 'read_supplier']);
+            route::get('/create/supplier', [OrderController::class, 'create_supplier']);
+            route::get('/read/location', [OrderController::class, 'read_location']);
+            route::get('/create/location', [OrderController::class, 'create_location']);
+            route::get('/read/payment', [OrderController::class, 'read_payment']);
+            route::get('/create/payment', [OrderController::class, 'create_payment']);
+            route::post('order/create/supplier/store', [OrderController::class, 'store_supplier'])->name('supplierstore');
+            route::post('order/create/location/store', [OrderController::class, 'store_location'])->name('locationstore');
+            route::post('order/create/payment/store', [OrderController::class, 'store_payment'])->name('paymentstore');
+            route::post('order/create/time/store', [OrderController::class, 'store_time'])->name('timestore');
+            route::get('/create', [OrderController::class, 'create']);
+            route::post('/store', [OrderController::class, 'store_item'])->name('orderstore');
+            route::get('/view/{id}', [OrderController::class, 'view'])->name('view');
+            route::get('/exportPDF/{id}', [OrderController::class, 'exportPDF'])->name('exportPDF');
+            Route::delete('/destroy{id}', [OrderController::class, "destroy"])->name("destroyApp");
+        });
     });
     Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 });
