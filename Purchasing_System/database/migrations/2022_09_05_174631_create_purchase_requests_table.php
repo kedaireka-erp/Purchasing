@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('type', ['powder', 'othergood'])->nullable();
             $table->date("deadline_date")->nullable();
             $table->string("requester")->nullable();
+            $table->enum('role', ['sales', 'finance','wirehouse'])->nullable();
             $table->string("project")->nullable();
             $table->text("note")->nullable();
             $table->text("feedback_manager")->nullable();

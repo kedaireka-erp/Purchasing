@@ -201,10 +201,6 @@
                                                     <td width="200px">Alamat Kirim</td>
                                                     <td>: {{ $purchase_requests->location->location_name }}</td>
                                                 </tr>
-                                                <tr class="tr">
-                                                    <td width="200px">Status PR</td>
-                                                    <td>: {{ $purchase_requests->status }} </td>
-                                                </tr>
                                                 
                                                 @if($purchase_requests->approval_status == 'reject')
                                                 <tr class="tr">

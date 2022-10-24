@@ -44,6 +44,72 @@ class PurchaseRequestController extends Controller
         return view('purchases.index', compact('items','powders','purchase_requests', 'purchase_requests_pending', 'purchase_requests_reject'));
     }
 
+    public function index_pr_sales(Request $request){
+        if ($request->filled('search')) {
+            $purchase_requests = PurchaseRequest::search($request->search)->get();
+        }else{
+            $items = Item::get();
+            $powders = Powder::get();
+            $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->where('role','sales')
+                            ->orWhere('approval_status', '=', 'approve')->where('accept_status', '=', 'edit')->where('role','sales')
+                                ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'accept')->where('role','sales')
+                                ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'edit')->where('role','sales')
+                                ->get();
+            $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->where('role','sales')
+                                        ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'pending')->where('role','sales')
+                                        ->orwhere('approval_status', '=', 'approve')->where('accept_status', '=', 'pending')->where('role','sales')->get();
+            $purchase_requests_reject = PurchaseRequest::where('approval_status', '=', 'reject')->where('role','sales')
+                                        ->orwhere('accept_status', '=', 'reject')->where('role','sales')->get();
+        }
+
+        return view('purchases.index', compact('items','powders','purchase_requests', 'purchase_requests_pending', 'purchase_requests_reject'));
+    }
+
+    public function index_pr_finance(Request $request){
+        if ($request->filled('search')) {
+            $purchase_requests = PurchaseRequest::search($request->search)->get();
+        }else{
+            $items = Item::get();
+            $powders = Powder::get();
+            $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->where('role','finance')
+                            ->orWhere('approval_status', '=', 'approve')->where('accept_status', '=', 'edit')->where('role','finance')
+                                ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'accept')->where('role','finance')
+                                ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'edit')->where('role','finance')
+                                ->get();
+            $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->where('role','finance')
+                                        ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'pending')->where('role','finance')
+                                        ->orwhere('approval_status', '=', 'approve')->where('accept_status', '=', 'pending')->where('role','finance')->get();
+            $purchase_requests_reject = PurchaseRequest::where('approval_status', '=', 'reject')->where('role','finance')
+                                        ->orwhere('accept_status', '=', 'reject')->where('role','finance')->get();
+        }
+
+        return view('purchases.index', compact('items','powders','purchase_requests', 'purchase_requests_pending', 'purchase_requests_reject'));
+    }
+
+    public function index_pr_wirehouse(Request $request){
+        if ($request->filled('search')) {
+            $purchase_requests = PurchaseRequest::search($request->search)->get();
+        }else{
+            $items = Item::get();
+            $powders = Powder::get();
+            $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->where('role','wirehouse')
+                            ->orWhere('approval_status', '=', 'approve')->where('accept_status', '=', 'edit')->where('role','wirehouse')
+                                ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'accept')->where('role','wirehouse')
+                                ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'edit')->where('role','wirehouse')
+                                ->get();
+            $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->where('role','wirehouse')
+                                        ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'pending')->where('role','wirehouse')
+                                        ->orwhere('approval_status', '=', 'approve')->where('accept_status', '=', 'pending')->where('role','wirehouse')->get();
+            $purchase_requests_reject = PurchaseRequest::where('approval_status', '=', 'reject')->where('role','wirehouse')
+                                        ->orwhere('accept_status', '=', 'reject')->where('role','wirehouse')->get();
+        }
+
+        return view('purchases.index', compact('items','powders','purchase_requests', 'purchase_requests_pending', 'purchase_requests_reject'));
+    }
+
+
+
+
     public function track(Request $request){
         if ($request->filled('search')) {
             $purchase_requests = PurchaseRequest::search($request->search)->get();
@@ -71,6 +137,51 @@ class PurchaseRequestController extends Controller
         $Powder = powder::get();
         
         return view('purchases.create', compact('purchase_requests','colour','Location','Ship', "Prefixe",'master_item','satuan', 'Grade'));
+    }
+
+    public function create_sales(){
+        $colour = Colour::get();
+        $purchase_requests = PurchaseRequest::with('Prefixe');
+        $Location = location::get();
+        $Ship = ships::get();
+        $Prefixe = Prefix::get();
+        $master_item = Master_Item::get();
+        $satuan = Satuan::get();
+        $Grade = Grade::get();
+        $color = Supplier::get();
+        $Powder = powder::get();
+        
+        return view('purchases.Sales.form', compact('purchase_requests','colour','Location','Ship', "Prefixe",'master_item','satuan', 'Grade'));
+    }
+
+    public function create_finance(){
+        $colour = Colour::get();
+        $purchase_requests = PurchaseRequest::with('Prefixe');
+        $Location = location::get();
+        $Ship = ships::get();
+        $Prefixe = Prefix::get();
+        $master_item = Master_Item::get();
+        $satuan = Satuan::get();
+        $Grade = Grade::get();
+        $color = Supplier::get();
+        $Powder = powder::get();
+        
+        return view('purchases.Finance.form', compact('purchase_requests','colour','Location','Ship', "Prefixe",'master_item','satuan', 'Grade'));
+    }
+
+    public function create_wirehouse(){
+        $colour = Colour::get();
+        $purchase_requests = PurchaseRequest::with('Prefixe');
+        $Location = location::get();
+        $Ship = ships::get();
+        $Prefixe = Prefix::get();
+        $master_item = Master_Item::get();
+        $satuan = Satuan::get();
+        $Grade = Grade::get();
+        $color = Supplier::get();
+        $Powder = powder::get();
+        
+        return view('purchases.Wirehouse.form', compact('purchase_requests','colour','Location','Ship', "Prefixe",'master_item','satuan', 'Grade'));
     }
 
 
@@ -146,6 +257,218 @@ class PurchaseRequestController extends Controller
         return redirect('/purchase_request')->with('success', 'Berhasil menambah data');
     }
 
+
+    public function item_store_sales(Request $request){
+
+
+        $validateData = $request->validate([
+            'deadline_date'=>'required',
+            'requester'=>'required|max:100',
+            // 'project'=>'required|max:100',
+            'attachment' => 'mimes:jpeg,img,jpg,png,pdf|max:20000',
+            'locations_id' => 'required',
+            'prefixes_id' => 'required',
+            'ships_id' => 'required',
+            // 'id_master_item' => 'required',
+            // 'id_satuan' =>'required'
+
+        ], [
+            'deadline_date.required'=>"Deadline Date field is required ",
+            'requester.required'=>"Requester field is required ",
+            'project.required'=>"Project field is required ",
+            'locations_id.required' => "Lokasi field is required",
+            'prefixes_id.required' => "Divisi field is required",
+            'ships_id.required' => "Kebutuhan/pengiriman field is required",
+            'id_master_item.required'=>"Item field is required ",
+            'id_satuan.required'=>"Satuan field is required "
+        ]);
+        if($request->hasFile('attachment'))
+        {
+            $destination_path = 'public';
+            $image = $request->file('attachment');
+            $image_name = $image->getClientOriginalName();
+            $path = $request -> file('attachment')->storeAs($destination_path,$image_name);
+
+            $purchase_requests = PurchaseRequest::create([
+                'deadline_date'=>$request->deadline_date,
+                'type'=>$request->type,
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+                'attachment'=>$image_name,
+            ]);
+        }
+        else
+        {
+            $purchase_requests = PurchaseRequest::create([
+                // 'no_pr'=>$request->no_pr,
+                'deadline_date'=>$request->deadline_date,
+                'role' => 'sales',
+                'type'=>$request->type,
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+            ]);
+
+        }
+            foreach ((array)$request->addMoreInputFields as $key => $value) {
+            
+                $item = Item::create($value);
+                $request_id = $item->id;
+                $request_now = Item::find($request_id);
+                $purchase_requests->item()->attach($request_now);
+            }
+           
+        return redirect('sales/purchase_request')->with('success', 'Berhasil menambah data');
+    }
+    
+
+     public function item_store_finance(Request $request){
+
+
+        $validateData = $request->validate([
+            'deadline_date'=>'required',
+            'requester'=>'required|max:100',
+            // 'project'=>'required|max:100',
+            'attachment' => 'mimes:jpeg,img,jpg,png,pdf|max:20000',
+            'locations_id' => 'required',
+            'prefixes_id' => 'required',
+            'ships_id' => 'required',
+            // 'id_master_item' => 'required',
+            // 'id_satuan' =>'required'
+
+        ], [
+            'deadline_date.required'=>"Deadline Date field is required ",
+            'requester.required'=>"Requester field is required ",
+            'project.required'=>"Project field is required ",
+            'locations_id.required' => "Lokasi field is required",
+            'prefixes_id.required' => "Divisi field is required",
+            'ships_id.required' => "Kebutuhan/pengiriman field is required",
+            'id_master_item.required'=>"Item field is required ",
+            'id_satuan.required'=>"Satuan field is required "
+        ]);
+        if($request->hasFile('attachment'))
+        {
+            $destination_path = 'public';
+            $image = $request->file('attachment');
+            $image_name = $image->getClientOriginalName();
+            $path = $request -> file('attachment')->storeAs($destination_path,$image_name);
+
+            $purchase_requests = PurchaseRequest::create([
+                'deadline_date'=>$request->deadline_date,
+                'type'=>$request->type,
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+                'attachment'=>$image_name,
+            ]);
+        }
+        else
+        {
+            $purchase_requests = PurchaseRequest::create([
+                // 'no_pr'=>$request->no_pr,
+                'deadline_date'=>$request->deadline_date,
+                'role' => 'finance',
+                'type'=>$request->type,
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+            ]);
+
+        }
+            foreach ((array)$request->addMoreInputFields as $key => $value) {
+            
+                $item = Item::create($value);
+                $request_id = $item->id;
+                $request_now = Item::find($request_id);
+                $purchase_requests->item()->attach($request_now);
+            }
+           
+        return redirect('finance/purchase_request')->with('success', 'Berhasil menambah data');
+    }
+
+    public function item_store_wirehouse(Request $request){
+
+
+        $validateData = $request->validate([
+            'deadline_date'=>'required',
+            'requester'=>'required|max:100',
+            // 'project'=>'required|max:100',
+            'attachment' => 'mimes:jpeg,img,jpg,png,pdf|max:20000',
+            'locations_id' => 'required',
+            'prefixes_id' => 'required',
+            'ships_id' => 'required',
+            // 'id_master_item' => 'required',
+            // 'id_satuan' =>'required'
+
+        ], [
+            'deadline_date.required'=>"Deadline Date field is required ",
+            'requester.required'=>"Requester field is required ",
+            'project.required'=>"Project field is required ",
+            'locations_id.required' => "Lokasi field is required",
+            'prefixes_id.required' => "Divisi field is required",
+            'ships_id.required' => "Kebutuhan/pengiriman field is required",
+            'id_master_item.required'=>"Item field is required ",
+            'id_satuan.required'=>"Satuan field is required "
+        ]);
+        if($request->hasFile('attachment'))
+        {
+            $destination_path = 'public';
+            $image = $request->file('attachment');
+            $image_name = $image->getClientOriginalName();
+            $path = $request -> file('attachment')->storeAs($destination_path,$image_name);
+
+            $purchase_requests = PurchaseRequest::create([
+                'deadline_date'=>$request->deadline_date,
+                'type'=>$request->type,
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+                'attachment'=>$image_name,
+            ]);
+        }
+        else
+        {
+            $purchase_requests = PurchaseRequest::create([
+                // 'no_pr'=>$request->no_pr,
+                'deadline_date'=>$request->deadline_date,
+                'role' => 'wirehouse',
+                'type'=>$request->type,
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+            ]);
+
+        }
+            foreach ((array)$request->addMoreInputFields as $key => $value) {
+            
+                $item = Item::create($value);
+                $request_id = $item->id;
+                $request_now = Item::find($request_id);
+                $purchase_requests->item()->attach($request_now);
+            }
+           
+        return redirect('wirehouse/purchase_request')->with('success', 'Berhasil menambah data');
+    }
+
     // *******************
     //     Store Powder
     // ********************
@@ -193,6 +516,7 @@ class PurchaseRequestController extends Controller
                 'locations_id'=>$request->locations_id,
                 'ships_id'=>$request->ships_id,
                 'note'=>$request->note,
+                
                 'attachment'=>$image_name,
             ]);
         }
@@ -232,6 +556,270 @@ class PurchaseRequestController extends Controller
         $purchase_requests->powder()->attach($request_now);
 
         return redirect('/purchase_request')->with('success', 'Berhasil menambah data status');
+
+    }
+
+    public function powder_store_sales(Request $request){
+        $validateData = $request->validate([
+            'deadline_date'=>'required',
+            'requester'=>'required|max:100',
+            // 'project'=>'required|max:100',
+            'attachment' => 'mimes:jpeg,img,jpg,png,pdf|max:20000',
+            'locations_id' => 'required',
+            'prefixes_id' => 'required',
+            'ships_id' => 'required',
+            'grades_id' => 'required',
+            'suppliers_id' => 'required',
+            'warna' => 'required',
+            'color_id' => 'required',
+            'finish' => 'required',
+            'finishing' => 'required',
+            'quantity' => 'required',
+            'm2' => 'required',
+            'estimasi' => 'required',
+            'fresh' => 'required',
+            'recycle' => 'required',
+            'alokasi' => 'required'
+
+        ], [
+            'deadline_date.required'=>"Tanggal Kebutuhan Barang Tiba field is required ",
+            'requester.required'=>"Requester field is required ",
+            'project.required'=>"Project field is required ",
+            'attachment.required'=>"Attachment field is required ",
+        ]);
+        if($request->hasFile('attachment'))
+        {
+            $destination_path = 'public';
+            $image = $request->file('attachment');
+            $image_name = $image->getClientOriginalName();
+            $path = $request -> file('attachment')->move($destination_path,$image_name);
+
+            $purchase_requests = PurchaseRequest::create([
+                'deadline_date'=>$request->deadline_date,
+                'type'=>$request->type,
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+                
+                'attachment'=>$image_name,
+            ]);
+        }
+        else
+        {
+            $purchase_requests = PurchaseRequest::create([
+                // 'no_pr'=>$request->no_pr,
+                'deadline_date'=>$request->deadline_date,
+                'type'=>$request->type,
+                'role' => 'sales',
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+            ]);
+
+        }
+
+        $powder = new powder;
+        $powder->grades_id = $request->grades_id;
+        $powder->suppliers_id = $request->suppliers_id;
+        $powder->warna =$request->warna;
+        $powder->color_id =$request->color_id;
+        $powder->finish =$request->finish;
+        $powder->finishing =$request->finishing;
+        $powder->quantity =$request->quantity;
+        $powder->m2 =$request->m2;
+        $powder->estimasi =$request->estimasi;
+        $powder->fresh =$request->fresh;
+        $powder->recycle =$request->recycle;
+        $powder->alokasi =$request->alokasi;
+        $powder->save();
+
+        $request_id = $powder->id;
+        $request_now = powder::find($request_id);
+        $purchase_requests->powder()->attach($request_now);
+
+        return redirect('sales/purchase_request')->with('success', 'Berhasil menambah data status');
+
+    }
+
+    public function powder_store_finance(Request $request){
+        $validateData = $request->validate([
+            'deadline_date'=>'required',
+            'requester'=>'required|max:100',
+            // 'project'=>'required|max:100',
+            'attachment' => 'mimes:jpeg,img,jpg,png,pdf|max:20000',
+            'locations_id' => 'required',
+            'prefixes_id' => 'required',
+            'ships_id' => 'required',
+            'grades_id' => 'required',
+            'suppliers_id' => 'required',
+            'warna' => 'required',
+            'color_id' => 'required',
+            'finish' => 'required',
+            'finishing' => 'required',
+            'quantity' => 'required',
+            'm2' => 'required',
+            'estimasi' => 'required',
+            'fresh' => 'required',
+            'recycle' => 'required',
+            'alokasi' => 'required'
+
+        ], [
+            'deadline_date.required'=>"Tanggal Kebutuhan Barang Tiba field is required ",
+            'requester.required'=>"Requester field is required ",
+            'project.required'=>"Project field is required ",
+            'attachment.required'=>"Attachment field is required ",
+        ]);
+        if($request->hasFile('attachment'))
+        {
+            $destination_path = 'public';
+            $image = $request->file('attachment');
+            $image_name = $image->getClientOriginalName();
+            $path = $request -> file('attachment')->move($destination_path,$image_name);
+
+            $purchase_requests = PurchaseRequest::create([
+                'deadline_date'=>$request->deadline_date,
+                'type'=>$request->type,
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+                
+                'attachment'=>$image_name,
+            ]);
+        }
+        else
+        {
+            $purchase_requests = PurchaseRequest::create([
+                // 'no_pr'=>$request->no_pr,
+                'deadline_date'=>$request->deadline_date,
+                'type'=>$request->type,
+                'role' => 'finance',
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+            ]);
+
+        }
+
+        $powder = new powder;
+        $powder->grades_id = $request->grades_id;
+        $powder->suppliers_id = $request->suppliers_id;
+        $powder->warna =$request->warna;
+        $powder->color_id =$request->color_id;
+        $powder->finish =$request->finish;
+        $powder->finishing =$request->finishing;
+        $powder->quantity =$request->quantity;
+        $powder->m2 =$request->m2;
+        $powder->estimasi =$request->estimasi;
+        $powder->fresh =$request->fresh;
+        $powder->recycle =$request->recycle;
+        $powder->alokasi =$request->alokasi;
+        $powder->save();
+
+        $request_id = $powder->id;
+        $request_now = powder::find($request_id);
+        $purchase_requests->powder()->attach($request_now);
+
+        return redirect('finance/purchase_request')->with('success', 'Berhasil menambah data status');
+
+    }
+
+    public function powder_store_wirehouse(Request $request){
+        $validateData = $request->validate([
+            'deadline_date'=>'required',
+            'requester'=>'required|max:100',
+            // 'project'=>'required|max:100',
+            'attachment' => 'mimes:jpeg,img,jpg,png,pdf|max:20000',
+            'locations_id' => 'required',
+            'prefixes_id' => 'required',
+            'ships_id' => 'required',
+            'grades_id' => 'required',
+            'suppliers_id' => 'required',
+            'warna' => 'required',
+            'color_id' => 'required',
+            'finish' => 'required',
+            'finishing' => 'required',
+            'quantity' => 'required',
+            'm2' => 'required',
+            'estimasi' => 'required',
+            'fresh' => 'required',
+            'recycle' => 'required',
+            'alokasi' => 'required'
+
+        ], [
+            'deadline_date.required'=>"Tanggal Kebutuhan Barang Tiba field is required ",
+            'requester.required'=>"Requester field is required ",
+            'project.required'=>"Project field is required ",
+            'attachment.required'=>"Attachment field is required ",
+        ]);
+        if($request->hasFile('attachment'))
+        {
+            $destination_path = 'public';
+            $image = $request->file('attachment');
+            $image_name = $image->getClientOriginalName();
+            $path = $request -> file('attachment')->move($destination_path,$image_name);
+
+            $purchase_requests = PurchaseRequest::create([
+                'deadline_date'=>$request->deadline_date,
+                'type'=>$request->type,
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+                
+                'attachment'=>$image_name,
+            ]);
+        }
+        else
+        {
+            $purchase_requests = PurchaseRequest::create([
+                // 'no_pr'=>$request->no_pr,
+                'deadline_date'=>$request->deadline_date,
+                'type'=>$request->type,
+                'role' => 'wirehouse',
+                'requester'=>$request->requester,
+                'prefixes_id'=>$request->prefixes_id,
+                'project'=>$request->project,
+                'locations_id'=>$request->locations_id,
+                'ships_id'=>$request->ships_id,
+                'note'=>$request->note,
+            ]);
+
+        }
+
+        $powder = new powder;
+        $powder->grades_id = $request->grades_id;
+        $powder->suppliers_id = $request->suppliers_id;
+        $powder->warna =$request->warna;
+        $powder->color_id =$request->color_id;
+        $powder->finish =$request->finish;
+        $powder->finishing =$request->finishing;
+        $powder->quantity =$request->quantity;
+        $powder->m2 =$request->m2;
+        $powder->estimasi =$request->estimasi;
+        $powder->fresh =$request->fresh;
+        $powder->recycle =$request->recycle;
+        $powder->alokasi =$request->alokasi;
+        $powder->save();
+
+        $request_id = $powder->id;
+        $request_now = powder::find($request_id);
+        $purchase_requests->powder()->attach($request_now);
+
+        return redirect('wirehouse/purchase_request')->with('success', 'Berhasil menambah data status');
 
     }
 
@@ -364,7 +952,23 @@ class PurchaseRequestController extends Controller
             'attachment'=>$request->attachment ?? $purchase_requests->attachment,
             
         ]);
-        return redirect('/purchase_request')->with('teredit', 'Berhasil mengedit data barang');
+        if($purchase_requests->role == 'sales')
+        {
+            return redirect('sales/purchase_request')->with('teredit', 'Berhasil mengedit data barang');
+        }
+        else if($purchase_requests->role == 'finance')
+        {
+            return redirect('finance/purchase_request')->with('teredit', 'Berhasil mengedit data barang');
+        }
+        else if($purchase_requests->role == 'finance')
+        {
+            return redirect('wirehouse/purchase_request')->with('teredit', 'Berhasil mengedit data barang');
+        }
+        else
+        {
+            return redirect('/purchase_request')->with('teredit', 'Berhasil mengedit data barang');
+        }
+        
 
     }
 

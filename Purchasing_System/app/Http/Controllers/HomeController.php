@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $purchase= PurchaseRequest::count();
         $orders= Order::count();
-        $pending=PurchaseRequest::where('approval_status','pending')->orWhere('approval_status','reject')->orWhere('accept_status','reject')->count();
+        $pending=PurchaseRequest::where('approval_status','pending')->orWhere('approval_status','reject')->orWhere('accept_status','pending')->orWhere('accept_status','reject')->count();
         $done=PurchaseRequest::where('accept_status', 'accept')->count();
         $jmlpowder = Powder::count();
         $jmlother = Item::count();
@@ -37,6 +37,94 @@ class HomeController extends Controller
         $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->get();
         return view('home.dashboard',compact('purchase','orders','pending','done','jmlpowder','jmlother','purchase_tabel','purchase_requests'));
     }
+
+    public function index_sales()
+    {
+        $purchase = PurchaseRequest::where('role','sales')->count();
+        $orders = DB::table('item_requests')
+            ->where('purchase_requests.role','=','sales')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('orders', 'orders.id', '=', 'item_requests.order_id')
+            ->count();
+        $pending=PurchaseRequest::where('approval_status','pending')->where('role','sales')
+            ->orwhere('accept_status','pending')->where('role','sales')
+            ->orWhere('approval_status','reject')->where('role','sales')
+            ->orWhere('accept_status','reject')->where('role','sales')
+            ->count();
+        $done = PurchaseRequest::where('accept_status', 'accept')->where('role','sales')->count();
+        $jmlpowder = DB::table('item_requests')
+            ->where('purchase_requests.role','=','sales')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
+            ->count();
+        $jmlother = DB::table('item_requests')
+            ->where('purchase_requests.role','=','sales')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('items', 'items.id', '=', 'item_requests.id_item')
+            ->count();
+        $purchase_tabel = PurchaseRequest::where('purchase_requests.role','=','sales')->latest()->paginate(3);
+        // $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->get();
+        return view('home.Sales.dashboard',compact('purchase','orders','pending','done','jmlpowder','jmlother','purchase_tabel'));
+    }
+
+    public function index_finance()
+    {
+        $purchase = PurchaseRequest::where('role','finance')->count();
+        $orders = DB::table('item_requests')
+            ->where('purchase_requests.role','=','finance')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('orders', 'orders.id', '=', 'item_requests.order_id')
+            ->count();
+        $pending=PurchaseRequest::where('approval_status','pending')->where('role','finance')
+            ->orwhere('accept_status','pending')->where('role','finance')
+            ->orWhere('approval_status','reject')->where('role','finance')
+            ->orWhere('accept_status','reject')->where('role','finance')
+            ->count();
+        $done = PurchaseRequest::where('accept_status', 'accept')->where('role','finance')->count();
+        $jmlpowder = DB::table('item_requests')
+            ->where('purchase_requests.role','=','finance')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
+            ->count();
+        $jmlother = DB::table('item_requests')
+            ->where('purchase_requests.role','=','finance')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('items', 'items.id', '=', 'item_requests.id_item')
+            ->count();
+        $purchase_tabel = PurchaseRequest::where('purchase_requests.role','=','finance')->latest()->paginate(3);
+        // $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->get();
+        return view('home.Finance.dashboard',compact('purchase','orders','pending','done','jmlpowder','jmlother','purchase_tabel'));
+    }
+
+    public function index_wirehouse()
+    {
+        $purchase = PurchaseRequest::where('role','wirehouse')->count();
+        $orders = DB::table('item_requests')
+            ->where('purchase_requests.role','=','wirehouse')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('orders', 'orders.id', '=', 'item_requests.order_id')
+            ->count();
+        $pending=PurchaseRequest::where('approval_status','pending')->where('role','wirehouse')
+            ->orwhere('accept_status','pending')->where('role','wirehouse')
+            ->orWhere('approval_status','reject')->where('role','wirehouse')
+            ->orWhere('accept_status','reject')->where('role','wirehouse')
+            ->count();
+        $done = PurchaseRequest::where('accept_status', 'accept')->where('role','wirehouse')->count();
+        $jmlpowder = DB::table('item_requests')
+            ->where('purchase_requests.role','=','wirehouse')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
+            ->count();
+        $jmlother = DB::table('item_requests')
+            ->where('purchase_requests.role','=','wirehouse')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('items', 'items.id', '=', 'item_requests.id_item')
+            ->count();
+        $purchase_tabel = PurchaseRequest::where('purchase_requests.role','=','wirehouse')->latest()->paginate(3);
+        // $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->get();
+        return view('home.Wirehouse.dashboard',compact('purchase','orders','pending','done','jmlpowder','jmlother','purchase_tabel'));
+    }
+
     public function manager()
     {
         $divisi= Prefix::count();
@@ -48,6 +136,84 @@ class HomeController extends Controller
         $jmlpowder = Powder::count();
         $jmlother = Item::count();
         return view('home.dashboard_manager',compact('divisi','orders','prapprove','pending','reject','jmlpowder','jmlother','purchase_tabel'));
+    }
+
+    public function manager_sales()
+    {
+        $orders = DB::table('item_requests')
+            ->where('purchase_requests.role','=','sales')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('orders', 'orders.id', '=', 'item_requests.order_id')
+            ->count();
+        $prapprove=PurchaseRequest::where('approval_status', 'approve')->where('role', 'sales')
+            ->orwhere('approval_status', 'edit')->where('role', 'sales')
+            ->count();
+        $pending=PurchaseRequest::where('approval_status', 'pending')->where('role', 'sales')->count();
+        $reject=PurchaseRequest::where('approval_status', 'reject')->where('role', 'sales')->count();
+        $purchase_tabel = PurchaseRequest::where('role', 'sales')->latest()->paginate(3);
+        $jmlpowder = DB::table('item_requests')
+            ->where('purchase_requests.role','=','sales')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
+            ->count();
+        $jmlother = DB::table('item_requests')
+            ->where('purchase_requests.role','=','sales')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('items', 'items.id', '=', 'item_requests.id_item')
+            ->count();
+        return view('home.Sales.manager',compact('orders','prapprove','pending','reject','jmlpowder','jmlother','purchase_tabel'));
+    }
+
+    public function manager_finance()
+    {
+        $orders = DB::table('item_requests')
+            ->where('purchase_requests.role','=','finance')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('orders', 'orders.id', '=', 'item_requests.order_id')
+            ->count();
+        $prapprove=PurchaseRequest::where('approval_status', 'approve')->where('role', 'finance')
+            ->orwhere('approval_status', 'edit')->where('role', 'finance')
+            ->count();
+        $pending=PurchaseRequest::where('approval_status', 'pending')->where('role', 'finance')->count();
+        $reject=PurchaseRequest::where('approval_status', 'reject')->where('role', 'finance')->count();
+        $purchase_tabel = PurchaseRequest::where('role', 'finance')->latest()->paginate(3);
+        $jmlpowder = DB::table('item_requests')
+            ->where('purchase_requests.role','=','finance')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
+            ->count();
+        $jmlother = DB::table('item_requests')
+            ->where('purchase_requests.role','=','finance')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('items', 'items.id', '=', 'item_requests.id_item')
+            ->count();
+        return view('home.Finance.manager',compact('orders','prapprove','pending','reject','jmlpowder','jmlother','purchase_tabel'));
+    }
+
+    public function manager_wirehouse()
+    {
+        $orders = DB::table('item_requests')
+            ->where('purchase_requests.role','=','wirehouse')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('orders', 'orders.id', '=', 'item_requests.order_id')
+            ->count();
+        $prapprove=PurchaseRequest::where('approval_status', 'approve')->where('role', 'wirehouse')
+            ->orwhere('approval_status', 'edit')->where('role', 'wirehouse')
+            ->count();
+        $pending=PurchaseRequest::where('approval_status', 'pending')->where('role', 'wirehouse')->count();
+        $reject=PurchaseRequest::where('approval_status', 'reject')->where('role', 'wirehouse')->count();
+        $purchase_tabel = PurchaseRequest::where('role', 'wirehouse')->latest()->paginate(3);
+        $jmlpowder = DB::table('item_requests')
+            ->where('purchase_requests.role','=','wirehouse')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
+            ->count();
+        $jmlother = DB::table('item_requests')
+            ->where('purchase_requests.role','=','wirehouse')
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('items', 'items.id', '=', 'item_requests.id_item')
+            ->count();
+        return view('home.Wirehouse.manager',compact('orders','prapprove','pending','reject','jmlpowder','jmlother','purchase_tabel'));
     }
     public function purchasing()
     {
@@ -72,6 +238,36 @@ class HomeController extends Controller
         $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->get();
         $purchase_requests_approve = PurchaseRequest::where('approval_status', '=', 'approve')->orwhere('approval_status', '=', 'edit')->get();
         $purchase_request_reject = PurchaseRequest::where('approval_status', '=', 'reject')->get();
+        return view('Approval.dashboard', compact("purchase_requests_pending", 'purchase_requests_approve', 'purchase_request_reject'));
+    }
+
+    public function sales_approval()
+    {
+        $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->where('role','=','sales')->get();
+        $purchase_requests_approve = PurchaseRequest::where('approval_status', '=', 'approve')->where('role','=','sales')
+                                                    ->orwhere('approval_status', '=', 'edit')->where('role','=','sales')
+                                                    ->get();
+        $purchase_request_reject = PurchaseRequest::where('approval_status', '=', 'reject')->where('role','=','sales')->get();
+        return view('Approval.dashboard', compact("purchase_requests_pending", 'purchase_requests_approve', 'purchase_request_reject'));
+    }
+
+    public function finance_approval()
+    {
+        $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->where('role','=','finance')->get();
+        $purchase_requests_approve = PurchaseRequest::where('approval_status', '=', 'approve')->where('role','=','finance')
+                                                    ->orwhere('approval_status', '=', 'edit')->where('role','=','finance')
+                                                    ->get();
+        $purchase_request_reject = PurchaseRequest::where('approval_status', '=', 'reject')->where('role','=','finance')->get();
+        return view('Approval.dashboard', compact("purchase_requests_pending", 'purchase_requests_approve', 'purchase_request_reject'));
+    }
+
+     public function wirehouse_approval()
+    {
+        $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->where('role','=','wirehouse')->get();
+        $purchase_requests_approve = PurchaseRequest::where('approval_status', '=', 'approve')->where('role','=','wirehouse')
+                                                    ->orwhere('approval_status', '=', 'edit')->where('role','=','wirehouse')
+                                                    ->get();
+        $purchase_request_reject = PurchaseRequest::where('approval_status', '=', 'reject')->where('role','=','wirehouse')->get();
         return view('Approval.dashboard', compact("purchase_requests_pending", 'purchase_requests_approve', 'purchase_request_reject'));
     }
 
@@ -196,13 +392,28 @@ class HomeController extends Controller
 
     public function store_reject(Request $request, $id)
     {
+        $purchase = PurchaseRequest::find($id);
+
         DB::table('purchase_requests')->where('id', $id)->update([
             'feedback_manager' => $request->feedback_manager,
             'approval_status' => 'reject'
         ]);
 
-
-        return redirect('/approval')->with('terhapus', 'Reject Terkirim');
+        if($purchase->role == 'sales')
+        {
+            return redirect('manager_sales/approval')->with('terhapus', 'Reject Terkirim');
+        }
+        elseif($purchase->role == 'finance')
+        {
+            return redirect('manager_finance/approval')->with('terhapus', 'Reject Terkirim');
+        }
+        elseif($purchase->role == 'wirehouse')
+        {
+            return redirect('manager_wirehouse/approval')->with('terhapus', 'Reject Terkirim');
+        }
+        else{
+            return redirect('approval')->with('terhapus', 'Reject Terkirim');
+        }
     }
 
     public function store_accept_reject(Request $request, $id)
@@ -220,7 +431,7 @@ class HomeController extends Controller
     public function update(request $request, $id)
     {
         //perlu diubah
-
+        $purchase = PurchaseRequest::find($id);
 
         DB::table('purchase_requests')->where('id', $id)->update([
             'tanggal_diterima' => $request->tanggal_diterima,
@@ -229,13 +440,28 @@ class HomeController extends Controller
         ]);
 
         // $purchase_requests = PurchaseRequest::paginate(5);
-        return redirect('approval')->with('success', 'Berhasil mengubah status');
+        if($purchase->role == 'sales')
+        {
+            return redirect('manager_sales/approval')->with('success', 'Berhasil mengubah status');
+        }
+        elseif($purchase->role == 'finance')
+        {
+            return redirect('manager_finance/approval')->with('success', 'Berhasil mengubah status');
+        }
+        elseif($purchase->role == 'wirehouse')
+        {
+            return redirect('manager_wirehouse/approval')->with('success', 'Berhasil mengubah status');
+        }
+        else{
+            return redirect('approval')->with('success', 'Berhasil mengubah status');
+        }
+        
     }
 
     public function update_edit(request $request, $id)
     {
         //perlu diubah
-
+        $purchase = PurchaseRequest::find($id);
 
         DB::table('purchase_requests')->where('id', $id)->update([
             'tanggal_diterima' => $request->tanggal_diterima,
@@ -244,7 +470,21 @@ class HomeController extends Controller
         ]);
 
         // $purchase_requests = PurchaseRequest::paginate(5);
-        return redirect('approval')->with('success', 'Berhasil mengubah status');
+        if($purchase->role == 'sales')
+        {
+            return redirect('manager_sales/approval')->with('success', 'Berhasil mengubah status');
+        }
+        elseif($purchase->role == 'finance')
+        {
+            return redirect('manager_finance/approval')->with('success', 'Berhasil mengubah status');
+        }
+        elseif($purchase->role == 'wirehouse')
+        {
+            return redirect('manager_wirehouse/approval')->with('success', 'Berhasil mengubah status');
+        }
+        else{
+            return redirect('approval')->with('success', 'Berhasil mengubah status');
+        }
     }
 
     public function update_accept(request $request, $id)

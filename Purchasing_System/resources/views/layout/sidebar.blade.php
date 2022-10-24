@@ -127,6 +127,8 @@
         <div class="dlabnav">
             <div class="dlabnav-scroll">
                 <ul class="metismenu" id="menu">
+
+                    @role('admin')
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                             <i class="fas fa-home"></i>
                             <span class="nav-text">Dashboard</span>
@@ -137,39 +139,202 @@
                             <li><a href="/purchasing">Dashboard Purchasing</a></li>
                         </ul>
                     </li>
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                        <i class="bi bi-clipboard2-fill"></i>
+                        <span class="nav-text">Request</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="/purchase_request">Purchase Request</a></li>
+                        <li><a href="/purchase_request/create">Buat PR</a></li>
+                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master Request</a>
+                            <ul aria-expanded="false">
+                                <li><a href="/masteritem">Master Item</a></li>
+                                <li><a href="/prefix">Master Prefix</a></li>
+                                <li><a href="/location">Master Lokasi</a></li>
+                                <li><a href="/colour">Master Color</a></li>
+                                <li><a href="/satuan">Master Satuan</a></li>
+                                <li><a href="/grade">Master Grade</a></li>
+                                <li><a href="/ships">Master Kebutuhan</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span class="nav-text">Approval</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="/approval" aria-expanded="false">Manager</a></li>
+                    <li><a href="/approval/accept" aria-expanded="false">Purchasing Tim</a></li>
+                </ul>
+            </li>
+                    @endrole
+
+                    @role('Manager Sales')
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ url('/sales') }}">Admin Divisi Sales</a></li>
+                        <li><a href="{{ url('/manager_sales') }}">Manager Sales</a></li>
+                    </ul>
+                </li>
+                <li><a href="/manager_sales/approval" class="" aria-expanded="false">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Sales Approval</span>
+                </a>
+            </li>
+                @endrole
+
+                @role('Manager Finance')
+                <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ url('/finance') }}">Admin Divisi Finance</a></li>
+                    <li><a href="{{ url('/manager_finance') }}">Manager Finance</a></li>
+                </ul>
+            </li>
+            <li><a href="/manager_finance/approval" class="" aria-expanded="false">
+                <i class="fas fa-home"></i>
+                <span class="nav-text">Finance Approval</span>
+            </a>
+        </li>
+            @endrole
+
+            @role('Manager Wirehouse')
+            <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                <i class="fas fa-home"></i>
+                <span class="nav-text">Dashboard</span>
+            </a>
+            <ul aria-expanded="false">
+                <li><a href="{{ url('/wirehouse') }}">Admin Divisi WO</a></li>
+                <li><a href="{{ url('/manager_wirehouse') }}">Manager WO</a></li>
+            </ul>
+        </li>
+        <li><a href="/manager_wirehouse/approval" class="" aria-expanded="false">
+            <i class="fas fa-home"></i>
+            <span class="nav-text">WO Approval</span>
+        </a>
+    </li>
+        @endrole
+        @role('Sales')
+                    <li><a href="/sales" class="" aria-expanded="false">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-text">Sales Dashboard</span>
+                    </a>
+
+                    
 
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                            <i class="bi bi-clipboard2-fill"></i>
-                            <span class="nav-text">Request</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="/purchase_request">Purchase Request</a></li>
-                            <li><a href="/purchase_request/create">Buat PR</a></li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master Request</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="/masteritem">Master Item</a></li>
-                                    <li><a href="/prefix">Master Prefix</a></li>
-                                    <li><a href="/location">Master Lokasi</a></li>
-                                    <li><a href="/colour">Master Color</a></li>
-                                    <li><a href="/satuan">Master Satuan</a></li>
-                                    <li><a href="/grade">Master Grade</a></li>
-                                    <li><a href="/ships">Master Kebutuhan</a></li>
+                        <i class="bi bi-clipboard2-fill"></i>
+                        <span class="nav-text">Sales Request</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ url('sales/purchase_request') }}">Purchase Request</a></li>
+                        <li><a href="{{ url('sales/purchase_request/create') }}">Buat PR</a></li>
+                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master Request</a>
+                            <ul aria-expanded="false">
+                                <li><a href="/masteritem">Master Item</a></li>
+                                <li><a href="/prefix">Master Prefix</a></li>
+                                <li><a href="/location">Master Lokasi</a></li>
+                                <li><a href="/colour">Master Color</a></li>
+                                <li><a href="/satuan">Master Satuan</a></li>
+                                <li><a href="/grade">Master Grade</a></li>
+                                <li><a href="/ships">Master Kebutuhan</a></li>
 
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                    @endrole
 
+
+                    @role('Finance')
+                    <li><a href="/finance" class="" aria-expanded="false">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-text">Finance Dashboard</span>
+                    </a>
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                            <i class="bi bi-check-circle-fill"></i>
-                            <span class="nav-text">Approval</span>
-                        </a>
+                        <i class="bi bi-clipboard2-fill"></i>
+                        <span class="nav-text">Finance Request</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ url('finance/purchase_request') }}">Purchase Request</a></li>
+                        <li><a href="{{ url('finance/purchase_request/create') }}">Buat PR</a></li>
+                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master Request</a>
+                            <ul aria-expanded="false">
+                                <li><a href="/masteritem">Master Item</a></li>
+                                <li><a href="/prefix">Master Prefix</a></li>
+                                <li><a href="/location">Master Lokasi</a></li>
+                                <li><a href="/colour">Master Color</a></li>
+                                <li><a href="/satuan">Master Satuan</a></li>
+                                <li><a href="/grade">Master Grade</a></li>
+                                <li><a href="/ships">Master Kebutuhan</a></li>
+    
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                    @endrole
+
+
+                    @role('Wirehouse')
+                    <li><a href="/wirehouse" class="" aria-expanded="false">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-text">WO Dashboard</span>
+                    </a>
+                </li>
+
+                <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                    <i class="bi bi-clipboard2-fill"></i>
+                    <span class="nav-text">WO Request</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{{ url('wirehouse/purchase_request') }}">Purchase Request</a></li>
+                    <li><a href="{{ url('wirehouse/purchase_request/create') }}">Buat PR</a></li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master Request</a>
                         <ul aria-expanded="false">
-                            <li><a href="/approval" aria-expanded="false">Manager</a></li>
-                            <li><a href="/approval/accept" aria-expanded="false">Purchasing Tim</a></li>
+                            <li><a href="/masteritem">Master Item</a></li>
+                            <li><a href="/prefix">Master Prefix</a></li>
+                            <li><a href="/location">Master Lokasi</a></li>
+                            <li><a href="/colour">Master Color</a></li>
+                            <li><a href="/satuan">Master Satuan</a></li>
+                            <li><a href="/grade">Master Grade</a></li>
+                            <li><a href="/ships">Master Kebutuhan</a></li>
+    
                         </ul>
                     </li>
+                </ul>
+            </li>
+                    @endrole
+                
+                    
 
+               
+
+
+                    
+
+                    
+
+                
+
+           
+                    @role('Wirehouse')
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="/">Dashboard Admin Divisi</a></li>
+                        <li><a href="/manager">Dashboard Manager</a></li>
+                        <li><a href="/purchasing">Dashboard Purchasing</a></li>
+                    </ul>
+                </li>
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                             <i class="bi bi-basket2-fill"></i>
 
@@ -204,6 +369,7 @@
                             </li>
                         </ul>
                     </li>
+                    @endrole
 
             </div>
         </div>
