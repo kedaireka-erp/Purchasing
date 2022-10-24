@@ -128,7 +128,6 @@
             <div class="dlabnav-scroll">
                 <ul class="metismenu" id="menu">
 
-                    
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                             <i class="fas fa-home"></i>
                             <span class="nav-text">Dashboard</span>
@@ -169,9 +168,7 @@
                     <li><a href="/approval/accept" aria-expanded="false">Purchasing Tim</a></li>
                 </ul>
             </li>
-                    
 
-                   
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                         <i class="fas fa-home"></i>
                         <span class="nav-text">Dashboard</span>
@@ -186,9 +183,7 @@
                     <span class="nav-text">Sales Approval</span>
                 </a>
             </li>
-                
 
-               
                 <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                     <i class="fas fa-home"></i>
                     <span class="nav-text">Dashboard</span>
@@ -203,9 +198,7 @@
                 <span class="nav-text">Finance Approval</span>
             </a>
         </li>
-            
 
-            
             <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                 <i class="fas fa-home"></i>
                 <span class="nav-text">Dashboard</span>
@@ -220,8 +213,10 @@
             <span class="nav-text">WO Approval</span>
         </a>
     </li>
-        
-                    <li><a href="/sales" class="" aria-expanded="false">
+
+
+    @role('Sales')
+                    <li><a href="/" class="" aria-expanded="false">
                         <i class="fas fa-home"></i>
                         <span class="nav-text">Sales Dashboard</span>
                     </a>
@@ -249,7 +244,9 @@
                         </li>
                     </ul>
                 </li>
-                  
+                @endrole
+
+                @role('Finance')
                     <li><a href="/finance" class="" aria-expanded="false">
                         <i class="fas fa-home"></i>
                         <span class="nav-text">Finance Dashboard</span>
@@ -275,7 +272,7 @@
                         </li>
                     </ul>
                 </li>
-                    
+                @endrole
                     <li><a href="/wirehouse" class="" aria-expanded="false">
                         <i class="fas fa-home"></i>
                         <span class="nav-text">WO Dashboard</span>
@@ -303,7 +300,6 @@
                     </li>
                 </ul>
             </li>
-                    
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                         <i class="fas fa-home"></i>
                         <span class="nav-text">Dashboard</span>
@@ -348,7 +344,6 @@
                             </li>
                         </ul>
                     </li>
-                    
 
             </div>
         </div>
