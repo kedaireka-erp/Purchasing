@@ -32,9 +32,7 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::middleware("auth")->group(function () {
-    // Route::get('/', [HomeController::class, 'index'])->name('dashboard');
-    // Route::get('/manager', [HomeController::class, 'manager'])->name('manager');
-    // Route::get('/purchasing', [HomeController::class, 'purchasing'])->name('purchasing');
+   
     Route::group(['middleware' => ['permission:sales_role_purchasing']], function () {
         Route::get('/', [HomeController::class, 'index_sales'])->name('dashboard_sales');
         Route::group(['as' => 'sales.', 'prefix' => 'sales'], function () {
@@ -216,7 +214,7 @@ Route::middleware("auth")->group(function () {
         });
     });
 
-    Route::group(['middleware' => ['permission:manager_wirehouse_role_purchasing']], function () {
+    Route::group(['middleware' => ['permission:manager_wirehouse_role_purchasing',]], function () {
         Route::get('/', [HomeController::class, 'manager_wirehouse'])->name('manager_wirehouse');
         Route::group(['as' => 'manager_wirehouse.', 'prefix' => 'manager_wirehouse'], function () {
             Route::get('approval/', [HomeController::class, 'wirehouse_approval']);
@@ -438,6 +436,10 @@ Route::middleware("auth")->group(function () {
     });
 
     Route::group(['middleware' => ['permission:role_purchasing']], function () {
+        Route::get('/admin_divisi', [HomeController::class, 'index'])->name('dashboard');
+        Route::get('/manager', [HomeController::class, 'manager'])->name('manager');
+        Route::get('/', [HomeController::class, 'purchasing'])->name('purchasing');
+
     route::group(['as' => 'order.', 'prefix' => 'order'], function () {
         route::get('/', [OrderController::class, 'index']);
         route::get('/read/time', [OrderController::class, 'read_time']);
