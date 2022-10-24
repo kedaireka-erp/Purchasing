@@ -172,7 +172,7 @@
                                 <span class="nav-text">Dashboard</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="{{ url('/sales') }}">Admin Divisi Sales</a></li>
+                                <li><a href="{{ url('/manager_sales/admin/sales') }}">Admin Divisi Sales</a></li>
                                 <li><a href="{{ url('/manager_sales') }}">Manager Sales</a></li>
                             </ul>
                         </li>
@@ -188,7 +188,7 @@
                                 <span class="nav-text">Dashboard</span>
                             </a>
                             <ul aria-expanded="false">
-                                <li><a href="{{ url('/finance') }}">Admin Divisi Finance</a></li>
+                                <li><a href="{{ url('/manager_finance/admin/finance') }}">Admin Divisi Finance</a></li>
                                 <li><a href="{{ url('/manager_finance') }}">Manager Finance</a></li>
                             </ul>
                         </li>

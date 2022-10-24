@@ -204,6 +204,7 @@ Route::middleware("auth")->group(function () {
     Route::group(['middleware' => ['role:Manager Sales']], function () {
             Route::group(['as' => 'manager_sales.', 'prefix' => 'manager_sales'], function () {
                 Route::get('/', [HomeController::class, 'manager_sales'])->name('manager_sales');
+                Route::get('/admin/sales', [HomeController::class, 'index_sales'])->name('dashboard_sales');
                 Route::get('approval/', [HomeController::class, 'sales_approval']);
             });
     });
@@ -211,6 +212,7 @@ Route::middleware("auth")->group(function () {
     Route::group(['middleware' => ['role:Manager Finance']], function () {
         Route::group(['as' => 'manager_finance.', 'prefix' => 'manager_finance'], function () {
             Route::get('/', [HomeController::class, 'manager_finance'])->name('manager_finance');
+            Route::get('/admin/finance', [HomeController::class, 'index_finance'])->name('dashboard_finance');
             Route::get('approval/', [HomeController::class, 'finance_approval']);
         });
     });
