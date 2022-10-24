@@ -218,7 +218,7 @@
 
 
                     @can('sales_role_purchasing')
-                        <li><a href="/" class="" aria-expanded="false">
+                        <li><a href="/index" class="" aria-expanded="false">
                                 <i class="fas fa-home"></i>
                                 <span class="nav-text">Sales Dashboard</span>
                             </a>
