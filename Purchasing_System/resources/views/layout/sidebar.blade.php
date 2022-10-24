@@ -127,7 +127,7 @@
         <div class="dlabnav">
             <div class="dlabnav-scroll">
                 <ul class="metismenu" id="menu">
-                    @role('admin')
+                    @role('Purchasing Team')
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                             <i class="fas fa-home"></i>
                             <span class="nav-text">Dashboard</span>
