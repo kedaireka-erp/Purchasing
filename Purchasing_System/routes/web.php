@@ -144,7 +144,7 @@ Route::middleware("auth")->group(function () {
     });
     });
 
-    Route::group(['middleware' => ['permission:wirehouse_role_purchasing']], function () {
+    Route::group(['middleware' => ['role:Wirehouse']], function () {
         
         Route::group(['as' => 'wirehouse.', 'prefix' => 'wirehouse'], function () {
             Route::get('/', [HomeController::class, 'index_wirehouse'])->name('dashboard_wirehouse');
