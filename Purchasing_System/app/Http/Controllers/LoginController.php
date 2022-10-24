@@ -20,6 +20,14 @@ class LoginController extends Controller
         {
             return redirect("/sales");
         }
+        elseif( auth()->user()->hasRole('Finance') )
+        {
+            return redirect("/finance");
+        }
+        elseif( auth()->user()->hasRole('Wirehouse') )
+        {
+            return redirect("/wirehouse");
+        }
         else
         {
             return redirect("/");
