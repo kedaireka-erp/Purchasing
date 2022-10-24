@@ -127,7 +127,7 @@
         <div class="dlabnav">
             <div class="dlabnav-scroll">
                 <ul class="metismenu" id="menu">
-
+                    @role('admin')
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                             <i class="fas fa-home"></i>
                             <span class="nav-text">Dashboard</span>
@@ -168,7 +168,8 @@
                     <li><a href="/approval/accept" aria-expanded="false">Purchasing Tim</a></li>
                 </ul>
             </li>
-
+            @endrole
+            @role('Manager Sales')
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                         <i class="fas fa-home"></i>
                         <span class="nav-text">Dashboard</span>
@@ -183,7 +184,8 @@
                     <span class="nav-text">Sales Approval</span>
                 </a>
             </li>
-
+            @endrole
+            @role('Manager Finance')
                 <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                     <i class="fas fa-home"></i>
                     <span class="nav-text">Dashboard</span>
@@ -198,7 +200,9 @@
                 <span class="nav-text">Finance Approval</span>
             </a>
         </li>
+        @endrole
 
+        @role('Manager Wirehouse')
             <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                 <i class="fas fa-home"></i>
                 <span class="nav-text">Dashboard</span>
@@ -213,6 +217,7 @@
             <span class="nav-text">WO Approval</span>
         </a>
     </li>
+    @endrole
 
 
     @role('Sales')
@@ -273,6 +278,8 @@
                     </ul>
                 </li>
                 @endrole
+
+                @role('Wirehouse')
                     <li><a href="/wirehouse" class="" aria-expanded="false">
                         <i class="fas fa-home"></i>
                         <span class="nav-text">WO Dashboard</span>
@@ -300,6 +307,9 @@
                     </li>
                 </ul>
             </li>
+            @endrole
+
+            @role('Purchasing Team')
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                         <i class="fas fa-home"></i>
                         <span class="nav-text">Dashboard</span>
@@ -328,6 +338,8 @@
                             </li>
                         </ul>
                     </li>
+                    @endrole
+
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                             <i class="fas fa-chart-line"></i>
 
