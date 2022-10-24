@@ -201,7 +201,7 @@ Route::middleware("auth")->group(function () {
         });
     });
 
-    Route::group(['middleware' => ['permission:manager_sales_role_purchasing']], function () {
+    Route::group(['middleware' => ['role:Manager Sales']], function () {
         Route::get('/', [HomeController::class, 'manager_sales'])->name('manager_sales');
             Route::group(['as' => 'manager_sales.', 'prefix' => 'manager_sales'], function () {
                 Route::get('approval/', [HomeController::class, 'sales_approval']);
