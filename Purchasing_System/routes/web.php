@@ -407,7 +407,7 @@ Route::middleware("auth")->group(function () {
         Route::get('/accept/create/reject/{id}', [HomeController::class, 'create_accept_reject']);
         Route::post('create/reject/store/{id}', [HomeController::class, 'store_reject'])->name('reject_store');
         Route::post('accept/reject/store/{id}', [HomeController::class, 'store_accept_reject'])->name('accept_store');
-        Route::get('/approval/accept', [HomeController::class, 'accept_page']);
+        Route::get('/accept', [HomeController::class, 'accept_page']);
         // Route::get('/accept/done', [HomeController::class, 'accept_page_done']);
         // Route::get('/accept/reject', [HomeController::class, 'accept_page_reject']);
         Route::get('/view/{id}', [HomeController::class, "view"])->name("view");
