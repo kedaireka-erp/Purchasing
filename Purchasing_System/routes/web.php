@@ -208,9 +208,9 @@ Route::middleware("auth")->group(function () {
             });
     });
 
-    Route::group(['middleware' => ['permission:manager_finance_role_purchasing']], function () {
-        Route::get('/', [HomeController::class, 'manager_finance'])->name('manager_finance');
+    Route::group(['middleware' => ['role:Manager Finance']], function () {
         Route::group(['as' => 'manager_finance.', 'prefix' => 'manager_finance'], function () {
+            Route::get('/', [HomeController::class, 'manager_finance'])->name('manager_finance');
             Route::get('approval/', [HomeController::class, 'finance_approval']);
         });
     });

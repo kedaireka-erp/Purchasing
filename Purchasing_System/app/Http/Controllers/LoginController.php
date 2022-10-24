@@ -32,6 +32,10 @@ class LoginController extends Controller
         {
             return redirect("/manager_sales");
         }
+        elseif( auth()->user()->hasRole('Manager Finance') )
+        {
+            return redirect("/manager_finance");
+        }
         else
         {
             return redirect("/");

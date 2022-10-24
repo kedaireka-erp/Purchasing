@@ -168,7 +168,7 @@
 
                     @role('Manager Sales')
                         <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                                <i class="fas fa-home"></i>
+                                <i class="bi bi-check-circle-fill"></i>
                                 <span class="nav-text">Dashboard</span>
                             </a>
                             <ul aria-expanded="false">
@@ -193,7 +193,7 @@
                             </ul>
                         </li>
                         <li><a href="/manager_finance/approval" class="" aria-expanded="false">
-                                <i class="fas fa-home"></i>
+                                <i class="bi bi-check-circle-fill"></i>
                                 <span class="nav-text">Finance Approval</span>
                             </a>
                         </li>
