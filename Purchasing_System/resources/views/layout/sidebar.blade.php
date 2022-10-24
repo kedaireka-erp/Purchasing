@@ -217,7 +217,7 @@
                     @endrole
 
 
-                    @role('Sales')
+                    @can('sales_role_purchasing')
                         <li><a href="/" class="" aria-expanded="false">
                                 <i class="fas fa-home"></i>
                                 <span class="nav-text">Sales Dashboard</span>
@@ -247,7 +247,7 @@
                                 </li>
                             </ul>
                         </li>
-                    @endrole
+                    @endcan
 
                     @role('Finance')
                         <li><a href="/finance" class="" aria-expanded="false">
