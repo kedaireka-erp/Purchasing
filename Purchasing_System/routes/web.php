@@ -88,8 +88,7 @@ Route::middleware("auth")->group(function () {
             });
         });
     });
-    Route::group(['middleware' => ['permission:finance_role_purchasing']], function () {
-        
+    Route::group(['middleware' => ['role:Finance']], function () {
         Route::group(['as' => 'finance.', 'prefix' => 'finance'], function () {
             Route::get('/', [HomeController::class, 'index_finance'])->name('dashboard_finance');
             Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], function () {
