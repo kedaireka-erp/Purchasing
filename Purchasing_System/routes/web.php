@@ -35,7 +35,7 @@ Route::middleware("auth")->group(function () {
     // Route::get('/', [HomeController::class, 'index'])->name('dashboard');
     // Route::get('/manager', [HomeController::class, 'manager'])->name('manager');
     // Route::get('/purchasing', [HomeController::class, 'purchasing'])->name('purchasing');
-    Route::group(['middleware' => ['permission:sales_role_purchasing']], function () {
+    Route::group(['middleware' => ['role:Sales']], function () {
         Route::get('/', [HomeController::class, 'index_sales'])->name('dashboard_sales');
         Route::group(['as' => 'sales.', 'prefix' => 'sales'], function () {
             
