@@ -16,7 +16,15 @@ class LoginController extends Controller
     public function login (Request $request) {
         Auth::loginUsingId(base64_decode($request->user_id));
 
-        return redirect("/");
+        if( auth()->user()->hasRole('Sales') )
+        {
+            return redirect("/sales");
+        }
+        else
+        {
+            return redirect("/");
+        }
+       
     }
 
     public function logout () {
