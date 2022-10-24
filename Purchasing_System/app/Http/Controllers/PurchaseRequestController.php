@@ -291,6 +291,7 @@ class PurchaseRequestController extends Controller
 
             $purchase_requests = PurchaseRequest::create([
                 'deadline_date'=>$request->deadline_date,
+                'role' => 'sales',
                 'type'=>$request->type,
                 'requester'=>$request->requester,
                 'prefixes_id'=>$request->prefixes_id,
@@ -364,6 +365,7 @@ class PurchaseRequestController extends Controller
                 'deadline_date'=>$request->deadline_date,
                 'type'=>$request->type,
                 'requester'=>$request->requester,
+                'role' => 'finance',
                 'prefixes_id'=>$request->prefixes_id,
                 'project'=>$request->project,
                 'locations_id'=>$request->locations_id,
@@ -433,6 +435,7 @@ class PurchaseRequestController extends Controller
             $purchase_requests = PurchaseRequest::create([
                 'deadline_date'=>$request->deadline_date,
                 'type'=>$request->type,
+                'role' => 'wirehouse',
                 'requester'=>$request->requester,
                 'prefixes_id'=>$request->prefixes_id,
                 'project'=>$request->project,
@@ -597,6 +600,7 @@ class PurchaseRequestController extends Controller
             $purchase_requests = PurchaseRequest::create([
                 'deadline_date'=>$request->deadline_date,
                 'type'=>$request->type,
+                'role' => 'sales',
                 'requester'=>$request->requester,
                 'prefixes_id'=>$request->prefixes_id,
                 'project'=>$request->project,
@@ -685,6 +689,7 @@ class PurchaseRequestController extends Controller
             $purchase_requests = PurchaseRequest::create([
                 'deadline_date'=>$request->deadline_date,
                 'type'=>$request->type,
+                'role' => 'finance',
                 'requester'=>$request->requester,
                 'prefixes_id'=>$request->prefixes_id,
                 'project'=>$request->project,
@@ -773,6 +778,7 @@ class PurchaseRequestController extends Controller
             $purchase_requests = PurchaseRequest::create([
                 'deadline_date'=>$request->deadline_date,
                 'type'=>$request->type,
+                'role' => 'wirehouse',
                 'requester'=>$request->requester,
                 'prefixes_id'=>$request->prefixes_id,
                 'project'=>$request->project,
