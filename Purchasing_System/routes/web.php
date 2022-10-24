@@ -33,7 +33,7 @@ use App\Http\Controllers\LoginController;
 
 Route::middleware("auth")->group(function () {
    
-    Route::group(['middleware' => ['permission:sales_role_purchasing']], function () {
+    Route::group(['middleware' => ['role:Sales']], function () {
         Route::get('/', [HomeController::class, 'index_sales'])->name('dashboard_sales');
         Route::group(['as' => 'sales.', 'prefix' => 'sales'], function () {
             Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], function () {
@@ -88,7 +88,7 @@ Route::middleware("auth")->group(function () {
             });
         });
     });
-    Route::group(['middleware' => ['permission:finance_role_purchasing','permission:manager_finance_role_purchasing']], function () {
+    Route::group(['middleware' => ['permission:finance_role_purchasing']], function () {
         Route::get('/', [HomeController::class, 'index_finance'])->name('dashboard_finance');
         Route::group(['as' => 'finance.', 'prefix' => 'finance'], function () {
             Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], function () {
