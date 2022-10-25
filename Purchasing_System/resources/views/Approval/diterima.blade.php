@@ -38,19 +38,6 @@
   </ul>
 <div class="tabBlock-content">
     <div class="tabBlock-pane">
-        {{-- <div class="card">
-            <div id="chead">
-                <div class="row">
-                    <div class="col-9">
-                        <div class="card-header">
-                            <h4 class="card-title">Data PR Masuk</h4>
-                        </div>
-                    </div>
-    
-                </div>
-                <hr>
-            </div>  --}}
-    
             <div class="card-body">
                 <div class="table-responsive">
                     <br>
@@ -76,7 +63,7 @@
                                     <td class="content-control">
                                         {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}</td>
                                     <td class="content-control">{{ $purchase_request->requester }}</td>
-                                    <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
+                                    <td class="content-control">{{ $purchase_request->divisi }}</td>
                                     <td class="content-control">{{ $purchase_request->type }}</td>
     
     
@@ -173,7 +160,7 @@
                                         {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}
                                     </td>
                                     <td class="content-control">{{ $purchase_request->requester }}</td>
-                                    <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
+                                    <td class="content-control">{{ $purchase_request->divisi }}</td>
                                     <td class="content-control">{{ $purchase_request->type }}</td>
     
     
@@ -275,7 +262,7 @@
                                         {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}
                                     </td>
                                     <td class="content-control">{{ $purchase_request->requester }}</td>
-                                    <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
+                                    <td class="content-control">{{ $purchase_request->divisi }}</td>
                                     <td class="content-control">{{ $purchase_request->type }}</td>
     
                                     <td align="center"> <a class="reject content-control">

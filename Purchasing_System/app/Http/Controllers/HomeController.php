@@ -296,9 +296,25 @@ class HomeController extends Controller
     // Dashboard manager
     public function approval()
     {
-        $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->get();
-        $purchase_requests_approve = PurchaseRequest::where('approval_status', '=', 'approve')->orwhere('approval_status', '=', 'edit')->get();
-        $purchase_request_reject = PurchaseRequest::where('approval_status', '=', 'reject')->get();
+        $purchase_requests_pending = DB::table('purchase_requests')
+                                            ->where('approval_status', '=', 'pending')
+                                            ->join('prefixes','purchase_requests.prefixes_id','=','prefixes.id')
+                                            ->select('prefixes.divisi','purchase_requests.*')
+                                            ->get();
+
+        $purchase_requests_approve = DB::table('purchase_requests')
+                                            ->where('approval_status', '=', 'approve')
+                                            ->orwhere('approval_status', '=', 'edit')
+                                            ->join('prefixes','purchase_requests.prefixes_id','=','prefixes.id')
+                                            ->select('prefixes.divisi','purchase_requests.*')
+                                            ->get();
+
+        $purchase_request_reject = DB::table('purchase_requests')
+                                        ->where('approval_status', '=', 'reject')
+                                        ->join('prefixes','purchase_requests.prefixes_id','=','prefixes.id')
+                                        ->select('prefixes.divisi','purchase_requests.*')
+                                        ->get();
+
         return view('Approval.dashboard', compact("purchase_requests_pending", 'purchase_requests_approve', 'purchase_request_reject'));
     }
 
@@ -335,11 +351,28 @@ class HomeController extends Controller
     // Dashboard Purchasing
     public function accept_page()
     {
-        $pr_condition1 =  PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', 'pending')->get();
-        $pr_condition2 =  PurchaseRequest::where('approval_status', '=', 'edit')->where('accept_status', 'pending')->get();
-        $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', 'pending')->orWhere('approval_status', '=', 'edit')->where('accept_status', 'pending')->get();
-        $purchase_requests_approve = PurchaseRequest::where('accept_status', 'edit')->orwhere('accept_status', 'accept')->get();
-        $purchase_request_reject = PurchaseRequest::where('accept_status', 'reject')->get();
+        $purchase_requests_pending =  DB::table('purchase_requests')
+                                            ->where('approval_status', '=', 'approve')
+                                            ->where('accept_status', 'pending')
+                                            ->orWhere('approval_status', '=', 'edit')
+                                            ->where('accept_status', 'pending')
+                                            ->join('prefixes','purchase_requests.prefixes_id','=','prefixes.id')
+                                            ->select('prefixes.divisi','purchase_requests.*')
+                                            ->get();
+
+        $purchase_requests_approve = DB::table('purchase_requests')
+                                            ->where('accept_status', 'edit')
+                                            ->orwhere('accept_status', 'accept')
+                                            ->join('prefixes','purchase_requests.prefixes_id','=','prefixes.id')
+                                            ->select('prefixes.divisi','purchase_requests.*')
+                                            ->get();
+
+        $purchase_request_reject = DB::table('purchase_requests')
+                                            ->where('accept_status', 'reject')
+                                            ->join('prefixes','purchase_requests.prefixes_id','=','prefixes.id')
+                                            ->select('prefixes.divisi','purchase_requests.*')
+                                            ->get();
+
         return view('Approval.diterima',  compact("purchase_requests_pending", 'purchase_requests_approve', 'purchase_request_reject'));
     }
 
@@ -357,11 +390,8 @@ class HomeController extends Controller
     {
         $purchase_requests = PurchaseRequest::find($id);
         $item = Item::with('master_item', 'satuan')->get();
-        $Location = location::get();
-        $Ship = ships::get();
-        $Prefixe = Prefix::get();
 
-        return view('Approval.accept', compact('purchase_requests', 'Location', 'Ship', 'Prefixe', 'item'));
+        return view('Approval.accept', compact('purchase_requests', 'item'));
     }
 
     public function purchasing_edit($id)

@@ -180,7 +180,7 @@
                                             
                                             <tr class="tr">
                                                 <td width="200px">Divisi</td>
-                                                <td>: {{ $purchase_requests->Prefixe->divisi }}</td>
+                                                <td>: {{ $purchase_requests->divisi }}</td>
                                             </tr>
                                             
                                             <tr class="tr">
@@ -190,13 +190,13 @@
                                             
                                             <tr class="tr">
                                                 <td width="200px">Kebutuhan/Pengiriman</td>
-                                                <td>: {{ $purchase_requests->ship->tipe }} </td>
+                                                <td>: {{ $purchase_requests->tipe }} </td>
                                             </tr>
                                             
 
                                             <tr class="tr">
                                                 <td width="200px">Alamat Kirim</td>
-                                                <td>: {{ $purchase_requests->location->location_name }}</td>
+                                                <td>: {{ $purchase_requests->location_name }}</td>
                                             </tr>
                                             
                                             @if($purchase_requests->approval_status == 'reject')
