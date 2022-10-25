@@ -33,7 +33,7 @@ use App\Http\Controllers\LoginController;
 
 Route::middleware("auth")->group(function () {
    
-    Route::group(['middleware' => ['role_or_permission:Admin|sales_role_purchasing']], function () {
+    Route::group(['middleware' => ['role_or_permission:Admin|sales_role_purchasing|role_purchasing']], function () {
         Route::group(['as' => 'sales.', 'prefix' => 'sales'], function () {
             Route::get('/', [HomeController::class, 'index_sales'])->name('dashboard_sales');
             Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], function () {
