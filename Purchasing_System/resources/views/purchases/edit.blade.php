@@ -59,7 +59,7 @@
 
 
                                             <form action="{{ route('purchase_request.update', $purchase_requests->id) }}"
-                                                method="post">
+                                                method="post" enctype="multipart/form-data">
                                                 @csrf
 
 
@@ -144,14 +144,22 @@
                                                     </div>
                                                     <div class="col-lg-9">
                                                         <div class="input-group input-group-lg">
-                                                            <span class="input-group-text">Upload</span>
-                                                            <div class="form-file">
-                                                                <input type="file"
-                                                                    class="form-file-input form-control input-rounded @error('attachment') is-invalid @enderror"
-                                                                    id="attachment" placeholder="Attachment"
-                                                                    name="attachment"
-                                                                    value="{{ old('attachment', $purchase_requests->attachment) }}">
+                                                            <div class="basic-form custom_file_input">
+
+                                                                <label for="attachment" class="form-label">Attachment</label>
+                                                                <div class="input-group input-group-lg">
+                                                                    <span class="input-group-text">Upload</span>
+                                                                    <div class="form-file">
+                                                                        <input type="file"
+                                                                            class="form-file-input form-control input-rounded @error('attachment') is-invalid @enderror"
+                                                                            id="attachment" placeholder="Attachment"
+                                                                            name="attachment">
+                                                                    </div>
+                                                                </div>
+            
+            
                                                             </div>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>

@@ -214,9 +214,9 @@ class PurchaseRequestController extends Controller
         ]);
         if($request->hasFile('attachment'))
         {
-            $destination_path = 'public';
+            $destination_path = 'storage';
             $image = $request->file('attachment');
-            $image_name = $image->getClientOriginalName();
+            $image_name = rand(100,150)."_".$image->getClientOriginalName();
             $path = $request -> file('attachment')->storeAs($destination_path,$image_name);
 
             $purchase_requests = PurchaseRequest::create([
@@ -284,9 +284,9 @@ class PurchaseRequestController extends Controller
         ]);
         if($request->hasFile('attachment'))
         {
-            $destination_path = 'public';
+            $destination_path = 'storage';
             $image = $request->file('attachment');
-            $image_name = $image->getClientOriginalName();
+            $image_name = rand(100,150)."_".$image->getClientOriginalName();
             $path = $request -> file('attachment')->storeAs($destination_path,$image_name);
 
             $purchase_requests = PurchaseRequest::create([
@@ -356,9 +356,9 @@ class PurchaseRequestController extends Controller
         ]);
         if($request->hasFile('attachment'))
         {
-            $destination_path = 'public';
+            $destination_path = 'storage';
             $image = $request->file('attachment');
-            $image_name = $image->getClientOriginalName();
+            $image_name = rand(100,150)."_".$image->getClientOriginalName();
             $path = $request -> file('attachment')->storeAs($destination_path,$image_name);
 
             $purchase_requests = PurchaseRequest::create([
@@ -427,9 +427,9 @@ class PurchaseRequestController extends Controller
         ]);
         if($request->hasFile('attachment'))
         {
-            $destination_path = 'public';
+            $destination_path = 'storage';
             $image = $request->file('attachment');
-            $image_name = $image->getClientOriginalName();
+            $image_name = rand(100,150)."_".$image->getClientOriginalName();
             $path = $request -> file('attachment')->storeAs($destination_path,$image_name);
 
             $purchase_requests = PurchaseRequest::create([
@@ -505,9 +505,9 @@ class PurchaseRequestController extends Controller
         ]);
         if($request->hasFile('attachment'))
         {
-            $destination_path = 'public';
+            $destination_path = 'storage';
             $image = $request->file('attachment');
-            $image_name = $image->getClientOriginalName();
+            $image_name = rand(100,150)."_".$image->getClientOriginalName();
             $path = $request -> file('attachment')->move($destination_path,$image_name);
 
             $purchase_requests = PurchaseRequest::create([
@@ -592,9 +592,9 @@ class PurchaseRequestController extends Controller
         ]);
         if($request->hasFile('attachment'))
         {
-            $destination_path = 'public';
+            $destination_path = 'storage';
             $image = $request->file('attachment');
-            $image_name = $image->getClientOriginalName();
+            $image_name = rand(100,150)."_".$image->getClientOriginalName();
             $path = $request -> file('attachment')->move($destination_path,$image_name);
 
             $purchase_requests = PurchaseRequest::create([
@@ -681,9 +681,9 @@ class PurchaseRequestController extends Controller
         ]);
         if($request->hasFile('attachment'))
         {
-            $destination_path = 'public';
+            $destination_path = 'storage';
             $image = $request->file('attachment');
-            $image_name = $image->getClientOriginalName();
+            $image_name = rand(100,150)."_".$image->getClientOriginalName();
             $path = $request -> file('attachment')->move($destination_path,$image_name);
 
             $purchase_requests = PurchaseRequest::create([
@@ -770,9 +770,9 @@ class PurchaseRequestController extends Controller
         ]);
         if($request->hasFile('attachment'))
         {
-            $destination_path = 'public';
+            $destination_path = 'storage';
             $image = $request->file('attachment');
-            $image_name = $image->getClientOriginalName();
+            $image_name = rand(100,150)."_".$image->getClientOriginalName();
             $path = $request -> file('attachment')->move($destination_path,$image_name);
 
             $purchase_requests = PurchaseRequest::create([
@@ -945,6 +945,13 @@ class PurchaseRequestController extends Controller
 
 
     public function update(Request $request, $id){
+        if($request->hasFile('attachment'))
+        {
+            $destination_path = 'storage';
+            $image = $request->file('attachment');
+            $image_name = rand(100,150)."_".$image->getClientOriginalName();
+            $path = $request -> file('attachment')->move($destination_path,$image_name);
+
         $purchase_requests = PurchaseRequest::findOrFail($id);
         $purchase_requests->update([
             'no_pr'=>$request->no_pr ?? $purchase_requests->no_pr,
@@ -955,7 +962,7 @@ class PurchaseRequestController extends Controller
             'locations_id'=>$request->locations_id ?? $purchase_requests->locations_id,
             'ships_id'=>$request->ships_id ?? $purchase_requests->ships_id,
             'note'=>$request->note ?? $purchase_requests->note,
-            'attachment'=>$request->attachment ?? $purchase_requests->attachment,
+            'attachment'=>$image_name ?? $purchase_requests->attachment,
             
         ]);
         if($purchase_requests->role == 'sales')
@@ -974,6 +981,42 @@ class PurchaseRequestController extends Controller
         {
             return redirect('/purchase_request')->with('teredit', 'Berhasil mengedit data barang');
         }
+    
+        }
+
+        else{
+        $purchase_requests = PurchaseRequest::findOrFail($id);
+        $purchase_requests->update([
+            'no_pr'=>$request->no_pr ?? $purchase_requests->no_pr,
+            'deadline_date'=>$request->deadline_date ?? $purchase_requests->deadline_date,
+            'requester'=>$request->requester ?? $purchase_requests->requester,
+            'prefixes_id'=>$request->prefixes_id ?? $purchase_requests->prefixes_id,
+            'project'=>$request->project ?? $purchase_requests->project,
+            'locations_id'=>$request->locations_id ?? $purchase_requests->locations_id,
+            'ships_id'=>$request->ships_id ?? $purchase_requests->ships_id,
+            'note'=>$request->note ?? $purchase_requests->note,
+            // 'attachment'=>$request->attachment ?? $purchase_requests->attachment,
+            
+        ]);
+        if($purchase_requests->role == 'sales')
+        {
+            return redirect('sales/purchase_request')->with('teredit', 'Berhasil mengedit data barang');
+        }
+        else if($purchase_requests->role == 'finance')
+        {
+            return redirect('finance/purchase_request')->with('teredit', 'Berhasil mengedit data barang');
+        }
+        else if($purchase_requests->role == 'finance')
+        {
+            return redirect('wirehouse/purchase_request')->with('teredit', 'Berhasil mengedit data barang');
+        }
+        else
+        {
+            return redirect('/purchase_request')->with('teredit', 'Berhasil mengedit data barang');
+        }
+
+        }
+        
         
 
     }
