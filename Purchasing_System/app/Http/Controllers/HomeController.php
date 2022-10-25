@@ -217,16 +217,34 @@ class HomeController extends Controller
     }
     public function purchasing()
     {
-        $divisi= Prefix::count();
-        $orders= Order::count();
-        $prmasuk=PurchaseRequest::where('approval_status', 'edit')->count();
-        $poselesai=PurchaseRequest::where('approval_status','approve')->count();
-        $selesai=PurchaseRequest::where('accept_status', 'accept')->count();
-        $reject=PurchaseRequest::where('accept_status', 'reject')->count();
-        $jmlpowder = Powder::count();
-        $jmlother = Item::count();
-        $purchase_requests_pending = PurchaseRequest::latest()->paginate(3);
-        return view('home.dashboard_purchasing',compact('divisi','poselesai','selesai','orders','prmasuk','jmlpowder','jmlother','reject','purchase_requests_pending'));
+        $purchase_requests_pending = DB::table('purchase_requests')
+                                        ->join('prefixes','purchase_requests.prefixes_id','=','prefixes.id')
+                                        ->select('prefixes.divisi','purchase_requests.*')
+                                        ->where('approval_status','=','approve')
+                                        ->orWhere('approval_status','=','edit')
+                                        ->latest()
+                                        ->paginate(3);
+        #Using Query Builder count
+        $orders = DB::table('orders')->count();
+        $jmlother = DB::table('items')->count();
+        $jmlpowder = DB::table('powders')->count();
+        $purchase = DB::table('purchase_requests')->count();
+
+        $prmasuk = DB::table('purchase_requests')
+                        ->where('approval_status','approve')->where('accept_status','pending')
+                        ->orWhere('approval_status','edit')->where('accept_status','pending')
+                        ->orWhere('approval_status','approve')->where('accept_status','reject')
+                        ->orWhere('approval_status','edit')->where('accept_status','reject')
+                        ->count();
+
+        $poselesai = DB::table('purchase_requests')
+                        ->where('accept_status','accept')
+                        ->orWhere('accept_status','edit')
+                        ->count();
+
+        $reject = DB::table('purchase_requests')->where('accept_status', 'reject')->count();
+
+        return view('home.dashboard_purchasing',compact('poselesai','orders','prmasuk','jmlpowder','jmlother','reject','purchase_requests_pending'));
     }
 
     

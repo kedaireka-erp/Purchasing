@@ -1,7 +1,7 @@
     {{-- Start 30% --}}
     @if ($purchase_request->approval_status == 'pending')
         <div>
-            <a class="pending content-control-sm">
+            <a class="pending content-control">
                 <i class="fa fa-clock-o"></i> approve pending
             </a>
         </div>
@@ -9,11 +9,11 @@
 
         {{-- Start 60% --}}
     @elseif($purchase_request->approval_status == 'approve' && $purchase_request->accept_status == 'pending')
-        <div> <a class="approve content-control-sm">
+        <div> <a class="approve content-control">
                 <i class="fa fa-check"></i> approved manager
             </a></div>
         <div>
-            <a class="pending content-control-sm">
+            <a class="pending content-control">
                 <i class="fa fa-clock-o"></i> accept pending
             </a>
         </div>
@@ -23,7 +23,7 @@
                 approve with {{ $purchase_request->approval_status . 'ed' }}
             </a></div>
         <div>
-            <a class="pending content-control-sm">
+            <a class="pending content-control">
                 <i class="fa fa-clock-o"></i> accept pending
             </a>
         </div>
@@ -35,11 +35,11 @@
                 <i class="fa fa-check"></i> done
             </a></div>
     @elseif($purchase_request->approval_status == 'approve' && $purchase_request->accept_status == 'edit')
-        <div> <a class="approve content-control-sm">
+        <div> <a class="approve content-control">
                 <i class="fa fa-check"></i> approved manager
             </a></div>
         <div>
-            <a class="edit content-control-sm">
+            <a class="edit content-control">
                 <i class="fa fa-check"></i>
                 accept with {{ $purchase_request->accept_status . 'ed' }}
             </a>
@@ -51,7 +51,7 @@
         </a></div>
     <div>
         
-            <a class="approve content-control-sm">
+            <a class="approve content-control">
                 <i class="fa fa-check"></i>
                 {{ $purchase_request->accept_status . 'ed' }}
             </a>
@@ -72,18 +72,18 @@
         {{-- REJECT --}}
     @elseif($purchase_request->approval_status == 'reject')
         <div>
-            <a class="reject content-control-sm">
+            <a class="reject content-control">
                 <i class="fa fa-close"></i> reject manager
             </a>
         </div>
     @elseif($purchase_request->approval_status == 'approve' && $purchase_request->accept_status == 'reject')
         <div>
-            <a class="approve content-control-sm">
+            <a class="approve content-control">
                 <i class="fa fa-check"></i> approved manager
             </a>
         </div>
         <div>
-            <a class="reject content-control-sm">
+            <a class="reject content-control">
                 <i class="fa fa-close"></i> reject purchasing
             </a>
         </div>
@@ -93,7 +93,7 @@
             approve with {{ $purchase_request->approval_status . 'ed' }}
         </a></div>
         <div>
-            <a class="reject content-control-sm">
+            <a class="reject content-control">
                 <i class="fa fa-close"></i> reject purchasing
             </a>
         </div>

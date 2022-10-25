@@ -42,7 +42,8 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama_barang" class="form-label">Waktu Pengiriman<span style="color:red">*</span></label>
+                        <label for="nama_barang" class="form-label">Waktu Pengiriman<span
+                                style="color:red">*</span></label>
                         <div id="reader_time"></div>
                     </div>
                     <div class="mb-3">
@@ -85,7 +86,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($items as $no => $item)
-                                    {{-- @if ($item->accept_status != 'pending' || $item->accept_status != 'reject') --}}
+                                    @if ($item->accept_status == 'accept' || $item->accept_status == 'edit')
                                         <tr align="right">
                                             <td align="center">
 
@@ -106,7 +107,7 @@
                                             <td class="content-control-sm" align="left">{{ $item->divisi }}</td>
 
                                         </tr>
-                                    {{-- @endif --}}
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -148,7 +149,8 @@
                         <div class="col-lg-6">
 
                             <div class="mb-3">
-                                <label for="tanggal_pengajuan" class="form-label font">TTD<span style="color:red">*</span></label>
+                                <label for="tanggal_pengajuan" class="form-label font">TTD<span
+                                        style="color:red">*</span></label>
                                 <div class="input-group input-group-lg">
                                     <span class="input-group-text">Upload</span>
                                     <div class="form-file">
@@ -161,7 +163,8 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
-                                <label for="tanggal_pengajuan" class="form-label font">Nama Terang<span style="color:red">*</span></label>
+                                <label for="tanggal_pengajuan" class="form-label font">Nama Terang<span
+                                        style="color:red">*</span></label>
                                 <input type="text" class="form-control input-powder" name="nama" required>
                             </div>
                         </div>

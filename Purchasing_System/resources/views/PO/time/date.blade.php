@@ -10,22 +10,22 @@
 
 <button type="button" onclick="time_read()" class="btn btn-primary"> Input Master Waktu </button>
 
-
+<!-- Required vendors -->
+<script src="{{ asset('assets/vendor/global/global.min.js') }}"></script>
 <script>
-    $(function(){
+    $(function() {
         var dtToday = new Date();
-     
+
         var month = dtToday.getMonth() + 1;
         var day = dtToday.getDate();
         var year = dtToday.getFullYear();
-        if(month < 10)
+        if (month < 10)
             month = '0' + month.toString();
-        if(day < 10)
+        if (day < 10)
             day = '0' + day.toString();
-        
+
         var maxDate = year + '-' + month + '-' + day;
         // alert(maxDate);
         $('#deadline_date').attr('min', maxDate);
     });
-    
-    </script>
+</script>

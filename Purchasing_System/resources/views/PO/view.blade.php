@@ -88,17 +88,18 @@
                                                     <td width="200px">Alamat Kirim</td>
                                                     <td>: {{ $orders->location_name }} </td>
                                                 </tr>
-                                                @if($orders->id_waktu == NULL)
-                                                <tr class="tr">
-                                                    <td width="200px">Waktu Pengiriman</td>
-                                                    <td>:
-                                                        {{ \Carbon\Carbon::parse($orders->tanggal_kirim)->format('d F Y') }}</td>
-                                                </tr>
+                                                @if ($orders->id_waktu == null)
+                                                    <tr class="tr">
+                                                        <td width="200px">Waktu Pengiriman</td>
+                                                        <td>:
+                                                            {{ \Carbon\Carbon::parse($orders->tanggal_kirim)->format('d F Y') }}
+                                                        </td>
+                                                    </tr>
                                                 @else
-                                                <tr class="tr">
-                                                    <td width="200px">Waktu Pengiriman</td>
-                                                    <td>: {{ $orders->name_time }}</td>
-                                                </tr>
+                                                    <tr class="tr">
+                                                        <td width="200px">Waktu Pengiriman</td>
+                                                        <td>: {{ $orders->name_time }}</td>
+                                                    </tr>
                                                 @endif
                                                 <tr class="tr">
                                                     <td width="200px">Dibuat Pada</td>
@@ -107,10 +108,10 @@
                                                 </tr>
                                                 <tr class="tr">
                                                     <td width="200px">Nama Pembuat</td>
-                                                    <td>: {{ $orders->nama }} 
+                                                    <td>: {{ $orders->nama }}
                                                     </td>
                                                 </tr>
-                                                
+
                                                 <tr class="tr">
                                                     <td width="200px">Alamat Penagihan</td>
                                                     <td>: {{ $orders->alamat_penagihan }} </td>
@@ -123,90 +124,107 @@
                                                     <td width="200px">Note</td>
                                                     <td>: {{ $orders->note }}</td>
                                                 </tr>
-                                                
+
 
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                                 @foreach ($orders->purchases as $purchase_requests)
-                                <div id="about-me" class="tab-pane fade">
-                                    <div class="profile-about-me">
-<div class="container col-10">
-{{-- ini tabel item di tracking --}}
-@if ($purchase_requests->type == 'othergood')
-<table class="table table-striped" id="body">
-    <thead>
-        <tr style="text-align: center">
-            <td scope="col">No.</td>
-            <td scope="col">Description of Goods</td>
-            <td scope="col">Quantity</td>
-            <td scope="col">Unit</td>
-        </tr>
-    </thead>
+                                    <div id="about-me" class="tab-pane fade">
+                                        <div class="profile-about-me">
+                                            <div class="container col-10">
+                                                {{-- ini tabel item di tracking --}}
+                                                @if ($purchase_requests->type == 'othergood')
+                                                    <table class="table table-striped" id="body">
+                                                        <thead>
+                                                            <tr style="text-align: center">
+                                                                <td scope="col">No.</td>
+                                                                <td scope="col">Description of Goods</td>
+                                                                <td scope="col">Quantity</td>
+                                                                <td scope="col">Unit</td>
+                                                            </tr>
+                                                        </thead>
 
-    @php
-        $nomor = 1;
-    @endphp
+                                                        @php
+                                                            $nomor = 1;
+                                                        @endphp
 
 
-    <tbody>
+                                                        <tbody>
 
-        @foreach ($purchase_requests->item as $yes)
-            <tr style="text-align: center">
-                <td>{{ $nomor++ }}</td>
-                <td>{{ $yes->master_item->item_name }}</td>
-                <td>{{ $yes->stok }}</td>
-                <td>{{ $yes->satuan->unit }}</td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
-@elseif ($purchase_requests->type == 'powder')
-<table class="table table-striped" id="body">
-    <thead>
-        <tr style="text-align: center; font-weight: bold">
-            <td class="content-control-md">No.</td>
-            <td class="content-control-md">Suppllier</td>
-            <td class="content-control-md">Grade</td>
-            <td class="content-control-md">Warna</td>
-            <td class="content-control-md">Kode Warna</td>
-            <td class="content-control-md">Finish</td>
-            <td class="content-control-md">Quantity</td>
-            <td class="content-control-md">m2</td>
+                                                            @foreach ($purchase_requests->item as $yes)
+                                                                <tr style="text-align: center">
+                                                                    <td>{{ $nomor++ }}</td>
+                                                                    <td>{{ $yes->master_item->item_name }}</td>
+                                                                    <td>{{ $yes->stok }}</td>
+                                                                    <td>{{ $yes->satuan->unit }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                @elseif ($purchase_requests->type == 'powder')
+                                                    <table class="table table-striped" id="body">
+                                                        <thead>
+                                                            <tr style="text-align: center; font-weight: bold">
+                                                                <td class="content-control-md">No.</td>
+                                                                <td class="content-control-md">Suppllier</td>
+                                                                <td class="content-control-md">Grade</td>
+                                                                <td class="content-control-md">Warna</td>
+                                                                <td class="content-control-md">Kode Warna</td>
+                                                                <td class="content-control-md">Finish</td>
+                                                                <td class="content-control-md">Finishing</td>
+                                                                <td class="content-control-md">Quantity</td>
+                                                                <td class="content-control-md">m2</td>
 
-        </tr>
-    </thead>
-    @php
-        $nomor = 1;
-    @endphp
+                                                            </tr>
+                                                        </thead>
+                                                        @php
+                                                            $nomor = 1;
+                                                        @endphp
 
-    {{-- @if ($item->id_request == $purchase_requests->id) --}}
-    <tbody>
+                                                        {{-- @if ($item->id_request == $purchase_requests->id) --}}
+                                                        <tbody>
 
-        @foreach ($purchase_requests->powder as $yes)
-            <tr style="text-align: center">
-                <td class="content-control-sm">{{ $nomor++ }}</td>
-                <td class="content-control-sm">{{ $yes->supplier->vendor }}
-                </td>
-                <td class="content-control-sm">{{ $yes->grade->tipe }}</td>
-                <td class="content-control-sm">{{ $yes->warna }}</td>
-                <td class="content-control-sm">{{ $yes->colour->name }}</td>
-                <td class="content-control-sm">{{ $yes->finish }}</td>
-                <td class="content-control-sm">{{ $yes->quantity }}</td>
-                <td class="content-control-sm">{{ $yes->m2 }}</td>
-            </tr>
-        @endforeach
-    </tbody>
-    {{-- @endif --}}
-</table>
-@endif
-</div>
-                                        
+                                                            @foreach ($purchase_requests->powder as $yes)
+                                                                <tr style="text-align: center">
+                                                                    <td class="content-control-sm">{{ $nomor++ }}</td>
+                                                                    <td class="content-control-sm">
+                                                                        {{ $yes->supplier->vendor }}
+                                                                    </td>
+                                                                    <td class="content-control-sm">{{ $yes->grade->tipe }}
+                                                                    </td>
+                                                                    <td class="content-control-sm">{{ $yes->warna }}</td>
+                                                                    <td class="content-control-sm">{{ $yes->colour->name }}
+                                                                    </td>
+                                                                    @if ($yes->finish != null)
+                                                                        <td class="content-control-sm">{{ $yes->finish }}
+                                                                        </td>
+                                                                    @elseif($yes->finish == null)
+                                                                        <td></td>
+                                                                    @endif
+                                                                    @if ($yes->finishing != null)
+                                                                        <td class="content-control-sm">
+                                                                            {{ $yes->finishing }}
+                                                                        </td>
+                                                                    @elseif($yes->finishing == null)
+                                                                        <td></td>
+                                                                    @endif
+                                                                    <td class="content-control-sm">{{ $yes->quantity }}
+                                                                    </td>
+                                                                    <td class="content-control-sm">{{ $yes->m2 }}</td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                        {{-- @endif --}}
+                                                    </table>
+                                                @endif
+                                            </div>
 
+
+                                        </div>
                                     </div>
-                                </div>
-                                {{-- <div id="profile-settings" class="tab-pane fade">
+                                    {{-- <div id="profile-settings" class="tab-pane fade">
                                     <div class="pt-3">
                                         <div class="settings-form">
                                             
@@ -215,7 +233,7 @@
                             </div>
                         </div>
                         <!-- Modal -->
-@endforeach
+                        @endforeach
                     </div>
                 </div>
             </div>

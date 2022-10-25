@@ -216,7 +216,7 @@ class OrderController extends Controller
 
     public function view($id){
 
-         $orders =Order::has('purchases')
+         $orders = Order::has('purchases')
          ->with('payment','timeshipping','location')
          ->find($id);
          

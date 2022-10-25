@@ -8,7 +8,7 @@
     <link href="{{ asset('assets/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
 
 @endsection
-@section('title_content', 'Purchase Order')
+@section('title_content', 'Buat PO')
 
 @section('wrap_title')
     <div class="row page-titles">
