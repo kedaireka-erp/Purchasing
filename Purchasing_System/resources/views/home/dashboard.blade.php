@@ -150,7 +150,7 @@
                                     <td class="content-control-sm">
                                         {{ \Carbon\Carbon::parse($purchase_request ->created_at)->format('d/m/Y') }}</td>
                                     <td class="content-control-sm">{{ $purchase_request ->requester }}</td>
-                                    <td class="content-control-sm">{{ $purchase_request ->Prefixe->divisi }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request ->divisi }}</td>
                                     <td class="content-control-sm">{{ $purchase_request->type }}</td>
                                     <td class="content-control-sm">
                                         @include('purchases.status')

@@ -27,15 +27,41 @@ class HomeController extends Controller
     }
     public function index()
     {
-        $purchase= PurchaseRequest::count();
-        $orders= Order::count();
-        $pending=PurchaseRequest::where('approval_status','pending')->orWhere('approval_status','reject')->orWhere('accept_status','pending')->orWhere('accept_status','reject')->count();
-        $done=PurchaseRequest::where('accept_status', 'accept')->count();
-        $jmlpowder = Powder::count();
-        $jmlother = Item::count();
+        $purchase = DB::table('purchase_requests')->count();
+        $orders = DB::table('orders')->count();
+
+        $x = DB::table('purchase_requests')
+                    ->where('approval_status','pending')
+                    ->orWhere('accept_status','pending')
+                    ->count();
+
+        $y = DB::table('purchase_requests')
+                    ->where('approval_status','reject')
+                    ->count();
+
+        $z = DB::table('purchase_requests')
+                    ->where('accept_status','reject')
+                    ->count();
+
+        $pending = $x + $y + $z;
+
+        $done = DB::table('purchase_requests')
+                    ->where('accept_status','accept')
+                    ->orWhere('accept_status','edit')
+                    ->count();
+
+        $jmlpowder = DB::table('powders')->count();
+        $jmlother = DB::table('items')->count();
+
         $purchase_tabel = PurchaseRequest::latest()->paginate(3);
-        $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->get();
-        return view('home.dashboard',compact('purchase','orders','pending','done','jmlpowder','jmlother','purchase_tabel','purchase_requests'));
+        
+        $purchase_tabel = DB::table('purchase_requests')
+                                ->join('prefixes','purchase_requests.prefixes_id','=','prefixes.id')
+                                ->select('prefixes.divisi','purchase_requests.*')
+                                ->latest()
+                                ->paginate(3);
+
+        return view('home.dashboard',compact('purchase','orders','pending','done','jmlpowder','jmlother','purchase_tabel'));
     }
 
     public function index_sales()
@@ -127,15 +153,32 @@ class HomeController extends Controller
 
     public function manager()
     {
-        $divisi= Prefix::count();
-        $orders= Order::count();
-        $prapprove=PurchaseRequest::where('approval_status', 'approve')->count();
-        $pending=PurchaseRequest::where('approval_status', 'pending')->count();
-        $reject=PurchaseRequest::where('approval_status', 'reject')->count();
-        $purchase_tabel = PurchaseRequest::latest()->paginate(3);
-        $jmlpowder = Powder::count();
-        $jmlother = Item::count();
-        return view('home.dashboard_manager',compact('divisi','orders','prapprove','pending','reject','jmlpowder','jmlother','purchase_tabel'));
+        $purchase = DB::table('purchase_requests')->count();
+        $orders = DB::table('orders')->count();
+
+        $pending = DB::table('purchase_requests')
+                    ->where('approval_status','pending')
+                    ->count();
+
+        $reject = DB::table('purchase_requests')
+                    ->where('approval_status','reject')
+                    ->count();
+
+        $prapprove = DB::table('purchase_requests')
+                    ->where('approval_status','accept')
+                    ->orWhere('approval_status','edit')
+                    ->count();
+
+        $jmlpowder = DB::table('powders')->count();
+        $jmlother = DB::table('items')->count();
+        
+        $purchase_tabel = DB::table('purchase_requests')
+                                ->join('prefixes','purchase_requests.prefixes_id','=','prefixes.id')
+                                ->select('prefixes.divisi','purchase_requests.*')
+                                ->latest()
+                                ->paginate(3);
+
+        return view('home.dashboard_manager',compact('orders','prapprove','pending','reject','jmlpowder','jmlother','purchase_tabel'));
     }
 
     public function manager_sales()
