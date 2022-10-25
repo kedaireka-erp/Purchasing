@@ -33,7 +33,7 @@ use App\Http\Controllers\LoginController;
 
 Route::middleware("auth")->group(function () {
    
-    Route::group(['middleware' => ['permission:sales_role_purchasing|role_pengawas']], function () {
+    Route::group(['middleware' => ['role_or_permission:Admin|sales_role_purchasing']], function () {
         Route::group(['as' => 'sales.', 'prefix' => 'sales'], function () {
             Route::get('/', [HomeController::class, 'index_sales'])->name('dashboard_sales');
             Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], function () {
@@ -88,7 +88,7 @@ Route::middleware("auth")->group(function () {
             });
         });
     });
-    Route::group(['middleware' => ['permission:finance_role_purchasing|role_pengawas']], function () {
+    Route::group(['middleware' => ['role_or_permission:Admin|finance_role_purchasing']], function () {
         Route::group(['as' => 'finance.', 'prefix' => 'finance'], function () {
             Route::get('/', [HomeController::class, 'index_finance'])->name('dashboard_finance');
             Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], function () {
@@ -144,7 +144,7 @@ Route::middleware("auth")->group(function () {
     });
     });
 
-    Route::group(['middleware' => ['permission:wirehouse_role_purchasing|role_pengawas']], function () {
+    Route::group(['middleware' => ['role_or_permission:Admin|wirehouse_role_purchasing']], function () {
         
         Route::group(['as' => 'wirehouse.', 'prefix' => 'wirehouse'], function () {
             Route::get('/', [HomeController::class, 'index_wirehouse'])->name('dashboard_wirehouse');
@@ -201,7 +201,7 @@ Route::middleware("auth")->group(function () {
         });
     });
 
-    Route::group(['middleware' => ['permision:manager_sales_role_purchasing|role_pengawas']], function () {
+    Route::group(['middleware' => ['role_or_permission:Admin|manager_sales_role_purchasing']], function () {
             Route::group(['as' => 'manager_sales.', 'prefix' => 'manager_sales'], function () {
                 Route::get('/', [HomeController::class, 'manager_sales'])->name('manager_sales');
                 Route::get('/Admin/sales', [HomeController::class, 'index_sales'])->name('dashboard_sales');
@@ -209,7 +209,7 @@ Route::middleware("auth")->group(function () {
             });
     });
 
-    Route::group(['middleware' => ['permission:manager_finance_role_purchasing|role_pengawas']], function () {
+    Route::group(['middleware' => ['role_or_permission:Admin|manager_finance_role_purchasing']], function () {
         Route::group(['as' => 'manager_finance.', 'prefix' => 'manager_finance'], function () {
             Route::get('/', [HomeController::class, 'manager_finance'])->name('manager_finance');
             Route::get('/Admin/finance', [HomeController::class, 'index_finance'])->name('dashboard_finance');
@@ -217,7 +217,7 @@ Route::middleware("auth")->group(function () {
         });
     });
 
-    Route::group(['middleware' => ['permission:manager_wirehouse_role_purchasing|role_pengawas']], function () {
+    Route::group(['middleware' => ['role_or_permission:Admin|manager_wirehouse_role_purchasing']], function () {
         Route::group(['as' => 'manager_wirehouse.', 'prefix' => 'manager_wirehouse'], function () {
             Route::get('/', [HomeController::class, 'manager_wirehouse'])->name('manager_wirehouse');
             Route::get('/Admin/wirehouse', [HomeController::class, 'index_wirehouse'])->name('dashboard_wirehouse');
@@ -440,7 +440,7 @@ Route::middleware("auth")->group(function () {
         route::get('/view/{id}', [TimeshippingController::class, 'view'])->name('view');
     });
 
-    Route::group(['middleware' => ['permission:pengawas_purchasing']], function () {
+    Route::group(['middleware' => ['role_or_permission:Admin|role_purchasing']], function () {
         Route::get('/Admin_divisi', [HomeController::class, 'index'])->name('dashboard');
         Route::get('/manager', [HomeController::class, 'manager'])->name('manager');
         Route::get('/', [HomeController::class, 'purchasing'])->name('purchasing');
