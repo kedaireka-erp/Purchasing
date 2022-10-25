@@ -161,9 +161,9 @@ class OrderController extends Controller
         
         
             
-            $destination_path = 'storage';
+            $destination_path = 'public';
             $image = $request->file('signature');
-            $image_name = rand(100,150)."_".$image->getClientOriginalName();
+            $image_name = rand(0,99).rand(0,99)."_".$image->getClientOriginalName();
             $path = $request->file('signature')->move($destination_path,$image_name);
             
 
