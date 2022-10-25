@@ -128,186 +128,187 @@
             <div class="dlabnav-scroll">
                 <ul class="metismenu" id="menu">
 
-                    @role('Purchasing')
-                        <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                                <i class="fas fa-home"></i>
-                                <span class="nav-text">Dashboard</span>
-                            </a>
-                            <ul aria-expanded="false">
-                                <li><a href="{{ url('/admin_divisi') }}">Dashboard Admin Divisi</a></li>
-                                <li><a href="{{ url('/manager') }}">Dashboard Manager</a></li>
-                                <li><a href="{{ url('/') }}">Dashboard Purchasing</a></li>
-                            </ul>
-                        </li>
+                    @can('role_purchasing')
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                            <i class="fas fa-home"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ url('/admin_divisi') }}">Dashboard Admin Divisi</a></li>
+                            <li><a href="{{ url('/manager') }}">Dashboard Manager</a></li>
+                            <li><a href="{{ url('/') }}">Dashboard Purchasing</a></li>
+                        </ul>
+                    </li>
 
-                        <li><a href="/approval/accept" class="" aria-expanded="false">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <span class="nav-text">Approval</span>
-                            </a>
-                        </li>
-                        <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                                <i class="bi bi-basket2-fill"></i>
+                    <li><a href="/approval/accept" class="" aria-expanded="false">
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span class="nav-text">Approval</span>
+                        </a>
+                    </li>
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                            <i class="bi bi-basket2-fill"></i>
 
-                                <span class="nav-text">Order</span>
-                            </a>
-                            <ul aria-expanded="false">
-                                <li><a href="/order">Purchase Order</a></li>
-                                <li><a href="/order/create">Buat PO</a></li>
+                            <span class="nav-text">Order</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="/order">Purchase Order</a></li>
+                            <li><a href="/order/create">Buat PO</a></li>
 
-                                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master Order</a>
-                                    <ul aria-expanded="false">
-                                        <li><a href="/supplier">Master Supllier</a></li>
-                                        <li><a href="/payment">Master Payment</a></li>
-                                        <li><a href="/timeshipping">Master TimeShipping</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    @endrole
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master Order</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/supplier">Master Supllier</a></li>
+                                    <li><a href="/payment">Master Payment</a></li>
+                                    <li><a href="/timeshipping">Master TimeShipping</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    @endcan
 
 
-                    @role('Manager Sales')
-                        <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <span class="nav-text">Dashboard</span>
-                            </a>
-                            <ul aria-expanded="false">
-                                <li><a href="{{ url('/manager_sales/admin/sales') }}">Admin Divisi Sales</a></li>
-                                <li><a href="{{ url('/manager_sales') }}">Manager Sales</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/manager_sales/approval" class="" aria-expanded="false">
-                                <i class="fas fa-home"></i>
-                                <span class="nav-text">Sales Approval</span>
-                            </a>
-                        </li>
-                    @endrole
-                    @role('Manager Finance')
-                        <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                                <i class="fas fa-home"></i>
-                                <span class="nav-text">Dashboard</span>
-                            </a>
-                            <ul aria-expanded="false">
-                                <li><a href="{{ url('/manager_finance/admin/finance') }}">Admin Divisi Finance</a></li>
-                                <li><a href="{{ url('/manager_finance') }}">Manager Finance</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/manager_finance/approval" class="" aria-expanded="false">
-                                <i class="bi bi-check-circle-fill"></i>
-                                <span class="nav-text">Finance Approval</span>
-                            </a>
-                        </li>
-                    @endrole
+                    @can('manager_sales_role_purchasing') 
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ url('/manager_sales/admin/sales') }}">Admin Divisi Sales</a></li>
+                            <li><a href="{{ url('/manager_sales') }}">Manager Sales</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/manager_sales/approval" class="" aria-expanded="false">
+                            <i class="fas fa-home"></i>
+                            <span class="nav-text">Sales Approval</span>
+                        </a>
+                    </li>
+                    @endcan
 
-                    @role('Manager Wirehouse')
-                        <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                                <i class="fas fa-home"></i>
-                                <span class="nav-text">Dashboard</span>
-                            </a>
-                            <ul aria-expanded="false">
-                                <li><a href="{{ url('/manager_wirehouse/admin/wirehouse') }}">Admin Divisi WO</a></li>
-                                <li><a href="{{ url('/manager_wirehouse') }}">Manager WO</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/manager_wirehouse/approval" class="" aria-expanded="false">
-                                <i class="fas fa-home"></i>
-                                <span class="nav-text">WO Approval</span>
-                            </a>
-                        </li>
-                    @endrole
+                    @can('manager_finance_role_purchasing')
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                            <i class="fas fa-home"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ url('/manager_finance/admin/finance') }}">Admin Divisi Finance</a></li>
+                            <li><a href="{{ url('/manager_finance') }}">Manager Finance</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/manager_finance/approval" class="" aria-expanded="false">
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span class="nav-text">Finance Approval</span>
+                        </a>
+                    </li>
+                    @endcan
+
+                    @can('manager_wirehouse_role_purchasing')
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                            <i class="fas fa-home"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ url('/manager_wirehouse/admin/wirehouse') }}">Admin Divisi WO</a></li>
+                            <li><a href="{{ url('/manager_wirehouse') }}">Manager WO</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/manager_wirehouse/approval" class="" aria-expanded="false">
+                            <i class="fas fa-home"></i>
+                            <span class="nav-text">WO Approval</span>
+                        </a>
+                    </li>
+                    @endcan
 
 
                     @can('sales_role_purchasing')
-                        <li><a href="/sales" class="" aria-expanded="false">
-                                <i class="fas fa-home"></i>
-                                <span class="nav-text">Sales Dashboard</span>
-                            </a>
+                    <li><a href="/sales" class="" aria-expanded="false">
+                            <i class="fas fa-home"></i>
+                            <span class="nav-text">Sales Dashboard</span>
+                        </a>
 
 
 
-                        <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                                <i class="bi bi-clipboard2-fill"></i>
-                                <span class="nav-text">Sales Request</span>
-                            </a>
-                            <ul aria-expanded="false">
-                                <li><a href="{{ url('sales/purchase_request') }}">Purchase Request</a></li>
-                                <li><a href="{{ url('sales/purchase_request/create') }}">Buat PR</a></li>
-                                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master
-                                        Request</a>
-                                    <ul aria-expanded="false">
-                                        <li><a href="/masteritem">Master Item</a></li>
-                                        <li><a href="/prefix">Master Prefix</a></li>
-                                        <li><a href="/location">Master Lokasi</a></li>
-                                        <li><a href="/colour">Master Color</a></li>
-                                        <li><a href="/satuan">Master Satuan</a></li>
-                                        <li><a href="/grade">Master Grade</a></li>
-                                        <li><a href="/ships">Master Kebutuhan</a></li>
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                            <i class="bi bi-clipboard2-fill"></i>
+                            <span class="nav-text">Sales Request</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ url('sales/purchase_request') }}">Purchase Request</a></li>
+                            <li><a href="{{ url('sales/purchase_request/create') }}">Buat PR</a></li>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master
+                                    Request</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/masteritem">Master Item</a></li>
+                                    <li><a href="/prefix">Master Prefix</a></li>
+                                    <li><a href="/location">Master Lokasi</a></li>
+                                    <li><a href="/colour">Master Color</a></li>
+                                    <li><a href="/satuan">Master Satuan</a></li>
+                                    <li><a href="/grade">Master Grade</a></li>
+                                    <li><a href="/ships">Master Kebutuhan</a></li>
 
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                     @endcan
 
-                    @role('Finance')
-                        <li><a href="/finance" class="" aria-expanded="false">
-                                <i class="fas fa-home"></i>
-                                <span class="nav-text">Finance Dashboard</span>
-                            </a>
-                        <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                                <i class="bi bi-clipboard2-fill"></i>
-                                <span class="nav-text">Finance Request</span>
-                            </a>
-                            <ul aria-expanded="false">
-                                <li><a href="{{ url('finance/purchase_request') }}">Purchase Request</a></li>
-                                <li><a href="{{ url('finance/purchase_request/create') }}">Buat PR</a></li>
-                                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master
-                                        Request</a>
-                                    <ul aria-expanded="false">
-                                        <li><a href="/masteritem">Master Item</a></li>
-                                        <li><a href="/prefix">Master Prefix</a></li>
-                                        <li><a href="/location">Master Lokasi</a></li>
-                                        <li><a href="/colour">Master Color</a></li>
-                                        <li><a href="/satuan">Master Satuan</a></li>
-                                        <li><a href="/grade">Master Grade</a></li>
-                                        <li><a href="/ships">Master Kebutuhan</a></li>
+                    @can('finance_role_purchasing')
+                    <li><a href="/finance" class="" aria-expanded="false">
+                            <i class="fas fa-home"></i>
+                            <span class="nav-text">Finance Dashboard</span>
+                        </a>
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                            <i class="bi bi-clipboard2-fill"></i>
+                            <span class="nav-text">Finance Request</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ url('finance/purchase_request') }}">Purchase Request</a></li>
+                            <li><a href="{{ url('finance/purchase_request/create') }}">Buat PR</a></li>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master
+                                    Request</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/masteritem">Master Item</a></li>
+                                    <li><a href="/prefix">Master Prefix</a></li>
+                                    <li><a href="/location">Master Lokasi</a></li>
+                                    <li><a href="/colour">Master Color</a></li>
+                                    <li><a href="/satuan">Master Satuan</a></li>
+                                    <li><a href="/grade">Master Grade</a></li>
+                                    <li><a href="/ships">Master Kebutuhan</a></li>
 
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    @endrole
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    @endcan
 
-                    @role('Wirehouse')
-                        <li><a href="/wirehouse" class="" aria-expanded="false">
-                                <i class="fas fa-home"></i>
-                                <span class="nav-text">WO Dashboard</span>
-                            </a>
-                        </li>
+                    @can('wirehouse_role_purchasing')
+                    <li><a href="/wirehouse" class="" aria-expanded="false">
+                            <i class="fas fa-home"></i>
+                            <span class="nav-text">WO Dashboard</span>
+                        </a>
+                    </li>
 
-                        <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                                <i class="bi bi-clipboard2-fill"></i>
-                                <span class="nav-text">WO Request</span>
-                            </a>
-                            <ul aria-expanded="false">
-                                <li><a href="{{ url('wirehouse/purchase_request') }}">Purchase Request</a></li>
-                                <li><a href="{{ url('wirehouse/purchase_request/create') }}">Buat PR</a></li>
-                                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master
-                                        Request</a>
-                                    <ul aria-expanded="false">
-                                        <li><a href="/masteritem">Master Item</a></li>
-                                        <li><a href="/prefix">Master Prefix</a></li>
-                                        <li><a href="/location">Master Lokasi</a></li>
-                                        <li><a href="/colour">Master Color</a></li>
-                                        <li><a href="/satuan">Master Satuan</a></li>
-                                        <li><a href="/grade">Master Grade</a></li>
-                                        <li><a href="/ships">Master Kebutuhan</a></li>
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                            <i class="bi bi-clipboard2-fill"></i>
+                            <span class="nav-text">WO Request</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ url('wirehouse/purchase_request') }}">Purchase Request</a></li>
+                            <li><a href="{{ url('wirehouse/purchase_request/create') }}">Buat PR</a></li>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master
+                                    Request</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/masteritem">Master Item</a></li>
+                                    <li><a href="/prefix">Master Prefix</a></li>
+                                    <li><a href="/location">Master Lokasi</a></li>
+                                    <li><a href="/colour">Master Color</a></li>
+                                    <li><a href="/satuan">Master Satuan</a></li>
+                                    <li><a href="/grade">Master Grade</a></li>
+                                    <li><a href="/ships">Master Kebutuhan</a></li>
 
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    @endrole
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    @endcan
 
 
 
