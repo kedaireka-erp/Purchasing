@@ -389,6 +389,22 @@
                                     </div>
                                     
                                 </div>
+
+                                <div id="setting" class="tab-pane fade">
+                                    <div class="setting-content pt-3">
+                                        <div class="post-input">
+                                            <div class="col-4">
+                                                <div class="d-flex justify-content-center">
+                                                    <div class="signature">
+                                                        
+                                                        <embed src="{{ asset('storage/' .$purchase_requests->attachment) }}" style=" margin-left:520px; width:750px; height:400px" >
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 
                             </div>
                         </div>
