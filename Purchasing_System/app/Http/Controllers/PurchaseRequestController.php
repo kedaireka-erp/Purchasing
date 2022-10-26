@@ -592,7 +592,7 @@ class PurchaseRequestController extends Controller
         ]);
         if($request->hasFile('attachment'))
         {
-            $destination_path = 'public';
+            $destination_path = 'storage';
             $image = $request->file('attachment');
             $image_name = rand(0,99).rand(0,99)."_".$image->getClientOriginalName();
             $path = $request -> file('attachment')->move($destination_path,$image_name);
@@ -681,7 +681,7 @@ class PurchaseRequestController extends Controller
         ]);
         if($request->hasFile('attachment'))
         {
-            $destination_path = 'public';
+            $destination_path = 'storage';
             $image = $request->file('attachment');
             $image_name = rand(0,99).rand(0,99)."_".$image->getClientOriginalName();
             $path = $request -> file('attachment')->move($destination_path,$image_name);
@@ -770,7 +770,7 @@ class PurchaseRequestController extends Controller
         ]);
         if($request->hasFile('attachment'))
         {
-            $destination_path = 'public';
+            $destination_path = 'storage';
             $image = $request->file('attachment');
             $image_name = rand(0,99).rand(0,99)."_".$image->getClientOriginalName();
             $path = $request -> file('attachment')->move($destination_path,$image_name);
