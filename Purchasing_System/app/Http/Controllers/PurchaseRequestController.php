@@ -963,8 +963,8 @@ class PurchaseRequestController extends Controller
             'ships_id'=>$request->ships_id ?? $purchase_requests->ships_id,
             'note'=>$request->note ?? $purchase_requests->note,
             'attachment'=>$image_name ?? $purchase_requests->attachment,
-            'approval_status' => 'pending',
-            'accept_status' => 'pending'
+            'approval_status' => 'pending' ?? $purchase_requests->accept_status,
+            'accept_status' => 'pending' ?? $purchase_requests->approval_status
             
         ]);
         if($purchase_requests->role == 'sales')
