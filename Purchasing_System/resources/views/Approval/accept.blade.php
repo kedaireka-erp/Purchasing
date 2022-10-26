@@ -50,8 +50,7 @@
                                 </li>
                                 <li class="nav-item"><a href="#about-me" data-bs-toggle="tab" class="nav-link"> Item </a>
                                 </li>
-                                <li class="nav-item"><a href="#setting" data-bs-toggle="tab"
-                                    class="nav-link"> Attachment </a>
+                                <li class="nav-item"><a href="#setting" data-bs-toggle="tab" class="nav-link"> Attachment </a>
                                 </li>
                                 @if($purchase_requests->accept_status != 'accept')
                                 <li class="nav-item"><a href="#approval" data-bs-toggle="tab" class="nav-link">
@@ -322,8 +321,18 @@
                                 <div id="setting" class="tab-pane fade">
                                     <div class="setting-content pt-3">
                                         <div class="post-input">
-                                        
+                                            <div class="col-4">
+                                                <div class="d-flex justify-content-center">
+                                                    <div class="signature">
+                                                        
+                                                        <embed src="{{ asset('storage/' .$purchase_requests->attachment) }}" style=" margin-left:520px; width:750px; height:400px" > 
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
+                                        
                                     </div>
                                 </div>
 
@@ -390,21 +399,6 @@
                                     
                                 </div>
 
-                                <div id="setting" class="tab-pane fade">
-                                    <div class="setting-content pt-3">
-                                        <div class="post-input">
-                                            <div class="col-4">
-                                                <div class="d-flex justify-content-center">
-                                                    <div class="signature">
-                                                        
-                                                        <embed src="{{ asset('storage/' .$purchase_requests->attachment) }}" style=" margin-left:520px; width:750px; height:400px" >
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
                                 
                             </div>
                         </div>
