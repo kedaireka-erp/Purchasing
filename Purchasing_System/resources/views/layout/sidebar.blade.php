@@ -128,6 +128,30 @@
             <div class="dlabnav-scroll">
                 <ul class="metismenu" id="menu">
 
+                    @role('Admin')
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ url('/admin_divisi') }}">Dashboard Admin Divisi</a></li>
+                        <li><a href="{{ url('/manager') }}">Dashboard Manager</a></li>
+                        <li><a href="{{ url('/') }}">Dashboard Purchasing</a></li>
+                    </ul>
+                </li>
+                <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                    <i class="bi bi-basket2-fill"></i>
+
+                    <span class="nav-text">Order</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="/order">Purchase Order</a></li>
+                </ul>
+            </li>
+
+
+                    @endrole
+
                     @can('role_purchasing')
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                             <i class="fas fa-home"></i>
@@ -168,7 +192,8 @@
 
                     @can('manager_sales_role_purchasing') 
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
-                            <i class="bi bi-check-circle-fill"></i>
+                        <i class="fas fa-home"></i>
+                            
                             <span class="nav-text">Dashboard</span>
                         </a>
                         <ul aria-expanded="false">
@@ -177,7 +202,7 @@
                         </ul>
                     </li>
                     <li><a href="/manager_sales/approval" class="" aria-expanded="false">
-                            <i class="fas fa-home"></i>
+                        <i class="bi bi-check-circle-fill"></i>
                             <span class="nav-text">Sales Approval</span>
                         </a>
                     </li>
