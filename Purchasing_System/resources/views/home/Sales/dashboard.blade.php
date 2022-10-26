@@ -3,13 +3,7 @@
 
 @section('judul-laman', 'Dashboard Sistem Purchasing')
 
-@section('Judul-content')
-    <div class="title-page">
-        Dashboard System Purchasing
-    </div>
-
-
-@endsection
+@section('title_content', 'Sales Purchasing')
 
 @section('content')
 
