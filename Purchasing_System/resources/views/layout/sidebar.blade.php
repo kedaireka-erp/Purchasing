@@ -64,7 +64,7 @@
                         <ul class="navbar-nav header-right">
                             <li class="nav-item dropdown header-profile">
 
-                                <h4 style="padding: 5px">Tim Purchasing</h4>
+                                <h4 style="padding: 5px">Laman Purchasing</h4>
 
                                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
 
