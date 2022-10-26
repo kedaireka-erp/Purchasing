@@ -27,13 +27,13 @@ use App\Http\Controllers\LoginController;
 |
 | Here is where you can register web routes for your application. These
 | rout3es are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+// | contains the "web" middleware group. Now create something great!
 |
 */
 
-Route::middleware("auth")->group(function () {
+// Route::middleware("auth")->group(function () {
    
-    Route::group(['middleware' => ['role_or_permission:Admin|sales_role_purchasing']], function () {
+    // Route::group(['middleware' => ['role_or_permission:Admin|sales_role_purchasing']], function () {
         Route::group(['as' => 'sales.', 'prefix' => 'sales'], function () {
             Route::get('/', [HomeController::class, 'index_sales'])->name('dashboard_sales');
             Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], function () {
@@ -87,8 +87,8 @@ Route::middleware("auth")->group(function () {
                 Route::post('purchase_request/create/unit/store', [PurchaseRequestController::class, "store_unit"])->name('store_unit');
             });
         });
-    });
-    Route::group(['middleware' => ['role_or_permission:Admin|finance_role_purchasing']], function () {
+    // });
+    // Route::group(['middleware' => ['role_or_permission:Admin|finance_role_purchasing']], function () {
         Route::group(['as' => 'finance.', 'prefix' => 'finance'], function () {
             Route::get('/', [HomeController::class, 'index_finance'])->name('dashboard_finance');
             Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], function () {
@@ -142,9 +142,9 @@ Route::middleware("auth")->group(function () {
                 Route::post('purchase_request/create/unit/store', [PurchaseRequestController::class, "store_unit"])->name('store_unit');
             });
     });
-    });
+    // });
 
-    Route::group(['middleware' => ['role_or_permission:Admin|wirehouse_role_purchasing']], function () {
+    // Route::group(['middleware' => ['role_or_permission:Admin|wirehouse_role_purchasing']], function () {
         
         Route::group(['as' => 'wirehouse.', 'prefix' => 'wirehouse'], function () {
             Route::get('/', [HomeController::class, 'index_wirehouse'])->name('dashboard_wirehouse');
@@ -199,31 +199,31 @@ Route::middleware("auth")->group(function () {
                 Route::post('purchase_request/create/unit/store', [PurchaseRequestController::class, "store_unit"])->name('store_unit');
             });
         });
-    });
+    // });
 
-    Route::group(['middleware' => ['role_or_permission:Admin|manager_sales_role_purchasing']], function () {
+    // Route::group(['middleware' => ['role_or_permission:Admin|manager_sales_role_purchasing']], function () {
             Route::group(['as' => 'manager_sales.', 'prefix' => 'manager_sales'], function () {
                 Route::get('/', [HomeController::class, 'manager_sales'])->name('manager_sales');
                 Route::get('/Admin/sales', [HomeController::class, 'index_sales'])->name('dashboard_sales');
                 Route::get('approval/', [HomeController::class, 'sales_approval']);
             });
-    });
+    // });
 
-    Route::group(['middleware' => ['role_or_permission:Admin|manager_finance_role_purchasing']], function () {
+    // Route::group(['middleware' => ['role_or_permission:Admin|manager_finance_role_purchasing']], function () {
         Route::group(['as' => 'manager_finance.', 'prefix' => 'manager_finance'], function () {
             Route::get('/', [HomeController::class, 'manager_finance'])->name('manager_finance');
             Route::get('/Admin/finance', [HomeController::class, 'index_finance'])->name('dashboard_finance');
             Route::get('approval/', [HomeController::class, 'finance_approval']);
         });
-    });
+    // });
 
-    Route::group(['middleware' => ['role_or_permission:Admin|manager_wirehouse_role_purchasing']], function () {
+    // Route::group(['middleware' => ['role_or_permission:Admin|manager_wirehouse_role_purchasing']], function () {
         Route::group(['as' => 'manager_wirehouse.', 'prefix' => 'manager_wirehouse'], function () {
             Route::get('/', [HomeController::class, 'manager_wirehouse'])->name('manager_wirehouse');
             Route::get('/Admin/wirehouse', [HomeController::class, 'index_wirehouse'])->name('dashboard_wirehouse');
             Route::get('approval/', [HomeController::class, 'wirehouse_approval']);
         });
-    });
+    // });
 
     Route::group(['as' => 'satuan.', 'prefix' => 'satuan'], function () {
         Route::get('/', [SatuanController::class, 'index'])->name('satuandash');
@@ -440,7 +440,7 @@ Route::middleware("auth")->group(function () {
         route::get('/view/{id}', [TimeshippingController::class, 'view'])->name('view');
     });
 
-    Route::group(['middleware' => ['role_or_permission:Admin|role_purchasing']], function () {
+    // Route::group(['middleware' => ['role_or_permission:Admin|role_purchasing']], function () {
         Route::get('/admin_divisi', [HomeController::class, 'index'])->name('dashboard');
         Route::get('/manager', [HomeController::class, 'manager'])->name('manager');
         Route::get('/', [HomeController::class, 'purchasing'])->name('purchasing');
@@ -466,9 +466,9 @@ Route::middleware("auth")->group(function () {
             route::get('/exportPDF/{id}', [OrderController::class, 'exportPDF'])->name('exportPDF');
             Route::delete('/destroy{id}', [OrderController::class, "destroy"])->name("destroyApp");
         });
-    });
+    // });
     Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
-});
+// });
 
 Route::get("login", [LoginController::class, "index"])->name("login");
 

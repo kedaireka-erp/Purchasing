@@ -54,6 +54,18 @@ class TrackingController extends Controller
         $Prefixe= Prefix::get();
         $location= Location::get();
         $payment = Payment::get();
+
+        $items_coming = DB::table('item_requests')
+            ->where('purchase_requests.accept_status','accept')->orWhere('purchase_requests.accept_status','edit')
+            ->where('item_requests.order_id',NULL)
+            ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+            ->join('items', 'items.id', '=', 'item_requests.id_item')
+            ->join('locations','locations.id','=','purchase_requests.locations_id')
+            ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+            ->join('master_items', 'master_items.id', '=', 'items.id_master_item')
+            ->select('purchase_requests.*','items.*','prefixes.divisi','locations.location_name','master_items.item_name')
+            ->get();
+
         $items_pending = DB::table('item_requests')
             ->where('items.outstanding','>',0)
             ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
@@ -96,7 +108,7 @@ class TrackingController extends Controller
         // $items=Item::has('order','purchase')->get();
 
             
-        return view('Tracking.dashboard_good', compact('location','items_done','items_success','items_pending','time','payment','purchase_requests',"Prefixe"));
+        return view('Tracking.dashboard_good', compact('location','items_coming','items_done','items_success','items_pending','time','payment','purchase_requests',"Prefixe"));
 
         // dd($items_success);
     }
@@ -108,6 +120,16 @@ class TrackingController extends Controller
         $Prefixe= Prefix::get();
         $location= Location::get();
         $payment = Payment::get();
+
+        $powders_coming = DB::table('item_requests')
+        ->where('purchase_requests.accept_status','accept')->orWhere('purchase_requests.accept_status','edit')
+        ->where('item_requests.order_id',NULL)
+        ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+        ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
+        ->join('locations','locations.id','=','purchase_requests.locations_id')
+        ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+        ->select('purchase_requests.*','powders.*','prefixes.divisi','locations.location_name')
+        ->get();
 
         $powders_pending = DB::table('item_requests')
             ->where('powders.outstanding','>',0)
@@ -151,7 +173,7 @@ class TrackingController extends Controller
             
 
 
-        return view('Tracking.dashboard_powder', compact('location','powders_pending','powders_success','powders_done','time','payment','purchase_requests',"Prefixe"));
+        return view('Tracking.dashboard_powder', compact('location','powders_coming','powders_pending','powders_success','powders_done','time','payment','purchase_requests',"Prefixe"));
     }
     public function view($id){
         $purchase_requests = PurchaseRequest::find($id);

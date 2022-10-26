@@ -318,6 +318,62 @@
   </div>
 </figure>
 
+<figure class="tabBlock">
+    <ul class="tabBlock-tabs">
+      <li class="tabBlock-tab is-active"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M5 6.25a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5zm3.5 0a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5z"/>
+        </svg> Upcoming </li>
+    </ul>
+    <div class="tabBlock-content">
+        <div class="tabBlock-pane">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example3" class="display" style="width:100%">
+                        <thead>
+                            <tr align="center">
+                                <td width="10%" class="content-control-md"> PO </td>
+                                <td width="15%" class="content-control-md"> Nomor PR </td>
+                                <td width="10%" class="content-control-md">Deadline Date</td>
+                                <td width="15%" class="content-control-md">Lokasi</td>
+                                <td width="10%" class="content-control-md">Nama Barang</td>
+                                <td width="5%" class="content-control-md">Qty</td>
+                                <td width="10%" class="content-control-md">Requester</td>
+                                <td width="10%" class="content-control-md">Divisi</td>
+                                <td width="15%" class="content-control-md">Status</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($items_coming as $no => $purchase_request)
+                                <tr align="center">
+                                    <td class="content-control-sm" align="center"> menunggu PO </td>
+                                    <td class="content-control-sm" align="center">{{ $purchase_request->no_pr }}</td>
+                                    <td class="content-control-sm">
+                                        {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}
+                                    </td>
+                                    <td class="content-control-sm" align="center">{{ $purchase_request->location_name }}</td>
+                                    <td class="content-control-sm" align="center">{{ $purchase_request->item_name }}</td>
+                                    <td class="content-control-sm" align="center">{{ $purchase_request->stok }}</td>
+                                    <td class="content-control-sm" align="center">{{ $purchase_request->requester }}</td>
+                                    <td class="content-control-sm" align="center">{{ $purchase_request->divisi }}</td>
+                                    <td class="content-control-sm">
+                                        @include('purchases.status')
+                                    </td>
+    
+                                </tr>
+                            @endforeach
+    
+    
+                        </tbody>
+                    </table>
+    
+    
+                </div>
+    
+            </div>
+        </div>
+    </div>
+</figure>
 
     {{-- <div class="card">
         <div id="chead">
