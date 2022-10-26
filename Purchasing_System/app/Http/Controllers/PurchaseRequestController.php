@@ -963,6 +963,8 @@ class PurchaseRequestController extends Controller
             'ships_id'=>$request->ships_id ?? $purchase_requests->ships_id,
             'note'=>$request->note ?? $purchase_requests->note,
             'attachment'=>$image_name ?? $purchase_requests->attachment,
+            'approval_status' => 'pending',
+            'accept_status' => 'pending'
             
         ]);
         if($purchase_requests->role == 'sales')
@@ -995,6 +997,8 @@ class PurchaseRequestController extends Controller
             'locations_id'=>$request->locations_id ?? $purchase_requests->locations_id,
             'ships_id'=>$request->ships_id ?? $purchase_requests->ships_id,
             'note'=>$request->note ?? $purchase_requests->note,
+            'approval_status' => 'pending',
+            'accept_status' => 'pending'
             // 'attachment'=>$request->attachment ?? $purchase_requests->attachment,
             
         ]);
