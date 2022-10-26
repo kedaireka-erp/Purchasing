@@ -205,7 +205,6 @@ Route::middleware("auth")->group(function () {
             Route::group(['as' => 'manager_sales.', 'prefix' => 'manager_sales'], function () {
                 Route::get('/admin/sales', [HomeController::class, 'index_sales'])->name('dashboard_sales');
                 Route::get('/', [HomeController::class, 'manager_sales'])->name('manager_sales');
-                Route::get('/Admin/sales', [HomeController::class, 'index_sales'])->name('dashboard_sales');
                 Route::get('approval/', [HomeController::class, 'sales_approval']);
             });
     });
