@@ -988,10 +988,6 @@ class PurchaseRequestController extends Controller
         }
 
         else{
-            $destination_path = 'storage';
-            $image = $request->file('attachment');
-            $image_name = rand(0,99).rand(0,99)."_".$image->getClientOriginalName();
-            $path = $request -> file('attachment')->move($destination_path,$image_name);
             $name = 'pending';
         $purchase_requests = PurchaseRequest::findOrFail($id);
         $purchase_requests->update([
