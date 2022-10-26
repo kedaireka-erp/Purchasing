@@ -128,7 +128,7 @@
             <div class="dlabnav-scroll">
                 <ul class="metismenu" id="menu">
 
-                    {{-- @can('role_purchasing') --}}
+                    @can('role_purchasing')
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                             <i class="fas fa-home"></i>
                             <span class="nav-text">Dashboard</span>
@@ -163,10 +163,10 @@
                             </li>
                         </ul>
                     </li>
-                    {{-- @endcan --}}
+                    @endcan
 
 
-                    {{-- @can('manager_sales_role_purchasing')  --}}
+                    @can('manager_sales_role_purchasing') 
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                             <i class="bi bi-check-circle-fill"></i>
                             <span class="nav-text">Dashboard</span>
@@ -181,9 +181,9 @@
                             <span class="nav-text">Sales Approval</span>
                         </a>
                     </li>
-                    {{-- @endcan --}}
+                    @endcan
 
-                    {{-- @can('manager_finance_role_purchasing') --}}
+                    @can('manager_finance_role_purchasing')
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                             <i class="fas fa-home"></i>
                             <span class="nav-text">Dashboard</span>
@@ -198,9 +198,9 @@
                             <span class="nav-text">Finance Approval</span>
                         </a>
                     </li>
-                    {{-- @endcan --}}
+                    @endcan
 
-                    {{-- @can('manager_wirehouse_role_purchasing') --}}
+                    @can('manager_wirehouse_role_purchasing')
                     <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
                             <i class="fas fa-home"></i>
                             <span class="nav-text">Dashboard</span>
@@ -215,10 +215,10 @@
                             <span class="nav-text">WO Approval</span>
                         </a>
                     </li>
-                    {{-- @endcan --}}
+                    @endcan
 
 
-                    {{-- @can('sales_role_purchasing') --}}
+                    @can('sales_role_purchasing')
                     <li><a href="/sales" class="" aria-expanded="false">
                             <i class="fas fa-home"></i>
                             <span class="nav-text">Sales Dashboard</span>
@@ -248,9 +248,9 @@
                             </li>
                         </ul>
                     </li>
-                    {{-- @endcan --}}
+                    @endcan
 
-                    {{-- @can('finance_role_purchasing') --}}
+                    @can('finance_role_purchasing')
                     <li><a href="/finance" class="" aria-expanded="false">
                             <i class="fas fa-home"></i>
                             <span class="nav-text">Finance Dashboard</span>
@@ -277,9 +277,9 @@
                             </li>
                         </ul>
                     </li>
-                    {{-- @endcan --}}
+                    @endcan
 
-                    {{-- @can('wirehouse_role_purchasing') --}}
+                    @can('wirehouse_role_purchasing')
                     <li><a href="/wirehouse" class="" aria-expanded="false">
                             <i class="fas fa-home"></i>
                             <span class="nav-text">WO Dashboard</span>
@@ -308,7 +308,7 @@
                             </li>
                         </ul>
                     </li>
-                    {{-- @endcan --}}
+                    @endcan
 
 
 

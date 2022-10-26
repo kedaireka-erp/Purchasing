@@ -122,14 +122,14 @@ class TrackingController extends Controller
         $payment = Payment::get();
 
         $powders_coming = DB::table('item_requests')
-        ->where('purchase_requests.accept_status','accept')->orWhere('purchase_requests.accept_status','edit')
-        ->where('item_requests.order_id',NULL)
-        ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
-        ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
-        ->join('locations','locations.id','=','purchase_requests.locations_id')
-        ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
-        ->select('purchase_requests.*','powders.*','prefixes.divisi','locations.location_name')
-        ->get();
+                                ->where('purchase_requests.accept_status','accept')->orWhere('purchase_requests.accept_status','edit')
+                                ->where('item_requests.order_id',NULL)
+                                ->join('purchase_requests', 'purchase_requests.id', '=', 'item_requests.id_request')
+                                ->join('powders', 'powders.id', '=', 'item_requests.powder_id')
+                                ->join('locations','locations.id','=','purchase_requests.locations_id')
+                                ->join('prefixes', 'prefixes.id', '=', 'purchase_requests.prefixes_id')
+                                ->select('purchase_requests.*','powders.*','prefixes.divisi','locations.location_name')
+                                ->get();
 
         $powders_pending = DB::table('item_requests')
             ->where('powders.outstanding','>',0)
