@@ -493,13 +493,7 @@
             });
         </script>
         <x-script></x-script>
-            <!-- Required vendors -->
-            <script src="{{ asset('assets/vendor/peity/jquery.peity.min.js') }}"></script>
-	
-            <script src="{{ asset('assets/vendor/owl-carousel/owl.carousel.js') }}"></script>
             
-            <script src="{{ asset('assets/js/custom.min.js') }}"></script>
-                <script src="{{ asset('assets/js/dashboard/dashboard-1.js') }}"></script>
 
 </body>
 
