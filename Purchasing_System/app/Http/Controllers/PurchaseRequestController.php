@@ -951,6 +951,7 @@ class PurchaseRequestController extends Controller
             $image = $request->file('attachment');
             $image_name = rand(0,99).rand(0,99)."_".$image->getClientOriginalName();
             $path = $request -> file('attachment')->move($destination_path,$image_name);
+            $name = 'pending';
 
         $purchase_requests = PurchaseRequest::findOrFail($id);
         $purchase_requests->update([
@@ -963,8 +964,8 @@ class PurchaseRequestController extends Controller
             'ships_id'=>$request->ships_id ?? $purchase_requests->ships_id,
             'note'=>$request->note ?? $purchase_requests->note,
             'attachment'=>$image_name ?? $purchase_requests->attachment,
-            'approval_status' => 'pending' ?? $purchase_requests->approval_status,
-            'accept_status' => 'pending' ?? $purchase_requests->accept_status
+            'approval_status' => $name,
+            'accept_status' => $name
             
         ]);
         if($purchase_requests->role == 'sales')
@@ -987,6 +988,11 @@ class PurchaseRequestController extends Controller
         }
 
         else{
+            $destination_path = 'storage';
+            $image = $request->file('attachment');
+            $image_name = rand(0,99).rand(0,99)."_".$image->getClientOriginalName();
+            $path = $request -> file('attachment')->move($destination_path,$image_name);
+            $name = 'pending';
         $purchase_requests = PurchaseRequest::findOrFail($id);
         $purchase_requests->update([
             'no_pr'=>$request->no_pr ?? $purchase_requests->no_pr,
@@ -997,8 +1003,8 @@ class PurchaseRequestController extends Controller
             'locations_id'=>$request->locations_id ?? $purchase_requests->locations_id,
             'ships_id'=>$request->ships_id ?? $purchase_requests->ships_id,
             'note'=>$request->note ?? $purchase_requests->note,
-            'approval_status' => 'pending' ?? $purchase_requests->approval_status,
-            'accept_status' => 'pending' ?? $purchase_requests->accept_status
+            'approval_status' => $name,
+            'accept_status' => $name
             // 'attachment'=>$request->attachment ?? $purchase_requests->attachment,
             
         ]);
