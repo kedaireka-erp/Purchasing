@@ -24,88 +24,293 @@ class PurchaseRequestController extends Controller
     // *******************
     //     Index Home
     // ********************
-    public function index(Request $request){
-        if ($request->filled('search')) {
-            $purchase_requests = PurchaseRequest::search($request->search)->get();
-        }else{
-            $items = Item::get();
-            $powders = Powder::get();
-            $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')
-                            ->orWhere('approval_status', '=', 'approve')->where('accept_status', '=', 'edit')
-                                ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'accept')
-                                ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'edit')
-                                ->get();
-            $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')
-                                        ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'pending')
-                                        ->orwhere('approval_status', '=', 'approve')->where('accept_status', '=', 'pending')->get();
-            $purchase_requests_reject = PurchaseRequest::where('approval_status', '=', 'reject')->orwhere('accept_status', '=', 'reject')->get();
-        }
-
-        return view('purchases.index', compact('items','powders','purchase_requests', 'purchase_requests_pending', 'purchase_requests_reject'));
-    }
-
     public function index_pr_sales(Request $request){
-        if ($request->filled('search')) {
-            $purchase_requests = PurchaseRequest::search($request->search)->get();
-        }else{
-            $items = Item::get();
-            $powders = Powder::get();
-            $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->where('role','sales')
+        $purchase_requests_pending = DB::table('item_requests')
+                            ->where('item_requests.order_id',NULL)
+                            ->where('purchase_requests.role','sales')
+                            ->where('approval_status', '=', 'pending')
+                            ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'pending')->where('purchase_requests.role','sales')
+                            ->orwhere('approval_status', '=', 'approve')->where('accept_status', '=', 'pending')->where('purchase_requests.role','sales')
+                            
+                            ->join('items','items.id','=','item_requests.id_item')
+                            ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+                            ->join('locations','locations.id','=','purchase_requests.locations_id')
+                            ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+                            ->join('master_items','master_items.id','=','items.id_master_item')
+                            ->join('satuans','satuans.id','=','items.id_satuan')
+                            ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','master_items.item_name','items.stok',
+                            'satuans.unit','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+                            ->get();
+
+        $purchase_requests_done = DB::table('item_requests')
+                            ->where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->where('role','sales')
                             ->orWhere('approval_status', '=', 'approve')->where('accept_status', '=', 'edit')->where('role','sales')
-                                ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'accept')->where('role','sales')
-                                ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'edit')->where('role','sales')
-                                ->get();
-            $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->where('role','sales')
-                                        ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'pending')->where('role','sales')
-                                        ->orwhere('approval_status', '=', 'approve')->where('accept_status', '=', 'pending')->where('role','sales')->get();
-            $purchase_requests_reject = PurchaseRequest::where('approval_status', '=', 'reject')->where('role','sales')
-                                        ->orwhere('accept_status', '=', 'reject')->where('role','sales')->get();
-        }
+                            ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'accept')->where('role','sales')
+                            ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'edit')->where('role','sales')
+                            
+                            ->join('items','items.id','=','item_requests.id_item')
+                            ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+                            ->join('locations','locations.id','=','purchase_requests.locations_id')
+                            ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+                            ->join('master_items','master_items.id','=','items.id_master_item')
+                            ->join('satuans','satuans.id','=','items.id_satuan')
+                            ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','master_items.item_name','items.stok',
+                            'satuans.unit','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+                            ->get();
 
-        return view('purchases.index', compact('items','powders','purchase_requests', 'purchase_requests_pending', 'purchase_requests_reject'));
-    }
+        $purchase_requests_reject = DB::table('item_requests')
+                            ->where('approval_status', '=', 'reject')->where('role','sales')
+                            ->orwhere('accept_status', '=', 'reject')->where('role','sales')
+                    
+                            ->join('items','items.id','=','item_requests.id_item')
+                            ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+                            ->join('locations','locations.id','=','purchase_requests.locations_id')
+                            ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+                            ->join('master_items','master_items.id','=','items.id_master_item')
+                            ->join('satuans','satuans.id','=','items.id_satuan')
+                            ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','master_items.item_name','items.stok','satuans.unit','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+                            ->get();
 
-    public function index_pr_finance(Request $request){
-        if ($request->filled('search')) {
-            $purchase_requests = PurchaseRequest::search($request->search)->get();
-        }else{
-            $items = Item::get();
-            $powders = Powder::get();
-            $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->where('role','finance')
+
+            $pr_powder_pending = DB::table('item_requests')
+                            ->where('item_requests.order_id',NULL)
+                            ->where('purchase_requests.role','sales')
+                            ->where('approval_status', '=', 'pending')
+                            ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'pending')->where('purchase_requests.role','sales')
+                            ->orwhere('approval_status', '=', 'approve')->where('accept_status', '=', 'pending')->where('purchase_requests.role','sales')
+                            
+                            ->join('powders','powders.id','=','item_requests.powder_id')
+                            ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+                            ->join('locations','locations.id','=','purchase_requests.locations_id')
+                            ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+                            ->join('grades','grades.id','=','powders.grades_id')
+                            ->join('colours','colours.id','=','powders.color_id')
+                            ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','colours.name','powders.quantity','powders.m2','powders.warna','grades.tipe','powders.finish','powders.finishing','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+                            ->get();
+
+            $pr_powder_done = DB::table('item_requests')
+                            ->where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->where('role','sales')
+                            ->orWhere('approval_status', '=', 'approve')->where('accept_status', '=', 'edit')->where('role','sales')
+                            ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'accept')->where('role','sales')
+                            ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'edit')->where('role','sales')
+                            
+                            ->join('powders','powders.id','=','item_requests.powder_id')
+                            ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+                            ->join('locations','locations.id','=','purchase_requests.locations_id')
+                            ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+                            ->join('grades','grades.id','=','powders.grades_id')
+                            ->join('colours','colours.id','=','powders.color_id')
+                            ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','colours.name','powders.quantity','powders.m2','powders.warna','grades.tipe','powders.finish','powders.finishing','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+                            ->get();
+
+            $pr_powder_reject = DB::table('item_requests')
+                            ->where('approval_status', '=', 'reject')->where('role','sales')
+                            ->orwhere('accept_status', '=', 'reject')->where('role','sales')
+                            
+                            ->join('powders','powders.id','=','item_requests.powder_id')
+                            ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+                            ->join('locations','locations.id','=','purchase_requests.locations_id')
+                            ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+                            ->join('grades','grades.id','=','powders.grades_id')
+                            ->join('colours','colours.id','=','powders.color_id')
+                            ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','colours.name','powders.quantity','powders.m2','powders.warna','grades.tipe','powders.finish','powders.finishing','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+                            ->get();
+
+
+    return view('purchases.index', compact('purchase_requests_pending','purchase_requests_done','purchase_requests_reject','pr_powder_pending','pr_powder_done','pr_powder_reject'));
+}
+
+public function index_pr_finance(Request $request){
+    $purchase_requests_pending = DB::table('item_requests')
+                            ->where('item_requests.order_id',NULL)
+                            ->where('purchase_requests.role','finance')
+                            ->where('approval_status', '=', 'pending')
+                            ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'pending')->where('purchase_requests.role','finance')
+                            ->orwhere('approval_status', '=', 'approve')->where('accept_status', '=', 'pending')->where('purchase_requests.role','finance')
+                            
+                            ->join('items','items.id','=','item_requests.id_item')
+                            ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+                            ->join('locations','locations.id','=','purchase_requests.locations_id')
+                            ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+                            ->join('master_items','master_items.id','=','items.id_master_item')
+                            ->join('satuans','satuans.id','=','items.id_satuan')
+                            ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','master_items.item_name','items.stok',
+                            'satuans.unit','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+                            ->get();
+
+        $purchase_requests_done = DB::table('item_requests')
+                            ->where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->where('role','finance')
                             ->orWhere('approval_status', '=', 'approve')->where('accept_status', '=', 'edit')->where('role','finance')
-                                ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'accept')->where('role','finance')
-                                ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'edit')->where('role','finance')
-                                ->get();
-            $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->where('role','finance')
-                                        ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'pending')->where('role','finance')
-                                        ->orwhere('approval_status', '=', 'approve')->where('accept_status', '=', 'pending')->where('role','finance')->get();
-            $purchase_requests_reject = PurchaseRequest::where('approval_status', '=', 'reject')->where('role','finance')
-                                        ->orwhere('accept_status', '=', 'reject')->where('role','finance')->get();
-        }
+                            ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'accept')->where('role','finance')
+                            ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'edit')->where('role','finance')
+                            
+                            ->join('items','items.id','=','item_requests.id_item')
+                            ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+                            ->join('locations','locations.id','=','purchase_requests.locations_id')
+                            ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+                            ->join('master_items','master_items.id','=','items.id_master_item')
+                            ->join('satuans','satuans.id','=','items.id_satuan')
+                            ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','master_items.item_name','items.stok',
+                            'satuans.unit','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+                            ->get();
 
-        return view('purchases.index', compact('items','powders','purchase_requests', 'purchase_requests_pending', 'purchase_requests_reject'));
-    }
+        $purchase_requests_reject = DB::table('item_requests')
+                            ->where('approval_status', '=', 'reject')->where('role','finance')
+                            ->orwhere('accept_status', '=', 'reject')->where('role','finance')
+                    
+                            ->join('items','items.id','=','item_requests.id_item')
+                            ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+                            ->join('locations','locations.id','=','purchase_requests.locations_id')
+                            ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+                            ->join('master_items','master_items.id','=','items.id_master_item')
+                            ->join('satuans','satuans.id','=','items.id_satuan')
+                            ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','master_items.item_name','items.stok','satuans.unit','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+                            ->get();
 
-    public function index_pr_wirehouse(Request $request){
-        if ($request->filled('search')) {
-            $purchase_requests = PurchaseRequest::search($request->search)->get();
-        }else{
-            $items = Item::get();
-            $powders = Powder::get();
-            $purchase_requests = PurchaseRequest::where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->where('role','wirehouse')
-                            ->orWhere('approval_status', '=', 'approve')->where('accept_status', '=', 'edit')->where('role','wirehouse')
-                                ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'accept')->where('role','wirehouse')
-                                ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'edit')->where('role','wirehouse')
-                                ->get();
-            $purchase_requests_pending = PurchaseRequest::where('approval_status', '=', 'pending')->where('role','wirehouse')
-                                        ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'pending')->where('role','wirehouse')
-                                        ->orwhere('approval_status', '=', 'approve')->where('accept_status', '=', 'pending')->where('role','wirehouse')->get();
-            $purchase_requests_reject = PurchaseRequest::where('approval_status', '=', 'reject')->where('role','wirehouse')
-                                        ->orwhere('accept_status', '=', 'reject')->where('role','wirehouse')->get();
-        }
 
-        return view('purchases.index', compact('items','powders','purchase_requests', 'purchase_requests_pending', 'purchase_requests_reject'));
-    }
+            $pr_powder_pending = DB::table('item_requests')
+                            ->where('item_requests.order_id',NULL)
+                            ->where('purchase_requests.role','finance')
+                            ->where('approval_status', '=', 'pending')
+                            ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'pending')->where('purchase_requests.role','finance')
+                            ->orwhere('approval_status', '=', 'approve')->where('accept_status', '=', 'pending')->where('purchase_requests.role','finance')
+                            
+                            ->join('powders','powders.id','=','item_requests.powder_id')
+                            ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+                            ->join('locations','locations.id','=','purchase_requests.locations_id')
+                            ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+                            ->join('grades','grades.id','=','powders.grades_id')
+                            ->join('colours','colours.id','=','powders.color_id')
+                            ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','colours.name','powders.quantity','powders.m2','powders.warna','grades.tipe','powders.finish','powders.finishing','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+                            ->get();
+
+            $pr_powder_done = DB::table('item_requests')
+                            ->where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->where('role','finance')
+                            ->orWhere('approval_status', '=', 'approve')->where('accept_status', '=', 'edit')->where('role','finance')
+                            ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'accept')->where('role','finance')
+                            ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'edit')->where('role','finance')
+                            
+                            ->join('powders','powders.id','=','item_requests.powder_id')
+                            ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+                            ->join('locations','locations.id','=','purchase_requests.locations_id')
+                            ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+                            ->join('grades','grades.id','=','powders.grades_id')
+                            ->join('colours','colours.id','=','powders.color_id')
+                            ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','colours.name','powders.quantity','powders.m2','powders.warna','grades.tipe','powders.finish','powders.finishing','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+                            ->get();
+
+            $pr_powder_reject = DB::table('item_requests')
+                            ->where('approval_status', '=', 'reject')->where('role','finance')
+                            ->orwhere('accept_status', '=', 'reject')->where('role','finance')
+                            
+                            ->join('powders','powders.id','=','item_requests.powder_id')
+                            ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+                            ->join('locations','locations.id','=','purchase_requests.locations_id')
+                            ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+                            ->join('grades','grades.id','=','powders.grades_id')
+                            ->join('colours','colours.id','=','powders.color_id')
+                            ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','colours.name','powders.quantity','powders.m2','powders.warna','grades.tipe','powders.finish','powders.finishing','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+                            ->get();
+
+
+    return view('purchases.index', compact('purchase_requests_pending','purchase_requests_done','purchase_requests_reject','pr_powder_pending','pr_powder_done','pr_powder_reject'));
+}
+
+public function index_pr_wirehouse(Request $request){
+    $purchase_requests_pending = DB::table('item_requests')
+    ->where('item_requests.order_id',NULL)
+    ->where('purchase_requests.role','sales')
+    ->where('approval_status', '=', 'pending')
+    ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'pending')->where('purchase_requests.role','sales')
+    ->orwhere('approval_status', '=', 'approve')->where('accept_status', '=', 'pending')->where('purchase_requests.role','sales')
+    
+    ->join('items','items.id','=','item_requests.id_item')
+    ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+    ->join('locations','locations.id','=','purchase_requests.locations_id')
+    ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+    ->join('master_items','master_items.id','=','items.id_master_item')
+    ->join('satuans','satuans.id','=','items.id_satuan')
+    ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','master_items.item_name','items.stok',
+    'satuans.unit','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+    ->get();
+
+$purchase_requests_done = DB::table('item_requests')
+    ->where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->where('role','sales')
+    ->orWhere('approval_status', '=', 'approve')->where('accept_status', '=', 'edit')->where('role','sales')
+    ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'accept')->where('role','sales')
+    ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'edit')->where('role','sales')
+    
+    ->join('items','items.id','=','item_requests.id_item')
+    ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+    ->join('locations','locations.id','=','purchase_requests.locations_id')
+    ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+    ->join('master_items','master_items.id','=','items.id_master_item')
+    ->join('satuans','satuans.id','=','items.id_satuan')
+    ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','master_items.item_name','items.stok',
+    'satuans.unit','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+    ->get();
+
+$purchase_requests_reject = DB::table('item_requests')
+    ->where('approval_status', '=', 'reject')->where('role','sales')
+    ->orwhere('accept_status', '=', 'reject')->where('role','sales')
+
+    ->join('items','items.id','=','item_requests.id_item')
+    ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+    ->join('locations','locations.id','=','purchase_requests.locations_id')
+    ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+    ->join('master_items','master_items.id','=','items.id_master_item')
+    ->join('satuans','satuans.id','=','items.id_satuan')
+    ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','master_items.item_name','items.stok','satuans.unit','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+    ->get();
+
+
+$pr_powder_pending = DB::table('item_requests')
+    ->where('item_requests.order_id',NULL)
+    ->where('purchase_requests.role','wirehouse')
+    ->where('approval_status', '=', 'pending')
+    ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'pending')->where('purchase_requests.role','wirehouse')
+    ->orwhere('approval_status', '=', 'approve')->where('accept_status', '=', 'pending')->where('purchase_requests.role','wirehouse')
+    
+    ->join('powders','powders.id','=','item_requests.powder_id')
+    ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+    ->join('locations','locations.id','=','purchase_requests.locations_id')
+    ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+    ->join('grades','grades.id','=','powders.grades_id')
+    ->join('colours','colours.id','=','powders.color_id')
+    ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','colours.name','powders.quantity','powders.m2','powders.warna','grades.tipe','powders.finish','powders.finishing','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+    ->get();
+
+$pr_powder_done = DB::table('item_requests')
+    ->where('approval_status', '=', 'approve')->where('accept_status', '=', 'accept')->where('role','wirehouse')
+    ->orWhere('approval_status', '=', 'approve')->where('accept_status', '=', 'edit')->where('role','wirehouse')
+    ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'accept')->where('role','wirehouse')
+    ->orWhere('approval_status', '=', 'edit')->where('accept_status', '=', 'edit')->where('role','wirehouse')
+    
+    ->join('powders','powders.id','=','item_requests.powder_id')
+    ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+    ->join('locations','locations.id','=','purchase_requests.locations_id')
+    ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+    ->join('grades','grades.id','=','powders.grades_id')
+    ->join('colours','colours.id','=','powders.color_id')
+    ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','colours.name','powders.quantity','powders.m2','powders.warna','grades.tipe','powders.finish','powders.finishing','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+    ->get();
+
+$pr_powder_reject = DB::table('item_requests')
+    ->where('approval_status', '=', 'reject')->where('role','wirehouse')
+    ->orwhere('accept_status', '=', 'reject')->where('role','wirehouse')
+    
+    ->join('powders','powders.id','=','item_requests.powder_id')
+    ->join('purchase_requests','purchase_requests.id','=','item_requests.id_request')
+    ->join('locations','locations.id','=','purchase_requests.locations_id')
+    ->join('prefixes','prefixes.id','=','purchase_requests.prefixes_id')
+    ->join('grades','grades.id','=','powders.grades_id')
+    ->join('colours','colours.id','=','powders.color_id')
+    ->select('purchase_requests.id','purchase_requests.no_pr','purchase_requests.created_at','purchase_requests.deadline_date','locations.location_name','purchase_requests.requester','prefixes.divisi','purchase_requests.type','colours.name','powders.quantity','powders.m2','powders.warna','grades.tipe','powders.finish','powders.finishing','purchase_requests.role','purchase_requests.approval_status','purchase_requests.accept_status')
+    ->get();
+
+
+return view('purchases.index', compact('purchase_requests_pending','purchase_requests_done','purchase_requests_reject','pr_powder_pending','pr_powder_done','pr_powder_reject'));
+}
 
 
 
@@ -1033,7 +1238,7 @@ class PurchaseRequestController extends Controller
         $purchase_requests->delete();
 
         // alert()->question('Are you sure?','You won\'t be able to revert this!')->showCancelButton();
-        return redirect("/purchase_request")->with('terhapus', 'Purchase Request berhasil dihapus!');
+        return redirect()->back()->with('terhapus', 'Purchase Request berhasil dihapus!');
      }
 
     public function show($id){

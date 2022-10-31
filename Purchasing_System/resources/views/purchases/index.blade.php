@@ -3,7 +3,6 @@
 @section('judul-laman', 'Dashboard Purchase Request')
 
 @section('datatable')
-    {{-- Style Datatable --}}
     <link href="{{ asset('assets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
     
 @endsection
@@ -21,7 +20,6 @@
 @endsection
 
 @section('content')
-    {{-- @include('sweetalert::alert') --}}
     <x-alert></x-alert>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <figure class="tabBlock">
@@ -41,51 +39,46 @@
   </ul>
   <div class="tabBlock-content">
     <div class="tabBlock-pane">
-        {{-- <div class="card"> --}}
-            {{-- <div id="chead">
-                <div class="row">
-                    <div class="col-9">
-                        <div class="card-header">
-                            <h4 class="card-title">PR Pending</h4>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        
-                    </div>
-                </div>
-                <hr>
-            </div>
-     --}}
-    
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="example3" class="display" style="width:100%">
                         <thead>
                             <tr class="content-control-md" align="center">
-                                <td width="15%" align="left">Nomor PR</td>
-                                <td width="10%">Pengajuan</td>
-                                <td width="10%">Deadline</td>
-                                <td width="20%">Requester</td>
-                                <td width="10%">Divisi</td>
-                                <td width="10%">Type</td>
-                                <td width="20%" align="center">Status</td>
-                                <td width="5%" align="center"></td>
+                                <td class="control-control-md">Nomor_PR</td>
+                                <td class="control-control-md">Pengajuan_PR</td>
+                                <td class="control-control-md">Deadline_Kirim</td>
+                                <td class="control-control-md">Alamat_Kirim</td>
+                                <td class="control-control-md">Requester_PR</td>
+                                <td class="control-control-md">Divisi_Requester</td>
+                                <td class="control-control-md">Tipe_Pesanan</td>
+                                <td class="control-control-md">Nama_Barang</td>
+                                <td class="control-control-md">Jumlah</td>
+                                <td class="control-control-md">Unit_Barang</td>
+                                <td class="control-control-md">Status_PR_Manager</td>
+                                <td class="control-control-md">Status_PR_Purchasing</td>
+                                <td class="control-control-md"></td>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($purchase_requests_pending as $no => $purchase_request)
                                 <tr align="center">
-                                    <input type="hidden" class="delete_id" value="{{ $purchase_request->id }}">
-                                    <td class="content-control" align="left">{{ $purchase_request->no_pr }}</td>
-                                    <td class="content-control">
+                                    <td class="content-control-sm">{{ $purchase_request->no_pr }}</td>
+                                    <td class="content-control-sm">
                                         {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}</td>
-                                    <td class="content-control">
+                                    <td class="content-control-sm">
                                         {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}</td>
-                                    <td class="content-control">{{ $purchase_request->requester }}</td>
-                                    <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
-                                    <td class="content-control">{{ $purchase_request->type }}</td>
-                                    <td class="content-control" align="left">
-                                        @include('purchases.status')
+                                    <td class="content-control-sm">{{ $purchase_request->location_name }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->requester }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->divisi }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->type }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->item_name }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->stok }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->unit }}</td>
+                                    <td class="content-control-sm">
+                                        @include('purchases.Status_PR_Manager')
+                                    </td>
+                                    <td class="content-control-sm">
+                                        @include('purchases.Status_PR_Purchase')
                                     </td>
     
                                     <td class="py-2 text-end">
@@ -142,52 +135,50 @@
                     </table>
                 </div>
             </div>
-        {{-- </div> --}}
     </div>
     <div class="tabBlock-pane">
-        {{-- <div class="card"> --}}
-            {{-- <div id="chead">
-                <div class="row">
-                    <div class="col-9">
-                        <div class="card-header">
-                            <h4 class="card-title">PR Done</h4>
-                        </div>
-                    </div>
-                    <div class="col-3">
-    
-                    </div>
-                </div>
-                <hr>
-            </div> --}}
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="example3" class="display" style="width:100%">
                         <thead>
-                            <tr class="content-control-md" align="right">
-                                <td width="15%" align="left">Nomor PR</td>
-                                <td width="10%">Pengajuan</td>
-                                <td width="10%">Deadline</td>
-                                <td width="20%">Requester</td>
-                                <td width="10%">Divisi</td>
-                                <td width="10%">Type</td>
-                                <td width="20%" align="center">Status</td>
-                                <td width="5%" align="center"></td>
+                            <tr class="content-control-md" align="center">
+                                <td class="control-control-md">Nomor_PR</td>
+                                <td class="control-control-md">Pengajuan_PR</td>
+                                <td class="control-control-md">Deadline_Kirim</td>
+                                <td class="control-control-md">Alamat_Kirim</td>
+                                <td class="control-control-md">Requester_PR</td>
+                                <td class="control-control-md">Divisi_Requester</td>
+                                <td class="control-control-md">Tipe_Pesanan</td>
+                                <td class="control-control-md">Nama_Barang</td>
+                                <td class="control-control-md">Jumlah</td>
+                                <td class="control-control-md">Unit_Barang</td>
+                                <td class="control-control-md">Status_PR_Manager</td>
+                                <td class="control-control-md">Status_PR_Purchasing</td>
+                                <td class="control-control-md"></td>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($purchase_requests as $no => $purchase_request)
-                                <tr align="right">
-                                    <td class="content-control" align="left">{{ $purchase_request->no_pr }}</td>
-                                    <td class="content-control">
+                            @foreach ($purchase_requests_done as $no => $purchase_request)
+                                <tr align="center">
+                                    <td class="content-control-sm">{{ $purchase_request->no_pr }}</td>
+                                    <td class="content-control-sm">
                                         {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}</td>
-                                    <td class="content-control">
+                                    <td class="content-control-sm">
                                         {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}</td>
-                                    <td class="content-control">{{ $purchase_request->requester }}</td>
-                                    <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
-                                    <td class="content-control">{{ $purchase_request->type }}</td>
-                                    <td class="content-control" align="left">
-                                        @include('purchases.status')
+                                    <td class="content-control-sm">{{ $purchase_request->location_name }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->requester }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->divisi }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->type }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->item_name }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->stok }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->unit }}</td>
+                                    <td class="content-control-sm">
+                                        @include('purchases.Status_PR_Manager')
                                     </td>
+                                    <td class="content-control-sm">
+                                        @include('purchases.Status_PR_Purchase')
+                                    </td>
+    
     
                                     <td class="py-2 text-end">
                                         <div class="dropdown text-sans-serif"><button
@@ -232,53 +223,50 @@
                         </tbody>
                     </table>
                 </div>
-            {{-- </div> --}}
         </div>
     
     </div>
     <div class="tabBlock-pane">
-        {{-- <div class="card">
-            <div id="chead">
-                <div class="row">
-                    <div class="col-9">
-                        <div class="card-header">
-                            <h4 class="card-title">PR Reject</h4>
-                        </div>
-                    </div>
-                    <div class="col-3">
-    
-                    </div>
-                </div>
-                <hr>
-            </div> --}}
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="example3" class="display" style="width:100%">
                         <thead>
-                            <tr class="content-control-md" align="right">
-                                <td width="15%" align="left">Nomor PR</td>
-                                <td width="10%">Pengajuan</td>
-                                <td width="10%">Deadline</td>
-                                <td width="20%">Requester</td>
-                                <td width="10%">Divisi</td>
-                                <td width="10%">Type</td>
-                                <td width="20%" align="center">Status</td>
-                                <td width="5%" align="center"></td>
+                            <tr class="content-control-md" align="center">
+                                <td class="control-control-md">Nomor_PR</td>
+                                <td class="control-control-md">Pengajuan_PR</td>
+                                <td class="control-control-md">Deadline_Kirim</td>
+                                <td class="control-control-md">Alamat_Kirim</td>
+                                <td class="control-control-md">Requester_PR</td>
+                                <td class="control-control-md">Divisi_Requester</td>
+                                <td class="control-control-md">Tipe_Pesanan</td>
+                                <td class="control-control-md">Nama_Barang</td>
+                                <td class="control-control-md">Jumlah</td>
+                                <td class="control-control-md">Unit_Barang</td>
+                                <td class="control-control-md">Status_PR_Manager</td>
+                                <td class="control-control-md">Status_PR_Purchasing</td>
+                                <td class="control-control-md"></td>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($purchase_requests_reject as $no => $purchase_request)
-                                <tr align="right">
-                                    <td class="content-control" align="left">{{ $purchase_request->no_pr }}</td>
-                                    <td class="content-control">
+                                <tr align="center">
+                                    <td class="content-control-sm">{{ $purchase_request->no_pr }}</td>
+                                    <td class="content-control-sm">
                                         {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}</td>
-                                    <td class="content-control">
+                                    <td class="content-control-sm">
                                         {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}</td>
-                                    <td class="content-control">{{ $purchase_request->requester }}</td>
-                                    <td class="content-control">{{ $purchase_request->Prefixe->divisi }}</td>
-                                    <td class="content-control">{{ $purchase_request->type }}</td>
-                                    <td class="content-control" align="left">
-                                        @include('purchases.status')
+                                    <td class="content-control-sm">{{ $purchase_request->location_name }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->requester }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->divisi }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->type }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->item_name }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->stok }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->unit }}</td>
+                                    <td class="content-control-sm">
+                                        @include('purchases.Status_PR_Manager')
+                                    </td>
+                                    <td class="content-control-sm">
+                                        @include('purchases.Status_PR_Purchase')
                                     </td>
     
                                     <td class="py-2 text-end">
@@ -332,13 +320,361 @@
                         </tbody>
                     </table>
                 </div>
-            {{-- </div> --}}
         </div>
-    
-    
     </div>
   </div>
 </figure>
+
+
+<figure class="tabBlock">
+    <ul class="tabBlock-tabs">
+      <li class="tabBlock-tab is-active"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M5 6.25a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5zm3.5 0a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5z"/>
+        </svg> On Progress </li>
+      <li class="tabBlock-tab">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
+              <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992a.252.252 0 0 1 .02-.022zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486-.943 1.179z"/>
+            </svg> Done </li>
+             <li class="tabBlock-tab">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg> Reject </li>
+    </ul>
+    <div class="tabBlock-content">
+      <div class="tabBlock-pane">
+              <div class="card-body">
+                  <div class="table-responsive">
+                      <table id="example3" class="display" style="width:100%">
+                          <thead>
+                            <tr class="content-control-md" align="center">
+                                <td class="control-control-md">Nomor_PR</td>
+                                <td class="control-control-md">Pengajuan_PR</td>
+                                <td class="control-control-md">Deadline_Kirim</td>
+                                <td class="control-control-md">Alamat_Kirim</td>
+                                <td class="control-control-md">Requester_PR</td>
+                                <td class="control-control-md">Divisi_Requester</td>
+                                <td class="control-control-md">Tipe_Pesanan</td>
+                                <td class="control-control-md">Nama_Warna</td>
+                                <td class="control-control-md">Quantity_Barang</td>
+                                <td class="control-control-md">Ukuran_Barang_(m2)</td>
+                                <td class="control-control-md">Kode_Warna</td>
+                                <td class="control-control-md">Grade_Barang</td>
+                                <td class="control-control-md">Finish_Pengajuan</td>
+                                <td class="control-control-md">Status_PR_Manager</td>
+                                <td class="control-control-md">Status_PR_Purchasing</td>
+                                <td class="control-control-md"></td>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              @foreach ($pr_powder_pending as $no => $purchase_request)
+                                  <tr align="center">
+                                      <td class="content-control-sm" align="left">{{ $purchase_request->no_pr }}</td>
+                                      <td class="content-control-sm">
+                                          {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}</td>
+                                      <td class="content-control-sm">
+                                          {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}</td>
+                                      <td class="content-control-sm">{{ $purchase_request->location_name }}</td>
+                                      <td class="content-control-sm">{{ $purchase_request->requester }}</td>
+                                      <td class="content-control-sm">{{ $purchase_request->divisi }}</td>
+                                      <td class="content-control-sm">{{ $purchase_request->type }}</td>
+                                      <td class="content-control-sm">{{ $purchase_request->warna }}</td>
+                                      <td class="content-control-sm">{{ $purchase_request->quantity }}</td>
+                                      <td class="content-control-sm">{{ $purchase_request->m2 }}</td>
+                                      <td class="content-control-sm">{{ $purchase_request->name }}</td>
+                                      <td class="content-control-sm">{{ $purchase_request->tipe }}</td>
+                                      @if($purchase_request->finish == NULL)
+                                      <td class="content-control-sm">{{ $purchase_request->finishing }}</td>
+                                      @elseif($purchase_request->finishing == NULL)
+                                      <td class="content-control-sm">{{ $purchase_request->finish }}</td>
+                                      @else
+                                      <td class="content-control-sm">{{ $purchase_request->finish .'/'. $purchase_request->finishing }}</td>
+                                      @endif
+                                      <td class="content-control-sm">
+                                        @include('purchases.Status_PR_Manager')
+                                    </td>
+                                    <td class="content-control-sm">
+                                        @include('purchases.Status_PR_Purchase')
+                                    </td>
+      
+                                      <td class="py-2 text-end">
+                                        <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
+                                            type="button" id="order-dropdown-1" data-bs-toggle="dropdown"
+                                            data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
+                                                    viewbox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24" height="24">
+                                                        </rect>
+                                                        <circle fill="#000000" cx="5" cy="12" r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="12" cy="12" r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="19" cy="12" r="2">
+                                                        </circle>
+                                                    </g>
+                                                </svg></span></button>
+                                        <div class="dropdown-menu dropdown-menu-end border py-0"
+                                            aria-labelledby="order-dropdown-1">
+                                            <div class="py-2">
+                                                <form action="{{ route('purchase_request.view', $purchase_request->id) }}"
+                                                    method="GET">
+                                                    @csrf
+                                                    @method('GET')
+                                                    <input type="submit" class="dropdown-item" value="Detail">
+                                                </form>
+                                                @if ($purchase_request->approval_status == 'pending' && $purchase_request->accept_status == 'pending')
+                                                    <form
+                                                        action="{{ route('purchase_request.edit', $purchase_request->id) }}"
+                                                        method="GET">
+                                                        @csrf
+                                                        @method('GET')
+                                                        <input type="submit" class="dropdown-item" value="Edit PR">
+                                                    </form>
+                                                    <form
+                                                        action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
+                                                        method="POST" onsubmit="return confirm('Yakin hapus data?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="dropdown-item text-danger">Delete</button>
+                                                    </form>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                      </td>
+                                  </tr>
+                              @endforeach
+                          </tbody>
+                      </table>
+                      
+                  </div>
+              </div>
+      </div>
+      <div class="tabBlock-pane">
+              <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="example3" class="display" style="width:100%">
+                        <thead>
+                          <tr class="content-control-md" align="center">
+                              <td class="control-control-md">Nomor_PR</td>
+                              <td class="control-control-md">Pengajuan_PR</td>
+                              <td class="control-control-md">Deadline_Kirim</td>
+                              <td class="control-control-md">Alamat_Kirim</td>
+                              <td class="control-control-md">Requester_PR</td>
+                              <td class="control-control-md">Divisi_Requester</td>
+                              <td class="control-control-md">Tipe_Pesanan</td>
+                              <td class="control-control-md">Nama_Warna</td>
+                              <td class="control-control-md">Quantity_Barang</td>
+                              <td class="control-control-md">Ukuran_Barang_(m2)</td>
+                              <td class="control-control-md">Kode_Warna</td>
+                              <td class="control-control-md">Grade_Barang</td>
+                              <td class="control-control-md">Finish_Pengajuan</td>
+                              <td class="control-control-md">Status_PR_Manager</td>
+                              <td class="control-control-md">Status_PR_Purchasing</td>
+                              <td class="control-control-md"></td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($pr_powder_done as $no => $purchase_request)
+                                <tr align="center">
+                                    <td class="content-control-sm" align="left">{{ $purchase_request->no_pr }}</td>
+                                    <td class="content-control-sm">
+                                        {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}</td>
+                                    <td class="content-control-sm">
+                                        {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->location_name }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->requester }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->divisi }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->type }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->warna }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->quantity }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->m2 }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->name }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->tipe }}</td>
+                                    @if($purchase_request->finish == NULL)
+                                    <td class="content-control-sm">{{ $purchase_request->finishing }}</td>
+                                    @elseif($purchase_request->finishing == NULL)
+                                    <td class="content-control-sm">{{ $purchase_request->finish }}</td>
+                                    @else
+                                    <td class="content-control-sm">{{ $purchase_request->finish .'/'. $purchase_request->finishing }}</td>
+                                    @endif
+                                    <td class="content-control-sm">
+                                      @include('purchases.Status_PR_Manager')
+                                  </td>
+                                  <td class="content-control-sm">
+                                      @include('purchases.Status_PR_Purchase')
+                                  </td>
+    
+                                    <td class="py-2 text-end">
+                                        <div class="dropdown text-sans-serif"><button class="btn btn-primary tp-btn-light sharp"
+                                            type="button" id="order-dropdown-1" data-bs-toggle="dropdown"
+                                            data-boundary="viewport" aria-haspopup="true" aria-expanded="false"><span><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
+                                                    viewbox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24" height="24">
+                                                        </rect>
+                                                        <circle fill="#000000" cx="5" cy="12" r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="12" cy="12" r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="19" cy="12" r="2">
+                                                        </circle>
+                                                    </g>
+                                                </svg></span></button>
+                                        <div class="dropdown-menu dropdown-menu-end border py-0"
+                                            aria-labelledby="order-dropdown-1">
+                                            <div class="py-2">
+                                                <form action="{{ route('purchase_request.view', $purchase_request->id) }}"
+                                                    method="GET">
+                                                    @csrf
+                                                    @method('GET')
+                                                    <input type="submit" class="dropdown-item" value="Detail">
+                                                </form>
+                                                @if ($purchase_request->approval_status == 'pending' && $purchase_request->accept_status == 'pending')
+                                                    <form
+                                                        action="{{ route('purchase_request.edit', $purchase_request->id) }}"
+                                                        method="GET">
+                                                        @csrf
+                                                        @method('GET')
+                                                        <input type="submit" class="dropdown-item" value="Edit PR">
+                                                    </form>
+                                                    <form
+                                                        action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
+                                                        method="POST" onsubmit="return confirm('Yakin hapus data?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="dropdown-item text-danger">Delete</button>
+                                                    </form>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                  </div>
+          </div>
+      
+      </div>
+      <div class="tabBlock-pane">
+              <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="example3" class="display" style="width:100%">
+                        <thead>
+                          <tr class="content-control-md" align="center">
+                              <td class="control-control-md">Nomor_PR</td>
+                              <td class="control-control-md">Pengajuan_PR</td>
+                              <td class="control-control-md">Deadline_Kirim</td>
+                              <td class="control-control-md">Alamat_Kirim</td>
+                              <td class="control-control-md">Requester_PR</td>
+                              <td class="control-control-md">Divisi_Requester</td>
+                              <td class="control-control-md">Tipe_Pesanan</td>
+                              <td class="control-control-md">Nama_Warna</td>
+                              <td class="control-control-md">Quantity_Barang</td>
+                              <td class="control-control-md">Ukuran_Barang_(m2)</td>
+                              <td class="control-control-md">Kode_Warna</td>
+                              <td class="control-control-md">Grade_Barang</td>
+                              <td class="control-control-md">Finish_Pengajuan</td>
+                              <td class="control-control-md">Status_PR_Manager</td>
+                              <td class="control-control-md">Status_PR_Purchasing</td>
+                              <td class="control-control-md"></td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($pr_powder_reject as $no => $purchase_request)
+                                <tr align="center">
+                                    <td class="content-control-sm" align="left">{{ $purchase_request->no_pr }}</td>
+                                    <td class="content-control-sm">
+                                        {{ \Carbon\Carbon::parse($purchase_request->created_at)->format('d/m/Y') }}</td>
+                                    <td class="content-control-sm">
+                                        {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->location_name }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->requester }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->divisi }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->type }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->warna }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->quantity }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->m2 }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->name }}</td>
+                                    <td class="content-control-sm">{{ $purchase_request->tipe }}</td>
+                                    @if($purchase_request->finish == NULL)
+                                    <td class="content-control-sm">{{ $purchase_request->finishing }}</td>
+                                    @elseif($purchase_request->finishing == NULL)
+                                    <td class="content-control-sm">{{ $purchase_request->finish }}</td>
+                                    @else
+                                    <td class="content-control-sm">{{ $purchase_request->finish .'/'. $purchase_request->finishing }}</td>
+                                    @endif
+                                    <td class="content-control-sm">
+                                      @include('purchases.Status_PR_Manager')
+                                  </td>
+                                  <td class="content-control-sm">
+                                      @include('purchases.Status_PR_Purchase')
+                                  </td>
+    
+                                    <td class="py-2 text-end">
+                                        <div class="dropdown text-sans-serif"><button
+                                            class="btn btn-primary tp-btn-light sharp" type="button"
+                                            id="order-dropdown-1" data-bs-toggle="dropdown" data-boundary="viewport"
+                                            aria-haspopup="true" aria-expanded="false"><span><svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="18px"
+                                                    height="18px" viewbox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none"
+                                                        fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24"
+                                                            height="24">
+                                                        </rect>
+                                                        <circle fill="#000000" cx="5" cy="12"
+                                                            r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="12" cy="12"
+                                                            r="2">
+                                                        </circle>
+                                                        <circle fill="#000000" cx="19" cy="12"
+                                                            r="2">
+                                                        </circle>
+                                                    </g>
+                                                </svg></span></button>
+                                        <div class="dropdown-menu dropdown-menu-end border py-0"
+                                            aria-labelledby="order-dropdown-1">
+                                            <div class="py-2">
+                                                <form
+                                                    action="{{ route('purchase_request.view_reject', $purchase_request->id) }}"
+                                                    method="GET">
+                                                    @csrf
+                                                    @method('GET')
+                                                    <input type="submit" class="dropdown-item" value="Detail Reject">
+                                                </form>
+                                                <form
+                                                    action="{{ route('purchase_request.destroy', $purchase_request->id) }}"
+                                                    method="POST" onsubmit="return confirm('Yakin hapus data?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="dropdown-item text-danger">Delete
+                                                        PR</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                  </div>
+          </div>
+      </div>
+    </div>
+  </figure>
+
 
    
 
