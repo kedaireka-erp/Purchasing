@@ -263,6 +263,28 @@
                             <li><a href="{{ url('/manager_sales') }}">Manager Sales</a></li>
                         </ul>
                     </li>
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                            <i class="bi bi-clipboard2-fill"></i>
+                            <span class="nav-text">Sales Request</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ url('sales/purchase_request') }}">Purchase Request</a></li>
+                            <li><a href="{{ url('sales/purchase_request/create') }}">Buat PR</a></li>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master
+                                    Request</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="/masteritem">Master Item</a></li>
+                                    <li><a href="/prefix">Master Prefix</a></li>
+                                    <li><a href="/location">Master Lokasi</a></li>
+                                    <li><a href="/colour">Master Color</a></li>
+                                    <li><a href="/satuan">Master Satuan</a></li>
+                                    <li><a href="/grade">Master Grade</a></li>
+                                    <li><a href="/ships">Master Kebutuhan</a></li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                     <li><a href="/manager_sales/approval" class="" aria-expanded="false">
                         <i class="bi bi-check-circle-fill"></i>
                             <span class="nav-text">Sales Approval</span>
@@ -280,6 +302,28 @@
                             <li><a href="{{ url('/manager_finance') }}">Manager Finance</a></li>
                         </ul>
                     </li>
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                        <i class="bi bi-clipboard2-fill"></i>
+                        <span class="nav-text">Finance Request</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ url('finance/purchase_request') }}">Purchase Request</a></li>
+                        <li><a href="{{ url('finance/purchase_request/create') }}">Buat PR</a></li>
+                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master
+                                Request</a>
+                            <ul aria-expanded="false">
+                                <li><a href="/masteritem">Master Item</a></li>
+                                <li><a href="/prefix">Master Prefix</a></li>
+                                <li><a href="/location">Master Lokasi</a></li>
+                                <li><a href="/colour">Master Color</a></li>
+                                <li><a href="/satuan">Master Satuan</a></li>
+                                <li><a href="/grade">Master Grade</a></li>
+                                <li><a href="/ships">Master Kebutuhan</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
                     <li><a href="/manager_finance/approval" class="" aria-expanded="false">
                             <i class="bi bi-check-circle-fill"></i>
                             <span class="nav-text">Finance Approval</span>
@@ -297,6 +341,28 @@
                             <li><a href="{{ url('/manager_wirehouse') }}">Manager WO</a></li>
                         </ul>
                     </li>
+                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                        <i class="bi bi-clipboard2-fill"></i>
+                        <span class="nav-text">WO Request</span>
+                    </a>
+                    <ul aria-expanded="false">
+                        <li><a href="{{ url('wirehouse/purchase_request') }}">Purchase Request</a></li>
+                        <li><a href="{{ url('wirehouse/purchase_request/create') }}">Buat PR</a></li>
+                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Master
+                                Request</a>
+                            <ul aria-expanded="false">
+                                <li><a href="/masteritem">Master Item</a></li>
+                                <li><a href="/prefix">Master Prefix</a></li>
+                                <li><a href="/location">Master Lokasi</a></li>
+                                <li><a href="/colour">Master Color</a></li>
+                                <li><a href="/satuan">Master Satuan</a></li>
+                                <li><a href="/grade">Master Grade</a></li>
+                                <li><a href="/ships">Master Kebutuhan</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
                     <li><a href="/manager_wirehouse/approval" class="" aria-expanded="false">
                             <i class="fas fa-home"></i>
                             <span class="nav-text">WO Approval</span>

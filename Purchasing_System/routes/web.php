@@ -33,7 +33,7 @@ use App\Http\Controllers\LoginController;
 
 Route::middleware("auth")->group(function () {
    
-    Route::group(['middleware' => ['role_or_permission:Admin|sales_role_purchasing']], function () {
+    Route::group(['middleware' => ['role_or_permission:Admin|sales_role_purchasing|manager_sales_role_purchasing']], function () {
         Route::group(['as' => 'sales.', 'prefix' => 'sales'], function () {
             Route::get('/', [HomeController::class, 'index_sales'])->name('dashboard_sales');
             Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], function () {
@@ -88,7 +88,7 @@ Route::middleware("auth")->group(function () {
             });
         });
     });
-    Route::group(['middleware' => ['role_or_permission:Admin|finance_role_purchasing']], function () {
+    Route::group(['middleware' => ['role_or_permission:Admin|finance_role_purchasing|manager_finance_role_purchasing']], function () {
         Route::group(['as' => 'finance.', 'prefix' => 'finance'], function () {
             Route::get('/', [HomeController::class, 'index_finance'])->name('dashboard_finance');
             Route::group(['as' => 'purchase_request.', 'prefix' => 'purchase_request'], function () {
@@ -144,7 +144,7 @@ Route::middleware("auth")->group(function () {
     });
     });
 
-    Route::group(['middleware' => ['role_or_permission:Admin|wirehouse_role_purchasing']], function () {
+    Route::group(['middleware' => ['role_or_permission:Admin|wirehouse_role_purchasing|manager_wirehouse_role_purchasing']], function () {
         
         Route::group(['as' => 'wirehouse.', 'prefix' => 'wirehouse'], function () {
             Route::get('/', [HomeController::class, 'index_wirehouse'])->name('dashboard_wirehouse');
