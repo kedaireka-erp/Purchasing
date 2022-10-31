@@ -148,7 +148,7 @@
                                         @if ($tracking->item->outstanding != 0)
                                             <form action="{{ route('tracking.update_good', $tracking->item->id) }}"
                                                 method="post">
-
+                                                @csrf
                                                 <div class="mb-3">
                                                     <label class="form-label"> Barang Datang </label>
                                                     <input name="sudah_datang" placeholder="--INPUT--"
