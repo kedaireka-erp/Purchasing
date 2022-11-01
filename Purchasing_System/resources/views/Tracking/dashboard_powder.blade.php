@@ -357,7 +357,7 @@
                                             {{ \Carbon\Carbon::parse($purchase_request->deadline_date)->format('d/m/Y') }}
                                         </td>
                                         <td class="content-control-sm" align="center">{{ $purchase_request->location_name }}</td>
-                                        <td class="content-control-sm" align="center">{{ $purchase_request->color }}</td>
+                                        <td class="content-control-sm" align="center">{{ $purchase_request->warna }}</td>
                                         <td class="content-control-sm" align="center">{{ $purchase_request->quantity }}</td>
                                         <td class="content-control-sm" align="center">{{ $purchase_request->requester }}</td>
                                         <td class="content-control-sm" align="center">{{ $purchase_request->divisi }}</td>
