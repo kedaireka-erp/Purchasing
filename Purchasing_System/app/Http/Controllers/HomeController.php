@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Grade;
+use App\Models\notification;
 use App\Models\Order;
 use App\Models\ships;
 use App\Models\Colour;
@@ -526,7 +527,15 @@ class HomeController extends Controller
 
         DB::table('purchase_requests')->where('id', $id)->update([
             'tanggal_diterima' => $request->tanggal_diterima,
-            'approval_status' => $request->approval_status
+            'approval_status' => $request->approval_status,
+            
+        ]);
+
+        notification::create([
+            'id_request'=>$id,
+            'role' => $purchase->role,
+            'message' => "Status PR dengan nomer ".$purchase->no_pr. " telah diubah oleh "."Manager"." menjadi ". $request->approval_status,
+            'status' => 'new',
 
         ]);
 
@@ -556,7 +565,16 @@ class HomeController extends Controller
 
         DB::table('purchase_requests')->where('id', $id)->update([
             'tanggal_diterima' => $request->tanggal_diterima,
-            'approval_status' => 'edit'
+            'approval_status' => 'edit',
+            
+        ]);
+
+        notification::create([
+            
+            'id_request'=>$id,
+            'role' => $purchase->role,
+            'message' => "Isi PR dengan nomer ".$purchase->no_pr. " telah diedit oleh "."Manager".", harap segera dicek",
+            'status' => 'new',
 
         ]);
 
@@ -580,16 +598,34 @@ class HomeController extends Controller
 
     public function update_accept(request $request, $id)
     {
+        $purchase = PurchaseRequest::find($id);
         DB::table('purchase_requests')->where('id', $id)->update([
             'accept_status' => $request->accept_status,
+            
+        ]);
+        notification::create([
+            
+            'id_request'=>$id,
+            'role' => $purchase->role,
+            'message' => "Status PR dengan nomer ".$purchase->no_pr. " telah diubah oleh "."tim purchasing"." menjadi ". $request->accept_status,
+            'status' => 'new',
 
         ]);
         return redirect('approval/accept')->with('success', 'Berhasil mengubah status');
     }
     public function update_accept_edit(request $request, $id)
     {
+        $purchase = PurchaseRequest::find($id);
         DB::table('purchase_requests')->where('id', $id)->update([
             'accept_status' => 'edit',
+            
+        ]);
+        notification::create([
+            
+            'id_request'=>$id,
+            'role' => $purchase->role,
+            'message' => "Isi PR dengan nomer ".$purchase->no_pr. " telah diedit oleh "."tim purchasing, harap segera dicek",
+            'status' => 'new',
 
         ]);
         return redirect('approval/accept')->with('success', 'Berhasil mengubah status');

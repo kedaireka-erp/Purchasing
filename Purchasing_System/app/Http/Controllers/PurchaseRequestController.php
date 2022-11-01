@@ -1084,6 +1084,11 @@ return view('purchases.index', compact('purchase_requests_pending','purchase_req
     }
 
     public function view($id){
+
+        DB::table('notifications')->where('id_request', $id)->update([
+            'status' => 'read',
+        ]);
+
         $purchase_requests = PurchaseRequest::find($id);
         $item = Item::with('master_item','satuan')->get();
 
